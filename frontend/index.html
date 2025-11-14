@@ -261,11 +261,37 @@
                         <div style="padding: 20px;">
                             <h3 style="color: var(--champlain-navy); margin-bottom: 15px;">Student Course Pathway</h3>
                             <div style="margin-bottom: 20px;">
-                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Select Completed Courses:</label>
-                                <div id="completedCoursesSelector" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;"></div>
+                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Search Completed Courses:</label>
+                                <div style="position: relative; margin-bottom: 15px;">
+                                    <input type="text"
+                                           id="completedCoursesSearch"
+                                           placeholder="Search and select completed courses..."
+                                           style="width: 100%; padding: 10px 40px 10px 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 14px;"
+                                           autocomplete="off">
+                                    <div id="completedCoursesDropdown" class="hidden" style="position: absolute; top: 100%; left: 0; right: 0; background: white; border: 2px solid #00A9E0; border-radius: 6px; max-height: 300px; overflow-y: auto; z-index: 1000; margin-top: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></div>
+                                </div>
+                                <div id="completedCoursesSelected" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;"></div>
                             </div>
-                            <div id="pathwayGraphContainer" style="width: 100%; min-height: 500px;">
-                                <svg id="pathwayGraph" style="width: 100%; min-height: 500px;"></svg>
+                            <div id="pathwayGraphContainer" style="display: flex; gap: 20px; width: 100%; min-height: 500px;">
+                                <!-- Three columns for Completed, Available, Locked -->
+                                <div style="flex: 1; min-width: 250px;">
+                                    <h4 style="color: #4CAF50; margin-bottom: 10px; font-size: 18px; font-weight: bold;">
+                                        Completed <span id="completedCount" style="font-size: 14px;">(0)</span>
+                                    </h4>
+                                    <div id="completedCoursesBox" class="pathway-box" style="background: #f5f7fa; border: 2px solid #4CAF50; border-radius: 10px; padding: 15px; height: 500px; overflow-y: auto;"></div>
+                                </div>
+                                <div style="flex: 1; min-width: 250px;">
+                                    <h4 style="color: #00A9E0; margin-bottom: 10px; font-size: 18px; font-weight: bold;">
+                                        Available <span id="availableCount" style="font-size: 14px;">(0)</span>
+                                    </h4>
+                                    <div id="availableCoursesBox" class="pathway-box" style="background: #f5f7fa; border: 2px solid #00A9E0; border-radius: 10px; padding: 15px; height: 500px; overflow-y: auto;"></div>
+                                </div>
+                                <div style="flex: 1; min-width: 250px;">
+                                    <h4 style="color: #999; margin-bottom: 10px; font-size: 18px; font-weight: bold;">
+                                        Locked <span id="lockedCount" style="font-size: 14px;">(0)</span>
+                                    </h4>
+                                    <div id="lockedCoursesBox" class="pathway-box" style="background: #f5f7fa; border: 2px solid #999; border-radius: 10px; padding: 15px; height: 500px; overflow-y: auto;"></div>
+                                </div>
                             </div>
                         </div>
                     </div>

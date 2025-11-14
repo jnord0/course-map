@@ -1607,72 +1607,223 @@ System: Champlain Academic Affairs Management System
     },
 
     /**
-     * Render course selector for pathway view
+     * Render course selector for pathway view with search
      */
     renderPathwaySelector: () => {
-        const selector = document.getElementById('completedCoursesSelector');
+        const searchInput = document.getElementById('completedCoursesSearch');
+        const dropdown = document.getElementById('completedCoursesDropdown');
+        const selectedContainer = document.getElementById('completedCoursesSelected');
         const courses = StateGetters.getCourses();
-        const pathwayContainer = document.getElementById('pathwayGraphContainer');
 
-        if (!selector || !pathwayContainer) return;
+        if (!searchInput || !dropdown || !selectedContainer) return;
 
         // Track completed courses
-        const completedCourses = [];
+        let completedCourses = [];
 
-        // Render course checkboxes
-        selector.innerHTML = courses.map(course => {
-            return `
-                <label style="
-                    display: inline-flex;
-                    align-items: center;
-                    padding: 6px 12px;
-                    background: #f5f7fa;
-                    border: 1px solid #ddd;
-                    border-radius: 6px;
-                    cursor: pointer;
-                    user-select: none;
-                    transition: all 0.2s;
-                " onmouseover="this.style.background='#e8ebf0'" onmouseout="this.style.background='#f5f7fa'">
-                    <input type="checkbox"
-                           value="${course.code}"
-                           style="margin-right: 6px; cursor: pointer;"
-                           onchange="VisualizationModule.updatePathwayView()">
-                    <span style="font-size: 12px; font-weight: 600;">${course.code}</span>
-                </label>
-            `;
-        }).join('');
+        // Update selected courses display
+        const updateSelectedDisplay = () => {
+            selectedContainer.innerHTML = completedCourses.map(code => {
+                const course = courses.find(c => c.code === code);
+                return `
+                    <div style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        padding: 6px 12px;
+                        background: #4CAF50;
+                        color: white;
+                        border-radius: 6px;
+                        font-size: 13px;
+                        font-weight: 600;
+                    ">
+                        <span>${course ? course.code : code}</span>
+                        <button onclick="VisualizationModule.removeCompletedCourse('${code}')"
+                                style="
+                                    background: none;
+                                    border: none;
+                                    color: white;
+                                    cursor: pointer;
+                                    padding: 0;
+                                    font-size: 16px;
+                                    line-height: 1;
+                                ">&times;</button>
+                    </div>
+                `;
+            }).join('');
+        };
+
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+
+            if (searchTerm === '') {
+                dropdown.classList.add('hidden');
+                return;
+            }
+
+            // Filter courses by search term
+            const filteredCourses = courses.filter(course => {
+                const searchString = `${course.code} ${course.name}`.toLowerCase();
+                return searchString.includes(searchTerm) && !completedCourses.includes(course.code);
+            });
+
+            if (filteredCourses.length === 0) {
+                dropdown.innerHTML = '<div style="padding: 12px; color: #999; text-align: center;">No courses found</div>';
+                dropdown.classList.remove('hidden');
+                return;
+            }
+
+            // Render dropdown results
+            dropdown.innerHTML = filteredCourses.slice(0, 10).map(course => {
+                return `
+                    <div class="course-search-result"
+                         data-code="${course.code}"
+                         style="
+                            padding: 10px 12px;
+                            cursor: pointer;
+                            border-bottom: 1px solid #eee;
+                            transition: background 0.2s;
+                         "
+                         onmouseover="this.style.background='#f0f8ff'"
+                         onmouseout="this.style.background='white'">
+                        <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 2px;">
+                            ${course.code}
+                        </div>
+                        <div style="font-size: 12px; color: #666;">
+                            ${course.name || 'No title'}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            dropdown.classList.remove('hidden');
+
+            // Add click handlers
+            dropdown.querySelectorAll('.course-search-result').forEach(result => {
+                result.addEventListener('click', () => {
+                    const code = result.getAttribute('data-code');
+                    if (!completedCourses.includes(code)) {
+                        completedCourses.push(code);
+                        updateSelectedDisplay();
+                        VisualizationModule.updatePathwayView();
+                    }
+                    searchInput.value = '';
+                    dropdown.classList.add('hidden');
+                });
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        // Store reference to update function
+        VisualizationModule._completedCourses = completedCourses;
+        VisualizationModule._updateSelectedDisplay = updateSelectedDisplay;
 
         // Initial render
         VisualizationModule.updatePathwayView();
     },
 
     /**
+     * Remove a completed course
+     */
+    removeCompletedCourse: (code) => {
+        if (!VisualizationModule._completedCourses) return;
+
+        const index = VisualizationModule._completedCourses.indexOf(code);
+        if (index > -1) {
+            VisualizationModule._completedCourses.splice(index, 1);
+            VisualizationModule._updateSelectedDisplay();
+            VisualizationModule.updatePathwayView();
+        }
+    },
+
+    /**
      * Update pathway view based on selected completed courses
      */
     updatePathwayView: () => {
-        const selector = document.getElementById('completedCoursesSelector');
-        if (!selector) return;
+        const completedCourses = VisualizationModule._completedCourses || [];
 
-        const checkboxes = selector.querySelectorAll('input[type="checkbox"]');
-        const completedCourses = Array.from(checkboxes)
-            .filter(cb => cb.checked)
-            .map(cb => cb.value);
+        // Get pathway data
+        const pathway = PrerequisitesModule.getStudentPathway(completedCourses);
 
-        // Re-initialize PrerequisiteVisualization to ensure svg exists
-        PrerequisiteVisualization.svg = d3.select('#pathwayGraph');
-        const container = document.getElementById('pathwayGraphContainer');
-        if (container) {
-            const rect = container.getBoundingClientRect();
-            PrerequisiteVisualization.width = rect.width - 40;
-            PrerequisiteVisualization.height = rect.height - 40;
+        // Update counts
+        document.getElementById('completedCount').textContent = `(${completedCourses.length})`;
+        document.getElementById('availableCount').textContent = `(${pathway.available.length})`;
+        document.getElementById('lockedCount').textContent = `(${pathway.locked.length})`;
 
-            PrerequisiteVisualization.svg
-                .attr('width', '100%')
-                .attr('height', '100%')
-                .attr('viewBox', `0 0 ${PrerequisiteVisualization.width} ${PrerequisiteVisualization.height}`)
-                .attr('preserveAspectRatio', 'xMidYMid meet');
+        // Render completed courses
+        const completedBox = document.getElementById('completedCoursesBox');
+        if (completedBox) {
+            const courses = StateGetters.getCourses();
+            completedBox.innerHTML = completedCourses.length === 0
+                ? '<p style="color: #999; text-align: center; padding: 20px;">No completed courses selected</p>'
+                : completedCourses.map(code => {
+                    const course = courses.find(c => c.code === code);
+                    return VisualizationModule.renderCourseCard(course || { code, name: code }, '#4CAF50');
+                }).join('');
         }
 
-        PrerequisiteVisualization.renderPathwayView(completedCourses);
+        // Render available courses
+        const availableBox = document.getElementById('availableCoursesBox');
+        if (availableBox) {
+            availableBox.innerHTML = pathway.available.length === 0
+                ? '<p style="color: #999; text-align: center; padding: 20px;">No available courses</p>'
+                : pathway.available.map(course => {
+                    return VisualizationModule.renderCourseCard(course, '#00A9E0');
+                }).join('');
+        }
+
+        // Render locked courses
+        const lockedBox = document.getElementById('lockedCoursesBox');
+        if (lockedBox) {
+            lockedBox.innerHTML = pathway.locked.length === 0
+                ? '<p style="color: #999; text-align: center; padding: 20px;">No locked courses</p>'
+                : pathway.locked.map(course => {
+                    return VisualizationModule.renderCourseCard(course, '#999', true);
+                }).join('');
+        }
+    },
+
+    /**
+     * Render a course card for pathway view
+     */
+    renderCourseCard: (course, borderColor, showMissingPrereqs = false) => {
+        const missingPrereqs = showMissingPrereqs && course.missingPrerequisites
+            ? `<div style="margin-top: 6px; padding-top: 6px; border-top: 1px solid #eee;">
+                 <div style="font-size: 11px; color: #666; margin-bottom: 3px;">Missing prerequisites:</div>
+                 <div style="font-size: 11px; color: #d32f2f;">${course.missingPrerequisites.join(', ')}</div>
+               </div>`
+            : '';
+
+        return `
+            <div style="
+                background: white;
+                border: 1px solid ${borderColor};
+                border-radius: 6px;
+                padding: 12px;
+                margin-bottom: 10px;
+                cursor: pointer;
+                transition: all 0.2s;
+            "
+            onmouseover="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'"
+            onclick="PrerequisitesModule.showCourseDetails('${course.code}')">
+                <div style="font-weight: bold; color: var(--champlain-navy); margin-bottom: 4px; font-size: 13px;">
+                    ${course.code}
+                </div>
+                <div style="font-size: 11px; color: #666; margin-bottom: 4px;">
+                    ${course.name || 'No title'}
+                </div>
+                <div style="font-size: 11px; color: #999;">
+                    ${course.credits || 3} credits
+                </div>
+                ${missingPrereqs}
+            </div>
+        `;
     }
 };
