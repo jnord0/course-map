@@ -483,7 +483,24 @@ const CoursesModule = {
         const creditHours = document.getElementById('editCreditHours').value;
         const prerequisites = document.getElementById('editPrerequisites').value;
         const justification = document.getElementById('editJustification').value;
-        
+
+        // Validate prerequisites for circular dependencies
+        if (prerequisites && prerequisites.trim().length > 0) {
+            const validation = PrerequisitesModule.validatePrerequisites(courseCode, prerequisites);
+
+            if (!validation.isValid) {
+                alert('Prerequisite Validation Errors:\n\n' + validation.errors.join('\n\n') +
+                      '\n\nPlease fix these errors before saving.');
+                return;
+            }
+
+            if (validation.warnings.length > 0) {
+                const proceed = confirm('Prerequisite Warnings:\n\n' + validation.warnings.join('\n\n') +
+                                      '\n\nDo you want to continue anyway?');
+                if (!proceed) return;
+            }
+        }
+
         const courseData = {
             code: courseCode,
             name: courseName,
@@ -496,7 +513,7 @@ const CoursesModule = {
             plos: AppState.editingCourseId ? StateGetters.getCourses().find(c => c.id === AppState.editingCourseId)?.plos : [],
             clos: AppState.editingCourseId ? StateGetters.getCourses().find(c => c.id === AppState.editingCourseId)?.clos : []
         };
-        
+
         if (AppState.editingCourseId) {
             // Update existing course
             StateSetters.updateCourse(AppState.editingCourseId, courseData);
@@ -504,7 +521,7 @@ const CoursesModule = {
             // Add new course
             StateSetters.addCourse(courseData);
         }
-        
+
         CoursesModule.updateCoursesList();
         CoursesModule.updateAvailableCourses();
         CoursesModule.updateSystemStats();

@@ -990,23 +990,75 @@ const VisualizationModule = {
     setupViewToggle: () => {
         const networkViewBtn = document.getElementById('networkViewBtn');
         const tableViewBtn = document.getElementById('tableViewBtn');
-        
+        const prerequisiteViewBtn = document.getElementById('prerequisiteViewBtn');
+        const pathwayViewBtn = document.getElementById('pathwayViewBtn');
+
+        const allViews = ['networkView', 'tableView', 'prerequisiteView', 'pathwayView'];
+        const allBtns = [networkViewBtn, tableViewBtn, prerequisiteViewBtn, pathwayViewBtn];
+
+        // Helper to switch views
+        const switchView = (viewId, activeBtn) => {
+            // Update title and description
+            const title = document.getElementById('vizTitle');
+            const description = document.getElementById('vizDescription');
+
+            if (viewId === 'networkView') {
+                title.textContent = 'Competency Visualization';
+                description.textContent = 'Interactive network showing relationships between courses and college competencies';
+            } else if (viewId === 'tableView') {
+                title.textContent = 'Competency Table';
+                description.textContent = 'Detailed table view of competency coverage across selected courses';
+            } else if (viewId === 'prerequisiteView') {
+                title.textContent = 'Prerequisite Chain';
+                description.textContent = 'Hierarchical view of course prerequisites and dependencies';
+            } else if (viewId === 'pathwayView') {
+                title.textContent = 'Course Pathway';
+                description.textContent = 'Student course progression showing available, completed, and locked courses';
+            }
+
+            // Hide all views
+            allViews.forEach(v => {
+                const elem = document.getElementById(v);
+                if (elem) elem.classList.add('hidden');
+            });
+
+            // Show selected view
+            const elem = document.getElementById(viewId);
+            if (elem) elem.classList.remove('hidden');
+
+            // Update button states
+            allBtns.forEach(btn => {
+                if (btn) btn.classList.remove('active');
+            });
+            if (activeBtn) activeBtn.classList.add('active');
+        };
+
         if (networkViewBtn) {
             networkViewBtn.addEventListener('click', () => {
-                document.getElementById('networkView').classList.remove('hidden');
-                document.getElementById('tableView').classList.add('hidden');
-                networkViewBtn.classList.add('active');
-                tableViewBtn.classList.remove('active');
+                switchView('networkView', networkViewBtn);
             });
         }
-        
+
         if (tableViewBtn) {
             tableViewBtn.addEventListener('click', () => {
-                document.getElementById('networkView').classList.add('hidden');
-                document.getElementById('tableView').classList.remove('hidden');
-                networkViewBtn.classList.remove('active');
-                tableViewBtn.classList.add('active');
+                switchView('tableView', tableViewBtn);
                 VisualizationModule.renderTableView();
+            });
+        }
+
+        if (prerequisiteViewBtn) {
+            prerequisiteViewBtn.addEventListener('click', () => {
+                switchView('prerequisiteView', prerequisiteViewBtn);
+                const selectedCourses = StateGetters.getSelectedCourses();
+                const selectedCodes = selectedCourses.map(c => c.code);
+                PrerequisiteVisualization.render(selectedCodes, 'chain');
+            });
+        }
+
+        if (pathwayViewBtn) {
+            pathwayViewBtn.addEventListener('click', () => {
+                switchView('pathwayView', pathwayViewBtn);
+                VisualizationModule.renderPathwaySelector();
             });
         }
     },
@@ -1552,5 +1604,75 @@ System: Champlain Academic Affairs Management System
         document.body.removeChild(link);
         
         alert(`Course proposal for ${course.code} exported successfully!`);
+    },
+
+    /**
+     * Render course selector for pathway view
+     */
+    renderPathwaySelector: () => {
+        const selector = document.getElementById('completedCoursesSelector');
+        const courses = StateGetters.getCourses();
+        const pathwayContainer = document.getElementById('pathwayGraphContainer');
+
+        if (!selector || !pathwayContainer) return;
+
+        // Track completed courses
+        const completedCourses = [];
+
+        // Render course checkboxes
+        selector.innerHTML = courses.map(course => {
+            return `
+                <label style="
+                    display: inline-flex;
+                    align-items: center;
+                    padding: 6px 12px;
+                    background: #f5f7fa;
+                    border: 1px solid #ddd;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    user-select: none;
+                    transition: all 0.2s;
+                " onmouseover="this.style.background='#e8ebf0'" onmouseout="this.style.background='#f5f7fa'">
+                    <input type="checkbox"
+                           value="${course.code}"
+                           style="margin-right: 6px; cursor: pointer;"
+                           onchange="VisualizationModule.updatePathwayView()">
+                    <span style="font-size: 12px; font-weight: 600;">${course.code}</span>
+                </label>
+            `;
+        }).join('');
+
+        // Initial render
+        VisualizationModule.updatePathwayView();
+    },
+
+    /**
+     * Update pathway view based on selected completed courses
+     */
+    updatePathwayView: () => {
+        const selector = document.getElementById('completedCoursesSelector');
+        if (!selector) return;
+
+        const checkboxes = selector.querySelectorAll('input[type="checkbox"]');
+        const completedCourses = Array.from(checkboxes)
+            .filter(cb => cb.checked)
+            .map(cb => cb.value);
+
+        // Re-initialize PrerequisiteVisualization to ensure svg exists
+        PrerequisiteVisualization.svg = d3.select('#pathwayGraph');
+        const container = document.getElementById('pathwayGraphContainer');
+        if (container) {
+            const rect = container.getBoundingClientRect();
+            PrerequisiteVisualization.width = rect.width - 40;
+            PrerequisiteVisualization.height = rect.height - 40;
+
+            PrerequisiteVisualization.svg
+                .attr('width', '100%')
+                .attr('height', '100%')
+                .attr('viewBox', `0 0 ${PrerequisiteVisualization.width} ${PrerequisiteVisualization.height}`)
+                .attr('preserveAspectRatio', 'xMidYMid meet');
+        }
+
+        PrerequisiteVisualization.renderPathwayView(completedCourses);
     }
 };
