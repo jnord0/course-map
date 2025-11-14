@@ -3,46 +3,16 @@
 const CoursesModule = {
     /**
      * Update available courses list with search filter
-     * @param {string} searchTerm 
+     * @param {string} searchTerm
      */
     updateAvailableCourses: (searchTerm = '') => {
-        const availableDiv = document.getElementById('availableCourses');
-        const courses = StateGetters.getCourses();
-        
-        // If no search term, show placeholder message
-        if (searchTerm === '' || searchTerm.trim().length === 0) {
-            availableDiv.innerHTML = '<p style="text-align: center; color: #999; padding: 20px; font-size: 13px;">Type to search courses...</p>';
-            return;
-        }
-        
-        const filteredCourses = courses.filter(course => {
-            const matchesSearch = course.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                course.name.toLowerCase().includes(searchTerm.toLowerCase());
-            return matchesSearch;
-        });
-        
-        if (filteredCourses.length === 0) {
-            availableDiv.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">No courses found</p>';
-        } else {
-            availableDiv.innerHTML = filteredCourses.map(course => {
-                // Get competency names from object keys
-                const compNames = Object.keys(course.competencies || {}).map(compId => {
-                    const comp = StateGetters.getCompetencies().find(comp => comp.id === compId);
-                    return comp ? comp.name : compId;
-                }).join(', ');
-                
-                const isSelected = AppState.selectedCourseIds.includes(course.id);
-                
-                return `
-                    <div class="course-search-item ${isSelected ? 'selected' : ''}" 
-                         onclick="CoursesModule.toggleCourseSelection(${course.id})">
-                        <div class="course-search-code">${course.code}</div>
-                        <div class="course-search-name">${course.name}</div>
-                        <div class="course-search-comps">📚 ${compNames}</div>
-                    </div>
-                `;
-            }).join('');
-        }
+        // Update text search in filters
+        const filters = StateGetters.getActiveFilters();
+        filters.textSearch = searchTerm;
+        StateSetters.setActiveFilters(filters);
+
+        // Apply all filters and update display
+        FilterModule.applyFiltersAndUpdate();
     },
     
     /**
@@ -66,7 +36,7 @@ const CoursesModule = {
     
     /**
      * Toggle course selection for visualization
-     * @param {number} courseId 
+     * @param {number} courseId
      */
     toggleCourseSelection: (courseId) => {
         StateSetters.toggleCourseSelection(courseId);
@@ -74,11 +44,16 @@ const CoursesModule = {
         CoursesModule.updateAvailableCourses(searchInput ? searchInput.value : '');
         CoursesModule.updateSelectedCourses();
         CompetenciesModule.updateTracker();
+
+        // Update similar courses display
+        if (typeof FilterModule !== 'undefined' && FilterModule.updateSimilarCourses) {
+            FilterModule.updateSimilarCourses();
+        }
     },
     
     /**
      * Remove course from selection
-     * @param {number} courseId 
+     * @param {number} courseId
      */
     removeCourseSelection: (courseId) => {
         StateSetters.removeCourseSelection(courseId);
@@ -86,6 +61,11 @@ const CoursesModule = {
         CoursesModule.updateAvailableCourses(searchInput ? searchInput.value : '');
         CoursesModule.updateSelectedCourses();
         CompetenciesModule.updateTracker();
+
+        // Update similar courses display
+        if (typeof FilterModule !== 'undefined' && FilterModule.updateSimilarCourses) {
+            FilterModule.updateSimilarCourses();
+        }
     },
     
     /**

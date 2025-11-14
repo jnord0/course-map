@@ -96,10 +96,15 @@ const App = {
         CoursesModule.updateAvailableCourses();
         CoursesModule.updateSelectedCourses();
         CompetenciesModule.updateTracker();
-        
+
+        // Initialize advanced filters
+        if (typeof FilterModule !== 'undefined') {
+            FilterModule.initializeFilterUI();
+        }
+
         // Update stats
         App.updateStats();
-        
+
         // Attach search listener
         const searchInput = document.getElementById('courseSearch');
         if (searchInput) {
