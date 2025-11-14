@@ -1007,6 +1007,1364 @@
           }
         }
       }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-01-01",
+          "lastModified": "2024-01-01",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-008"
+        },
+        "courseIdentity": {
+          "prefix": "CSI",
+          "number": 140,
+          "title": "Programming Fundamentals I",
+          "transcriptTitle": "Programming Fundamentals I",
+          "credits": 3,
+          "facultyLoad": 3,
+          "effectiveSemester": {
+            "term": "FALL",
+            "year": 2024
+          },
+          "courseType": [
+            {
+              "category": "Major",
+              "subcategory": "Computer Science & Innovation"
+            }
+          ],
+          "catalogDescription": "Introduction to programming concepts using Python. Covers variables, data types, control structures, functions, and basic algorithms. No prior programming experience required.",
+          "prerequisites": [],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "BOTH",
+          "capacity": 28
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Write programs using variables, conditionals, and loops",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Design and implement functions to solve problems",
+              "linkedPLOs": ["PLO1", "PLO2"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Debug and test code systematically",
+              "linkedPLOs": ["PLO2"]
+            },
+            {
+              "id": "CLO4",
+              "description": "Explain code logic to peers",
+              "linkedPLOs": ["PLO3"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Apply computational thinking to solve problems",
+              "competencies": ["INQ", "ANL"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Use logical reasoning in programming",
+              "competencies": ["ANL", "QNT"]
+            },
+            {
+              "id": "PLO3",
+              "description": "Communicate technical concepts clearly",
+              "competencies": ["COM"]
+            }
+          ],
+          "competencyMapping": {
+            "Inquiry": 2,
+            "Analysis": 3,
+            "QuantitativeLiteracy": 2,
+            "Communication": 2,
+            "Creativity": 2
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Introduction to Programming and Python\nWeek 3-4: Variables and Data Types\nWeek 5-6: Conditional Statements\nWeek 7-8: Loops and Iteration\nWeek 9-10: Functions\nWeek 11-12: Lists and Data Structures\nWeek 13-14: Basic Algorithms\nWeek 15: Final Project"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Programming Assignments",
+              "description": "Weekly coding exercises building on concepts",
+              "linkedCLOs": ["CLO1", "CLO2"]
+            },
+            {
+              "name": "Debugging Challenge",
+              "description": "Find and fix errors in provided code",
+              "linkedCLOs": ["CLO3"]
+            },
+            {
+              "name": "Final Programming Project",
+              "description": "Create complete program solving real-world problem",
+              "linkedCLOs": ["CLO2", "CLO3", "CLO4"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Computer Lab",
+            "body": "Computer lab with Python installed on all machines"
+          },
+          "technology": {
+            "body": "Python 3.x, VS Code or PyCharm, online coding platforms"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Tutoring support, peer programming sessions"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-01-05",
+          "lastModified": "2024-01-05",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-009"
+        },
+        "courseIdentity": {
+          "prefix": "CSI",
+          "number": 240,
+          "title": "Programming Fundamentals II",
+          "transcriptTitle": "Programming Fundamentals II",
+          "credits": 3,
+          "facultyLoad": 3,
+          "effectiveSemester": {
+            "term": "SPRING",
+            "year": 2024
+          },
+          "courseType": [
+            {
+              "category": "Major",
+              "subcategory": "Computer Science & Innovation"
+            }
+          ],
+          "catalogDescription": "Advanced programming concepts including object-oriented programming, data structures, file I/O, and exception handling. Builds upon Programming Fundamentals I.",
+          "prerequisites": [
+            {
+              "coursePrefix": "CSI",
+              "courseNumber": "140",
+              "courseName": "Programming Fundamentals I"
+            }
+          ],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "BOTH",
+          "capacity": 26
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Design and implement object-oriented programs with classes and inheritance",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Implement common data structures (lists, stacks, queues, trees)",
+              "linkedPLOs": ["PLO1", "PLO2"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Handle file operations and exceptions properly",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO4",
+              "description": "Analyze algorithm efficiency and complexity",
+              "linkedPLOs": ["PLO2"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Design software using object-oriented principles",
+              "competencies": ["INQ", "ANL"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Apply computational thinking to complex problems",
+              "competencies": ["ANL", "QNT"]
+            }
+          ],
+          "competencyMapping": {
+            "Inquiry": 3,
+            "Analysis": 3,
+            "Integration": 2,
+            "QuantitativeLiteracy": 2,
+            "Communication": 1,
+            "Creativity": 2
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Object-Oriented Programming Basics\nWeek 3-4: Inheritance and Polymorphism\nWeek 5-6: Data Structures - Lists and Arrays\nWeek 7-8: Stacks and Queues\nWeek 9-10: Trees and Recursion\nWeek 11-12: File I/O and Data Persistence\nWeek 13-14: Exception Handling and Testing\nWeek 15: Final Project Presentations"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "OOP Design Project",
+              "description": "Create class hierarchy for complex system",
+              "linkedCLOs": ["CLO1"]
+            },
+            {
+              "name": "Data Structure Implementation",
+              "description": "Implement and test custom data structures",
+              "linkedCLOs": ["CLO2", "CLO4"]
+            },
+            {
+              "name": "Comprehensive Application",
+              "description": "Build complete application with file I/O and error handling",
+              "linkedCLOs": ["CLO3"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Computer Lab",
+            "body": "Computer lab with development environment"
+          },
+          "technology": {
+            "body": "Python 3.x, IDE, version control (Git)"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Code review sessions, algorithmic thinking workshops"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-01-08",
+          "lastModified": "2024-01-08",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-011"
+        },
+        "courseIdentity": {
+          "prefix": "CSI",
+          "number": 260,
+          "title": "Web Programming",
+          "transcriptTitle": "Web Programming",
+          "credits": 3,
+          "facultyLoad": 3,
+          "effectiveSemester": {
+            "term": "SPRING",
+            "year": 2024
+          },
+          "courseType": [
+            {
+              "category": "Major",
+              "subcategory": "Computer Science & Innovation"
+            }
+          ],
+          "catalogDescription": "Introduction to web programming including HTML, CSS, JavaScript, and basic server-side programming. Students learn to create interactive web pages and understand client-server architecture.",
+          "prerequisites": [
+            {
+              "coursePrefix": "CSI",
+              "courseNumber": "140",
+              "courseName": "Programming Fundamentals I"
+            }
+          ],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "BOTH",
+          "capacity": 24
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Create well-structured web pages using HTML5 and CSS3",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Implement interactive features using JavaScript",
+              "linkedPLOs": ["PLO1", "PLO2"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Develop basic server-side applications",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO4",
+              "description": "Apply web accessibility and usability principles",
+              "linkedPLOs": ["PLO3"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Design and implement web applications",
+              "competencies": ["INQ", "CRE"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Use programming to create interactive experiences",
+              "competencies": ["ANL", "INT"]
+            },
+            {
+              "id": "PLO3",
+              "description": "Design inclusive and accessible digital experiences",
+              "competencies": ["DEI", "GCU"]
+            }
+          ],
+          "competencyMapping": {
+            "Inquiry": 2,
+            "Integration": 2,
+            "Analysis": 2,
+            "DiversityEquityInclusion": 2,
+            "Creativity": 3,
+            "Communication": 2
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: HTML5 Fundamentals\nWeek 3-4: CSS3 Styling and Layout\nWeek 5-6: JavaScript Basics\nWeek 7-8: DOM Manipulation and Events\nWeek 9-10: Forms and Validation\nWeek 11-12: Introduction to Server-Side Programming\nWeek 13-14: Web APIs and AJAX\nWeek 15: Final Project Showcase"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Personal Website",
+              "description": "Create responsive personal website with HTML/CSS",
+              "linkedCLOs": ["CLO1"]
+            },
+            {
+              "name": "Interactive Web Application",
+              "description": "Build interactive app using JavaScript",
+              "linkedCLOs": ["CLO2"]
+            },
+            {
+              "name": "Full-Stack Web Project",
+              "description": "Develop web application with client and server components",
+              "linkedCLOs": ["CLO3", "CLO4"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Computer Lab",
+            "body": "Computer lab with web development tools"
+          },
+          "technology": {
+            "body": "VS Code, modern browsers, Node.js, web hosting"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Web hosting for student projects, domain names"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-01-12",
+          "lastModified": "2024-01-12",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-012"
+        },
+        "courseIdentity": {
+          "prefix": "GAM",
+          "number": 150,
+          "title": "Introduction to Game Development",
+          "transcriptTitle": "Introduction to Game Development",
+          "credits": 3,
+          "facultyLoad": 3,
+          "effectiveSemester": {
+            "term": "FALL",
+            "year": 2024
+          },
+          "courseType": [
+            {
+              "category": "Major",
+              "subcategory": "Game Development"
+            }
+          ],
+          "catalogDescription": "Introduction to game development concepts, tools, and workflows. Students learn basic game design, 2D graphics, simple physics, and game programming fundamentals using industry-standard engines.",
+          "prerequisites": [
+            {
+              "coursePrefix": "CSI",
+              "courseNumber": "140",
+              "courseName": "Programming Fundamentals I"
+            }
+          ],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "BOTH",
+          "capacity": 22
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Design basic game mechanics and player experiences",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Implement 2D games using game engine tools",
+              "linkedPLOs": ["PLO2"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Apply game design principles to create engaging gameplay",
+              "linkedPLOs": ["PLO1", "PLO3"]
+            },
+            {
+              "id": "CLO4",
+              "description": "Test and iterate on game prototypes",
+              "linkedPLOs": ["PLO3"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Apply creative thinking to interactive design",
+              "competencies": ["CRE", "INQ"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Implement technical solutions for games",
+              "competencies": ["INT", "ANL"]
+            },
+            {
+              "id": "PLO3",
+              "description": "Use iterative design processes",
+              "competencies": ["CRE", "INQ"]
+            }
+          ],
+          "competencyMapping": {
+            "Creativity": 3,
+            "Inquiry": 2,
+            "Integration": 2,
+            "Analysis": 2,
+            "Communication": 1,
+            "Collaboration": 1
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Introduction to Game Development\nWeek 3-4: Game Engines and Tools\nWeek 5-6: 2D Graphics and Sprites\nWeek 7-8: Player Input and Controls\nWeek 9-10: Game Physics and Collision\nWeek 11-12: User Interface Design\nWeek 13-14: Game Testing and Polish\nWeek 15: Final Game Presentations"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Micro Games Collection",
+              "description": "Create series of small games exploring different mechanics",
+              "linkedCLOs": ["CLO1", "CLO2"]
+            },
+            {
+              "name": "2D Game Project",
+              "description": "Develop complete 2D game with polished gameplay",
+              "linkedCLOs": ["CLO3", "CLO4"]
+            },
+            {
+              "name": "Game Design Document",
+              "description": "Document design decisions and iteration process",
+              "linkedCLOs": ["CLO1"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Computer Lab",
+            "body": "Computer lab with game development workstations"
+          },
+          "technology": {
+            "body": "Unity or Godot game engine, graphics tools, version control"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Game asset libraries, playtesting lab"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-01-03",
+          "lastModified": "2024-01-03",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-013"
+        },
+        "courseIdentity": {
+          "prefix": "MAT",
+          "number": 130,
+          "title": "Calculus I",
+          "transcriptTitle": "Calculus I",
+          "credits": 4,
+          "facultyLoad": 4,
+          "effectiveSemester": {
+            "term": "FALL",
+            "year": 2024
+          },
+          "courseType": [
+            {
+              "category": "Major",
+              "subcategory": "Mathematics"
+            }
+          ],
+          "catalogDescription": "Introduction to differential calculus including limits, derivatives, and applications. Covers techniques of differentiation, optimization, and related rates. Foundation for advanced mathematics and sciences.",
+          "prerequisites": [],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "BOTH",
+          "capacity": 25
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Compute limits and determine continuity of functions",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Calculate derivatives using various techniques",
+              "linkedPLOs": ["PLO1", "PLO2"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Apply derivatives to solve optimization and related rates problems",
+              "linkedPLOs": ["PLO2"]
+            },
+            {
+              "id": "CLO4",
+              "description": "Analyze functions using calculus tools",
+              "linkedPLOs": ["PLO1", "PLO3"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Demonstrate mathematical reasoning and techniques",
+              "competencies": ["QNT", "ANL"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Apply calculus to real-world problems",
+              "competencies": ["QNT", "INQ"]
+            },
+            {
+              "id": "PLO3",
+              "description": "Communicate mathematical concepts clearly",
+              "competencies": ["COM", "INT"]
+            }
+          ],
+          "competencyMapping": {
+            "QuantitativeLiteracy": 3,
+            "Analysis": 3,
+            "Inquiry": 2,
+            "Integration": 2,
+            "Communication": 1
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Limits and Continuity\nWeek 3-4: The Derivative and Differentiation Rules\nWeek 5-6: Implicit Differentiation and Related Rates\nWeek 7-8: Applications of Derivatives - Optimization\nWeek 9-10: Curve Sketching and Analysis\nWeek 11-12: Exponential and Logarithmic Functions\nWeek 13-14: Inverse Trigonometric Functions\nWeek 15: Comprehensive Review and Final Exam"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Midterm Examinations",
+              "description": "Tests on limits, derivatives, and techniques",
+              "linkedCLOs": ["CLO1", "CLO2"]
+            },
+            {
+              "name": "Application Projects",
+              "description": "Real-world optimization and modeling problems",
+              "linkedCLOs": ["CLO3", "CLO4"]
+            },
+            {
+              "name": "Comprehensive Final Exam",
+              "description": "Cumulative assessment of all calculus concepts",
+              "linkedCLOs": ["CLO1", "CLO2", "CLO3", "CLO4"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Standard Classroom",
+            "body": "Classroom with whiteboard space for problem-solving"
+          },
+          "technology": {
+            "body": "Graphing calculators, mathematical software (Desmos, GeoGebra)"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Math tutoring center, online homework system, study groups"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-03-01",
+          "lastModified": "2024-03-01",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-014"
+        },
+        "courseIdentity": {
+          "prefix": "CSI",
+          "number": 480,
+          "title": "Software Engineering Capstone",
+          "transcriptTitle": "Software Engineering Capstone",
+          "credits": 4,
+          "facultyLoad": 4,
+          "effectiveSemester": {
+            "term": "SPRING",
+            "year": 2024
+          },
+          "courseType": [
+            {
+              "category": "Major",
+              "subcategory": "Computer Science & Innovation"
+            }
+          ],
+          "catalogDescription": "Culminating project-based course where students work in teams to design, develop, test, and deploy a substantial software system. Integrates knowledge from requirements engineering, database design, web development, and mathematical foundations.",
+          "prerequisites": [
+            {
+              "coursePrefix": "CSI",
+              "courseNumber": "440",
+              "courseName": "Software Requirements Engineering"
+            },
+            {
+              "coursePrefix": "CSI",
+              "courseNumber": "360",
+              "courseName": "Web Application Development"
+            },
+            {
+              "coursePrefix": "MAT",
+              "courseNumber": "230",
+              "courseName": "Discrete Mathematics"
+            }
+          ],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "SPRING",
+          "capacity": 20
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Design and architect complex software systems following industry best practices",
+              "linkedPLOs": ["PLO1", "PLO2"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Collaborate effectively in agile development teams",
+              "linkedPLOs": ["PLO3"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Implement full-stack applications with proper testing and documentation",
+              "linkedPLOs": ["PLO1", "PLO4"]
+            },
+            {
+              "id": "CLO4",
+              "description": "Present technical solutions to diverse stakeholders",
+              "linkedPLOs": ["PLO5"]
+            },
+            {
+              "id": "CLO5",
+              "description": "Evaluate ethical implications of software design decisions",
+              "linkedPLOs": ["PLO6"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Apply software engineering principles to complex projects",
+              "competencies": ["INQ", "ANL"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Integrate knowledge across multiple technical domains",
+              "competencies": ["INT", "INQ"]
+            },
+            {
+              "id": "PLO3",
+              "description": "Work collaboratively in professional development teams",
+              "competencies": ["COL", "COM"]
+            },
+            {
+              "id": "PLO4",
+              "description": "Produce high-quality, maintainable software",
+              "competencies": ["ANL", "CRE"]
+            },
+            {
+              "id": "PLO5",
+              "description": "Communicate technical concepts to varied audiences",
+              "competencies": ["COM", "GCU"]
+            },
+            {
+              "id": "PLO6",
+              "description": "Practice ethical decision-making in technology",
+              "competencies": ["ETH", "DEI"]
+            }
+          ],
+          "competencyMapping": {
+            "Inquiry": 3,
+            "Integration": 3,
+            "GlobalCulturalAwareness": 2,
+            "Analysis": 3,
+            "DiversityEquityInclusion": 2,
+            "Communication": 3,
+            "Collaboration": 3,
+            "Creativity": 3,
+            "EthicalReasoning": 3,
+            "QuantitativeLiteracy": 2
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Project Planning and Team Formation\nWeek 3-4: Requirements Gathering and System Design\nWeek 5-6: Architecture and Technology Selection\nWeek 7-8: Sprint 1 - Core Functionality\nWeek 9-10: Sprint 2 - Feature Development\nWeek 11-12: Sprint 3 - Testing and Refinement\nWeek 13-14: Deployment and Documentation\nWeek 15: Final Presentations and Project Showcase"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Project Proposal and Design",
+              "description": "Comprehensive system design and project plan",
+              "linkedCLOs": ["CLO1"]
+            },
+            {
+              "name": "Sprint Deliverables",
+              "description": "Working software increments with documentation",
+              "linkedCLOs": ["CLO2", "CLO3"]
+            },
+            {
+              "name": "Final Project Presentation",
+              "description": "Professional presentation to faculty and industry panel",
+              "linkedCLOs": ["CLO4"]
+            },
+            {
+              "name": "Ethics and Impact Report",
+              "description": "Analysis of societal and ethical implications",
+              "linkedCLOs": ["CLO5"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Computer Lab",
+            "body": "Computer lab with team workspaces and presentation area"
+          },
+          "technology": {
+            "body": "Development tools, cloud hosting, CI/CD platforms, project management software"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Industry mentors, project showcase venue, potential client partnerships"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-01-02",
+          "lastModified": "2024-01-02",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-015"
+        },
+        "courseIdentity": {
+          "prefix": "CSI",
+          "number": 101,
+          "title": "Introduction to Computing",
+          "transcriptTitle": "Introduction to Computing",
+          "credits": 1,
+          "facultyLoad": 1,
+          "effectiveSemester": {
+            "term": "FALL",
+            "year": 2024
+          },
+          "courseType": [
+            {
+              "category": "GenEd",
+              "subcategory": "Technology"
+            }
+          ],
+          "catalogDescription": "Brief introduction to computing concepts, digital literacy, and computational thinking. Covers basic computer operations, file management, productivity software, and online safety. No prerequisites required.",
+          "prerequisites": [],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "BOTH",
+          "capacity": 30
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Use common productivity software effectively",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Practice safe and ethical computing behaviors",
+              "linkedPLOs": ["PLO2"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Demonstrate digital literacy skills",
+              "competencies": ["INQ"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Practice ethical technology use",
+              "competencies": ["ETH"]
+            }
+          ],
+          "competencyMapping": {
+            "Inquiry": 1,
+            "EthicalReasoning": 2
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-3: Computer Basics and Digital Literacy\nWeek 4-6: Productivity Software (Word Processing, Spreadsheets)\nWeek 7-9: Internet Safety and Online Communication\nWeek 10-12: Introduction to Computational Thinking\nWeek 13-15: Digital Citizenship and Ethics"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Digital Literacy Tasks",
+              "description": "Complete practical computing tasks",
+              "linkedCLOs": ["CLO1"]
+            },
+            {
+              "name": "Digital Ethics Reflection",
+              "description": "Analyze ethical scenarios in technology use",
+              "linkedCLOs": ["CLO2"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Computer Lab",
+            "body": "Basic computer lab"
+          },
+          "technology": {
+            "body": "Standard productivity software suite"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Online tutorials and resources"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2023-08-01",
+          "lastModified": "2024-01-15",
+          "status": "INACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2023-050"
+        },
+        "courseIdentity": {
+          "prefix": "GLS",
+          "number": 200,
+          "title": "Global Studies Seminar",
+          "transcriptTitle": "Global Studies Seminar",
+          "credits": 3,
+          "facultyLoad": 3,
+          "effectiveSemester": {
+            "term": "FALL",
+            "year": 2023
+          },
+          "courseType": [
+            {
+              "category": "GenEd",
+              "subcategory": "Global Studies"
+            }
+          ],
+          "catalogDescription": "Interdisciplinary exploration of global issues including sustainability, social justice, cultural diversity, economic systems, and ethical leadership. Integrates all core competencies through project-based learning and global case studies.",
+          "prerequisites": [],
+          "instructionalMethod": "SEMINAR",
+          "semesterOffered": "FALL",
+          "capacity": 18
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Analyze global challenges using interdisciplinary perspectives",
+              "linkedPLOs": ["PLO1", "PLO2", "PLO3"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Develop collaborative solutions to complex global problems",
+              "linkedPLOs": ["PLO4", "PLO5"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Communicate findings through multiple media formats",
+              "linkedPLOs": ["PLO6"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Engage in critical inquiry about global systems",
+              "competencies": ["INQ", "ANL"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Integrate knowledge across disciplines",
+              "competencies": ["INT", "GCU"]
+            },
+            {
+              "id": "PLO3",
+              "description": "Understand diverse cultural and ethical perspectives",
+              "competencies": ["GCU", "DEI", "ETH"]
+            },
+            {
+              "id": "PLO4",
+              "description": "Collaborate on complex problem-solving",
+              "competencies": ["COL", "CRE"]
+            },
+            {
+              "id": "PLO5",
+              "description": "Apply quantitative reasoning to global data",
+              "competencies": ["QNT"]
+            },
+            {
+              "id": "PLO6",
+              "description": "Communicate complex ideas effectively",
+              "competencies": ["COM"]
+            }
+          ],
+          "competencyMapping": {
+            "Inquiry": 3,
+            "Integration": 3,
+            "GlobalCulturalAwareness": 3,
+            "Analysis": 3,
+            "DiversityEquityInclusion": 3,
+            "Communication": 3,
+            "Collaboration": 3,
+            "Creativity": 3,
+            "EthicalReasoning": 3,
+            "QuantitativeLiteracy": 3
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Introduction to Global Studies\nWeek 3-4: Global Economic Systems and Inequality\nWeek 5-6: Climate Change and Environmental Justice\nWeek 7-8: Cultural Diversity and Identity\nWeek 9-10: Migration and Human Rights\nWeek 11-12: Global Health and Equity\nWeek 13-14: Ethical Leadership in Global Context\nWeek 15: Final Presentations"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Global Issue Analysis",
+              "description": "Comprehensive analysis of complex global challenge",
+              "linkedCLOs": ["CLO1"]
+            },
+            {
+              "name": "Collaborative Action Project",
+              "description": "Team-based project proposing solutions to global problem",
+              "linkedCLOs": ["CLO2"]
+            },
+            {
+              "name": "Multimedia Presentation",
+              "description": "Creative presentation of research and solutions",
+              "linkedCLOs": ["CLO3"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Seminar Room",
+            "body": "Seminar room with flexible seating and presentation technology"
+          },
+          "technology": {
+            "body": "Video conferencing for international guests, data analysis tools"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Guest speakers from international organizations, study abroad connections"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-11-01",
+          "lastModified": "2024-11-01",
+          "status": "ACTIVE",
+          "reviewStatus": "PENDING",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-016"
+        },
+        "courseIdentity": {
+          "prefix": "CSI",
+          "number": 500,
+          "title": "Advanced AI and Machine Learning",
+          "transcriptTitle": "Advanced AI and Machine Learning",
+          "credits": 4,
+          "facultyLoad": 4,
+          "effectiveSemester": {
+            "term": "SPRING",
+            "year": 2025
+          },
+          "courseType": [
+            {
+              "category": "Major",
+              "subcategory": "Computer Science & Innovation"
+            }
+          ],
+          "catalogDescription": "Advanced study of artificial intelligence and machine learning including neural networks, deep learning, natural language processing, and computer vision. Students implement AI systems and explore ethical implications. PENDING APPROVAL.",
+          "prerequisites": [
+            {
+              "coursePrefix": "CSI",
+              "courseNumber": "340",
+              "courseName": "Database Design and Implementation"
+            },
+            {
+              "coursePrefix": "MAT",
+              "courseNumber": "230",
+              "courseName": "Discrete Mathematics"
+            }
+          ],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "SPRING",
+          "capacity": 18
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Implement machine learning algorithms and neural networks",
+              "linkedPLOs": ["PLO1", "PLO2"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Apply deep learning to real-world problems",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Evaluate ethical implications of AI systems",
+              "linkedPLOs": ["PLO3"]
+            },
+            {
+              "id": "CLO4",
+              "description": "Design responsible AI applications considering bias and fairness",
+              "linkedPLOs": ["PLO3", "PLO4"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Apply advanced computational methods",
+              "competencies": ["INQ", "ANL", "QNT"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Integrate mathematics and programming for AI",
+              "competencies": ["INT", "QNT"]
+            },
+            {
+              "id": "PLO3",
+              "description": "Practice ethical AI development",
+              "competencies": ["ETH", "DEI", "GCU"]
+            },
+            {
+              "id": "PLO4",
+              "description": "Create innovative AI solutions",
+              "competencies": ["CRE", "INQ"]
+            }
+          ],
+          "competencyMapping": {
+            "Inquiry": 3,
+            "Integration": 3,
+            "GlobalCulturalAwareness": 2,
+            "Analysis": 3,
+            "DiversityEquityInclusion": 3,
+            "Creativity": 3,
+            "EthicalReasoning": 3,
+            "QuantitativeLiteracy": 3
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Machine Learning Fundamentals\nWeek 3-4: Neural Networks and Backpropagation\nWeek 5-6: Deep Learning Architectures\nWeek 7-8: Convolutional Neural Networks\nWeek 9-10: Recurrent Networks and NLP\nWeek 11-12: Reinforcement Learning\nWeek 13-14: AI Ethics, Bias, and Fairness\nWeek 15: Final Project Presentations"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "ML Algorithm Implementation",
+              "description": "Implement machine learning algorithms from scratch",
+              "linkedCLOs": ["CLO1"]
+            },
+            {
+              "name": "Deep Learning Application",
+              "description": "Build and train deep learning model for real problem",
+              "linkedCLOs": ["CLO2"]
+            },
+            {
+              "name": "AI Ethics Analysis",
+              "description": "Analyze and present on ethical AI case study",
+              "linkedCLOs": ["CLO3", "CLO4"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Computer Lab",
+            "body": "High-performance computing lab with GPU workstations"
+          },
+          "technology": {
+            "body": "Python, TensorFlow, PyTorch, cloud GPU resources, Jupyter notebooks"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Cloud computing credits, dataset access, AI ethics resources"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2022-01-15",
+          "lastModified": "2023-12-01",
+          "status": "ARCHIVED",
+          "reviewStatus": "REJECTED",
+          "createdBy": "former.faculty@champlain.edu",
+          "proposalId": "PROP-2022-099"
+        },
+        "courseIdentity": {
+          "prefix": "CSI",
+          "number": 888,
+          "title": "Legacy Systems Maintenance",
+          "transcriptTitle": "Legacy Systems Maintenance",
+          "credits": 3,
+          "facultyLoad": 3,
+          "effectiveSemester": {
+            "term": "FALL",
+            "year": 2022
+          },
+          "courseType": [
+            {
+              "category": "Major",
+              "subcategory": "Computer Science & Innovation"
+            }
+          ],
+          "catalogDescription": "Study of legacy system maintenance and COBOL programming. Course archived due to curriculum modernization. Proposal rejected - outdated content not aligned with current industry needs.",
+          "prerequisites": [
+            {
+              "coursePrefix": "CSI",
+              "courseNumber": "240",
+              "courseName": "Programming Fundamentals II"
+            }
+          ],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "NONE",
+          "capacity": 20
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Maintain legacy COBOL systems",
+              "linkedPLOs": ["PLO1"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Work with legacy technologies",
+              "competencies": ["ANL"]
+            }
+          ],
+          "competencyMapping": {
+            "Analysis": 2,
+            "Inquiry": 1
+          }
+        },
+        "topicalOutline": {
+          "body": "Legacy content - course archived"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Legacy System Project",
+              "description": "Maintenance project on COBOL codebase",
+              "linkedCLOs": ["CLO1"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Computer Lab",
+            "body": "Archived"
+          },
+          "technology": {
+            "body": "COBOL compiler (no longer available)"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "None"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-10-15",
+          "lastModified": "2024-10-15",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-017"
+        },
+        "courseIdentity": {
+          "prefix": "CSI",
+          "number": 777,
+          "title": "Advanced Topics in Distributed Systems",
+          "transcriptTitle": "Advanced Topics in Distributed Systems",
+          "credits": 3,
+          "facultyLoad": 3,
+          "effectiveSemester": {
+            "term": "SPRING",
+            "year": 2025
+          },
+          "courseType": [
+            {
+              "category": "Major",
+              "subcategory": "Computer Science & Innovation"
+            }
+          ],
+          "catalogDescription": "Advanced study of distributed systems, microservices, and cloud-native architectures. Covers consistency models, distributed algorithms, and scalability patterns. NOTE: References prerequisite CSI-666 which does not exist - requires correction.",
+          "prerequisites": [
+            {
+              "coursePrefix": "CSI",
+              "courseNumber": "666",
+              "courseName": "Advanced Networking (DOES NOT EXIST)"
+            },
+            {
+              "coursePrefix": "CSI",
+              "courseNumber": "340",
+              "courseName": "Database Design and Implementation"
+            }
+          ],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "SPRING",
+          "capacity": 20
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Design distributed systems with appropriate consistency models",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Implement microservices using cloud-native technologies",
+              "linkedPLOs": ["PLO2"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Analyze distributed system performance and scalability",
+              "linkedPLOs": ["PLO1", "PLO3"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Apply distributed systems principles",
+              "competencies": ["INQ", "ANL"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Implement scalable cloud solutions",
+              "competencies": ["INT", "CRE"]
+            },
+            {
+              "id": "PLO3",
+              "description": "Evaluate system architecture tradeoffs",
+              "competencies": ["ANL", "QNT"]
+            }
+          ],
+          "competencyMapping": {
+            "Inquiry": 3,
+            "Integration": 3,
+            "Analysis": 3,
+            "Creativity": 2,
+            "QuantitativeLiteracy": 2,
+            "Communication": 2,
+            "Collaboration": 2
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Distributed Systems Fundamentals\nWeek 3-4: Consistency and Consensus\nWeek 5-6: Microservices Architecture\nWeek 7-8: Container Orchestration\nWeek 9-10: Service Mesh and API Gateways\nWeek 11-12: Distributed Databases\nWeek 13-14: Observability and Monitoring\nWeek 15: Final Project Presentations"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Distributed Algorithm Implementation",
+              "description": "Implement consensus algorithm (Raft or Paxos)",
+              "linkedCLOs": ["CLO1"]
+            },
+            {
+              "name": "Microservices Application",
+              "description": "Build scalable microservices application",
+              "linkedCLOs": ["CLO2"]
+            },
+            {
+              "name": "Performance Analysis Report",
+              "description": "Analyze scalability and performance of distributed system",
+              "linkedCLOs": ["CLO3"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Computer Lab",
+            "body": "Computer lab with cloud access"
+          },
+          "technology": {
+            "body": "Kubernetes, Docker, cloud platforms (AWS/Azure/GCP), monitoring tools"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Cloud computing credits, distributed systems simulators"
+          }
+        }
+      }
     }
   ],
   "competencies": [
