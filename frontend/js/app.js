@@ -1,0 +1,193 @@
+// Main Application Entry Point
+
+const App = {
+    /**
+     * Initialize the application
+     */
+    init: async () => {
+        console.log('Champlain Academic Affairs System - Initializing...');
+        
+        // Load course data from JSON
+        await DataLoader.loadData();
+        
+        // Setup event listeners
+        App.setupLoginListeners();
+        App.setupModalListeners();
+        
+        // Setup modal click-outside functionality
+        ModalsModule.setupModalListeners();
+        
+        console.log('Application initialized successfully');
+    },
+    
+    /**
+     * Setup login page event listeners
+     */
+    setupLoginListeners: () => {
+        const loginButton = document.getElementById('loginButton');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        
+        loginButton.addEventListener('click', App.handleLogin);
+        
+        usernameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') App.handleLogin();
+        });
+        
+        passwordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') App.handleLogin();
+        });
+    },
+    
+    /**
+     * Handle login
+     */
+    handleLogin: () => {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const errorDiv = document.getElementById('loginError');
+        
+        const result = Auth.login(username, password);
+        
+        if (result.success) {
+            document.getElementById('currentUser').textContent = 
+                username.charAt(0).toUpperCase() + username.slice(1);
+            document.getElementById('currentRole').textContent = StateGetters.getCurrentRole();
+            
+            App.setupRoleBasedAccess();
+            
+            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('mainApp').classList.remove('hidden');
+            
+            setTimeout(() => VisualizationModule.init(), 200);
+            
+            errorDiv.textContent = '';
+        } else {
+            errorDiv.textContent = result.error;
+        }
+    },
+    
+    /**
+     * Handle logout
+     */
+    handleLogout: () => {
+        Auth.logout();
+        document.getElementById('loginPage').classList.remove('hidden');
+        document.getElementById('mainApp').classList.add('hidden');
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+    },
+    
+    /**
+     * Setup role-based access and UI
+     */
+    setupRoleBasedAccess: () => {
+        document.getElementById('adminSection').classList.add('hidden');
+        document.getElementById('facultySection').classList.add('hidden');
+        
+        if (Auth.isAdmin()) {
+            document.getElementById('adminSection').classList.remove('hidden');
+            ProposalsModule.updatePendingBadge();
+        } else if (Auth.isFaculty()) {
+            document.getElementById('facultySection').classList.remove('hidden');
+        }
+        
+        // Always show competency tracker and course selection
+        CoursesModule.updateAvailableCourses();
+        CoursesModule.updateSelectedCourses();
+        CompetenciesModule.updateTracker();
+        
+        // Update stats
+        App.updateStats();
+        
+        // Attach search listener
+        const searchInput = document.getElementById('courseSearch');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                CoursesModule.updateAvailableCourses(e.target.value);
+            });
+        }
+        
+        // Setup main app button listeners after login
+        setTimeout(() => {
+            App.setupMainAppListeners();
+        }, 100);
+    },
+    
+    /**
+     * Update system overview stats
+     */
+    updateStats: () => {
+        const courses = StateGetters.getCourses();
+        const competencies = StateGetters.getCompetencies();
+        
+        // Update stat cards
+        const statCards = document.querySelectorAll('.stat-card');
+        if (statCards.length >= 4) {
+            statCards[0].querySelector('.stat-value').textContent = competencies.length;
+            statCards[3].querySelector('.stat-value').textContent = courses.length;
+        }
+    },
+    
+    /**
+     * Setup main application event listeners
+     */
+    setupMainAppListeners: () => {
+        // Logout
+        const logoutBtn = document.getElementById('logoutButton');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', App.handleLogout);
+        }
+        
+        // Faculty buttons
+        const submitProposalBtn = document.getElementById('submitProposalBtn');
+        const myProposalsBtn = document.getElementById('myProposalsBtn');
+        
+        if (submitProposalBtn) {
+            submitProposalBtn.addEventListener('click', ModalsModule.openProposalModal);
+        }
+        if (myProposalsBtn) {
+            myProposalsBtn.addEventListener('click', ProposalsModule.showMyProposals);
+        }
+        
+        // Admin buttons
+        const reviewBtn = document.getElementById('reviewProposalsBtn');
+        const manageBtn = document.getElementById('manageCoursesBtn');
+        
+        if (reviewBtn) {
+            reviewBtn.addEventListener('click', ProposalsModule.showReviewModal);
+        }
+        if (manageBtn) {
+            manageBtn.addEventListener('click', CoursesModule.showManageModal);
+        }
+    },
+    
+    /**
+     * Setup modal event listeners
+     */
+    setupModalListeners: () => {
+        // Close buttons
+        document.getElementById('closeProposalBtn').addEventListener('click', ModalsModule.closeProposalModal);
+        document.getElementById('closeReviewBtn').addEventListener('click', ModalsModule.closeReviewModal);
+        document.getElementById('closeMyProposalsBtn').addEventListener('click', ModalsModule.closeMyProposalsModal);
+        document.getElementById('closeDetailsBtn').addEventListener('click', ModalsModule.closeDetailsModal);
+        document.getElementById('closeManageBtn').addEventListener('click', ModalsModule.closeManageModal);
+        document.getElementById('closeEditCourseBtn').addEventListener('click', ModalsModule.closeEditCourseModal);
+        
+        // Add course button in manage modal
+        document.getElementById('addCourseBtn').addEventListener('click', () => {
+            CoursesModule.showEditModal(null);
+        });
+        
+        // Form submissions
+        document.getElementById('proposalForm').addEventListener('submit', ProposalsModule.submitProposal);
+        document.getElementById('editCourseForm').addEventListener('submit', CoursesModule.saveCourse);
+    }
+};
+
+// Initialize app when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', App.init);
+} else {
+    App.init();
+}

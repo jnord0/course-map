@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champlain Academic Affairs</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-page">
+        <div class="login-card">
+            <div class="login-logo">
+                <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D" 
+                     alt="Champlain College Shield Logo" 
+                     style="height: 100px; margin-bottom: 20px;"
+                     onerror="this.style.display='none'">
+            </div>
+            <h1 class="login-title">Academic Affairs System</h1>
+            <p class="login-subtitle">Course Management & Visualization</p>
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <button id="loginButton" class="login-btn">Sign In</button>
+            <div id="loginError" class="error-message"></div>
+            <div class="login-info">
+                <strong>Demo Accounts:</strong><br>
+                Username: student, faculty, or admin<br>
+                Password: password
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" class="hidden">
+        <div class="header">
+            <div class="logo-section">
+                <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D" 
+                     alt="Champlain College Shield" 
+                     style="height: 50px; margin-right: 20px;"
+                     onerror="this.style.display='none'">
+                <div class="logo-text">Academic Affairs</div>
+            </div>
+            <div class="user-info">
+                <span id="currentUser">User</span>
+                <span class="user-badge" id="currentRole">Role</span>
+                <button class="logout-btn" id="logoutButton">Logout</button>
+            </div>
+        </div>
+
+        <div class="main-container">
+            <div class="sidebar">
+                <h2>Dashboard</h2>
+                
+                <div class="section">
+                    <h3>Course Selection</h3>
+                    <div style="margin-bottom: 15px;">
+                        <input type="text" 
+                               id="courseSearch" 
+                               placeholder="Search courses..." 
+                               style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; font-size: 14px;">
+                    </div>
+                    <div id="availableCourses" style="max-height: 200px; overflow-y: auto;"></div>
+                    <div style="margin-top: 20px;">
+                        <h4 style="color: var(--champlain-navy); font-size: 14px; margin-bottom: 10px;">Selected Courses</h4>
+                        <div id="selectedCourses"></div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Competency Tracker</h3>
+                    <div id="competencyTracker"></div>
+                </div>
+
+                <div id="adminSection" class="section hidden">
+                    <h3>Administration</h3>
+                    <button class="btn" id="reviewProposalsBtn">
+                        <span>Review Course Proposals</span>
+                        <span id="pendingBadge" class="badge hidden">0</span>
+                    </button>
+                    <button class="btn" id="manageCoursesBtn">
+                        <span>Manage Courses & Programs</span>
+                    </button>
+                </div>
+
+                <div id="facultySection" class="section hidden">
+                    <h3>Faculty Tools</h3>
+                    <button class="btn" id="submitProposalBtn">
+                        <span>Submit Course Proposal</span>
+                    </button>
+                    <button class="btn" id="myProposalsBtn">
+                        <span>My Proposals</span>
+                    </button>
+                </div>
+
+
+            </div>
+
+            <div class="viz-container">
+                <div class="viz-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h1>Competency Visualization</h1>
+                            <p>Interactive network showing relationships between courses and college competencies</p>
+                        </div>
+                        <div style="display: flex; gap: 20px; align-items: center;">
+                            <div class="view-toggle">
+                                <button class="toggle-btn active" id="networkViewBtn">Network View</button>
+                                <button class="toggle-btn" id="tableViewBtn">Table View</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="graph-wrapper">
+                    <!-- Network View -->
+                    <div id="networkView" style="position: relative; width: 100%; height: 100%; overflow: auto;">
+                        <svg id="networkGraph" style="width: 100%; min-height: 600px;"></svg>
+                    </div>
+                    
+                    <!-- Table View -->
+                    <div id="tableView" class="hidden">
+                        <div id="competencyTable"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    
+    <!-- Proposal Submission Modal -->
+    <div id="proposalModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Submit Course Proposal</h2>
+                <button class="close-btn" id="closeProposalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="proposalForm">
+                    <div class="form-group">
+                        <label>Course Code *</label>
+                        <input type="text" id="courseCode" placeholder="e.g., CSI-450" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Course Title *</label>
+                        <input type="text" id="courseTitle" placeholder="e.g., Advanced Database Systems" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Course Description *</label>
+                        <textarea id="courseDescription" placeholder="Provide a detailed course description..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Prerequisites</label>
+                        <input type="text" id="prerequisites" placeholder="e.g., CSI-340, CSI-360">
+                    </div>
+                    <div class="form-group">
+                        <label>Credit Hours *</label>
+                        <select id="creditHours" required>
+                            <option value="">Select credit hours</option>
+                            <option value="1">1 Credit</option>
+                            <option value="2">2 Credits</option>
+                            <option value="3">3 Credits</option>
+                            <option value="4">4 Credits</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Select College Competencies & Weights *</label>
+                        <div style="margin-bottom: 12px; padding: 10px; background: #f8f9fa; border-radius: 6px; font-size: 13px; color: #666;">
+                            <strong>Weight Scale:</strong> 1 = Addressed | 2 = Reinforced | 3 = Emphasized
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <div class="competency-weight-option">
+                                <label for="comp_comm" style="flex: 1; margin: 0;">Communication</label>
+                                <select id="comp_comm" class="competency-weight-select">
+                                    <option value="0">Not Selected</option>
+                                    <option value="1">Addressed (1)</option>
+                                    <option value="2">Reinforced (2)</option>
+                                    <option value="3">Emphasized (3)</option>
+                                </select>
+                            </div>
+                            <div class="competency-weight-option">
+                                <label for="comp_thinking" style="flex: 1; margin: 0;">Critical Thinking</label>
+                                <select id="comp_thinking" class="competency-weight-select">
+                                    <option value="0">Not Selected</option>
+                                    <option value="1">Addressed (1)</option>
+                                    <option value="2">Reinforced (2)</option>
+                                    <option value="3">Emphasized (3)</option>
+                                </select>
+                            </div>
+                            <div class="competency-weight-option">
+                                <label for="comp_learning" style="flex: 1; margin: 0;">Self-Directed Learning</label>
+                                <select id="comp_learning" class="competency-weight-select">
+                                    <option value="0">Not Selected</option>
+                                    <option value="1">Addressed (1)</option>
+                                    <option value="2">Reinforced (2)</option>
+                                    <option value="3">Emphasized (3)</option>
+                                </select>
+                            </div>
+                            <div class="competency-weight-option">
+                                <label for="comp_collab" style="flex: 1; margin: 0;">Collaboration</label>
+                                <select id="comp_collab" class="competency-weight-select">
+                                    <option value="0">Not Selected</option>
+                                    <option value="1">Addressed (1)</option>
+                                    <option value="2">Reinforced (2)</option>
+                                    <option value="3">Emphasized (3)</option>
+                                </select>
+                            </div>
+                            <div class="competency-weight-option">
+                                <label for="comp_global" style="flex: 1; margin: 0;">Global Understanding</label>
+                                <select id="comp_global" class="competency-weight-select">
+                                    <option value="0">Not Selected</option>
+                                    <option value="1">Addressed (1)</option>
+                                    <option value="2">Reinforced (2)</option>
+                                    <option value="3">Emphasized (3)</option>
+                                </select>
+                            </div>
+                            <div class="competency-weight-option">
+                                <label for="comp_ethics" style="flex: 1; margin: 0;">Ethics & Social Responsibility</label>
+                                <select id="comp_ethics" class="competency-weight-select">
+                                    <option value="0">Not Selected</option>
+                                    <option value="1">Addressed (1)</option>
+                                    <option value="2">Reinforced (2)</option>
+                                    <option value="3">Emphasized (3)</option>
+                                </select>
+                            </div>
+                            <div class="competency-weight-option">
+                                <label for="comp_info" style="flex: 1; margin: 0;">Information Literacy</label>
+                                <select id="comp_info" class="competency-weight-select">
+                                    <option value="0">Not Selected</option>
+                                    <option value="1">Addressed (1)</option>
+                                    <option value="2">Reinforced (2)</option>
+                                    <option value="3">Emphasized (3)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Justification *</label>
+                        <textarea id="justification" placeholder="Explain why this course should be added and how it addresses the selected competencies..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Proposal</button>
+                    <div id="proposalSuccess" class="success-message hidden"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Proposals Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Review Course Proposals</h2>
+                <button class="close-btn" id="closeReviewBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="proposalList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Proposals Modal -->
+    <div id="myProposalsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>My Proposals</h2>
+                <button class="close-btn" id="closeMyProposalsBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="myProposalsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Proposal Details</h2>
+                <button class="close-btn" id="closeDetailsBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="proposalDetails"></div>
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
+                    <button 
+                        id="exportProposalBtn"
+                        style="
+                            padding: 10px 20px;
+                            background: #17a2b8;
+                            color: white;
+                            border: none;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            font-size: 14px;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                        "
+                    >
+                        <span style="font-size: 18px;">📄</span> Export Proposal Document
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manage Courses Modal -->
+    <div id="manageModal" class="modal">
+        <div class="modal-content" style="max-width: 1000px;">
+            <div class="modal-header">
+                <h2>System Management Dashboard</h2>
+                <button class="close-btn" id="closeManageBtn">&times;</button>
+            </div>
+            <div class="modal-body" style="max-height: 75vh; overflow-y: auto;">
+                <!-- System Statistics -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--champlain-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="font-size: 20px;">📊</span> System Overview
+                    </h3>
+                    <div id="systemStats"></div>
+                </div>
+                
+                <!-- Courses Section -->
+                <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h3 style="color: var(--champlain-navy); margin: 0; display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 20px;">📚</span> Course Management
+                        </h3>
+                        <button class="btn" id="addCourseBtn" style="margin: 0; background: var(--champlain-bright-blue); color: white; border: none;">
+                            + Add New Course
+                        </button>
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <input 
+                            type="text" 
+                            id="manageCourseSearch" 
+                            placeholder="Search courses by code or name..." 
+                            style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 14px;">
+                    </div>
+                    
+                    <div id="coursesList" style="max-height: 400px; overflow-y: auto;"></div>
+                </div>
+                
+                <!-- Competencies Section -->
+                <div style="margin-bottom: 30px; padding: 20px; background: #e8f5e9; border-radius: 8px;">
+                    <h3 style="color: var(--champlain-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="font-size: 20px;">🎯</span> Competency Management
+                    </h3>
+                    <div id="competenciesList"></div>
+                </div>
+                
+                <!-- Learning Objectives Section -->
+                <div style="padding: 20px; background: #e3f2fd; border-radius: 8px;">
+                    <h3 style="color: var(--champlain-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="font-size: 20px;">✓</span> Learning Objectives
+                    </h3>
+                    <div id="objectivesList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Course Modal -->
+    <div id="editCourseModal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h2 id="editCourseTitle">Add Course</h2>
+                <button class="close-btn" id="closeEditCourseBtn">&times;</button>
+            </div>
+            <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                <form id="editCourseForm">
+                    <div class="form-group">
+                        <label>Course Code *</label>
+                        <input type="text" id="editCourseCode" placeholder="e.g., CSI-450" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Course Name *</label>
+                        <input type="text" id="editCourseName" placeholder="e.g., Advanced Database Systems" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Course Description *</label>
+                        <textarea id="editCourseDescription" placeholder="Provide a detailed course description..." rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Credit Hours *</label>
+                        <select id="editCreditHours" required>
+                            <option value="">Select credit hours</option>
+                            <option value="1">1 Credit</option>
+                            <option value="2">2 Credits</option>
+                            <option value="3">3 Credits</option>
+                            <option value="4">4 Credits</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Prerequisites</label>
+                        <input type="text" id="editPrerequisites" placeholder="e.g., CSI-340, CSI-360">
+                    </div>
+                    <div class="form-group">
+                        <label>Select Competencies Addressed *</label>
+                        <div class="competency-grid" id="editCourseCompetencies"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Course Justification</label>
+                        <textarea id="editJustification" placeholder="Explain why this course is important and how it addresses the selected competencies..." rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Save Course</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/state.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/components/courses.js"></script>
+    <script src="js/components/competencies.js"></script>
+    <script src="js/components/proposals.js"></script>
+    <script src="js/ui/visualization.js"></script>
+    <script src="js/ui/modals.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

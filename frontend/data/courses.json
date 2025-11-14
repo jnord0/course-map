@@ -1,0 +1,1074 @@
+{
+  "courses": [
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-01-15",
+          "lastModified": "2024-01-15",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-001"
+        },
+        "courseIdentity": {
+          "prefix": "CSI",
+          "number": 440,
+          "title": "Software Requirements Engineering",
+          "transcriptTitle": "Software Requirements Engineering",
+          "credits": 3,
+          "facultyLoad": 3,
+          "effectiveSemester": {
+            "term": "FALL",
+            "year": 2024
+          },
+          "courseType": [
+            {
+              "category": "Major",
+              "subcategory": "Computer Science & Innovation"
+            }
+          ],
+          "catalogDescription": "This course explores the critical process of gathering, analyzing, and documenting software requirements. Students learn to elicit stakeholder needs, create specifications, and manage requirements throughout the software development lifecycle.",
+          "prerequisites": [
+            {
+              "coursePrefix": "CSI",
+              "courseNumber": "340",
+              "courseName": "Database Design and Implementation"
+            }
+          ],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "BOTH",
+          "capacity": 24
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Elicit and document software requirements from diverse stakeholders",
+              "linkedPLOs": ["PLO1", "PLO3"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Create comprehensive requirement specifications using industry-standard formats",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Manage requirements changes and traceability throughout project lifecycle",
+              "linkedPLOs": ["PLO3"]
+            },
+            {
+              "id": "CLO4",
+              "description": "Validate and verify requirements for completeness and consistency",
+              "linkedPLOs": ["PLO2"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Design and implement software solutions using appropriate methodologies",
+              "competencies": ["INQ", "ANL"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Apply critical thinking to solve complex technical problems",
+              "competencies": ["INQ", "ANL"]
+            },
+            {
+              "id": "PLO3",
+              "description": "Communicate technical concepts effectively to diverse audiences",
+              "competencies": ["GCU", "INT"]
+            }
+          ],
+          "competencyMapping": {
+            "Inquiry": 3,
+            "Integration": 2,
+            "GlobalCulturalAwareness": 2,
+            "Analysis": 3,
+            "DiversityEquityInclusion": 1,
+            "Communication": 3,
+            "Collaboration": 2,
+            "Creativity": 1
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Introduction to Requirements Engineering\nWeek 3-4: Stakeholder Analysis and Elicitation Techniques\nWeek 5-6: Requirements Documentation and Specification\nWeek 7-8: Requirements Modeling and Analysis\nWeek 9-10: Requirements Validation and Verification\nWeek 11-12: Requirements Management and Traceability\nWeek 13-14: Agile Requirements and User Stories\nWeek 15: Final Project Presentations"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Stakeholder Interview Project",
+              "description": "Conduct interviews with real stakeholders to elicit requirements for a software system",
+              "linkedCLOs": ["CLO1", "CLO2"]
+            },
+            {
+              "name": "Requirements Specification Document",
+              "description": "Create a comprehensive SRS document for a proposed software system",
+              "linkedCLOs": ["CLO2", "CLO4"]
+            },
+            {
+              "name": "Requirements Management System",
+              "description": "Implement and demonstrate a requirements traceability matrix and change management process",
+              "linkedCLOs": ["CLO3", "CLO4"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Computer Lab",
+            "body": "Computer lab with 25 workstations, projector, and whiteboard"
+          },
+          "technology": {
+            "body": "Requirements management tools (JIRA, ReqIF), diagramming software (Lucidchart, Draw.io), collaborative documentation platforms"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Access to industry professionals for guest lectures and stakeholder interview practice"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-01-10",
+          "lastModified": "2024-01-10",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-002"
+        },
+        "courseIdentity": {
+          "prefix": "CSI",
+          "number": 340,
+          "title": "Database Design and Implementation",
+          "transcriptTitle": "Database Design and Implementation",
+          "credits": 3,
+          "facultyLoad": 3,
+          "effectiveSemester": {
+            "term": "FALL",
+            "year": 2024
+          },
+          "courseType": [
+            {
+              "category": "Major",
+              "subcategory": "Computer Science & Innovation"
+            }
+          ],
+          "catalogDescription": "An in-depth study of database management systems covering data modeling, normalization, SQL, transaction processing, and database administration. Students design and implement relational databases for real-world applications.",
+          "prerequisites": [
+            {
+              "coursePrefix": "CSI",
+              "courseNumber": "240",
+              "courseName": "Programming Fundamentals II"
+            }
+          ],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "BOTH",
+          "capacity": 24
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Design normalized relational database schemas using ER modeling",
+              "linkedPLOs": ["PLO1", "PLO2"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Write complex SQL queries including joins, subqueries, and aggregations",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Implement database security and transaction management",
+              "linkedPLOs": ["PLO2", "PLO4"]
+            },
+            {
+              "id": "CLO4",
+              "description": "Optimize database performance through indexing and query tuning",
+              "linkedPLOs": ["PLO2"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Design and implement software solutions using appropriate methodologies",
+              "competencies": ["INQ", "ANL"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Apply critical thinking to solve complex technical problems",
+              "competencies": ["INQ", "ANL"]
+            },
+            {
+              "id": "PLO4",
+              "description": "Practice ethical decision-making in technology contexts",
+              "competencies": ["DEI", "GCU"]
+            }
+          ],
+          "competencyMapping": {
+            "Inquiry": 3,
+            "Integration": 2,
+            "GlobalCulturalAwareness": 1,
+            "Analysis": 3,
+            "DiversityEquityInclusion": 1,
+            "QuantitativeLiteracy": 2,
+            "EthicalReasoning": 2,
+            "Creativity": 1
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Introduction to Database Systems\nWeek 3-4: ER Modeling and Relational Design\nWeek 5-6: Normalization and Schema Refinement\nWeek 7-8: SQL Fundamentals and Advanced Queries\nWeek 9-10: Transaction Management and Concurrency\nWeek 11-12: Database Security and Authorization\nWeek 13-14: Performance Optimization and Indexing\nWeek 15: Final Project Presentations"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Database Design Project",
+              "description": "Design a complete database schema for a real-world application with ER diagrams and normalization",
+              "linkedCLOs": ["CLO1"]
+            },
+            {
+              "name": "SQL Mastery Assessment",
+              "description": "Demonstrate proficiency in writing complex queries for data analysis",
+              "linkedCLOs": ["CLO2", "CLO4"]
+            },
+            {
+              "name": "Database Implementation Project",
+              "description": "Implement and deploy a full database application with security and optimization",
+              "linkedCLOs": ["CLO3", "CLO4"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Computer Lab",
+            "body": "Computer lab with database server access"
+          },
+          "technology": {
+            "body": "PostgreSQL, MySQL, Oracle DB, database modeling tools (ERDPlus, MySQL Workbench)"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Cloud database hosting for student projects (AWS RDS or Azure SQL)"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-02-01",
+          "lastModified": "2024-02-01",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-003"
+        },
+        "courseIdentity": {
+          "prefix": "CSI",
+          "number": 360,
+          "title": "Web Application Development",
+          "transcriptTitle": "Web Application Development",
+          "credits": 3,
+          "facultyLoad": 3,
+          "effectiveSemester": {
+            "term": "FALL",
+            "year": 2024
+          },
+          "courseType": [
+            {
+              "category": "Major",
+              "subcategory": "Computer Science & Innovation"
+            }
+          ],
+          "catalogDescription": "Comprehensive coverage of modern web development including HTML5, CSS3, JavaScript, front-end frameworks, back-end services, and responsive design. Students build full-stack web applications using current industry practices.",
+          "prerequisites": [
+            {
+              "coursePrefix": "CSI",
+              "courseNumber": "260",
+              "courseName": "Web Programming"
+            }
+          ],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "BOTH",
+          "capacity": 24
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Develop responsive web interfaces using modern HTML5, CSS3, and JavaScript",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Implement client-side applications using contemporary frameworks (React, Vue, or Angular)",
+              "linkedPLOs": ["PLO1", "PLO5"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Create RESTful APIs and back-end services with proper authentication",
+              "linkedPLOs": ["PLO1", "PLO4"]
+            },
+            {
+              "id": "CLO4",
+              "description": "Deploy and maintain full-stack web applications using cloud platforms",
+              "linkedPLOs": ["PLO5"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Design and implement software solutions using appropriate methodologies",
+              "competencies": ["INQ", "ANL"]
+            },
+            {
+              "id": "PLO4",
+              "description": "Practice ethical decision-making in technology contexts",
+              "competencies": ["DEI", "GCU"]
+            },
+            {
+              "id": "PLO5",
+              "description": "Engage in continuous learning and adapt to evolving technologies",
+              "competencies": ["INT", "INQ"]
+            }
+          ],
+          "competencyMapping": {
+            "Inquiry": 3,
+            "Integration": 3,
+            "GlobalCulturalAwareness": 2,
+            "Analysis": 2,
+            "DiversityEquityInclusion": 1,
+            "Communication": 2,
+            "Collaboration": 3,
+            "Creativity": 3
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Modern Web Architecture and Tooling\nWeek 3-4: Advanced HTML5 and CSS3 Techniques\nWeek 5-6: JavaScript ES6+ and Async Programming\nWeek 7-8: Front-end Framework Fundamentals\nWeek 9-10: Component-Based Development\nWeek 11-12: RESTful APIs and Backend Integration\nWeek 13-14: Authentication, Security, and Deployment\nWeek 15: Final Project Presentations"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Responsive Portfolio Website",
+              "description": "Create a fully responsive personal portfolio using modern HTML/CSS/JS",
+              "linkedCLOs": ["CLO1"]
+            },
+            {
+              "name": "Single Page Application",
+              "description": "Build an interactive SPA using a modern framework with state management",
+              "linkedCLOs": ["CLO2"]
+            },
+            {
+              "name": "Full-Stack Web Application",
+              "description": "Develop and deploy a complete web application with frontend, backend, and database",
+              "linkedCLOs": ["CLO3", "CLO4"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Computer Lab",
+            "body": "Computer lab with modern development tools and dual monitors"
+          },
+          "technology": {
+            "body": "Node.js, React/Vue/Angular, VS Code, Git, cloud hosting platforms (Vercel, Netlify, Heroku)"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "GitHub education accounts for students, API keys for third-party services"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-01-20",
+          "lastModified": "2024-01-20",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-010"
+        },
+        "courseIdentity": {
+          "prefix": "ENV",
+          "number": 150,
+          "title": "Environmental Science and Sustainability",
+          "transcriptTitle": "Environmental Science and Sustainability",
+          "credits": 3,
+          "facultyLoad": 3,
+          "effectiveSemester": {
+            "term": "FALL",
+            "year": 2024
+          },
+          "courseType": [
+            {
+              "category": "GenEd",
+              "subcategory": "Natural Sciences"
+            }
+          ],
+          "catalogDescription": "Interdisciplinary study of environmental systems, ecological principles, resource management, and sustainability challenges. Explores the relationship between human activity and environmental impact with focus on solutions.",
+          "prerequisites": [],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "BOTH",
+          "capacity": 28
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Analyze environmental systems using scientific methods and ecological principles",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Evaluate sustainability challenges from multiple cultural and economic perspectives",
+              "linkedPLOs": ["PLO2", "PLO3"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Assess environmental policies and their ethical implications for diverse communities",
+              "linkedPLOs": ["PLO3", "PLO4"]
+            },
+            {
+              "id": "CLO4",
+              "description": "Propose evidence-based solutions to local and global environmental problems",
+              "linkedPLOs": ["PLO1", "PLO4"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Apply scientific inquiry to understand natural and human systems",
+              "competencies": ["INQ", "ANL"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Recognize diverse worldviews and cultural perspectives on environment",
+              "competencies": ["GCU", "DEI"]
+            },
+            {
+              "id": "PLO3",
+              "description": "Integrate knowledge across disciplines to address complex challenges",
+              "competencies": ["INT", "GCU"]
+            },
+            {
+              "id": "PLO4",
+              "description": "Engage in ethical decision-making for sustainable futures",
+              "competencies": ["DEI", "INQ"]
+            }
+          ],
+          "competencyMapping": {
+            "Inquiry": 3,
+            "Integration": 2,
+            "GlobalCulturalAwareness": 3,
+            "Analysis": 3,
+            "DiversityEquityInclusion": 2,
+            "Communication": 2,
+            "EthicalReasoning": 3,
+            "Collaboration": 1
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Introduction to Environmental Science\nWeek 3-4: Ecosystem Structure and Function\nWeek 5-6: Biodiversity and Conservation\nWeek 7-8: Climate Change Science and Impacts\nWeek 9-10: Energy Systems and Sustainability\nWeek 11-12: Environmental Justice and Equity\nWeek 13-14: Sustainable Solutions and Policy\nWeek 15: Final Project Presentations"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Ecological Field Study",
+              "description": "Conduct field research on local ecosystem and analyze data scientifically",
+              "linkedCLOs": ["CLO1"]
+            },
+            {
+              "name": "Global Sustainability Analysis",
+              "description": "Compare sustainability approaches across different cultural and economic contexts",
+              "linkedCLOs": ["CLO2", "CLO3"]
+            },
+            {
+              "name": "Environmental Action Project",
+              "description": "Develop and present a comprehensive plan for addressing a local environmental challenge",
+              "linkedCLOs": ["CLO4"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Science Lab",
+            "body": "Science lab with field equipment, microscopes, and water quality testing tools"
+          },
+          "technology": {
+            "body": "GIS software, environmental modeling tools, data analysis software"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Transportation for field trips, guest speakers from environmental organizations"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-02-10",
+          "lastModified": "2024-02-10",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-004"
+        },
+        "courseIdentity": {
+          "prefix": "BUS",
+          "number": 210,
+          "title": "Principles of Management",
+          "transcriptTitle": "Principles of Management",
+          "credits": 3,
+          "facultyLoad": 3,
+          "effectiveSemester": {
+            "term": "FALL",
+            "year": 2024
+          },
+          "courseType": [
+            {
+              "category": "Major",
+              "subcategory": "Business"
+            }
+          ],
+          "catalogDescription": "Introduction to management theory and practice covering planning, organizing, leading, and controlling. Explores leadership styles, organizational behavior, decision-making, and ethical considerations in business contexts.",
+          "prerequisites": [],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "BOTH",
+          "capacity": 28
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Apply management theories to organizational scenarios",
+              "linkedPLOs": ["PLO1", "PLO2"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Evaluate leadership approaches and their effectiveness",
+              "linkedPLOs": ["PLO2"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Develop strategic plans for organizational challenges",
+              "linkedPLOs": ["PLO1", "PLO3"]
+            },
+            {
+              "id": "CLO4",
+              "description": "Communicate management decisions effectively to stakeholders",
+              "linkedPLOs": ["PLO3"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Demonstrate strategic thinking in business contexts",
+              "competencies": ["INQ", "ANL"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Lead diverse teams effectively",
+              "competencies": ["COL", "DEI"]
+            },
+            {
+              "id": "PLO3",
+              "description": "Communicate business concepts clearly",
+              "competencies": ["COM", "GCU"]
+            }
+          ],
+          "competencyMapping": {
+            "Communication": 3,
+            "Collaboration": 3,
+            "EthicalReasoning": 3,
+            "GlobalCulturalAwareness": 2,
+            "DiversityEquityInclusion": 2,
+            "Inquiry": 2,
+            "Analysis": 2
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Introduction to Management\nWeek 3-4: Planning and Strategy\nWeek 5-6: Organizational Structure\nWeek 7-8: Leadership Theories\nWeek 9-10: Motivation and Team Dynamics\nWeek 11-12: Decision Making and Ethics\nWeek 13-14: Change Management\nWeek 15: Final Case Study Presentations"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Leadership Analysis Project",
+              "description": "Analyze leadership approaches in real organizations",
+              "linkedCLOs": ["CLO2"]
+            },
+            {
+              "name": "Strategic Management Plan",
+              "description": "Develop comprehensive strategic plan for case study organization",
+              "linkedCLOs": ["CLO1", "CLO3"]
+            },
+            {
+              "name": "Management Presentation",
+              "description": "Present management recommendations to stakeholder panel",
+              "linkedCLOs": ["CLO4"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Standard Classroom",
+            "body": "Standard classroom with presentation capabilities"
+          },
+          "technology": {
+            "body": "Business simulation software, presentation tools"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Guest speakers from local business community"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-02-15",
+          "lastModified": "2024-02-15",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-005"
+        },
+        "courseIdentity": {
+          "prefix": "GAM",
+          "number": 250,
+          "title": "Game Design and Development",
+          "transcriptTitle": "Game Design and Development",
+          "credits": 4,
+          "facultyLoad": 4,
+          "effectiveSemester": {
+            "term": "FALL",
+            "year": 2024
+          },
+          "courseType": [
+            {
+              "category": "Major",
+              "subcategory": "Game Development"
+            }
+          ],
+          "catalogDescription": "Explores game design principles, mechanics, narrative, and user experience. Students use industry-standard engines to develop 2D and 3D games, learning programming, asset creation, and iterative design processes.",
+          "prerequisites": [
+            {
+              "coursePrefix": "CSI",
+              "courseNumber": "260",
+              "courseName": "Programming Fundamentals"
+            },
+            {
+              "coursePrefix": "GAM",
+              "courseNumber": "150",
+              "courseName": "Introduction to Game Development"
+            }
+          ],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "BOTH",
+          "capacity": 20
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Design engaging game mechanics and systems",
+              "linkedPLOs": ["PLO1", "PLO2"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Implement game prototypes using industry tools",
+              "linkedPLOs": ["PLO2"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Collaborate in interdisciplinary game development teams",
+              "linkedPLOs": ["PLO3"]
+            },
+            {
+              "id": "CLO4",
+              "description": "Iterate on game designs based on playtesting feedback",
+              "linkedPLOs": ["PLO1", "PLO2"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Apply creative problem-solving to interactive media",
+              "competencies": ["CRE", "INQ"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Develop technical skills for game implementation",
+              "competencies": ["INT", "ANL"]
+            },
+            {
+              "id": "PLO3",
+              "description": "Work effectively in collaborative development teams",
+              "competencies": ["COL", "COM"]
+            }
+          ],
+          "competencyMapping": {
+            "Creativity": 3,
+            "Collaboration": 3,
+            "Integration": 3,
+            "Inquiry": 2,
+            "Analysis": 2,
+            "Communication": 2
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Game Design Fundamentals\nWeek 3-4: Game Mechanics and Systems\nWeek 5-6: Level Design and Progression\nWeek 7-8: Narrative and Player Experience\nWeek 9-10: Prototyping and Iteration\nWeek 11-12: Polish and Production\nWeek 13-14: Playtesting and Feedback\nWeek 15: Final Game Showcase"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Game Prototype Development",
+              "description": "Create playable game prototype with core mechanics",
+              "linkedCLOs": ["CLO1", "CLO2"]
+            },
+            {
+              "name": "Team Game Project",
+              "description": "Collaborative development of complete game experience",
+              "linkedCLOs": ["CLO3", "CLO4"]
+            },
+            {
+              "name": "Design Portfolio",
+              "description": "Document design process and iteration decisions",
+              "linkedCLOs": ["CLO1", "CLO4"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Computer Lab",
+            "body": "Game development lab with high-performance workstations"
+          },
+          "technology": {
+            "body": "Unity, Unreal Engine, game development tools, version control systems"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Game testing lab, industry mentors, game showcase events"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-02-20",
+          "lastModified": "2024-02-20",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-006"
+        },
+        "courseIdentity": {
+          "prefix": "MAT",
+          "number": 230,
+          "title": "Discrete Mathematics",
+          "transcriptTitle": "Discrete Mathematics",
+          "credits": 3,
+          "facultyLoad": 3,
+          "effectiveSemester": {
+            "term": "FALL",
+            "year": 2024
+          },
+          "courseType": [
+            {
+              "category": "Major",
+              "subcategory": "Mathematics"
+            }
+          ],
+          "catalogDescription": "Mathematical foundations for computer science including logic, set theory, functions, relations, combinatorics, graph theory, and proof techniques. Emphasizes problem-solving and mathematical reasoning.",
+          "prerequisites": [
+            {
+              "coursePrefix": "MAT",
+              "courseNumber": "130",
+              "courseName": "Calculus I"
+            }
+          ],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "BOTH",
+          "capacity": 25
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Apply logical reasoning and proof techniques to mathematical problems",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Solve combinatorial and graph theory problems",
+              "linkedPLOs": ["PLO1", "PLO2"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Analyze algorithms using discrete mathematics concepts",
+              "linkedPLOs": ["PLO2"]
+            },
+            {
+              "id": "CLO4",
+              "description": "Communicate mathematical ideas clearly and precisely",
+              "linkedPLOs": ["PLO3"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Demonstrate mathematical reasoning and proof skills",
+              "competencies": ["INQ", "ANL"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Apply quantitative methods to solve problems",
+              "competencies": ["QNT", "ANL"]
+            },
+            {
+              "id": "PLO3",
+              "description": "Express mathematical concepts effectively",
+              "competencies": ["COM", "INT"]
+            }
+          ],
+          "competencyMapping": {
+            "QuantitativeLiteracy": 3,
+            "Analysis": 3,
+            "Inquiry": 3,
+            "Integration": 2,
+            "Communication": 2
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Logic and Proofs\nWeek 3-4: Set Theory and Functions\nWeek 5-6: Relations and Equivalence\nWeek 7-8: Combinatorics and Counting\nWeek 9-10: Graph Theory Fundamentals\nWeek 11-12: Trees and Networks\nWeek 13-14: Recurrence Relations\nWeek 15: Final Exam Review"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Proof Writing Portfolio",
+              "description": "Collection of mathematical proofs demonstrating various techniques",
+              "linkedCLOs": ["CLO1", "CLO4"]
+            },
+            {
+              "name": "Combinatorial Problem Sets",
+              "description": "Apply counting principles to complex scenarios",
+              "linkedCLOs": ["CLO2"]
+            },
+            {
+              "name": "Algorithm Analysis Project",
+              "description": "Analyze computational complexity using discrete math",
+              "linkedCLOs": ["CLO3"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Standard Classroom",
+            "body": "Classroom with whiteboards for proof development"
+          },
+          "technology": {
+            "body": "Mathematical software (Mathematica, SAGE), proof assistants"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Math tutoring center, peer study groups"
+          }
+        }
+      }
+    },
+    {
+      "courseData": {
+        "metadata": {
+          "version": "0.1.0",
+          "createdDate": "2024-02-25",
+          "lastModified": "2024-02-25",
+          "status": "ACTIVE",
+          "reviewStatus": "APPROVED",
+          "createdBy": "faculty@champlain.edu",
+          "proposalId": "PROP-2024-007"
+        },
+        "courseIdentity": {
+          "prefix": "DM",
+          "number": 110,
+          "title": "Digital Media Production",
+          "transcriptTitle": "Digital Media Production",
+          "credits": 3,
+          "facultyLoad": 3,
+          "effectiveSemester": {
+            "term": "FALL",
+            "year": 2024
+          },
+          "courseType": [
+            {
+              "category": "GenEd",
+              "subcategory": "Arts & Communication"
+            }
+          ],
+          "catalogDescription": "Introduction to digital media creation including graphic design, video editing, audio production, and web content. Students learn industry-standard tools and techniques for creating professional multimedia content.",
+          "prerequisites": [],
+          "instructionalMethod": "STANDARD",
+          "semesterOffered": "BOTH",
+          "capacity": 22
+        },
+        "learningOutcomes": {
+          "courseLearningOutcomes": [
+            {
+              "id": "CLO1",
+              "description": "Create professional digital media assets for various platforms",
+              "linkedPLOs": ["PLO1"]
+            },
+            {
+              "id": "CLO2",
+              "description": "Apply design principles to communicate ideas effectively",
+              "linkedPLOs": ["PLO1", "PLO2"]
+            },
+            {
+              "id": "CLO3",
+              "description": "Collaborate on multimedia projects with diverse teams",
+              "linkedPLOs": ["PLO3"]
+            },
+            {
+              "id": "CLO4",
+              "description": "Critique media work using aesthetic and technical criteria",
+              "linkedPLOs": ["PLO2"]
+            }
+          ],
+          "programLearningOutcomes": [
+            {
+              "id": "PLO1",
+              "description": "Demonstrate creative production skills",
+              "competencies": ["CRE", "COM"]
+            },
+            {
+              "id": "PLO2",
+              "description": "Apply critical analysis to media content",
+              "competencies": ["ANL", "INQ"]
+            },
+            {
+              "id": "PLO3",
+              "description": "Work effectively in creative teams",
+              "competencies": ["COL", "COM"]
+            }
+          ],
+          "competencyMapping": {
+            "Creativity": 3,
+            "Communication": 3,
+            "Collaboration": 2,
+            "Analysis": 2,
+            "Integration": 2,
+            "Inquiry": 1
+          }
+        },
+        "topicalOutline": {
+          "body": "Week 1-2: Digital Media Fundamentals\nWeek 3-4: Graphic Design and Composition\nWeek 5-6: Photography and Image Editing\nWeek 7-8: Video Production Basics\nWeek 9-10: Audio Recording and Editing\nWeek 11-12: Web Content Creation\nWeek 13-14: Portfolio Development\nWeek 15: Final Portfolio Presentations"
+        },
+        "assessmentDesign": {
+          "majorAssessments": [
+            {
+              "name": "Brand Identity Project",
+              "description": "Create comprehensive brand identity with multiple media assets",
+              "linkedCLOs": ["CLO1", "CLO2"]
+            },
+            {
+              "name": "Multimedia Campaign",
+              "description": "Develop integrated media campaign for social cause",
+              "linkedCLOs": ["CLO1", "CLO3"]
+            },
+            {
+              "name": "Professional Portfolio",
+              "description": "Curate and present portfolio of best work",
+              "linkedCLOs": ["CLO4"]
+            }
+          ]
+        },
+        "resourcesPlanning": {
+          "facilities": {
+            "classroomType": "Media Lab",
+            "body": "Digital media lab with video/audio equipment and editing stations"
+          },
+          "technology": {
+            "body": "Adobe Creative Suite, audio/video equipment, cameras, lighting"
+          },
+          "libraryResources": [],
+          "otherResources": {
+            "body": "Equipment checkout, media studio bookings, industry software licenses"
+          }
+        }
+      }
+    }
+  ],
+  "competencies": [
+    {
+      "id": "INQ",
+      "name": "Inquiry",
+      "description": "Critical questioning and investigation",
+      "category": "Core"
+    },
+    {
+      "id": "INT",
+      "name": "Integration",
+      "description": "Connecting knowledge across disciplines",
+      "category": "Core"
+    },
+    {
+      "id": "GCU",
+      "name": "Global/Cultural Awareness",
+      "description": "Understanding diverse perspectives",
+      "category": "Core"
+    },
+    {
+      "id": "ANL",
+      "name": "Analysis",
+      "description": "Systematic examination and interpretation",
+      "category": "Core"
+    },
+    {
+      "id": "DEI",
+      "name": "Diversity, Equity & Inclusion",
+      "description": "Promoting equitable practices",
+      "category": "Core"
+    },
+    {
+      "id": "COM",
+      "name": "Communication",
+      "description": "Effective expression and exchange of ideas",
+      "category": "Core"
+    },
+    {
+      "id": "COL",
+      "name": "Collaboration",
+      "description": "Working effectively in teams and partnerships",
+      "category": "Core"
+    },
+    {
+      "id": "CRE",
+      "name": "Creativity",
+      "description": "Innovative thinking and problem-solving",
+      "category": "Core"
+    },
+    {
+      "id": "ETH",
+      "name": "Ethical Reasoning",
+      "description": "Moral decision-making and responsibility",
+      "category": "Core"
+    },
+    {
+      "id": "QNT",
+      "name": "Quantitative Literacy",
+      "description": "Mathematical and statistical reasoning",
+      "category": "Core"
+    }
+  ]
+}
