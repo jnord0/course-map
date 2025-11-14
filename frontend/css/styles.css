@@ -1531,3 +1531,92 @@ select:focus {
     min-height: 700px; /* Increased from 600px to 700px */
     border-radius: 8px;
 }
+
+/* Advanced Filter Styles */
+.filter-checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.filter-checkbox:hover {
+    background: #f8f9fa;
+    border-color: var(--champlain-bright-blue);
+}
+
+.filter-checkbox input[type="checkbox"] {
+    margin: 0;
+    cursor: pointer;
+}
+
+.filter-checkbox input[type="checkbox"]:checked + span {
+    font-weight: 600;
+    color: var(--champlain-bright-blue);
+}
+
+.filter-checkbox span {
+    color: #333;
+}
+
+#filterPanel {
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+    }
+    to {
+        opacity: 1;
+        max-height: 1000px;
+    }
+}
+
+/* Similar courses styling */
+.similar-course-item {
+    padding: 8px;
+    margin-bottom: 6px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 12px;
+}
+
+.similar-course-item:hover {
+    background: #f8f9fa;
+    border-color: var(--champlain-green);
+    transform: translateX(4px);
+}
+
+.similar-course-code {
+    font-weight: 600;
+    color: var(--champlain-navy);
+}
+
+.similar-course-name {
+    color: #666;
+    margin-top: 2px;
+}
+
+.similarity-score {
+    display: inline-block;
+    padding: 2px 6px;
+    background: var(--champlain-green);
+    color: white;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-left: 6px;
+}

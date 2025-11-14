@@ -61,15 +61,134 @@
                 <div class="section">
                     <h3>Course Selection</h3>
                     <div style="margin-bottom: 15px;">
-                        <input type="text" 
-                               id="courseSearch" 
-                               placeholder="Search courses..." 
+                        <input type="text"
+                               id="courseSearch"
+                               placeholder="Search courses..."
                                style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; font-size: 14px;">
                     </div>
+
+                    <!-- Advanced Filters Button -->
+                    <div style="margin-bottom: 10px; display: flex; gap: 8px;">
+                        <button
+                            id="toggleFiltersBtn"
+                            onclick="FilterModule.toggleFilterPanel()"
+                            style="flex: 1; padding: 8px 12px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600;">
+                            🔍 Advanced Filters
+                        </button>
+                        <button
+                            id="clearFiltersBtn"
+                            onclick="FilterModule.clearFilters(); FilterModule.applyFiltersAndUpdate();"
+                            style="padding: 8px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">
+                            Clear
+                        </button>
+                    </div>
+
+                    <!-- Filter Results Summary -->
+                    <div style="margin-bottom: 10px; padding: 8px; background: #f8f9fa; border-radius: 4px; font-size: 12px;">
+                        <div id="filterResultsCount" style="font-weight: 600; color: var(--champlain-navy);">All courses</div>
+                        <div id="filterSummary" style="color: #666; margin-top: 4px;">No filters active</div>
+                    </div>
+
+                    <!-- Advanced Filter Panel (collapsible) -->
+                    <div id="filterPanel" style="display: none; margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-radius: 6px; border: 1px solid #ddd;">
+                        <h4 style="margin: 0 0 12px 0; color: var(--champlain-navy); font-size: 14px;">Advanced Filters</h4>
+
+                        <!-- Department Filter -->
+                        <div style="margin-bottom: 12px;">
+                            <label style="font-weight: 600; font-size: 12px; color: #333; display: block; margin-bottom: 6px;">Department</label>
+                            <div id="filterDepartments" style="display: flex; flex-wrap: wrap; gap: 6px;"></div>
+                        </div>
+
+                        <!-- Credit Hours Filter -->
+                        <div style="margin-bottom: 12px;">
+                            <label style="font-weight: 600; font-size: 12px; color: #333; display: block; margin-bottom: 6px;">Credit Hours</label>
+                            <div id="filterCredits" style="display: flex; flex-wrap: wrap; gap: 6px;"></div>
+                        </div>
+
+                        <!-- Semester Offered Filter -->
+                        <div style="margin-bottom: 12px;">
+                            <label style="font-weight: 600; font-size: 12px; color: #333; display: block; margin-bottom: 6px;">Semester Offered</label>
+                            <div id="filterSemesters" style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="FALL" onchange="FilterModule.updateFilters()">
+                                    <span>Fall</span>
+                                </label>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="SPRING" onchange="FilterModule.updateFilters()">
+                                    <span>Spring</span>
+                                </label>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="BOTH" onchange="FilterModule.updateFilters()">
+                                    <span>Both</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Competency Filter -->
+                        <div style="margin-bottom: 12px;">
+                            <label style="font-weight: 600; font-size: 12px; color: #333; display: block; margin-bottom: 6px;">Competencies (must have ALL selected)</label>
+                            <div id="filterCompetencies" style="display: flex; flex-direction: column; gap: 4px; max-height: 150px; overflow-y: auto;"></div>
+                        </div>
+
+                        <!-- Competency Weight Filter -->
+                        <div style="margin-bottom: 12px;">
+                            <label style="font-weight: 600; font-size: 12px; color: #333; display: block; margin-bottom: 6px;">Competency Weight</label>
+                            <div id="filterWeights" style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="1" onchange="FilterModule.updateFilters()">
+                                    <span>Addressed (1)</span>
+                                </label>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="2" onchange="FilterModule.updateFilters()">
+                                    <span>Reinforced (2)</span>
+                                </label>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="3" onchange="FilterModule.updateFilters()">
+                                    <span>Emphasized (3)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Course Type Filter -->
+                        <div style="margin-bottom: 12px;">
+                            <label style="font-weight: 600; font-size: 12px; color: #333; display: block; margin-bottom: 6px;">Course Type</label>
+                            <div id="filterCourseType" style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="Major" onchange="FilterModule.updateFilters()">
+                                    <span>Major</span>
+                                </label>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="GenEd" onchange="FilterModule.updateFilters()">
+                                    <span>General Education</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Filter Preset Actions -->
+                        <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid #ddd;">
+                            <button
+                                onclick="FilterModule.showSavePresetDialog()"
+                                style="width: 100%; padding: 8px; background: var(--champlain-green); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; margin-bottom: 6px;">
+                                💾 Save Filter Preset
+                            </button>
+                            <button
+                                onclick="FilterModule.showLoadPresetDialog()"
+                                style="width: 100%; padding: 8px; background: var(--champlain-blue); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600;">
+                                📂 Load Preset
+                            </button>
+                        </div>
+                    </div>
+
                     <div id="availableCourses" style="max-height: 200px; overflow-y: auto;"></div>
                     <div style="margin-top: 20px;">
                         <h4 style="color: var(--champlain-navy); font-size: 14px; margin-bottom: 10px;">Selected Courses</h4>
                         <div id="selectedCourses"></div>
+
+                        <!-- Similar Courses Feature -->
+                        <div id="similarCoursesSection" style="display: none; margin-top: 15px; padding: 12px; background: #e8f5e9; border-radius: 6px; border: 1px solid var(--champlain-green);">
+                            <h4 style="margin: 0 0 10px 0; color: var(--champlain-green); font-size: 13px;">🎯 Similar Courses</h4>
+                            <div id="similarCoursesList"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -441,6 +560,7 @@
     <!-- JavaScript Files -->
     <script src="js/state.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/components/filters.js"></script>
     <script src="js/components/courses.js"></script>
     <script src="js/components/competencies.js"></script>
     <script src="js/components/proposals.js"></script>

@@ -33,9 +33,10 @@ const DataAdapter = {
             
             console.log('Converted to legacy competencies:', legacyCompetencies);
             
-            // Build prerequisites string
-            const prereqString = identity.prerequisites && identity.prerequisites.length > 0
-                ? identity.prerequisites.map(p => `${p.coursePrefix}-${p.courseNumber}`).join(', ')
+            // Build prerequisites string and keep array
+            const prereqArray = identity.prerequisites || [];
+            const prereqString = prereqArray.length > 0
+                ? prereqArray.map(p => `${p.coursePrefix}-${p.courseNumber}`).join(', ')
                 : null;
             
             // Extract CLO and PLO IDs
@@ -50,18 +51,22 @@ const DataAdapter = {
                 description: identity.catalogDescription,
                 creditHours: identity.credits.toString(),
                 prerequisites: prereqString,
+                prerequisiteList: prereqArray, // Keep array for advanced filtering
                 competencies: legacyCompetencies,
                 plos: ploIds,
                 clos: cloIds,
                 justification: cd.topicalOutline ? cd.topicalOutline.body : '',
-                
+
                 // Keep original courseData for full access
                 courseData: cd,
-                
+
                 // Additional normalized fields
                 submittedBy: metadata.createdBy,
                 submittedDate: metadata.createdDate,
-                status: metadata.status.toLowerCase()
+                status: metadata.status.toLowerCase(),
+                semesterOffered: identity.semesterOffered || 'BOTH',
+                courseType: identity.courseType || [],
+                capacity: identity.capacity || 24
             };
             
             console.log('Normalized course result:', normalized);
@@ -350,14 +355,33 @@ const AppState = {
     
     // Course being edited (for modals)
     editingCourseId: null,
-    
+
+    // Active filters for course search
+    activeFilters: {
+        textSearch: '',
+        departments: [],
+        creditHours: [],
+        semesterOffered: [],
+        competencies: [],
+        competencyWeights: [],
+        prerequisiteMode: null,
+        prerequisiteSpecific: null,
+        completedCourses: [],
+        courseType: [],
+        capacityMin: undefined,
+        capacityMax: undefined
+    },
+
+    // Saved filter presets
+    filterPresets: [],
+
     // User credentials (for demo purposes - will be replaced by backend auth)
     users: {
         'student': { password: 'password', role: 'Student' },
         'faculty': { password: 'password', role: 'Faculty' },
         'admin': { password: 'password', role: 'Administrator' }
     },
-    
+
     // Data loaded flag
     dataLoaded: false
 };
@@ -371,7 +395,10 @@ const StateGetters = {
     getCompetencies: () => AppState.allCompetencies,
     getProposals: () => AppState.proposals,
     getUsers: () => AppState.users,
-    isDataLoaded: () => AppState.dataLoaded
+    isDataLoaded: () => AppState.dataLoaded,
+    getActiveFilters: () => AppState.activeFilters,
+    getFilterPresets: () => AppState.filterPresets,
+    getSelectedCourseIds: () => AppState.selectedCourseIds
 };
 
 // State setters
@@ -517,6 +544,57 @@ const StateSetters = {
         AppState.currentRole = null;
         // Clear selected courses on logout
         AppState.selectedCourseIds = [];
+    },
+
+    setActiveFilters: (filters) => {
+        AppState.activeFilters = { ...AppState.activeFilters, ...filters };
+    },
+
+    clearFilters: () => {
+        AppState.activeFilters = {
+            textSearch: '',
+            departments: [],
+            creditHours: [],
+            semesterOffered: [],
+            competencies: [],
+            competencyWeights: [],
+            prerequisiteMode: null,
+            prerequisiteSpecific: null,
+            completedCourses: [],
+            courseType: [],
+            capacityMin: undefined,
+            capacityMax: undefined
+        };
+    },
+
+    saveFilterPreset: (name) => {
+        const preset = {
+            id: Date.now(),
+            name: name,
+            filters: { ...AppState.activeFilters },
+            createdBy: AppState.currentUser,
+            createdDate: new Date().toISOString().split('T')[0]
+        };
+        AppState.filterPresets.push(preset);
+        return preset;
+    },
+
+    loadFilterPreset: (presetId) => {
+        const preset = AppState.filterPresets.find(p => p.id === presetId);
+        if (preset) {
+            AppState.activeFilters = { ...preset.filters };
+            return true;
+        }
+        return false;
+    },
+
+    deleteFilterPreset: (presetId) => {
+        const index = AppState.filterPresets.findIndex(p => p.id === presetId);
+        if (index > -1) {
+            AppState.filterPresets.splice(index, 1);
+            return true;
+        }
+        return false;
     }
 };
 
