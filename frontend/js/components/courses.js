@@ -455,7 +455,7 @@ const CoursesModule = {
         CoursesModule.switchEditTab('identity'); // Start at first tab
 
         const competencies = StateGetters.getCompetencies();
-        const currentUser = AuthManager.getCurrentUser();
+        const currentUser = StateGetters.getCurrentUser();
 
         if (courseId) {
             // Edit existing course
@@ -471,7 +471,7 @@ const CoursesModule = {
             CoursesModule.buildCompetencyMapping(competencies, {});
 
             // Set defaults
-            document.getElementById('editCreatedBy').value = currentUser ? currentUser.username : '';
+            document.getElementById('editCreatedBy').value = currentUser || '';
             document.getElementById('editVersion').value = '0.1.0';
             document.getElementById('editStatus').value = 'ACTIVE';
             document.getElementById('editReviewStatus').value = 'APPROVED';
