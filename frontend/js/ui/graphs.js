@@ -56,18 +56,9 @@ const GraphsModule = {
         const containers = {
             'bar': 'barChartContainer',
             'pie': 'pieChartContainer',
-            'radar': 'radarChartContainer',
-            'timeline': 'timelineChartContainer'
+            'radar': 'radarChartContainer'
         };
         document.getElementById(containers[graphType]).classList.remove('hidden');
-
-        // Show/hide play button for timeline view
-        const playBtn = document.getElementById('playProgressionBtn');
-        if (graphType === 'timeline') {
-            playBtn.classList.remove('hidden');
-        } else {
-            playBtn.classList.add('hidden');
-        }
 
         GraphsModule.currentGraphType = graphType;
         GraphsModule.renderCurrentGraph();
@@ -83,6 +74,11 @@ const GraphsModule = {
         // Update course summary
         GraphsModule.updateCourseSummary(selectedCourses);
 
+        // Update timeline course summary if in pathway view
+        if (GraphsModule.currentGraphType === 'timeline' && document.getElementById('timelineCourseList')) {
+            GraphsModule.updateTimelineCourseSummary(selectedCourses);
+        }
+
         // Calculate competency weights
         const competencyData = GraphsModule.calculateCompetencyWeights(selectedCourses, allCompetencies);
 
@@ -97,9 +93,6 @@ const GraphsModule = {
             case 'radar':
                 GraphsModule.renderRadarChart(competencyData);
                 break;
-            case 'timeline':
-                GraphsModule.renderTimelineChart(selectedCourses, allCompetencies);
-                break;
         }
     },
 
@@ -111,6 +104,30 @@ const GraphsModule = {
         summaryDiv.textContent = `Selected Courses (${courses.length})`;
 
         const listDiv = document.getElementById('graphsCourseList');
+        if (courses.length === 0) {
+            listDiv.innerHTML = '<div style="color: #666; font-style: italic;">No courses selected. Use the search above to select courses.</div>';
+        } else {
+            listDiv.innerHTML = courses.map((course, idx) => {
+                const compIds = course.competencies ? Object.keys(course.competencies).filter(k => course.competencies[k] > 0).join(',') : '';
+                return `<div class="graph-course-item" data-course-code="${course.code}" data-competencies="${compIds}" style="background: white; padding: 6px 12px; border-radius: 4px; border-left: 3px solid var(--champlain-bright-blue); cursor: pointer; transition: all 0.2s;">
+                    <strong>${course.code}</strong> - ${course.name}
+                </div>`;
+            }).join('');
+        }
+    },
+
+    /**
+     * Update timeline course summary section (for pathway view)
+     */
+    updateTimelineCourseSummary: (courses) => {
+        const summaryDiv = document.querySelector('#timelineCourseSummary > div:first-child');
+        if (!summaryDiv) return;
+
+        summaryDiv.textContent = `Selected Courses (${courses.length})`;
+
+        const listDiv = document.getElementById('timelineCourseList');
+        if (!listDiv) return;
+
         if (courses.length === 0) {
             listDiv.innerHTML = '<div style="color: #666; font-style: italic;">No courses selected. Use the search above to select courses.</div>';
         } else {
