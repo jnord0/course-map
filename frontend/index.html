@@ -242,6 +242,7 @@
                                 <button class="toggle-btn" id="tableViewBtn">Table View</button>
                                 <button class="toggle-btn" id="prerequisiteViewBtn">Prerequisite Chain</button>
                                 <button class="toggle-btn" id="pathwayViewBtn">Course Pathway</button>
+                                <button class="toggle-btn" id="graphsViewBtn">📊 Competency Graphs</button>
                             </div>
                         </div>
                     </div>
@@ -300,6 +301,60 @@
                                     </h4>
                                     <div id="lockedCoursesBox" class="pathway-box" style="background: #f5f7fa; border: 2px solid #999; border-radius: 10px; padding: 15px; height: 500px; overflow-y: auto;"></div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Competency Graphs View -->
+                    <div id="graphsView" class="hidden" style="position: relative; width: 100%; height: 100%; overflow: auto;">
+                        <div style="padding: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <h3 style="color: var(--champlain-navy); margin: 0;">Competency Weight Analysis</h3>
+                                <div id="graphTypeToggle" style="display: flex; gap: 10px; background: #f5f7fa; padding: 8px; border-radius: 8px;">
+                                    <button class="graph-type-btn active" data-graph="bar" style="padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; background: var(--champlain-bright-blue); color: white; font-weight: 600; transition: all 0.3s;">
+                                        📊 Bar Chart
+                                    </button>
+                                    <button class="graph-type-btn" data-graph="pie" style="padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; background: white; color: var(--champlain-navy); font-weight: 600; transition: all 0.3s;">
+                                        🥧 Pie Chart
+                                    </button>
+                                    <button class="graph-type-btn" data-graph="radar" style="padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; background: white; color: var(--champlain-navy); font-weight: 600; transition: all 0.3s;">
+                                        🎯 Radar Chart
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="graphsInfoBox" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid var(--champlain-bright-blue); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                                <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 8px;">📈 Understanding Competency Weights</div>
+                                <div style="font-size: 13px; color: #1565c0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                                    <div><strong>Level 0:</strong> Not addressed</div>
+                                    <div><strong>Level 1:</strong> Addressed in course</div>
+                                    <div><strong>Level 2:</strong> Reinforced through practice</div>
+                                    <div><strong>Level 3:</strong> Emphasized as focus</div>
+                                </div>
+                            </div>
+
+                            <!-- Graph Container -->
+                            <div id="graphsContainer" style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); min-height: 600px;">
+                                <!-- Bar Chart -->
+                                <div id="barChartContainer" class="graph-chart-container">
+                                    <svg id="barChart" style="width: 100%; height: 600px;"></svg>
+                                </div>
+
+                                <!-- Pie Chart -->
+                                <div id="pieChartContainer" class="graph-chart-container hidden">
+                                    <svg id="pieChart" style="width: 100%; height: 600px;"></svg>
+                                </div>
+
+                                <!-- Radar Chart -->
+                                <div id="radarChartContainer" class="graph-chart-container hidden">
+                                    <svg id="radarChart" style="width: 100%; height: 600px;"></svg>
+                                </div>
+                            </div>
+
+                            <!-- Selected Courses Summary -->
+                            <div id="graphsCourseSummary" style="margin-top: 20px; background: #f5f7fa; border-radius: 8px; padding: 15px;">
+                                <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 10px;">Selected Courses (0)</div>
+                                <div id="graphsCourseList" style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px;"></div>
                             </div>
                         </div>
                     </div>
@@ -1181,6 +1236,7 @@
     <script src="js/ui/prerequisite-visualization.js"></script>
     <script src="js/ui/semester-planner.js"></script>
     <script src="js/ui/modals.js"></script>
+    <script src="js/ui/graphs.js"></script>
     <script src="js/mobile.js"></script>
     <script src="js/app.js"></script>
 </body>

@@ -992,9 +992,10 @@ const VisualizationModule = {
         const tableViewBtn = document.getElementById('tableViewBtn');
         const prerequisiteViewBtn = document.getElementById('prerequisiteViewBtn');
         const pathwayViewBtn = document.getElementById('pathwayViewBtn');
+        const graphsViewBtn = document.getElementById('graphsViewBtn');
 
-        const allViews = ['networkView', 'tableView', 'prerequisiteView', 'pathwayView'];
-        const allBtns = [networkViewBtn, tableViewBtn, prerequisiteViewBtn, pathwayViewBtn];
+        const allViews = ['networkView', 'tableView', 'prerequisiteView', 'pathwayView', 'graphsView'];
+        const allBtns = [networkViewBtn, tableViewBtn, prerequisiteViewBtn, pathwayViewBtn, graphsViewBtn];
 
         // Helper to switch views
         const switchView = (viewId, activeBtn) => {
@@ -1014,6 +1015,9 @@ const VisualizationModule = {
             } else if (viewId === 'pathwayView') {
                 title.textContent = 'Course Pathway';
                 description.textContent = 'Student course progression showing available, completed, and locked courses';
+            } else if (viewId === 'graphsView') {
+                title.textContent = 'Competency Graphs';
+                description.textContent = 'Visual analytics showing competency weight distribution across selected courses';
             }
 
             // Hide all views
@@ -1059,6 +1063,15 @@ const VisualizationModule = {
             pathwayViewBtn.addEventListener('click', () => {
                 switchView('pathwayView', pathwayViewBtn);
                 VisualizationModule.renderPathwaySelector();
+            });
+        }
+
+        if (graphsViewBtn) {
+            graphsViewBtn.addEventListener('click', () => {
+                switchView('graphsView', graphsViewBtn);
+                if (typeof GraphsModule !== 'undefined') {
+                    GraphsModule.init();
+                }
             });
         }
     },

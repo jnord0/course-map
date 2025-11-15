@@ -140,8 +140,13 @@ const CompetenciesModule = {
         }
         
         trackerDiv.innerHTML = html;
-        
+
         // Update the visualization
         VisualizationModule.updateGraph();
+
+        // Update graphs if the module is loaded
+        if (typeof GraphsModule !== 'undefined' && typeof GraphsModule.renderCurrentGraph === 'function') {
+            GraphsModule.renderCurrentGraph();
+        }
     }
 };
