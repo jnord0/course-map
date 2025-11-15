@@ -5,14 +5,25 @@ const ModalsModule = {
      * Open proposal submission modal
      */
     openProposalModal: () => {
+        // Initialize form if not already done
+        if (!ProposalsModule._formInitialized) {
+            ProposalsModule.initializeForm();
+            ProposalsModule._formInitialized = true;
+        }
+
+        // Reset form to initial state
+        ProposalsModule.resetForm();
+
         document.getElementById('proposalModal').style.display = 'block';
     },
-    
+
     /**
      * Close proposal submission modal
      */
     closeProposalModal: () => {
         document.getElementById('proposalModal').style.display = 'none';
+        ProposalsModule.currentProposalId = null;
+        document.getElementById('submitProposal').textContent = 'Submit Proposal';
     },
     
     /**
