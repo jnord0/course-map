@@ -312,115 +312,336 @@
     
     <!-- Proposal Submission Modal -->
     <div id="proposalModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" style="max-width: 1200px; width: 95%;">
             <div class="modal-header">
                 <h2>Submit Course Proposal</h2>
                 <button class="close-btn" id="closeProposalBtn">&times;</button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+                <!-- Progress Indicator -->
+                <div style="margin-bottom: 25px; padding: 15px; background: linear-gradient(135deg, var(--champlain-navy), var(--champlain-blue)); border-radius: 8px; color: white;">
+                    <div style="font-size: 14px; margin-bottom: 8px;">Proposal Progress</div>
+                    <div style="display: flex; gap: 5px;">
+                        <div id="progress-identity" class="progress-step active" style="flex: 1; height: 6px; background: rgba(255,255,255,0.3); border-radius: 3px; position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: white; transition: transform 0.3s;"></div>
+                        </div>
+                        <div id="progress-outcomes" class="progress-step" style="flex: 1; height: 6px; background: rgba(255,255,255,0.3); border-radius: 3px;"></div>
+                        <div id="progress-content" class="progress-step" style="flex: 1; height: 6px; background: rgba(255,255,255,0.3); border-radius: 3px;"></div>
+                        <div id="progress-resources" class="progress-step" style="flex: 1; height: 6px; background: rgba(255,255,255,0.3); border-radius: 3px;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px;">
+                        <span>Identity</span>
+                        <span>Outcomes</span>
+                        <span>Content</span>
+                        <span>Resources</span>
+                    </div>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div style="display: flex; gap: 5px; margin-bottom: 20px; border-bottom: 2px solid var(--champlain-navy); overflow-x: auto;">
+                    <button type="button" class="proposal-tab active" data-tab="identity" style="padding: 12px 20px; background: var(--champlain-navy); color: white; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.3s;">
+                        📋 Course Identity
+                    </button>
+                    <button type="button" class="proposal-tab" data-tab="outcomes" style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.3s;">
+                        🎯 Learning Outcomes
+                    </button>
+                    <button type="button" class="proposal-tab" data-tab="content" style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.3s;">
+                        📚 Course Content
+                    </button>
+                    <button type="button" class="proposal-tab" data-tab="resources" style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.3s;">
+                        🔧 Resources
+                    </button>
+                </div>
+
                 <form id="proposalForm">
-                    <div class="form-group">
-                        <label>Course Code *</label>
-                        <input type="text" id="courseCode" placeholder="e.g., CSI-450" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Course Title *</label>
-                        <input type="text" id="courseTitle" placeholder="e.g., Advanced Database Systems" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Course Description *</label>
-                        <textarea id="courseDescription" placeholder="Provide a detailed course description..." required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Prerequisites</label>
-                        <input type="text" id="prerequisites" placeholder="e.g., CSI-340, CSI-360">
-                    </div>
-                    <div class="form-group">
-                        <label>Credit Hours *</label>
-                        <select id="creditHours" required>
-                            <option value="">Select credit hours</option>
-                            <option value="1">1 Credit</option>
-                            <option value="2">2 Credits</option>
-                            <option value="3">3 Credits</option>
-                            <option value="4">4 Credits</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Select College Competencies & Weights *</label>
-                        <div style="margin-bottom: 12px; padding: 10px; background: #f8f9fa; border-radius: 6px; font-size: 13px; color: #666;">
-                            <strong>Weight Scale:</strong> 1 = Addressed | 2 = Reinforced | 3 = Emphasized
+                    <!-- Tab 1: Course Identity -->
+                    <div class="proposal-tab-content" id="tab-identity">
+                        <h3 style="color: var(--champlain-navy); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 24px;">📋</span> Course Identity
+                        </h3>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                            <div class="form-group">
+                                <label>Course Prefix *</label>
+                                <input type="text" id="coursePrefix" placeholder="e.g., CSI, BUS, MAT" required style="text-transform: uppercase;">
+                            </div>
+                            <div class="form-group">
+                                <label>Course Number *</label>
+                                <input type="number" id="courseNumber" placeholder="e.g., 450" required min="100" max="999">
+                            </div>
                         </div>
-                        <div style="display: flex; flex-direction: column; gap: 10px;">
-                            <div class="competency-weight-option">
-                                <label for="comp_comm" style="flex: 1; margin: 0;">Communication</label>
-                                <select id="comp_comm" class="competency-weight-select">
-                                    <option value="0">Not Selected</option>
-                                    <option value="1">Addressed (1)</option>
-                                    <option value="2">Reinforced (2)</option>
-                                    <option value="3">Emphasized (3)</option>
+
+                        <div class="form-group">
+                            <label>Course Title *</label>
+                            <input type="text" id="courseTitle" placeholder="e.g., Advanced Database Systems" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Catalog Description *</label>
+                            <textarea id="catalogDescription" placeholder="Comprehensive description of the course for the catalog..." rows="4" required></textarea>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                            <div class="form-group">
+                                <label>Credit Hours *</label>
+                                <select id="creditHours" required>
+                                    <option value="">Select credits</option>
+                                    <option value="1">1 Credit</option>
+                                    <option value="2">2 Credits</option>
+                                    <option value="3">3 Credits</option>
+                                    <option value="4">4 Credits</option>
                                 </select>
                             </div>
-                            <div class="competency-weight-option">
-                                <label for="comp_thinking" style="flex: 1; margin: 0;">Critical Thinking</label>
-                                <select id="comp_thinking" class="competency-weight-select">
-                                    <option value="0">Not Selected</option>
-                                    <option value="1">Addressed (1)</option>
-                                    <option value="2">Reinforced (2)</option>
-                                    <option value="3">Emphasized (3)</option>
+                            <div class="form-group">
+                                <label>Course Type *</label>
+                                <select id="courseType" required>
+                                    <option value="">Select type</option>
+                                    <option value="Major">Major Course</option>
+                                    <option value="GenEd">General Education</option>
                                 </select>
                             </div>
-                            <div class="competency-weight-option">
-                                <label for="comp_learning" style="flex: 1; margin: 0;">Self-Directed Learning</label>
-                                <select id="comp_learning" class="competency-weight-select">
-                                    <option value="0">Not Selected</option>
-                                    <option value="1">Addressed (1)</option>
-                                    <option value="2">Reinforced (2)</option>
-                                    <option value="3">Emphasized (3)</option>
+                            <div class="form-group">
+                                <label>Class Capacity *</label>
+                                <input type="number" id="capacity" placeholder="e.g., 24" required min="1" max="100">
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                            <div class="form-group">
+                                <label>Semester Offered *</label>
+                                <select id="semesterOffered" required>
+                                    <option value="">Select semester</option>
+                                    <option value="FALL">Fall Only</option>
+                                    <option value="SPRING">Spring Only</option>
+                                    <option value="BOTH">Both Fall & Spring</option>
                                 </select>
                             </div>
-                            <div class="competency-weight-option">
-                                <label for="comp_collab" style="flex: 1; margin: 0;">Collaboration</label>
-                                <select id="comp_collab" class="competency-weight-select">
-                                    <option value="0">Not Selected</option>
-                                    <option value="1">Addressed (1)</option>
-                                    <option value="2">Reinforced (2)</option>
-                                    <option value="3">Emphasized (3)</option>
-                                </select>
-                            </div>
-                            <div class="competency-weight-option">
-                                <label for="comp_global" style="flex: 1; margin: 0;">Global Understanding</label>
-                                <select id="comp_global" class="competency-weight-select">
-                                    <option value="0">Not Selected</option>
-                                    <option value="1">Addressed (1)</option>
-                                    <option value="2">Reinforced (2)</option>
-                                    <option value="3">Emphasized (3)</option>
-                                </select>
-                            </div>
-                            <div class="competency-weight-option">
-                                <label for="comp_ethics" style="flex: 1; margin: 0;">Ethics & Social Responsibility</label>
-                                <select id="comp_ethics" class="competency-weight-select">
-                                    <option value="0">Not Selected</option>
-                                    <option value="1">Addressed (1)</option>
-                                    <option value="2">Reinforced (2)</option>
-                                    <option value="3">Emphasized (3)</option>
-                                </select>
-                            </div>
-                            <div class="competency-weight-option">
-                                <label for="comp_info" style="flex: 1; margin: 0;">Information Literacy</label>
-                                <select id="comp_info" class="competency-weight-select">
-                                    <option value="0">Not Selected</option>
-                                    <option value="1">Addressed (1)</option>
-                                    <option value="2">Reinforced (2)</option>
-                                    <option value="3">Emphasized (3)</option>
+                            <div class="form-group">
+                                <label>Instructional Method</label>
+                                <select id="instructionalMethod">
+                                    <option value="STANDARD">Standard</option>
+                                    <option value="ONLINE">Online</option>
+                                    <option value="HYBRID">Hybrid</option>
+                                    <option value="SEMINAR">Seminar</option>
                                 </select>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label>Prerequisites</label>
+                            <textarea id="prerequisites" placeholder="List prerequisite courses (one per line)&#10;Format: CSI-340 Database Design and Implementation&#10;CSI-240 Programming Fundamentals II" rows="3"></textarea>
+                            <small style="color: #666; font-size: 12px;">One course per line in format: CODE Name</small>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Justification *</label>
-                        <textarea id="justification" placeholder="Explain why this course should be added and how it addresses the selected competencies..." required></textarea>
+
+                    <!-- Tab 2: Learning Outcomes -->
+                    <div class="proposal-tab-content hidden" id="tab-outcomes">
+                        <h3 style="color: var(--champlain-navy); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 24px;">🎯</span> Learning Outcomes
+                        </h3>
+
+                        <!-- Course Learning Outcomes -->
+                        <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                            <h4 style="color: var(--champlain-navy); margin-bottom: 15px;">Course Learning Outcomes (CLOs)</h4>
+                            <div id="closContainer">
+                                <div class="clo-item" style="display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start;">
+                                    <input type="text" class="clo-input" placeholder="CLO description" style="flex: 1; padding: 10px; border: 2px solid #2196F3; border-radius: 4px;">
+                                    <button type="button" class="remove-clo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                                </div>
+                            </div>
+                            <button type="button" id="addCLO" style="padding: 10px 20px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">+ Add CLO</button>
+                        </div>
+
+                        <!-- Program Learning Outcomes -->
+                        <div style="background: #f3e5f5; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                            <h4 style="color: var(--champlain-navy); margin-bottom: 15px;">Program Learning Outcomes (PLOs)</h4>
+                            <div id="plosContainer">
+                                <div class="plo-item" style="display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start;">
+                                    <input type="text" class="plo-input" placeholder="PLO description" style="flex: 1; padding: 10px; border: 2px solid #9C27B0; border-radius: 4px;">
+                                    <button type="button" class="remove-plo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                                </div>
+                            </div>
+                            <button type="button" id="addPLO" style="padding: 10px 20px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">+ Add PLO</button>
+                        </div>
+
+                        <!-- Competency Mapping -->
+                        <div style="background: #fff3e0; padding: 20px; border-radius: 8px;">
+                            <h4 style="color: var(--champlain-navy); margin-bottom: 10px;">College Competencies Mapping *</h4>
+                            <div style="margin-bottom: 15px; padding: 12px; background: white; border-left: 4px solid var(--champlain-green); border-radius: 4px; font-size: 13px;">
+                                <strong>Weight Scale:</strong> 1 = Addressed | 2 = Reinforced | 3 = Emphasized
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
+                                <div class="competency-weight-option">
+                                    <label for="comp_inquiry" style="flex: 1; margin: 0; font-weight: 600;">Inquiry</label>
+                                    <select id="comp_inquiry" class="competency-weight-select">
+                                        <option value="0">Not Selected</option>
+                                        <option value="1">Addressed (1)</option>
+                                        <option value="2">Reinforced (2)</option>
+                                        <option value="3">Emphasized (3)</option>
+                                    </select>
+                                </div>
+                                <div class="competency-weight-option">
+                                    <label for="comp_integration" style="flex: 1; margin: 0; font-weight: 600;">Integration</label>
+                                    <select id="comp_integration" class="competency-weight-select">
+                                        <option value="0">Not Selected</option>
+                                        <option value="1">Addressed (1)</option>
+                                        <option value="2">Reinforced (2)</option>
+                                        <option value="3">Emphasized (3)</option>
+                                    </select>
+                                </div>
+                                <div class="competency-weight-option">
+                                    <label for="comp_global" style="flex: 1; margin: 0; font-weight: 600;">Global/Cultural Awareness</label>
+                                    <select id="comp_global" class="competency-weight-select">
+                                        <option value="0">Not Selected</option>
+                                        <option value="1">Addressed (1)</option>
+                                        <option value="2">Reinforced (2)</option>
+                                        <option value="3">Emphasized (3)</option>
+                                    </select>
+                                </div>
+                                <div class="competency-weight-option">
+                                    <label for="comp_analysis" style="flex: 1; margin: 0; font-weight: 600;">Analysis</label>
+                                    <select id="comp_analysis" class="competency-weight-select">
+                                        <option value="0">Not Selected</option>
+                                        <option value="1">Addressed (1)</option>
+                                        <option value="2">Reinforced (2)</option>
+                                        <option value="3">Emphasized (3)</option>
+                                    </select>
+                                </div>
+                                <div class="competency-weight-option">
+                                    <label for="comp_dei" style="flex: 1; margin: 0; font-weight: 600;">Diversity, Equity & Inclusion</label>
+                                    <select id="comp_dei" class="competency-weight-select">
+                                        <option value="0">Not Selected</option>
+                                        <option value="1">Addressed (1)</option>
+                                        <option value="2">Reinforced (2)</option>
+                                        <option value="3">Emphasized (3)</option>
+                                    </select>
+                                </div>
+                                <div class="competency-weight-option">
+                                    <label for="comp_communication" style="flex: 1; margin: 0; font-weight: 600;">Communication</label>
+                                    <select id="comp_communication" class="competency-weight-select">
+                                        <option value="0">Not Selected</option>
+                                        <option value="1">Addressed (1)</option>
+                                        <option value="2">Reinforced (2)</option>
+                                        <option value="3">Emphasized (3)</option>
+                                    </select>
+                                </div>
+                                <div class="competency-weight-option">
+                                    <label for="comp_collaboration" style="flex: 1; margin: 0; font-weight: 600;">Collaboration</label>
+                                    <select id="comp_collaboration" class="competency-weight-select">
+                                        <option value="0">Not Selected</option>
+                                        <option value="1">Addressed (1)</option>
+                                        <option value="2">Reinforced (2)</option>
+                                        <option value="3">Emphasized (3)</option>
+                                    </select>
+                                </div>
+                                <div class="competency-weight-option">
+                                    <label for="comp_creativity" style="flex: 1; margin: 0; font-weight: 600;">Creativity</label>
+                                    <select id="comp_creativity" class="competency-weight-select">
+                                        <option value="0">Not Selected</option>
+                                        <option value="1">Addressed (1)</option>
+                                        <option value="2">Reinforced (2)</option>
+                                        <option value="3">Emphasized (3)</option>
+                                    </select>
+                                </div>
+                                <div class="competency-weight-option">
+                                    <label for="comp_ethical" style="flex: 1; margin: 0; font-weight: 600;">Ethical Reasoning</label>
+                                    <select id="comp_ethical" class="competency-weight-select">
+                                        <option value="0">Not Selected</option>
+                                        <option value="1">Addressed (1)</option>
+                                        <option value="2">Reinforced (2)</option>
+                                        <option value="3">Emphasized (3)</option>
+                                    </select>
+                                </div>
+                                <div class="competency-weight-option">
+                                    <label for="comp_quantitative" style="flex: 1; margin: 0; font-weight: 600;">Quantitative Literacy</label>
+                                    <select id="comp_quantitative" class="competency-weight-select">
+                                        <option value="0">Not Selected</option>
+                                        <option value="1">Addressed (1)</option>
+                                        <option value="2">Reinforced (2)</option>
+                                        <option value="3">Emphasized (3)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit" class="submit-btn">Submit Proposal</button>
+
+                    <!-- Tab 3: Course Content -->
+                    <div class="proposal-tab-content hidden" id="tab-content">
+                        <h3 style="color: var(--champlain-navy); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 24px;">📚</span> Course Content & Assessment
+                        </h3>
+
+                        <div class="form-group">
+                            <label>Topical Outline *</label>
+                            <textarea id="topicalOutline" placeholder="Week-by-week course outline:&#10;Week 1-2: Introduction to...&#10;Week 3-4: Advanced concepts...&#10;Week 5-6: Practical applications...&#10;etc." rows="8" required></textarea>
+                        </div>
+
+                        <div style="background: #e8f5e9; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                            <h4 style="color: var(--champlain-navy); margin-bottom: 15px;">Major Assessments</h4>
+                            <div id="assessmentsContainer">
+                                <div class="assessment-item" style="background: white; padding: 15px; border-radius: 6px; margin-bottom: 12px; border-left: 4px solid var(--champlain-green);">
+                                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                                        <input type="text" class="assessment-name" placeholder="Assessment name" style="flex: 1; padding: 10px; border: 2px solid #ddd; border-radius: 4px;">
+                                        <button type="button" class="remove-assessment" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                                    </div>
+                                    <textarea class="assessment-desc" placeholder="Description and how it links to learning outcomes..." rows="2" style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
+                                </div>
+                            </div>
+                            <button type="button" id="addAssessment" style="padding: 10px 20px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 4px; cursor: pointer;">+ Add Assessment</button>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Course Justification *</label>
+                            <textarea id="justification" placeholder="Explain why this course should be added to the curriculum, how it fits within the program, addresses gaps, and supports student learning objectives..." rows="6" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Tab 4: Resources -->
+                    <div class="proposal-tab-content hidden" id="tab-resources">
+                        <h3 style="color: var(--champlain-navy); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 24px;">🔧</span> Resources & Planning
+                        </h3>
+
+                        <div class="form-group">
+                            <label>Classroom/Facility Type *</label>
+                            <select id="facilityType" required>
+                                <option value="">Select facility type</option>
+                                <option value="Standard Classroom">Standard Classroom</option>
+                                <option value="Computer Lab">Computer Lab</option>
+                                <option value="Science Lab">Science Lab</option>
+                                <option value="Media Lab">Media Lab</option>
+                                <option value="Seminar Room">Seminar Room</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Facility Requirements</label>
+                            <textarea id="facilityRequirements" placeholder="Describe specific classroom/lab requirements, equipment needs, seating arrangements, etc." rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Technology Requirements</label>
+                            <textarea id="technologyRequirements" placeholder="List required software, hardware, online platforms, development tools, etc." rows="4"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Library Resources</label>
+                            <textarea id="libraryResources" placeholder="Describe any specific library resources, textbooks, journals, or databases needed" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Other Resources</label>
+                            <textarea id="otherResources" placeholder="Any other resources needed such as guest speakers, field trips, industry partnerships, special materials, etc." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div style="display: flex; justify-content: space-between; margin-top: 30px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
+                        <button type="button" id="prevTab" class="btn" style="padding: 12px 30px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">← Previous</button>
+                        <button type="button" id="nextTab" class="btn" style="padding: 12px 30px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Next →</button>
+                        <button type="submit" id="submitProposal" class="submit-btn hidden" style="padding: 12px 40px; background: var(--champlain-green); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 16px;">Submit Proposal</button>
+                    </div>
+
                     <div id="proposalSuccess" class="success-message hidden"></div>
                 </form>
             </div>
