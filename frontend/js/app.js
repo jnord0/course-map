@@ -165,6 +165,19 @@ const App = {
         if (manageBtn) {
             manageBtn.addEventListener('click', CoursesModule.showManageModal);
         }
+
+        // Semester Planner button
+        const semesterPlannerBtn = document.getElementById('semesterPlannerBtn');
+        if (semesterPlannerBtn) {
+            semesterPlannerBtn.addEventListener('click', () => {
+                SemesterPlannerUI.openPlanner();
+            });
+        }
+
+        // Update quick view on page load
+        if (typeof SemesterPlannerUI !== 'undefined') {
+            SemesterPlannerUI.updateQuickView();
+        }
     },
     
     /**
@@ -178,7 +191,33 @@ const App = {
         document.getElementById('closeDetailsBtn').addEventListener('click', ModalsModule.closeDetailsModal);
         document.getElementById('closeManageBtn').addEventListener('click', ModalsModule.closeManageModal);
         document.getElementById('closeEditCourseBtn').addEventListener('click', ModalsModule.closeEditCourseModal);
-        
+        document.getElementById('closeSemesterPlannerBtn').addEventListener('click', () => {
+            SemesterPlannerUI.closePlanner();
+        });
+
+        // Semester Planner action buttons
+        const clearScheduleBtn = document.getElementById('clearScheduleBtn');
+        const exportScheduleBtn = document.getElementById('exportScheduleBtn');
+        const schedulerSearchInput = document.getElementById('schedulerCourseSearch');
+
+        if (clearScheduleBtn) {
+            clearScheduleBtn.addEventListener('click', () => {
+                SemesterPlannerUI.clearSchedule();
+            });
+        }
+
+        if (exportScheduleBtn) {
+            exportScheduleBtn.addEventListener('click', () => {
+                SemesterPlannerUI.exportSchedule();
+            });
+        }
+
+        if (schedulerSearchInput) {
+            schedulerSearchInput.addEventListener('input', (e) => {
+                SemesterPlannerUI.searchSchedulerCourses(e.target.value);
+            });
+        }
+
         // Add course button in manage modal
         document.getElementById('addCourseBtn').addEventListener('click', () => {
             CoursesModule.showEditModal(null);

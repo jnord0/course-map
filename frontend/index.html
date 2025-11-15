@@ -197,6 +197,14 @@
                     <div id="competencyTracker"></div>
                 </div>
 
+                <div class="section">
+                    <h3>Semester Planning</h3>
+                    <button class="btn" id="semesterPlannerBtn" style="width: 100%; margin-bottom: 10px;">
+                        📅 Plan My Schedule
+                    </button>
+                    <div id="scheduleQuickView" style="font-size: 12px; color: #666;"></div>
+                </div>
+
                 <div id="adminSection" class="section hidden">
                     <h3>Administration</h3>
                     <button class="btn" id="reviewProposalsBtn">
@@ -583,6 +591,76 @@
         </div>
     </div>
 
+    <!-- Semester Planner Modal -->
+    <div id="semesterPlannerModal" class="modal">
+        <div class="modal-content" style="max-width: 1400px; width: 95%;">
+            <div class="modal-header">
+                <h2>📅 Semester Schedule Planner</h2>
+                <button class="close-btn" id="closeSemesterPlannerBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Semester Tabs -->
+                <div id="semesterTabs" style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid var(--champlain-navy); padding-bottom: 10px; overflow-x: auto;"></div>
+
+                <!-- Current Semester View -->
+                <div id="currentSemesterView">
+                    <!-- Schedule Summary -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                        <div class="stat-card" style="background: linear-gradient(135deg, var(--champlain-blue), var(--champlain-navy)); color: white; padding: 15px; border-radius: 8px;">
+                            <div style="font-size: 24px; font-weight: bold;" id="totalCoursesCount">0</div>
+                            <div style="font-size: 13px;">Total Courses</div>
+                        </div>
+                        <div class="stat-card" style="background: linear-gradient(135deg, var(--champlain-green), #45a049); color: white; padding: 15px; border-radius: 8px;">
+                            <div style="font-size: 24px; font-weight: bold;" id="totalCreditsCount">0</div>
+                            <div style="font-size: 13px;">Total Credits</div>
+                        </div>
+                        <div class="stat-card" style="background: linear-gradient(135deg, var(--champlain-bright-blue), var(--champlain-teal)); color: white; padding: 15px; border-radius: 8px;">
+                            <div style="font-size: 24px; font-weight: bold;" id="conflictsCount">0</div>
+                            <div style="font-size: 13px;">Conflicts</div>
+                        </div>
+                    </div>
+
+                    <!-- Two Column Layout -->
+                    <div style="display: grid; grid-template-columns: 350px 1fr; gap: 20px;">
+                        <!-- Left: Available Courses -->
+                        <div>
+                            <h3 style="color: var(--champlain-navy); margin-bottom: 15px;">Available Courses</h3>
+                            <input type="text" id="schedulerCourseSearch" placeholder="Search courses..." style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; margin-bottom: 15px;">
+                            <div id="availableCoursesForSchedule" style="max-height: 600px; overflow-y: auto; background: #f8f9fa; border-radius: 8px; padding: 10px;"></div>
+                        </div>
+
+                        <!-- Right: Weekly Calendar View -->
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <h3 style="color: var(--champlain-navy); margin: 0;">Weekly Schedule</h3>
+                                <div style="display: flex; gap: 10px;">
+                                    <button id="exportScheduleBtn" style="padding: 8px 16px; background: var(--champlain-green); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">
+                                        📄 Export
+                                    </button>
+                                    <button id="clearScheduleBtn" style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">
+                                        🗑️ Clear
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Weekly Grid -->
+                            <div id="weeklyScheduleGrid" style="background: white; border: 2px solid var(--champlain-navy); border-radius: 8px; overflow: hidden;"></div>
+
+                            <!-- Scheduled Courses List -->
+                            <div style="margin-top: 20px;">
+                                <h4 style="color: var(--champlain-navy); margin-bottom: 10px;">Scheduled Courses</h4>
+                                <div id="scheduledCoursesList"></div>
+                            </div>
+
+                            <!-- Conflicts Display -->
+                            <div id="conflictsDisplay" style="margin-top: 20px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript Files -->
     <script src="js/state.js"></script>
     <script src="js/auth.js"></script>
@@ -591,8 +669,10 @@
     <script src="js/components/competencies.js"></script>
     <script src="js/components/proposals.js"></script>
     <script src="js/components/prerequisites.js"></script>
+    <script src="js/components/scheduling.js"></script>
     <script src="js/ui/visualization.js"></script>
     <script src="js/ui/prerequisite-visualization.js"></script>
+    <script src="js/ui/semester-planner.js"></script>
     <script src="js/ui/modals.js"></script>
     <script src="js/mobile.js"></script>
     <script src="js/app.js"></script>
