@@ -3,12 +3,17 @@
 const GraphsModule = {
     currentGraphType: 'bar',
     colors: ['#003C5F', '#236192', '#00A9E0', '#3DC4B2', '#74AA50', '#8BC34A', '#FFC107', '#FF9800', '#FF5722', '#E91E63'],
+    isPlaying: false,
+    playInterval: null,
+    currentPlayIndex: 0,
 
     /**
      * Initialize the graphs module
      */
     init: () => {
         GraphsModule.setupGraphTypeToggle();
+        GraphsModule.setupPlayButton();
+        GraphsModule.setupCourseHoverHighlighting();
         GraphsModule.renderCurrentGraph();
     },
 
@@ -51,9 +56,18 @@ const GraphsModule = {
         const containers = {
             'bar': 'barChartContainer',
             'pie': 'pieChartContainer',
-            'radar': 'radarChartContainer'
+            'radar': 'radarChartContainer',
+            'timeline': 'timelineChartContainer'
         };
         document.getElementById(containers[graphType]).classList.remove('hidden');
+
+        // Show/hide play button for timeline view
+        const playBtn = document.getElementById('playProgressionBtn');
+        if (graphType === 'timeline') {
+            playBtn.classList.remove('hidden');
+        } else {
+            playBtn.classList.add('hidden');
+        }
 
         GraphsModule.currentGraphType = graphType;
         GraphsModule.renderCurrentGraph();
@@ -83,6 +97,9 @@ const GraphsModule = {
             case 'radar':
                 GraphsModule.renderRadarChart(competencyData);
                 break;
+            case 'timeline':
+                GraphsModule.renderTimelineChart(selectedCourses, allCompetencies);
+                break;
         }
     },
 
@@ -97,11 +114,12 @@ const GraphsModule = {
         if (courses.length === 0) {
             listDiv.innerHTML = '<div style="color: #666; font-style: italic;">No courses selected. Use the search above to select courses.</div>';
         } else {
-            listDiv.innerHTML = courses.map(course =>
-                `<div style="background: white; padding: 6px 12px; border-radius: 4px; border-left: 3px solid var(--champlain-bright-blue);">
+            listDiv.innerHTML = courses.map((course, idx) => {
+                const compIds = course.competencies ? Object.keys(course.competencies).filter(k => course.competencies[k] > 0).join(',') : '';
+                return `<div class="graph-course-item" data-course-code="${course.code}" data-competencies="${compIds}" style="background: white; padding: 6px 12px; border-radius: 4px; border-left: 3px solid var(--champlain-bright-blue); cursor: pointer; transition: all 0.2s;">
                     <strong>${course.code}</strong> - ${course.name}
-                </div>`
-            ).join('');
+                </div>`;
+            }).join('');
         }
     },
 
@@ -709,5 +727,413 @@ const GraphsModule = {
             .style('font-weight', 'bold')
             .style('fill', '#003C5F')
             .text('Competency Coverage Radar');
+    },
+
+    /**
+     * Render Timeline Chart - Shows competency progression over courses
+     */
+    renderTimelineChart: (courses, competencies) => {
+        const svg = d3.select('#timelineChart');
+        svg.selectAll('*').remove();
+
+        if (courses.length === 0) {
+            svg.append('text')
+                .attr('x', 450)
+                .attr('y', 300)
+                .attr('text-anchor', 'middle')
+                .style('font-size', '16px')
+                .style('fill', '#666')
+                .text('No courses selected. Select courses to view progression timeline.');
+            return;
+        }
+
+        const width = 900;
+        const height = 600;
+        const margin = { top: 60, right: 120, bottom: 100, left: 80 };
+        const chartWidth = width - margin.left - margin.right;
+        const chartHeight = height - margin.top - margin.bottom;
+
+        const g = svg.append('g')
+            .attr('transform', `translate(${margin.left},${margin.top})`);
+
+        // Order courses by prerequisites (simplified - by course number)
+        const orderedCourses = [...courses].sort((a, b) => {
+            const numA = parseInt(a.code.match(/\d+/)[0]);
+            const numB = parseInt(b.code.match(/\d+/)[0]);
+            return numA - numB;
+        });
+
+        // Calculate cumulative competency weights
+        const progressionData = [];
+        const cumulativeWeights = {};
+
+        competencies.forEach(comp => {
+            cumulativeWeights[comp.id] = 0;
+        });
+
+        orderedCourses.forEach((course, idx) => {
+            const snapshot = { courseIndex: idx, courseName: course.code };
+
+            // Add weights from this course
+            if (course.competencies) {
+                Object.entries(course.competencies).forEach(([compId, weight]) => {
+                    if (weight > 0) {
+                        cumulativeWeights[compId] = Math.max(cumulativeWeights[compId], weight);
+                    }
+                });
+            }
+
+            // Record snapshot
+            competencies.forEach(comp => {
+                progressionData.push({
+                    courseIndex: idx,
+                    courseName: course.code,
+                    competency: comp.name,
+                    competencyId: comp.id,
+                    weight: cumulativeWeights[comp.id],
+                    color: comp.color || GraphsModule.colors[competencies.indexOf(comp) % GraphsModule.colors.length]
+                });
+            });
+        });
+
+        // Create scales
+        const x = d3.scaleLinear()
+            .domain([0, orderedCourses.length - 1])
+            .range([0, chartWidth]);
+
+        const y = d3.scaleLinear()
+            .domain([0, 3])
+            .range([chartHeight, 0]);
+
+        // Group data by competency
+        const competencyGroups = d3.group(progressionData, d => d.competency);
+
+        // Line generator
+        const line = d3.line()
+            .x(d => x(d.courseIndex))
+            .y(d => y(d.weight))
+            .curve(d3.curveMonotoneX);
+
+        // Draw grid lines
+        g.append('g')
+            .attr('class', 'grid')
+            .call(d3.axisLeft(y)
+                .ticks(3)
+                .tickSize(-chartWidth)
+                .tickFormat('')
+            )
+            .style('stroke', '#e0e0e0')
+            .style('stroke-dasharray', '3,3');
+
+        // Draw axes
+        g.append('g')
+            .attr('transform', `translate(0,${chartHeight})`)
+            .call(d3.axisBottom(x)
+                .ticks(orderedCourses.length)
+                .tickFormat((d, i) => orderedCourses[i] ? orderedCourses[i].code : '')
+            )
+            .selectAll('text')
+            .attr('transform', 'rotate(-45)')
+            .style('text-anchor', 'end')
+            .style('font-size', '11px')
+            .style('font-weight', '600')
+            .style('fill', '#003C5F');
+
+        g.append('g')
+            .call(d3.axisLeft(y).ticks(3))
+            .selectAll('text')
+            .style('font-size', '12px')
+            .style('font-weight', '600')
+            .style('fill', '#003C5F');
+
+        // Y axis label
+        g.append('text')
+            .attr('transform', 'rotate(-90)')
+            .attr('y', -60)
+            .attr('x', -chartHeight / 2)
+            .attr('text-anchor', 'middle')
+            .style('font-size', '14px')
+            .style('font-weight', 'bold')
+            .style('fill', '#003C5F')
+            .text('Competency Level (Max)');
+
+        // Create tooltip
+        const tooltip = d3.select('body').append('div')
+            .attr('class', 'graph-tooltip')
+            .style('position', 'absolute')
+            .style('visibility', 'hidden')
+            .style('background', 'rgba(0, 0, 0, 0.85)')
+            .style('color', 'white')
+            .style('padding', '10px 15px')
+            .style('border-radius', '6px')
+            .style('font-size', '13px')
+            .style('pointer-events', 'none')
+            .style('z-index', '10000');
+
+        // Draw lines for each competency
+        competencyGroups.forEach((values, competency) => {
+            const compData = values.sort((a, b) => a.courseIndex - b.courseIndex);
+            const color = compData[0].color;
+
+            // Draw line with animation
+            const path = g.append('path')
+                .datum(compData)
+                .attr('class', `timeline-line comp-${compData[0].competencyId}`)
+                .attr('fill', 'none')
+                .attr('stroke', color)
+                .attr('stroke-width', 3)
+                .attr('d', line)
+                .style('opacity', 0.7);
+
+            // Animate line drawing
+            const totalLength = path.node().getTotalLength();
+            path
+                .attr('stroke-dasharray', totalLength + ' ' + totalLength)
+                .attr('stroke-dashoffset', totalLength)
+                .transition()
+                .duration(1500)
+                .ease(d3.easeLinear)
+                .attr('stroke-dashoffset', 0);
+
+            // Draw dots
+            g.selectAll(`.dot-${compData[0].competencyId}`)
+                .data(compData)
+                .enter()
+                .append('circle')
+                .attr('class', `timeline-dot comp-${compData[0].competencyId}`)
+                .attr('cx', d => x(d.courseIndex))
+                .attr('cy', d => y(d.weight))
+                .attr('r', 0)
+                .attr('fill', color)
+                .attr('stroke', 'white')
+                .attr('stroke-width', 2)
+                .style('cursor', 'pointer')
+                .on('mouseover', function(event, d) {
+                    d3.select(this)
+                        .transition()
+                        .duration(200)
+                        .attr('r', 8);
+
+                    tooltip.style('visibility', 'visible')
+                        .html(`
+                            <div style="font-weight: bold; margin-bottom: 5px;">${d.competency}</div>
+                            <div>Course: <strong>${d.courseName}</strong></div>
+                            <div>Level: <strong>${d.weight}</strong></div>
+                        `);
+                })
+                .on('mousemove', function(event) {
+                    tooltip
+                        .style('top', (event.pageY - 10) + 'px')
+                        .style('left', (event.pageX + 10) + 'px');
+                })
+                .on('mouseout', function() {
+                    d3.select(this)
+                        .transition()
+                        .duration(200)
+                        .attr('r', 4);
+
+                    tooltip.style('visibility', 'hidden');
+                })
+                .transition()
+                .delay((d, i) => i * 100 + 1500)
+                .duration(300)
+                .attr('r', 4);
+        });
+
+        // Add legend
+        const legend = svg.append('g')
+            .attr('transform', `translate(${width - 110}, 80)`);
+
+        competencies.slice(0, 10).forEach((comp, i) => {
+            const legendItem = legend.append('g')
+                .attr('transform', `translate(0, ${i * 22})`)
+                .style('cursor', 'pointer')
+                .on('mouseover', function() {
+                    d3.selectAll('.timeline-line').style('opacity', 0.1);
+                    d3.selectAll('.timeline-dot').style('opacity', 0.1);
+                    d3.selectAll(`.comp-${comp.id}`).style('opacity', 1);
+                })
+                .on('mouseout', function() {
+                    d3.selectAll('.timeline-line').style('opacity', 0.7);
+                    d3.selectAll('.timeline-dot').style('opacity', 1);
+                });
+
+            legendItem.append('line')
+                .attr('x1', 0)
+                .attr('y1', 0)
+                .attr('x2', 20)
+                .attr('y2', 0)
+                .attr('stroke', comp.color || GraphsModule.colors[i % GraphsModule.colors.length])
+                .attr('stroke-width', 3);
+
+            legendItem.append('text')
+                .attr('x', 25)
+                .attr('y', 5)
+                .style('font-size', '11px')
+                .style('fill', '#003C5F')
+                .text(comp.name.length > 12 ? comp.name.substring(0, 12) + '...' : comp.name);
+        });
+
+        // Add title
+        svg.append('text')
+            .attr('x', width / 2)
+            .attr('y', 30)
+            .attr('text-anchor', 'middle')
+            .style('font-size', '18px')
+            .style('font-weight', 'bold')
+            .style('fill', '#003C5F')
+            .text('Competency Progression Timeline');
+    },
+
+    /**
+     * Setup hover highlighting for course items
+     */
+    setupCourseHoverHighlighting: () => {
+        // Use event delegation since course list is dynamically generated
+        document.getElementById('graphsCourseList').addEventListener('mouseover', (e) => {
+            const courseItem = e.target.closest('.graph-course-item');
+            if (!courseItem) return;
+
+            const competencies = courseItem.dataset.competencies.split(',').filter(Boolean);
+
+            // Highlight relevant elements based on current graph type
+            if (GraphsModule.currentGraphType === 'bar') {
+                d3.selectAll('#barChart .bar')
+                    .transition()
+                    .duration(200)
+                    .attr('opacity', function() {
+                        const compName = d3.select(this).datum().name;
+                        const compId = StateGetters.getCompetencies().find(c => c.name === compName)?.id;
+                        return competencies.includes(compId) ? 1 : 0.2;
+                    });
+            } else if (GraphsModule.currentGraphType === 'timeline') {
+                d3.selectAll('.timeline-line')
+                    .transition()
+                    .duration(200)
+                    .style('opacity', function() {
+                        const classes = this.getAttribute('class');
+                        return competencies.some(id => classes.includes(`comp-${id}`)) ? 1 : 0.1;
+                    });
+                d3.selectAll('.timeline-dot')
+                    .transition()
+                    .duration(200)
+                    .style('opacity', function() {
+                        const classes = this.getAttribute('class');
+                        return competencies.some(id => classes.includes(`comp-${id}`)) ? 1 : 0.1;
+                    });
+            }
+
+            // Highlight the course item itself
+            courseItem.style.transform = 'translateX(5px)';
+            courseItem.style.boxShadow = '0 2px 8px rgba(0, 169, 224, 0.3)';
+        });
+
+        document.getElementById('graphsCourseList').addEventListener('mouseout', (e) => {
+            const courseItem = e.target.closest('.graph-course-item');
+            if (!courseItem) return;
+
+            // Reset highlighting
+            if (GraphsModule.currentGraphType === 'bar') {
+                d3.selectAll('#barChart .bar')
+                    .transition()
+                    .duration(200)
+                    .attr('opacity', 1);
+            } else if (GraphsModule.currentGraphType === 'timeline') {
+                d3.selectAll('.timeline-line')
+                    .transition()
+                    .duration(200)
+                    .style('opacity', 0.7);
+                d3.selectAll('.timeline-dot')
+                    .transition()
+                    .duration(200)
+                    .style('opacity', 1);
+            }
+
+            courseItem.style.transform = '';
+            courseItem.style.boxShadow = '';
+        });
+    },
+
+    /**
+     * Setup play button for animated progression
+     */
+    setupPlayButton: () => {
+        const playBtn = document.getElementById('playProgressionBtn');
+        if (!playBtn) return;
+
+        playBtn.addEventListener('click', () => {
+            if (GraphsModule.isPlaying) {
+                GraphsModule.stopProgression();
+            } else {
+                GraphsModule.startProgression();
+            }
+        });
+    },
+
+    /**
+     * Start animated progression through courses
+     */
+    startProgression: () => {
+        const selectedCourses = StateGetters.getSelectedCourses();
+        if (selectedCourses.length === 0) return;
+
+        // Order courses
+        const orderedCourses = [...selectedCourses].sort((a, b) => {
+            const numA = parseInt(a.code.match(/\d+/)[0]);
+            const numB = parseInt(b.code.match(/\d+/)[0]);
+            return numA - numB;
+        });
+
+        GraphsModule.isPlaying = true;
+        GraphsModule.currentPlayIndex = 0;
+
+        const playBtn = document.getElementById('playProgressionBtn');
+        playBtn.textContent = '⏸️ Pause';
+        playBtn.style.background = 'var(--champlain-navy)';
+
+        // Highlight courses progressively
+        GraphsModule.playInterval = setInterval(() => {
+            if (GraphsModule.currentPlayIndex >= orderedCourses.length) {
+                GraphsModule.stopProgression();
+                return;
+            }
+
+            const courseItems = document.querySelectorAll('.graph-course-item');
+            const currentCourse = orderedCourses[GraphsModule.currentPlayIndex];
+
+            courseItems.forEach(item => {
+                if (item.dataset.courseCode === currentCourse.code) {
+                    item.style.background = 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)';
+                    item.style.borderLeft = '3px solid var(--champlain-green)';
+                    item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    item.style.background = 'white';
+                    item.style.borderLeft = '3px solid var(--champlain-bright-blue)';
+                }
+            });
+
+            GraphsModule.currentPlayIndex++;
+        }, 1500);
+    },
+
+    /**
+     * Stop animated progression
+     */
+    stopProgression: () => {
+        GraphsModule.isPlaying = false;
+        if (GraphsModule.playInterval) {
+            clearInterval(GraphsModule.playInterval);
+            GraphsModule.playInterval = null;
+        }
+
+        const playBtn = document.getElementById('playProgressionBtn');
+        playBtn.textContent = '▶️ Play Progression';
+        playBtn.style.background = 'var(--champlain-green)';
+
+        // Reset all course items
+        document.querySelectorAll('.graph-course-item').forEach(item => {
+            item.style.background = 'white';
+            item.style.borderLeft = '3px solid var(--champlain-bright-blue)';
+        });
     }
 };
