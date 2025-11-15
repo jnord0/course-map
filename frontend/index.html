@@ -197,6 +197,13 @@
                     <div id="competencyTracker"></div>
                 </div>
 
+                <div class="section">
+                    <h3>Semester Planning</h3>
+                    <button class="btn" id="semesterPlannerBtn" style="width: 100%; margin-bottom: 10px;">
+                        📅 Plan My Schedule
+                    </button>
+                    <div id="scheduleQuickView" style="font-size: 12px; color: #666;"></div>
+                </div>
 
                 <div id="adminSection" class="section hidden">
                     <h3>Administration</h3>
@@ -234,7 +241,7 @@
                                 <button class="toggle-btn active" id="networkViewBtn">Network View</button>
                                 <button class="toggle-btn" id="tableViewBtn">Table View</button>
                                 <button class="toggle-btn" id="prerequisiteViewBtn">Prerequisite Chain</button>
-                                <button class="toggle-btn" id="pathwayViewBtn">📅 Schedule & Timeline</button>
+                                <button class="toggle-btn" id="pathwayViewBtn">Course Pathway</button>
                                 <button class="toggle-btn" id="graphsViewBtn">📊 Competency Graphs</button>
                             </div>
                         </div>
@@ -261,25 +268,7 @@
                     <!-- Course Pathway View -->
                     <div id="pathwayView" class="hidden" style="position: relative; width: 100%; height: 100%; overflow: auto;">
                         <div style="padding: 20px;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
-                                <h3 style="color: var(--champlain-navy); margin: 0;">Schedule & Timeline</h3>
-                                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                                    <div id="scheduleViewToggle" style="display: flex; gap: 10px; background: #f5f7fa; padding: 8px; border-radius: 8px;">
-                                        <button class="schedule-view-btn active" data-view="pathway" style="padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; background: var(--champlain-bright-blue); color: white; font-weight: 600; transition: all 0.3s;">
-                                            📚 Course Pathway
-                                        </button>
-                                        <button class="schedule-view-btn" data-view="timeline" style="padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; background: white; color: var(--champlain-navy); font-weight: 600; transition: all 0.3s;">
-                                            📈 Timeline Progression
-                                        </button>
-                                    </div>
-                                    <button id="playProgressionBtn" class="hidden" style="padding: 8px 16px; background: var(--champlain-green); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
-                                        ▶️ Play Progression
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Course Pathway Panel -->
-                            <div id="pathwayPanel">
+                            <h3 style="color: var(--champlain-navy); margin-bottom: 15px;">Student Course Pathway</h3>
                             <div style="margin-bottom: 20px;">
                                 <label style="display: block; margin-bottom: 8px; font-weight: 600;">Search Completed Courses:</label>
                                 <div style="position: relative; margin-bottom: 15px;">
@@ -315,27 +304,6 @@
                             </div>
                             </div>
                             <!-- End Course Pathway Panel -->
-
-                            <!-- Timeline Progression Panel -->
-                            <div id="timelinePanel" class="hidden">
-                                <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid var(--champlain-bright-blue); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                                    <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 8px;">📈 Competency Progression Over Time</div>
-                                    <div style="font-size: 13px; color: #1565c0;">
-                                        This chart shows how your competency levels develop as you progress through courses. Lines represent cumulative maximum competency levels achieved across your selected courses.
-                                    </div>
-                                </div>
-
-                                <div style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); min-height: 600px;">
-                                    <svg id="timelineChart" style="width: 100%; height: 600px;"></svg>
-                                </div>
-
-                                <!-- Selected Courses Summary -->
-                                <div id="timelineCourseSummary" style="margin-top: 20px; background: #f5f7fa; border-radius: 8px; padding: 15px;">
-                                    <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 10px;">Selected Courses (0)</div>
-                                    <div id="timelineCourseList" style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px;"></div>
-                                </div>
-                            </div>
-                            <!-- End Timeline Progression Panel -->
                         </div>
                     </div>
 
@@ -1252,6 +1220,42 @@
 
                             <!-- Conflicts Display -->
                             <div id="conflictsDisplay" style="margin-top: 20px;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline & Competency Analysis Section -->
+                    <div style="margin-top: 30px; border-top: 2px solid #e0e0e0; padding-top: 30px;">
+                        <h3 style="color: var(--champlain-navy); margin-bottom: 20px;">📈 Competency Progression Timeline</h3>
+
+                        <!-- Overall Competency Summary -->
+                        <div id="overallCompetencySummary" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 12px; padding: 20px; margin-bottom: 20px; border-left: 4px solid var(--champlain-green);">
+                            <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 15px; font-size: 16px;">Overall Competency Achievement</div>
+                            <div id="overallCompetencyGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px;"></div>
+                        </div>
+
+                        <!-- Timeline Chart -->
+                        <div style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 20px;">
+                            <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid var(--champlain-bright-blue); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                                <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 8px;">Semester-by-Semester Progression</div>
+                                <div style="font-size: 13px; color: #1565c0;">
+                                    This chart shows how competencies develop across your planned semesters. Lines represent cumulative maximum competency levels achieved.
+                                </div>
+                                <div style="margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+                                    <button id="playProgressionBtn" style="padding: 8px 16px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;">
+                                        ▶ Play Progression
+                                    </button>
+                                    <button id="stopProgressionBtn" class="hidden" style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;">
+                                        ⏹ Stop
+                                    </button>
+                                </div>
+                            </div>
+                            <svg id="semesterTimelineChart" style="width: 100%; height: 500px;"></svg>
+                        </div>
+
+                        <!-- Per-Semester Competency Breakdown -->
+                        <div id="perSemesterBreakdown" style="background: #f5f7fa; border-radius: 12px; padding: 20px;">
+                            <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 15px; font-size: 16px;">Competency Totals by Semester</div>
+                            <div id="semesterCompetencyBreakdown" style="display: flex; flex-direction: column; gap: 15px;"></div>
                         </div>
                     </div>
                 </div>

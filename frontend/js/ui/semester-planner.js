@@ -97,6 +97,9 @@ const SemesterPlannerUI = {
 
         // Render conflicts
         SemesterPlannerUI.renderConflicts(schedule.conflicts);
+
+        // Render timeline and competency analysis
+        SemesterPlannerUI.renderTimelineAndCompetencies();
     },
 
     /**
@@ -257,6 +260,8 @@ const SemesterPlannerUI = {
         }
 
         // Refresh view
+        const semesters = SchedulingModule.getAvailableSemesters();
+        SemesterPlannerUI.renderSemesterTabs(semesters);
         SemesterPlannerUI.renderSemesterView(SemesterPlannerUI.currentSemesterId);
         SemesterPlannerUI.updateQuickView();
     },
@@ -267,6 +272,8 @@ const SemesterPlannerUI = {
      */
     removeCourseFromSchedule: (courseId) => {
         SchedulingModule.removeCourseFromSchedule(SemesterPlannerUI.currentSemesterId, courseId);
+        const semesters = SchedulingModule.getAvailableSemesters();
+        SemesterPlannerUI.renderSemesterTabs(semesters);
         SemesterPlannerUI.renderSemesterView(SemesterPlannerUI.currentSemesterId);
         SemesterPlannerUI.updateQuickView();
     },
@@ -357,6 +364,339 @@ const SemesterPlannerUI = {
     searchSchedulerCourses: (searchTerm) => {
         // Filter courses by search term and re-render
         SemesterPlannerUI.renderAvailableCourses(SemesterPlannerUI.currentSemesterId);
+    },
+
+    /**
+     * Render timeline chart and competency analysis for all semesters
+     */
+    renderTimelineAndCompetencies: () => {
+        const semesters = SchedulingModule.getAvailableSemesters();
+        const allCompetencies = StateGetters.getCompetencies();
+        const courses = StateGetters.getCourses();
+
+        // Get all scheduled courses organized by semester
+        const semesterData = semesters.map(semester => {
+            const schedule = SchedulingModule.getSemesterSchedule(semester.id);
+            const semesterCourses = schedule.courses
+                .map(sc => courses.find(c => c.id === sc.courseId))
+                .filter(c => c);
+            return {
+                semester,
+                courses: semesterCourses
+            };
+        }).filter(sd => sd.courses.length > 0); // Only include semesters with courses
+
+        if (semesterData.length === 0) {
+            // No courses scheduled, show empty state
+            document.getElementById('overallCompetencyGrid').innerHTML = '<p style="text-align: center; color: #666; grid-column: 1/-1;">No courses scheduled yet. Add courses to see competency analysis.</p>';
+            document.getElementById('semesterTimelineChart').innerHTML = '';
+            document.getElementById('semesterCompetencyBreakdown').innerHTML = '<p style="text-align: center; color: #666;">No data available</p>';
+            return;
+        }
+
+        // Calculate overall competency achievement
+        SemesterPlannerUI.renderOverallCompetencies(semesterData, allCompetencies);
+
+        // Render timeline chart
+        SemesterPlannerUI.renderSemesterTimeline(semesterData, allCompetencies);
+
+        // Render per-semester breakdown
+        SemesterPlannerUI.renderPerSemesterBreakdown(semesterData, allCompetencies);
+    },
+
+    /**
+     * Render overall competency achievement summary
+     */
+    renderOverallCompetencies: (semesterData, allCompetencies) => {
+        const overallGrid = document.getElementById('overallCompetencyGrid');
+
+        // Calculate max competency level achieved across all semesters
+        const overallLevels = {};
+        allCompetencies.forEach(comp => {
+            overallLevels[comp.id] = 0;
+        });
+
+        semesterData.forEach(sd => {
+            sd.courses.forEach(course => {
+                if (course.competencies) {
+                    Object.entries(course.competencies).forEach(([compId, weight]) => {
+                        if (weight > overallLevels[compId]) {
+                            overallLevels[compId] = weight;
+                        }
+                    });
+                }
+            });
+        });
+
+        // Render overall competencies
+        let html = allCompetencies.map(comp => {
+            const level = overallLevels[comp.id] || 0;
+            let statusText = 'Not Addressed';
+            let statusColor = '#999';
+            let statusIcon = '○';
+
+            if (level === 3) {
+                statusText = 'Emphasized';
+                statusColor = 'var(--champlain-green)';
+                statusIcon = '★';
+            } else if (level === 2) {
+                statusText = 'Reinforced';
+                statusColor = 'var(--champlain-bright-blue)';
+                statusIcon = '◆';
+            } else if (level === 1) {
+                statusText = 'Addressed';
+                statusColor = 'var(--champlain-teal)';
+                statusIcon = '◉';
+            }
+
+            return `
+                <div style="background: white; border-left: 4px solid ${statusColor}; border-radius: 6px; padding: 12px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="font-weight: 600; color: var(--champlain-navy); font-size: 14px;">${comp.name}</div>
+                        <div style="font-size: 20px; color: ${statusColor};">${statusIcon}</div>
+                    </div>
+                    <div style="margin-top: 4px; font-size: 12px; color: ${statusColor}; font-weight: 600;">
+                        Level ${level} - ${statusText}
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        overallGrid.innerHTML = html;
+    },
+
+    /**
+     * Render semester-based timeline chart
+     */
+    renderSemesterTimeline: (semesterData, allCompetencies) => {
+        const svg = d3.select('#semesterTimelineChart');
+        svg.selectAll('*').remove();
+
+        const width = parseInt(svg.style('width'));
+        const height = parseInt(svg.style('height'));
+        const margin = { top: 40, right: 150, bottom: 60, left: 60 };
+        const plotWidth = width - margin.left - margin.right;
+        const plotHeight = height - margin.top - margin.bottom;
+
+        const g = svg.append('g')
+            .attr('transform', `translate(${margin.left},${margin.top})`);
+
+        // Calculate cumulative competency data per semester
+        const timelineData = [];
+        const cumulativeLevels = {};
+        allCompetencies.forEach(comp => {
+            cumulativeLevels[comp.id] = 0;
+        });
+
+        semesterData.forEach((sd, idx) => {
+            // Update cumulative levels for this semester
+            sd.courses.forEach(course => {
+                if (course.competencies) {
+                    Object.entries(course.competencies).forEach(([compId, weight]) => {
+                        if (weight > cumulativeLevels[compId]) {
+                            cumulativeLevels[compId] = weight;
+                        }
+                    });
+                }
+            });
+
+            // Take snapshot
+            timelineData.push({
+                semesterIndex: idx,
+                semesterName: sd.semester.name,
+                levels: { ...cumulativeLevels }
+            });
+        });
+
+        // Create scales
+        const xScale = d3.scaleLinear()
+            .domain([0, timelineData.length - 1])
+            .range([0, plotWidth]);
+
+        const yScale = d3.scaleLinear()
+            .domain([0, 3])
+            .range([plotHeight, 0]);
+
+        // Create line generator
+        const line = d3.line()
+            .x(d => xScale(d.x))
+            .y(d => yScale(d.y))
+            .curve(d3.curveMonotoneX);
+
+        // Color scale
+        const colorScale = d3.scaleOrdinal()
+            .domain(allCompetencies.map(c => c.id))
+            .range(['#003C5F', '#236192', '#00A9E0', '#3DC4B2', '#74AA50', '#FF9800', '#E91E63', '#9C27B0', '#607D8B', '#795548']);
+
+        // Draw axes
+        g.append('g')
+            .attr('transform', `translate(0,${plotHeight})`)
+            .call(d3.axisBottom(xScale)
+                .ticks(timelineData.length)
+                .tickFormat((d, i) => timelineData[i] ? timelineData[i].semesterName : ''))
+            .selectAll('text')
+            .style('text-anchor', 'end')
+            .attr('dx', '-.8em')
+            .attr('dy', '.15em')
+            .attr('transform', 'rotate(-45)')
+            .style('font-size', '12px');
+
+        g.append('g')
+            .call(d3.axisLeft(yScale).ticks(3).tickFormat(d => {
+                if (d === 0) return 'Not Addressed';
+                if (d === 1) return 'Addressed';
+                if (d === 2) return 'Reinforced';
+                if (d === 3) return 'Emphasized';
+                return d;
+            }))
+            .style('font-size', '12px');
+
+        // Draw lines for each competency
+        allCompetencies.forEach(comp => {
+            const lineData = timelineData.map(td => ({
+                x: td.semesterIndex,
+                y: td.levels[comp.id] || 0
+            }));
+
+            const path = g.append('path')
+                .datum(lineData)
+                .attr('fill', 'none')
+                .attr('stroke', colorScale(comp.id))
+                .attr('stroke-width', 3)
+                .attr('d', line)
+                .style('opacity', 0.8);
+
+            // Animate line drawing
+            const totalLength = path.node().getTotalLength();
+            path
+                .attr('stroke-dasharray', totalLength + ' ' + totalLength)
+                .attr('stroke-dashoffset', totalLength)
+                .transition()
+                .duration(1500)
+                .ease(d3.easeLinear)
+                .attr('stroke-dashoffset', 0);
+
+            // Add dots at each semester
+            g.selectAll(`.dot-${comp.id}`)
+                .data(lineData)
+                .enter()
+                .append('circle')
+                .attr('class', `dot-${comp.id}`)
+                .attr('cx', d => xScale(d.x))
+                .attr('cy', d => yScale(d.y))
+                .attr('r', 5)
+                .attr('fill', colorScale(comp.id))
+                .attr('stroke', 'white')
+                .attr('stroke-width', 2)
+                .style('opacity', 0)
+                .on('mouseover', function(event, d) {
+                    d3.select(this).attr('r', 8);
+                    const semester = timelineData[d.x];
+                    // Show tooltip
+                    g.append('text')
+                        .attr('class', 'tooltip-text')
+                        .attr('x', xScale(d.x))
+                        .attr('y', yScale(d.y) - 15)
+                        .attr('text-anchor', 'middle')
+                        .style('font-size', '12px')
+                        .style('font-weight', 'bold')
+                        .style('fill', colorScale(comp.id))
+                        .text(`${comp.name}: Level ${d.y}`);
+                })
+                .on('mouseout', function() {
+                    d3.select(this).attr('r', 5);
+                    g.selectAll('.tooltip-text').remove();
+                })
+                .transition()
+                .delay(1500)
+                .duration(300)
+                .style('opacity', 1);
+        });
+
+        // Add legend
+        const legend = g.append('g')
+            .attr('transform', `translate(${plotWidth + 20}, 0)`);
+
+        allCompetencies.forEach((comp, i) => {
+            const legendRow = legend.append('g')
+                .attr('transform', `translate(0, ${i * 25})`);
+
+            legendRow.append('line')
+                .attr('x1', 0)
+                .attr('x2', 20)
+                .attr('y1', 10)
+                .attr('y2', 10)
+                .attr('stroke', colorScale(comp.id))
+                .attr('stroke-width', 3);
+
+            legendRow.append('text')
+                .attr('x', 25)
+                .attr('y', 14)
+                .style('font-size', '11px')
+                .text(comp.name);
+        });
+    },
+
+    /**
+     * Render per-semester competency breakdown
+     */
+    renderPerSemesterBreakdown: (semesterData, allCompetencies) => {
+        const breakdownDiv = document.getElementById('semesterCompetencyBreakdown');
+
+        let html = semesterData.map(sd => {
+            // Calculate competency levels for this semester
+            const semesterLevels = {};
+            allCompetencies.forEach(comp => {
+                semesterLevels[comp.id] = 0;
+            });
+
+            sd.courses.forEach(course => {
+                if (course.competencies) {
+                    Object.entries(course.competencies).forEach(([compId, weight]) => {
+                        if (weight > semesterLevels[compId]) {
+                            semesterLevels[compId] = weight;
+                        }
+                    });
+                }
+            });
+
+            // Count competencies by level
+            const emphasized = Object.values(semesterLevels).filter(l => l === 3).length;
+            const reinforced = Object.values(semesterLevels).filter(l => l === 2).length;
+            const addressed = Object.values(semesterLevels).filter(l => l === 1).length;
+            const notAddressed = Object.values(semesterLevels).filter(l => l === 0).length;
+
+            return `
+                <div style="background: white; border-radius: 8px; padding: 15px; border: 2px solid #e0e0e0;">
+                    <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 12px; font-size: 15px;">
+                        ${sd.semester.name} (${sd.courses.length} courses)
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                        <div style="text-align: center; padding: 10px; background: #e8f5e9; border-radius: 6px;">
+                            <div style="font-size: 20px; font-weight: bold; color: var(--champlain-green);">${emphasized}</div>
+                            <div style="font-size: 11px; color: #666;">Emphasized (3)</div>
+                        </div>
+                        <div style="text-align: center; padding: 10px; background: #e3f2fd; border-radius: 6px;">
+                            <div style="font-size: 20px; font-weight: bold; color: var(--champlain-bright-blue);">${reinforced}</div>
+                            <div style="font-size: 11px; color: #666;">Reinforced (2)</div>
+                        </div>
+                        <div style="text-align: center; padding: 10px; background: #e0f2f1; border-radius: 6px;">
+                            <div style="font-size: 20px; font-weight: bold; color: var(--champlain-teal);">${addressed}</div>
+                            <div style="font-size: 11px; color: #666;">Addressed (1)</div>
+                        </div>
+                        <div style="text-align: center; padding: 10px; background: #f5f5f5; border-radius: 6px;">
+                            <div style="font-size: 20px; font-weight: bold; color: #999;">${notAddressed}</div>
+                            <div style="font-size: 11px; color: #666;">Not Addressed (0)</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                        Courses: ${sd.courses.map(c => c.code).join(', ')}
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        breakdownDiv.innerHTML = html;
     }
 };
 

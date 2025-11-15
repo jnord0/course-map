@@ -1013,8 +1013,8 @@ const VisualizationModule = {
                 title.textContent = 'Prerequisite Chain';
                 description.textContent = 'Hierarchical view of course prerequisites and dependencies';
             } else if (viewId === 'pathwayView') {
-                title.textContent = 'Schedule & Timeline';
-                description.textContent = 'Plan your course pathway and visualize competency progression over time';
+                title.textContent = 'Course Pathway';
+                description.textContent = 'Visualize available courses based on completed prerequisites and plan your academic pathway';
             } else if (viewId === 'graphsView') {
                 title.textContent = 'Competency Graphs';
                 description.textContent = 'Visual analytics showing competency weight distribution across selected courses';
@@ -1062,7 +1062,6 @@ const VisualizationModule = {
         if (pathwayViewBtn) {
             pathwayViewBtn.addEventListener('click', () => {
                 switchView('pathwayView', pathwayViewBtn);
-                VisualizationModule.setupScheduleViewToggle();
                 VisualizationModule.renderPathwaySelector();
             });
         }
@@ -1740,53 +1739,6 @@ System: Champlain Academic Affairs Management System
 
         // Initial render
         VisualizationModule.updatePathwayView();
-    },
-
-    /**
-     * Setup schedule view toggle between pathway and timeline
-     */
-    setupScheduleViewToggle: () => {
-        const buttons = document.querySelectorAll('.schedule-view-btn');
-        if (buttons.length === 0) return;
-
-        // Add click handlers
-        buttons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const view = btn.getAttribute('data-view');
-
-                // Update button states
-                buttons.forEach(b => {
-                    if (b === btn) {
-                        b.classList.add('active');
-                        b.style.background = 'var(--champlain-bright-blue)';
-                        b.style.color = 'white';
-                    } else {
-                        b.classList.remove('active');
-                        b.style.background = 'white';
-                        b.style.color = 'var(--champlain-navy)';
-                    }
-                });
-
-                // Show/hide appropriate panel
-                if (view === 'pathway') {
-                    document.getElementById('pathwayPanel').classList.remove('hidden');
-                    document.getElementById('timelinePanel').classList.add('hidden');
-                    document.getElementById('playProgressionBtn').classList.add('hidden');
-                } else if (view === 'timeline') {
-                    document.getElementById('pathwayPanel').classList.add('hidden');
-                    document.getElementById('timelinePanel').classList.remove('hidden');
-                    document.getElementById('playProgressionBtn').classList.remove('hidden');
-
-                    // Render timeline chart
-                    if (typeof GraphsModule !== 'undefined') {
-                        const selectedCourses = StateGetters.getSelectedCourses();
-                        const allCompetencies = StateGetters.getCompetencies();
-                        GraphsModule.renderTimelineChart(selectedCourses, allCompetencies);
-                        GraphsModule.updateTimelineCourseSummary(selectedCourses);
-                    }
-                }
-            });
-        });
     },
 
     /**
