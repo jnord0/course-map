@@ -492,6 +492,17 @@ const CoursesModule = {
      * @param {Array} competencies
      */
     populateEditForm: (course, competencies) => {
+        // Check if we have courseData (new format) or legacy format
+        const hasFullData = course.courseData && course.courseData.courseIdentity;
+
+        // Extract data from appropriate location
+        const identity = hasFullData ? course.courseData.courseIdentity : {};
+        const outcomes = hasFullData ? course.courseData.learningOutcomes : {};
+        const metadata = hasFullData ? course.courseData.metadata : {};
+        const resources = hasFullData ? course.courseData.resourcesPlanning : {};
+        const topical = hasFullData ? course.courseData.topicalOutline : {};
+        const assessment = hasFullData ? course.courseData.assessmentDesign : {};
+
         // Tab 1: Course Identity
         const codeMatch = course.code.match(/^([A-Z]+)-?(\d+)$/);
         if (codeMatch) {
@@ -500,42 +511,91 @@ const CoursesModule = {
         }
 
         document.getElementById('editCourseTitle_field').value = course.name || '';
-        document.getElementById('editTranscriptTitle').value = course.transcriptTitle || course.name || '';
+        document.getElementById('editTranscriptTitle').value =
+            (hasFullData ? identity.transcriptTitle : course.transcriptTitle) || course.name || '';
         document.getElementById('editCatalogDescription').value = course.description || '';
-        document.getElementById('editCreditHours').value = course.creditHours || '';
-        document.getElementById('editFacultyLoad').value = course.facultyLoad || '';
-        document.getElementById('editCapacity').value = course.capacity || '';
-        document.getElementById('editCourseType').value = course.courseType || '';
-        document.getElementById('editCourseSubcategory').value = course.subcategory || '';
-        document.getElementById('editSemesterOffered').value = course.semesterOffered || 'BOTH';
-        document.getElementById('editInstructionalMethod').value = course.instructionalMethod || 'STANDARD';
-        document.getElementById('editEffectiveTerm').value = course.effectiveTerm || 'FALL';
-        document.getElementById('editEffectiveYear').value = course.effectiveYear || 2025;
+        document.getElementById('editCreditHours').value = course.creditHours || identity.credits || '';
+        document.getElementById('editFacultyLoad').value =
+            (hasFullData ? identity.facultyLoad : course.facultyLoad) || course.creditHours || '';
+        document.getElementById('editCapacity').value = course.capacity || identity.capacity || '';
+
+        // Course type and subcategory
+        if (hasFullData && identity.courseType && identity.courseType.length > 0) {
+            const firstType = identity.courseType[0];
+            document.getElementById('editCourseType').value = firstType.category || '';
+            document.getElementById('editCourseSubcategory').value = firstType.subcategory || '';
+        } else {
+            document.getElementById('editCourseType').value = course.courseType || '';
+            document.getElementById('editCourseSubcategory').value = course.subcategory || '';
+        }
+
+        document.getElementById('editSemesterOffered').value =
+            (hasFullData ? identity.semesterOffered : course.semesterOffered) || 'BOTH';
+        document.getElementById('editInstructionalMethod').value =
+            (hasFullData ? identity.instructionalMethod : course.instructionalMethod) || 'STANDARD';
+
+        // Effective term/year
+        if (hasFullData && identity.effectiveSemester) {
+            document.getElementById('editEffectiveTerm').value = identity.effectiveSemester.term || 'FALL';
+            document.getElementById('editEffectiveYear').value = identity.effectiveSemester.year || 2025;
+        } else {
+            document.getElementById('editEffectiveTerm').value = course.effectiveTerm || 'FALL';
+            document.getElementById('editEffectiveYear').value = course.effectiveYear || 2025;
+        }
+
         document.getElementById('editPrerequisites').value = course.prerequisites || '';
 
         // Tab 2: Learning Outcomes
-        CoursesModule.populateCLOs(course.clos || []);
-        CoursesModule.populatePLOs(course.plos || []);
+        // Get full CLO and PLO objects from courseData if available
+        const fullCLOs = hasFullData ? outcomes.courseLearningOutcomes : [];
+        const fullPLOs = hasFullData ? outcomes.programLearningOutcomes : [];
+
+        CoursesModule.populateCLOs(fullCLOs.length > 0 ? fullCLOs : (course.clos || []));
+        CoursesModule.populatePLOs(fullPLOs.length > 0 ? fullPLOs : (course.plos || []));
         CoursesModule.buildCompetencyMapping(competencies, course.competencies || {});
 
         // Tab 3: Course Content
-        document.getElementById('editTopicalOutline').value = course.topicalOutline || '';
-        CoursesModule.populateAssessments(course.assessments || []);
+        const topicalOutlineText = hasFullData ?
+            (topical.body || topical.weekByWeek || '') :
+            (course.topicalOutline || '');
+        document.getElementById('editTopicalOutline').value = topicalOutlineText;
+
+        const assessments = hasFullData && assessment.majorAssessments ?
+            assessment.majorAssessments :
+            (course.assessments || []);
+        CoursesModule.populateAssessments(assessments);
 
         // Tab 4: Resources
-        document.getElementById('editFacilityType').value = course.facilityType || '';
-        document.getElementById('editFacilityRequirements').value = course.facilityRequirements || '';
-        document.getElementById('editTechnologyRequirements').value = course.technologyRequirements || '';
-        document.getElementById('editLibraryResources').value = course.libraryResources || '';
-        document.getElementById('editOtherResources').value = course.otherResources || '';
+        if (hasFullData && resources) {
+            document.getElementById('editFacilityType').value = resources.facilityType || '';
+            document.getElementById('editFacilityRequirements').value = resources.facilityRequirements || '';
+            document.getElementById('editTechnologyRequirements').value = resources.technologyRequirements || '';
+            document.getElementById('editLibraryResources').value = resources.libraryResources || '';
+            document.getElementById('editOtherResources').value = resources.otherResources || '';
+        } else {
+            document.getElementById('editFacilityType').value = course.facilityType || '';
+            document.getElementById('editFacilityRequirements').value = course.facilityRequirements || '';
+            document.getElementById('editTechnologyRequirements').value = course.technologyRequirements || '';
+            document.getElementById('editLibraryResources').value = course.libraryResources || '';
+            document.getElementById('editOtherResources').value = course.otherResources || '';
+        }
 
         // Tab 5: Metadata
-        document.getElementById('editVersion').value = course.version || '0.1.0';
-        document.getElementById('editCreatedBy').value = course.createdBy || '';
-        document.getElementById('editStatus').value = course.status || 'ACTIVE';
-        document.getElementById('editReviewStatus').value = course.reviewStatus || 'APPROVED';
-        document.getElementById('editProposalId').value = course.proposalId || '';
-        document.getElementById('editNotes').value = course.notes || '';
+        if (hasFullData && metadata) {
+            document.getElementById('editVersion').value = metadata.version || '0.1.0';
+            document.getElementById('editCreatedBy').value = metadata.createdBy || '';
+            document.getElementById('editStatus').value = metadata.status || 'ACTIVE';
+            document.getElementById('editReviewStatus').value = metadata.reviewStatus || 'APPROVED';
+            document.getElementById('editProposalId').value = metadata.proposalId || '';
+            document.getElementById('editNotes').value = metadata.notes || '';
+        } else {
+            document.getElementById('editVersion').value = course.version || '0.1.0';
+            document.getElementById('editCreatedBy').value = course.createdBy || course.submittedBy || '';
+            document.getElementById('editStatus').value = course.status || 'ACTIVE';
+            document.getElementById('editReviewStatus').value = course.reviewStatus || 'APPROVED';
+            document.getElementById('editProposalId').value = course.proposalId || '';
+            document.getElementById('editNotes').value = course.notes || '';
+        }
     },
 
     /**
