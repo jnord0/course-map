@@ -221,6 +221,28 @@ const App = {
             });
         }
 
+        // Timeline progression buttons
+        const playProgressionBtn = document.getElementById('playProgressionBtn');
+        const stopProgressionBtn = document.getElementById('stopProgressionBtn');
+
+        if (playProgressionBtn) {
+            playProgressionBtn.addEventListener('click', () => {
+                if (typeof SemesterPlannerUI !== 'undefined' && typeof SemesterPlannerUI.renderTimelineAndCompetencies === 'function') {
+                    // Re-render with fresh animation
+                    SemesterPlannerUI.renderTimelineAndCompetencies();
+                }
+                playProgressionBtn.classList.add('hidden');
+                if (stopProgressionBtn) stopProgressionBtn.classList.remove('hidden');
+            });
+        }
+
+        if (stopProgressionBtn) {
+            stopProgressionBtn.addEventListener('click', () => {
+                stopProgressionBtn.classList.add('hidden');
+                if (playProgressionBtn) playProgressionBtn.classList.remove('hidden');
+            });
+        }
+
         // Add course button in manage modal
         document.getElementById('addCourseBtn').addEventListener('click', () => {
             CoursesModule.showEditModal(null);
