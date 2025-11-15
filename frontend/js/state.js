@@ -383,7 +383,15 @@ const AppState = {
     },
 
     // Data loaded flag
-    dataLoaded: false
+    dataLoaded: false,
+
+    // User schedules - keyed by username
+    // Structure: { username: { semesterId: { semesterId, courses: [], conflicts: [], totalCredits: 0 } } }
+    userSchedules: {},
+
+    // Completed courses - keyed by username
+    // Structure: { username: ['CSI-140', 'CSI-240', ...] }
+    completedCourses: {}
 };
 
 // State getters
@@ -398,7 +406,23 @@ const StateGetters = {
     isDataLoaded: () => AppState.dataLoaded,
     getActiveFilters: () => AppState.activeFilters,
     getFilterPresets: () => AppState.filterPresets,
-    getSelectedCourseIds: () => AppState.selectedCourseIds
+    getSelectedCourseIds: () => AppState.selectedCourseIds,
+
+    // Schedule getters
+    getUserSchedules: () => {
+        const username = AppState.currentUser;
+        if (!username) return {};
+        if (!AppState.userSchedules[username]) {
+            AppState.userSchedules[username] = {};
+        }
+        return AppState.userSchedules[username];
+    },
+
+    getCompletedCourses: () => {
+        const username = AppState.currentUser;
+        if (!username) return [];
+        return AppState.completedCourses[username] || [];
+    }
 };
 
 // State setters
@@ -595,6 +619,109 @@ const StateSetters = {
             return true;
         }
         return false;
+    },
+
+    // Schedule setters
+    addCourseToSchedule: (semesterId, courseData) => {
+        const username = AppState.currentUser;
+        if (!username) return;
+
+        if (!AppState.userSchedules[username]) {
+            AppState.userSchedules[username] = {};
+        }
+
+        if (!AppState.userSchedules[username][semesterId]) {
+            AppState.userSchedules[username][semesterId] = {
+                semesterId: semesterId,
+                courses: [],
+                conflicts: [],
+                totalCredits: 0
+            };
+        }
+
+        // Check if course already in schedule
+        const existing = AppState.userSchedules[username][semesterId].courses
+            .find(c => c.courseId === courseData.courseId);
+
+        if (!existing) {
+            AppState.userSchedules[username][semesterId].courses.push(courseData);
+        }
+
+        // Update total credits
+        StateSetters.updateScheduleCredits(semesterId);
+    },
+
+    removeCourseFromSchedule: (semesterId, courseId) => {
+        const username = AppState.currentUser;
+        if (!username || !AppState.userSchedules[username]) return;
+
+        const schedule = AppState.userSchedules[username][semesterId];
+        if (!schedule) return;
+
+        schedule.courses = schedule.courses.filter(c => c.courseId !== courseId);
+
+        // Update total credits
+        StateSetters.updateScheduleCredits(semesterId);
+    },
+
+    updateScheduleConflicts: (semesterId, conflicts) => {
+        const username = AppState.currentUser;
+        if (!username || !AppState.userSchedules[username]) return;
+
+        const schedule = AppState.userSchedules[username][semesterId];
+        if (schedule) {
+            schedule.conflicts = conflicts;
+        }
+    },
+
+    updateScheduleCredits: (semesterId) => {
+        const username = AppState.currentUser;
+        if (!username || !AppState.userSchedules[username]) return;
+
+        const schedule = AppState.userSchedules[username][semesterId];
+        if (!schedule) return;
+
+        const totalCredits = schedule.courses.reduce((sum, sc) => {
+            const course = AppState.coursesData.find(c => c.id === sc.courseId);
+            return sum + (parseInt(course.creditHours) || 3);
+        }, 0);
+
+        schedule.totalCredits = totalCredits;
+    },
+
+    setCompletedCourses: (courses) => {
+        const username = AppState.currentUser;
+        if (!username) return;
+
+        AppState.completedCourses[username] = courses;
+    },
+
+    addCompletedCourse: (courseCode) => {
+        const username = AppState.currentUser;
+        if (!username) return;
+
+        if (!AppState.completedCourses[username]) {
+            AppState.completedCourses[username] = [];
+        }
+
+        if (!AppState.completedCourses[username].includes(courseCode)) {
+            AppState.completedCourses[username].push(courseCode);
+        }
+    },
+
+    removeCompletedCourse: (courseCode) => {
+        const username = AppState.currentUser;
+        if (!username || !AppState.completedCourses[username]) return;
+
+        AppState.completedCourses[username] = AppState.completedCourses[username]
+            .filter(code => code !== courseCode);
+    },
+
+    clearUserSchedules: () => {
+        const username = AppState.currentUser;
+        if (username && AppState.userSchedules[username]) {
+            AppState.userSchedules[username] = {};
+        }
     }
 };
 

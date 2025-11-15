@@ -427,10 +427,26 @@ const FilterModule = {
 
                 const isSelected = AppState.selectedCourseIds.includes(course.id);
 
+                // Semester offering badge
+                const semesterOffered = course.semesterOffered || 'BOTH';
+                let semesterBadge = '';
+                if (semesterOffered === 'FALL') {
+                    semesterBadge = '<span style="background: #ff9800; color: white; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 600; margin-left: 8px;">FALL</span>';
+                } else if (semesterOffered === 'SPRING') {
+                    semesterBadge = '<span style="background: #4caf50; color: white; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 600; margin-left: 8px;">SPRING</span>';
+                } else if (semesterOffered === 'SUMMER') {
+                    semesterBadge = '<span style="background: #ffeb3b; color: #333; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 600; margin-left: 8px;">SUMMER</span>';
+                } else if (semesterOffered === 'BOTH' || semesterOffered === 'FALL_SPRING') {
+                    semesterBadge = '<span style="background: var(--champlain-bright-blue); color: white; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 600; margin-left: 8px;">FALL & SPRING</span>';
+                }
+
                 return `
                     <div class="course-search-item ${isSelected ? 'selected' : ''}"
                          onclick="CoursesModule.toggleCourseSelection(${course.id})">
-                        <div class="course-search-code">${course.code}</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="course-search-code">${course.code}</div>
+                            ${semesterBadge}
+                        </div>
                         <div class="course-search-name">${course.name}</div>
                         <div class="course-search-comps">📚 ${compNames}</div>
                     </div>
