@@ -595,7 +595,7 @@
     <div id="semesterPlannerModal" class="modal">
         <div class="modal-content" style="max-width: 1400px; width: 95%;">
             <div class="modal-header">
-                <h2>📅 Semester Schedule Planner</h2>
+                <h2>📅 Semester Course Planner</h2>
                 <button class="close-btn" id="closeSemesterPlannerBtn">&times;</button>
             </div>
             <div class="modal-body">
@@ -629,10 +629,10 @@
                             <div id="availableCoursesForSchedule" style="max-height: 600px; overflow-y: auto; background: #f8f9fa; border-radius: 8px; padding: 10px;"></div>
                         </div>
 
-                        <!-- Right: Weekly Calendar View -->
+                        <!-- Right: Planned Courses View -->
                         <div>
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                                <h3 style="color: var(--champlain-navy); margin: 0;">Weekly Schedule</h3>
+                                <h3 style="color: var(--champlain-navy); margin: 0;">Planned Courses</h3>
                                 <div style="display: flex; gap: 10px;">
                                     <button id="exportScheduleBtn" style="padding: 8px 16px; background: var(--champlain-green); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">
                                         📄 Export
@@ -643,12 +643,8 @@
                                 </div>
                             </div>
 
-                            <!-- Weekly Grid -->
-                            <div id="weeklyScheduleGrid" style="background: white; border: 2px solid var(--champlain-navy); border-radius: 8px; overflow: hidden;"></div>
-
                             <!-- Scheduled Courses List -->
-                            <div style="margin-top: 20px;">
-                                <h4 style="color: var(--champlain-navy); margin-bottom: 10px;">Scheduled Courses</h4>
+                            <div>
                                 <div id="scheduledCoursesList"></div>
                             </div>
 
