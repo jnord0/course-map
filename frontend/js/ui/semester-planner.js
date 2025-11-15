@@ -92,9 +92,6 @@ const SemesterPlannerUI = {
         // Render available courses
         SemesterPlannerUI.renderAvailableCourses(semesterId);
 
-        // Render weekly schedule grid
-        SemesterPlannerUI.renderWeeklyGrid(semesterId);
-
         // Render scheduled courses list
         SemesterPlannerUI.renderScheduledCourses(semesterId);
 
@@ -129,10 +126,6 @@ const SemesterPlannerUI = {
         }
 
         coursesDiv.innerHTML = availableCourses.map(course => {
-            const defaultSchedule = SchedulingModule.generateDefaultSchedule(course);
-            const section = defaultSchedule.sections[0];
-            const timeSlot = SchedulingModule.formatTimeSlot(section.meetingPattern);
-
             return `
                 <div class="available-course-card" style="background: white; border: 2px solid #ddd; border-radius: 6px; padding: 12px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s;"
                      onmouseover="this.style.borderColor='var(--champlain-bright-blue)'; this.style.boxShadow='0 2px 8px rgba(0,169,224,0.2)'"
@@ -147,86 +140,13 @@ const SemesterPlannerUI = {
                             ${course.creditHours || 3} cr
                         </div>
                     </div>
-                    <div style="margin-top: 8px; font-size: 11px; color: #666;">
-                        <div>🕒 ${section.meetingPattern.days.join(', ')} ${timeSlot}</div>
-                        ${course.prerequisites ? `<div style="margin-top: 4px;">📋 Prereq: ${course.prerequisites}</div>` : ''}
-                    </div>
+                    ${course.prerequisites ? `<div style="margin-top: 8px; font-size: 11px; color: #666;">📋 Prereq: ${course.prerequisites}</div>` : ''}
                     <button style="width: 100%; margin-top: 8px; padding: 6px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer;">
                         + Add to Schedule
                     </button>
                 </div>
             `;
         }).join('');
-    },
-
-    /**
-     * Render weekly schedule grid
-     * @param {string} semesterId
-     */
-    renderWeeklyGrid: (semesterId) => {
-        const gridDiv = document.getElementById('weeklyScheduleGrid');
-        const schedule = SchedulingModule.getSemesterSchedule(semesterId);
-        const courses = StateGetters.getCourses();
-
-        // Time slots from 8:00 AM to 5:00 PM
-        const timeSlots = [];
-        for (let hour = 8; hour <= 17; hour++) {
-            timeSlots.push(`${hour.toString().padStart(2, '0')}:00`);
-        }
-
-        const days = ['M', 'T', 'W', 'TH', 'F'];
-        const dayNames = {' M': 'Monday', 'T': 'Tuesday', 'W': 'Wednesday', 'TH': 'Thursday', 'F': 'Friday'};
-
-        // Create grid
-        let html = '<table style="width: 100%; border-collapse: collapse; font-size: 12px;">';
-        html += '<thead><tr style="background: var(--champlain-navy); color: white;">';
-        html += '<th style="padding: 10px; border: 1px solid #ddd; width: 80px;">Time</th>';
-        days.forEach(day => {
-            html += `<th style="padding: 10px; border: 1px solid #ddd;">${dayNames[day]}</th>`;
-        });
-        html += '</tr></thead><tbody>';
-
-        timeSlots.forEach(time => {
-            const hour = parseInt(time.split(':')[0]);
-            const displayTime = hour > 12 ? `${hour - 12}:00 PM` : (hour === 12 ? '12:00 PM' : `${hour}:00 AM`);
-
-            html += '<tr>';
-            html += `<td style="padding: 8px; border: 1px solid #ddd; background: #f8f9fa; font-weight: 600; text-align: center;">${displayTime}</td>`;
-
-            days.forEach(day => {
-                // Find courses scheduled for this day and time
-                const coursesAtTime = schedule.courses.filter(sc => {
-                    if (!sc.meetingPattern) return false;
-                    const startHour = parseInt(sc.meetingPattern.startTime.split(':')[0]);
-                    const endHour = parseInt(sc.meetingPattern.endTime.split(':')[0]);
-                    const endMinutes = parseInt(sc.meetingPattern.endTime.split(':')[1]);
-                    const endTime = endHour + (endMinutes > 0 ? 1 : 0);
-
-                    return sc.meetingPattern.days.includes(day) && hour >= startHour && hour < endTime;
-                });
-
-                if (coursesAtTime.length > 0) {
-                    const sc = coursesAtTime[0];
-                    const course = courses.find(c => c.id === sc.courseId);
-                    const isConflict = coursesAtTime.length > 1;
-
-                    html += `<td style="padding: 4px; border: 1px solid #ddd; background: ${isConflict ? '#ffebee' : '#e3f2fd'}; vertical-align: top;">`;
-                    html += `<div style="font-weight: 600; color: var(--champlain-navy); font-size: 11px;">${course.code}</div>`;
-                    html += `<div style="font-size: 10px; color: #666;">${SchedulingModule.formatTimeSlot(sc.meetingPattern)}</div>`;
-                    if (isConflict) {
-                        html += `<div style="color: #d32f2f; font-size: 10px; font-weight: 600;">⚠️ CONFLICT</div>`;
-                    }
-                    html += '</td>';
-                } else {
-                    html += '<td style="padding: 8px; border: 1px solid #ddd; background: white;"></td>';
-                }
-            });
-
-            html += '</tr>';
-        });
-
-        html += '</tbody></table>';
-        gridDiv.innerHTML = html;
     },
 
     /**
@@ -247,14 +167,13 @@ const SemesterPlannerUI = {
             const course = courses.find(c => c.id === sc.courseId);
             if (!course) return '';
 
-            const timeSlot = SchedulingModule.formatTimeSlot(sc.meetingPattern);
-
             return `
                 <div style="background: white; border: 2px solid var(--champlain-blue); border-radius: 6px; padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
                     <div style="flex: 1;">
                         <div style="font-weight: 600; color: var(--champlain-navy); font-size: 14px;">${course.code} - ${course.name}</div>
                         <div style="font-size: 12px; color: #666; margin-top: 4px;">
-                            🕒 ${sc.meetingPattern.days.join(', ')} ${timeSlot} • ${course.creditHours || 3} credits
+                            ${course.creditHours || 3} credits
+                            ${course.prerequisites ? ` • Prereq: ${course.prerequisites}` : ''}
                         </div>
                     </div>
                     <button onclick="SemesterPlannerUI.removeCourseFromSchedule(${course.id})" style="padding: 8px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">
@@ -326,12 +245,8 @@ const SemesterPlannerUI = {
                 const proceed = confirm(result.error + '\n\nDo you want to add it anyway?');
                 if (!proceed) return;
                 // Override and add anyway
-                const course = StateGetters.getCourses().find(c => c.id === courseId);
-                const scheduleInfo = SchedulingModule.generateDefaultSchedule(course);
                 StateSetters.addCourseToSchedule(SemesterPlannerUI.currentSemesterId, {
                     courseId: courseId,
-                    sectionNumber: '01',
-                    meetingPattern: scheduleInfo.sections[0].meetingPattern,
                     addedDate: new Date().toISOString().split('T')[0]
                 });
                 SchedulingModule.detectConflicts(SemesterPlannerUI.currentSemesterId);
@@ -379,8 +294,6 @@ const SemesterPlannerUI = {
     exportSchedule: () => {
         const semesterName = SchedulingModule.getAvailableSemesters()
             .find(s => s.id === SemesterPlannerUI.currentSemesterId).name;
-        const schedule = SchedulingModule.getSemesterSchedule(SemesterPlannerUI.currentSemesterId);
-        const courses = StateGetters.getCourses();
         const summary = SchedulingModule.getScheduleSummary(SemesterPlannerUI.currentSemesterId);
 
         let html = `
@@ -403,40 +316,6 @@ const SemesterPlannerUI = {
                     <strong>Total Credits:</strong> ${summary.totalCredits} |
                     <strong>Conflicts:</strong> ${summary.conflictCount}
                 </div>
-                <h2>Scheduled Courses</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Course Code</th>
-                            <th>Course Name</th>
-                            <th>Credits</th>
-                            <th>Days</th>
-                            <th>Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-        `;
-
-        schedule.courses.forEach(sc => {
-            const course = courses.find(c => c.id === sc.courseId);
-            if (!course) return;
-
-            const timeSlot = SchedulingModule.formatTimeSlot(sc.meetingPattern);
-
-            html += `
-                <tr>
-                    <td>${course.code}</td>
-                    <td>${course.name}</td>
-                    <td>${course.creditHours || 3}</td>
-                    <td>${sc.meetingPattern.days.join(', ')}</td>
-                    <td>${timeSlot}</td>
-                </tr>
-            `;
-        });
-
-        html += `
-                    </tbody>
-                </table>
                 ${SchedulingModule.exportSchedule(SemesterPlannerUI.currentSemesterId)}
             </body>
             </html>
