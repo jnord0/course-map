@@ -335,10 +335,12 @@ const SemesterPlannerUI = {
     },
 
     /**
-     * Update quick view in sidebar
+     * Update quick view in sidebar (if it exists)
      */
     updateQuickView: () => {
         const quickViewDiv = document.getElementById('scheduleQuickView');
+        if (!quickViewDiv) return; // Element doesn't exist, skip update
+
         const semesters = SchedulingModule.getAvailableSemesters();
 
         const upcoming = semesters.slice(0, 2);
@@ -410,19 +412,17 @@ const SemesterPlannerUI = {
     renderOverallCompetencies: (semesterData, allCompetencies) => {
         const overallGrid = document.getElementById('overallCompetencyGrid');
 
-        // Calculate max competency level achieved across all semesters
-        const overallLevels = {};
+        // Calculate total competency weights across all courses
+        const overallTotals = {};
         allCompetencies.forEach(comp => {
-            overallLevels[comp.id] = 0;
+            overallTotals[comp.id] = 0;
         });
 
         semesterData.forEach(sd => {
             sd.courses.forEach(course => {
                 if (course.competencies) {
                     Object.entries(course.competencies).forEach(([compId, weight]) => {
-                        if (weight > overallLevels[compId]) {
-                            overallLevels[compId] = weight;
-                        }
+                        overallTotals[compId] += weight;
                     });
                 }
             });
@@ -430,33 +430,25 @@ const SemesterPlannerUI = {
 
         // Render overall competencies
         let html = allCompetencies.map(comp => {
-            const level = overallLevels[comp.id] || 0;
-            let statusText = 'Not Addressed';
+            const total = overallTotals[comp.id] || 0;
             let statusColor = '#999';
-            let statusIcon = '○';
 
-            if (level === 3) {
-                statusText = 'Emphasized';
+            if (total >= 9) {
                 statusColor = 'var(--champlain-green)';
-                statusIcon = '★';
-            } else if (level === 2) {
-                statusText = 'Reinforced';
+            } else if (total >= 6) {
                 statusColor = 'var(--champlain-bright-blue)';
-                statusIcon = '◆';
-            } else if (level === 1) {
-                statusText = 'Addressed';
+            } else if (total >= 3) {
                 statusColor = 'var(--champlain-teal)';
-                statusIcon = '◉';
             }
 
             return `
                 <div style="background: white; border-left: 4px solid ${statusColor}; border-radius: 6px; padding: 12px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <div style="font-weight: 600; color: var(--champlain-navy); font-size: 14px;">${comp.name}</div>
-                        <div style="font-size: 20px; color: ${statusColor};">${statusIcon}</div>
+                        <div style="font-size: 24px; font-weight: bold; color: ${statusColor};">${total}</div>
                     </div>
-                    <div style="margin-top: 4px; font-size: 12px; color: ${statusColor}; font-weight: 600;">
-                        Level ${level} - ${statusText}
+                    <div style="margin-top: 4px; font-size: 11px; color: #666;">
+                        Total weight across all courses
                     </div>
                 </div>
             `;
@@ -472,11 +464,17 @@ const SemesterPlannerUI = {
         const svg = d3.select('#semesterTimelineChart');
         svg.selectAll('*').remove();
 
-        const width = parseInt(svg.style('width'));
-        const height = parseInt(svg.style('height'));
-        const margin = { top: 40, right: 150, bottom: 60, left: 60 };
+        // Get parent container width, fallback to computed width or default
+        const container = document.getElementById('semesterTimelineChart').parentElement;
+        const width = container ? container.offsetWidth : 900;
+        const height = 500;
+        const margin = { top: 40, right: 150, bottom: 80, left: 80 };
         const plotWidth = width - margin.left - margin.right;
         const plotHeight = height - margin.top - margin.bottom;
+
+        // Set SVG viewBox for responsiveness
+        svg.attr('viewBox', `0 0 ${width} ${height}`)
+            .attr('preserveAspectRatio', 'xMidYMid meet');
 
         const g = svg.append('g')
             .attr('transform', `translate(${margin.left},${margin.top})`);
