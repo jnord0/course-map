@@ -1992,3 +1992,370 @@ select:focus {
     font-weight: 600;
     margin-left: 6px;
 }
+
+/* ===== Enhanced Course Edit Modal Styles ===== */
+
+/* Edit Tab Buttons */
+.edit-tab {
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.edit-tab:hover {
+    background: var(--champlain-blue) !important;
+    color: white !important;
+}
+
+.edit-tab.active {
+    position: relative;
+}
+
+.edit-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--champlain-bright-blue);
+    border-radius: 2px 2px 0 0;
+}
+
+/* Progress Bar Enhancements */
+.progress-step {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.progress-step.active {
+    background: white !important;
+}
+
+/* Competency Weight Option */
+.competency-weight-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.competency-weight-option:hover {
+    border-color: var(--champlain-bright-blue);
+    box-shadow: 0 2px 8px rgba(0, 169, 224, 0.1);
+}
+
+.competency-weight-select {
+    width: 150px;
+    padding: 8px 12px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.competency-weight-select:focus {
+    outline: none;
+    border-color: var(--champlain-bright-blue);
+    box-shadow: 0 0 0 3px rgba(0, 169, 224, 0.1);
+}
+
+.competency-weight-select option {
+    padding: 8px;
+}
+
+/* Enhanced Form Groups */
+.edit-tab-content .form-group {
+    margin-bottom: 20px;
+}
+
+.edit-tab-content .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--champlain-navy);
+    font-size: 14px;
+}
+
+.edit-tab-content .form-group input[type="text"],
+.edit-tab-content .form-group input[type="number"],
+.edit-tab-content .form-group textarea,
+.edit-tab-content .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.edit-tab-content .form-group input:focus,
+.edit-tab-content .form-group textarea:focus,
+.edit-tab-content .form-group select:focus {
+    outline: none;
+    border-color: var(--champlain-bright-blue);
+    box-shadow: 0 0 0 3px rgba(0, 169, 224, 0.1);
+}
+
+.edit-tab-content .form-group input::placeholder,
+.edit-tab-content .form-group textarea::placeholder {
+    color: #999;
+}
+
+.edit-tab-content .form-group small {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Dynamic List Items */
+.edit-clo-item,
+.edit-plo-item,
+.edit-assessment-item {
+    transition: all 0.2s ease;
+}
+
+.edit-clo-item:hover,
+.edit-plo-item:hover,
+.edit-assessment-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.remove-edit-clo,
+.remove-edit-plo,
+.remove-edit-assessment {
+    transition: all 0.2s ease;
+}
+
+.remove-edit-clo:hover,
+.remove-edit-plo:hover,
+.remove-edit-assessment:hover {
+    background: #d32f2f !important;
+    transform: scale(1.05);
+}
+
+/* Enhanced Inputs in Dynamic Lists */
+.edit-clo-id,
+.edit-clo-desc,
+.edit-clo-plos,
+.edit-plo-id,
+.edit-plo-desc,
+.edit-plo-comps,
+.edit-assessment-name,
+.edit-assessment-desc,
+.edit-assessment-clos {
+    transition: all 0.2s ease;
+}
+
+.edit-clo-id:focus,
+.edit-clo-desc:focus,
+.edit-plo-id:focus,
+.edit-plo-desc:focus,
+.edit-assessment-name:focus,
+.edit-assessment-desc:focus {
+    transform: scale(1.01);
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
+}
+
+/* Navigation Buttons */
+#editPrevTab,
+#editNextTab,
+#saveEditCourse {
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+#editPrevTab:hover,
+#editNextTab:hover {
+    background: #5a6268 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#saveEditCourse {
+    position: relative;
+    overflow: hidden;
+}
+
+#saveEditCourse:hover {
+    background: #45a049 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(74, 170, 80, 0.3);
+}
+
+#saveEditCourse::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+#saveEditCourse:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+    .competency-weight-option {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .competency-weight-select {
+        width: 100%;
+    }
+
+    .edit-tab {
+        font-size: 11px !important;
+        padding: 10px 15px !important;
+    }
+
+    .edit-clo-item .edit-clo-id,
+    .edit-plo-item .edit-plo-id {
+        width: 100px !important;
+    }
+}
+
+/* Loading State */
+.edit-tab-content.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Validation States */
+.form-group input.error,
+.form-group textarea.error,
+.form-group select.error {
+    border-color: #f44336;
+}
+
+.form-group input.success,
+.form-group textarea.success,
+.form-group select.success {
+    border-color: var(--champlain-green);
+}
+
+/* Help Text */
+.help-text {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 2px 8px;
+    background: #e3f2fd;
+    color: var(--champlain-blue);
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: help;
+}
+
+.help-text:hover {
+    background: var(--champlain-bright-blue);
+    color: white;
+}
+
+/* Improved Section Headers */
+.edit-tab-content h3 {
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.edit-tab-content h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--champlain-bright-blue), transparent);
+    border-radius: 2px;
+}
+
+/* Enhanced Section Backgrounds */
+.edit-tab-content > div[style*="background: #e3f2fd"],
+.edit-tab-content > div[style*="background: #f3e5f5"],
+.edit-tab-content > div[style*="background: #fff3e0"],
+.edit-tab-content > div[style*="background: #e8f5e9"] {
+    position: relative;
+    overflow: hidden;
+}
+
+.edit-tab-content > div[style*="background: #e3f2fd"]::before,
+.edit-tab-content > div[style*="background: #f3e5f5"]::before,
+.edit-tab-content > div[style*="background: #fff3e0"]::before,
+.edit-tab-content > div[style*="background: #e8f5e9"]::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Smooth Transitions for Tab Switching */
+.edit-tab-content {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced Modal Content */
+#editCourseModal .modal-content {
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Scrollbar Styling for Modal */
+#editCourseModal .modal-body::-webkit-scrollbar {
+    width: 10px;
+}
+
+#editCourseModal .modal-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#editCourseModal .modal-body::-webkit-scrollbar-thumb {
+    background: var(--champlain-blue);
+    border-radius: 10px;
+}
+
+#editCourseModal .modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--champlain-navy);
+}

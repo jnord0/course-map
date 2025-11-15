@@ -6,17 +6,20 @@ const App = {
      */
     init: async () => {
         console.log('Champlain Academic Affairs System - Initializing...');
-        
+
         // Load course data from JSON
         await DataLoader.loadData();
-        
+
+        // Initialize course management module
+        CoursesModule.init();
+
         // Setup event listeners
         App.setupLoginListeners();
         App.setupModalListeners();
-        
+
         // Setup modal click-outside functionality
         ModalsModule.setupModalListeners();
-        
+
         console.log('Application initialized successfully');
     },
     
