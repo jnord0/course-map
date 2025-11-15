@@ -479,21 +479,19 @@ const SemesterPlannerUI = {
         const g = svg.append('g')
             .attr('transform', `translate(${margin.left},${margin.top})`);
 
-        // Calculate cumulative competency data per semester
+        // Calculate cumulative competency totals per semester
         const timelineData = [];
-        const cumulativeLevels = {};
+        const cumulativeTotals = {};
         allCompetencies.forEach(comp => {
-            cumulativeLevels[comp.id] = 0;
+            cumulativeTotals[comp.id] = 0;
         });
 
         semesterData.forEach((sd, idx) => {
-            // Update cumulative levels for this semester
+            // Add weights from all courses in this semester
             sd.courses.forEach(course => {
                 if (course.competencies) {
                     Object.entries(course.competencies).forEach(([compId, weight]) => {
-                        if (weight > cumulativeLevels[compId]) {
-                            cumulativeLevels[compId] = weight;
-                        }
+                        cumulativeTotals[compId] += weight;
                     });
                 }
             });
@@ -502,9 +500,21 @@ const SemesterPlannerUI = {
             timelineData.push({
                 semesterIndex: idx,
                 semesterName: sd.semester.name,
-                levels: { ...cumulativeLevels }
+                totals: { ...cumulativeTotals }
             });
         });
+
+        // Find maximum total for y-axis scaling
+        let maxTotal = 0;
+        timelineData.forEach(td => {
+            Object.values(td.totals).forEach(total => {
+                if (total > maxTotal) maxTotal = total;
+            });
+        });
+
+        // Add some padding to the max (round up to nearest 5)
+        maxTotal = Math.ceil(maxTotal / 5) * 5;
+        if (maxTotal < 5) maxTotal = 5; // Minimum scale
 
         // Create scales
         const xScale = d3.scaleLinear()
@@ -512,7 +522,7 @@ const SemesterPlannerUI = {
             .range([0, plotWidth]);
 
         const yScale = d3.scaleLinear()
-            .domain([0, 3])
+            .domain([0, maxTotal])
             .range([plotHeight, 0]);
 
         // Create line generator
@@ -540,20 +550,26 @@ const SemesterPlannerUI = {
             .style('font-size', '12px');
 
         g.append('g')
-            .call(d3.axisLeft(yScale).ticks(3).tickFormat(d => {
-                if (d === 0) return 'Not Addressed';
-                if (d === 1) return 'Addressed';
-                if (d === 2) return 'Reinforced';
-                if (d === 3) return 'Emphasized';
-                return d;
-            }))
+            .call(d3.axisLeft(yScale).ticks(5))
+            .selectAll('text')
             .style('font-size', '12px');
+
+        // Y-axis label
+        g.append('text')
+            .attr('transform', 'rotate(-90)')
+            .attr('y', -60)
+            .attr('x', -plotHeight / 2)
+            .attr('text-anchor', 'middle')
+            .style('font-size', '13px')
+            .style('font-weight', 'bold')
+            .style('fill', '#003C5F')
+            .text('Cumulative Competency Total');
 
         // Draw lines for each competency
         allCompetencies.forEach(comp => {
             const lineData = timelineData.map(td => ({
                 x: td.semesterIndex,
-                y: td.levels[comp.id] || 0
+                y: td.totals[comp.id] || 0
             }));
 
             const path = g.append('path')
@@ -599,7 +615,7 @@ const SemesterPlannerUI = {
                         .style('font-size', '12px')
                         .style('font-weight', 'bold')
                         .style('fill', colorScale(comp.id))
-                        .text(`${comp.name}: Level ${d.y}`);
+                        .text(`${comp.name}: Total ${d.y}`);
                 })
                 .on('mouseout', function() {
                     d3.select(this).attr('r', 5);
