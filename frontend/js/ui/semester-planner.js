@@ -4,23 +4,30 @@ const SemesterPlannerUI = {
     currentSemesterId: null,
 
     /**
-     * Open the semester planner modal
+     * Initialize the semester planner view (called when switching to the view)
      */
-    openPlanner: () => {
+    initView: () => {
         const semesters = SchedulingModule.getAvailableSemesters();
         if (semesters.length === 0) return;
 
-        // Set first semester as current
-        SemesterPlannerUI.currentSemesterId = semesters[0].id;
+        // Set first semester as current if not set
+        if (!SemesterPlannerUI.currentSemesterId) {
+            SemesterPlannerUI.currentSemesterId = semesters[0].id;
+        }
 
         // Render semester tabs
         SemesterPlannerUI.renderSemesterTabs(semesters);
 
         // Render current semester view
         SemesterPlannerUI.renderSemesterView(SemesterPlannerUI.currentSemesterId);
+    },
 
-        // Show modal
-        document.getElementById('semesterPlannerModal').style.display = 'block';
+    /**
+     * Open the semester planner modal (deprecated - now using view instead)
+     */
+    openPlanner: () => {
+        // This function is kept for backward compatibility but now just initializes the view
+        SemesterPlannerUI.initView();
     },
 
     /**
