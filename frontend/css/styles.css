@@ -492,12 +492,16 @@ body {
 
 /* Hidden views should be completely removed from view */
 .graph-wrapper > div.hidden {
+    visibility: hidden !important;
+    opacity: 0 !important;
     z-index: -1 !important;
     pointer-events: none !important;
 }
 
 /* Visible views should be on top */
 .graph-wrapper > div:not(.hidden) {
+    visibility: visible !important;
+    opacity: 1 !important;
     z-index: 10 !important;
 }
 
