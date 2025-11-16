@@ -7,9 +7,6 @@ const App = {
     init: async () => {
         console.log('Champlain Academic Affairs System - Initializing...');
 
-        // Setup theme before anything else
-        App.setupThemeToggle();
-
         // Load course data from JSON
         await DataLoader.loadData();
 
@@ -129,15 +126,8 @@ const App = {
      * Update system overview stats
      */
     updateStats: () => {
-        const courses = StateGetters.getCourses();
-        const competencies = StateGetters.getCompetencies();
-        
-        // Update stat cards
-        const statCards = document.querySelectorAll('.stat-card');
-        if (statCards.length >= 4) {
-            statCards[0].querySelector('.stat-value').textContent = competencies.length;
-            statCards[3].querySelector('.stat-value').textContent = courses.length;
-        }
+        // Stats are now managed by individual modules (e.g., SemesterPlannerUI)
+        // This function is kept for compatibility but no longer updates DOM directly
     },
     
     /**
@@ -254,49 +244,6 @@ const App = {
         // Form submissions
         document.getElementById('proposalForm').addEventListener('submit', ProposalsModule.submitProposal);
         document.getElementById('editCourseForm').addEventListener('submit', CoursesModule.saveCourse);
-    },
-
-    /**
-     * Setup theme toggle functionality
-     */
-    setupThemeToggle: () => {
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.querySelector('.theme-toggle-icon');
-        const themeText = document.querySelector('.theme-toggle-text');
-
-        // Load saved theme or default to light
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        App.setTheme(savedTheme);
-
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                App.setTheme(newTheme);
-            });
-        }
-    },
-
-    /**
-     * Set the application theme
-     * @param {string} theme - 'light' or 'dark'
-     */
-    setTheme: (theme) => {
-        const themeIcon = document.querySelector('.theme-toggle-icon');
-        const themeText = document.querySelector('.theme-toggle-text');
-
-        if (theme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            if (themeIcon) themeIcon.textContent = '☀️';
-            if (themeText) themeText.textContent = 'Light';
-        } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-            if (themeIcon) themeIcon.textContent = '🌙';
-            if (themeText) themeText.textContent = 'Dark';
-        }
-
-        // Save preference
-        localStorage.setItem('theme', theme);
     }
 };
 

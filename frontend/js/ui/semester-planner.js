@@ -449,12 +449,12 @@ const SemesterPlannerUI = {
             }
 
             return `
-                <div style="background: var(--card-bg); border-left: 4px solid ${statusColor}; border-radius: 6px; padding: 12px; transition: background-color 0.3s ease;">
+                <div style="background: #ffffff; border-left: 4px solid ${statusColor}; border-radius: 6px; padding: 12px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <div style="font-weight: 600; color: var(--text-primary); font-size: 14px;">${comp.name}</div>
+                        <div style="font-weight: 600; color: #2c3e50; font-size: 14px;">${comp.name}</div>
                         <div style="font-size: 24px; font-weight: bold; color: ${statusColor};">${total}</div>
                     </div>
-                    <div style="margin-top: 4px; font-size: 11px; color: var(--text-secondary);">
+                    <div style="margin-top: 4px; font-size: 11px; color: #666;">
                         Total weight across all courses
                     </div>
                 </div>
@@ -543,9 +543,8 @@ const SemesterPlannerUI = {
             .domain(allCompetencies.map(c => c.id))
             .range(['#003C5F', '#236192', '#00A9E0', '#3DC4B2', '#74AA50', '#FF9800', '#E91E63', '#9C27B0', '#607D8B', '#795548']);
 
-        // Get theme-aware colors
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const textColor = currentTheme === 'dark' ? '#b8bbc3' : '#2c3e50';
+        // Text color for chart elements
+        const textColor = '#2c3e50';
 
         // Draw axes
         const xAxis = g.append('g')
@@ -576,7 +575,7 @@ const SemesterPlannerUI = {
             .style('stroke', textColor);
 
         // Y-axis label
-        const labelColor = currentTheme === 'dark' ? '#e4e6eb' : '#003C5F';
+        const labelColor = '#003C5F';
 
         g.append('text')
             .attr('transform', 'rotate(-90)')
@@ -705,29 +704,29 @@ const SemesterPlannerUI = {
             const notAddressed = Object.values(semesterLevels).filter(l => l === 0).length;
 
             return `
-                <div style="background: var(--card-bg); border-radius: 8px; padding: 15px; border: 2px solid var(--border-color); transition: background-color 0.3s ease, border-color 0.3s ease;">
-                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 12px; font-size: 15px;">
+                <div style="background: #ffffff; border-radius: 8px; padding: 15px; border: 2px solid #ddd;">
+                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 12px; font-size: 15px;">
                         ${sd.semester.name} (${sd.courses.length} courses)
                     </div>
                     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
                         <div style="text-align: center; padding: 10px; background: #e8f5e9; border-radius: 6px;">
                             <div style="font-size: 20px; font-weight: bold; color: var(--champlain-green);">${emphasized}</div>
-                            <div style="font-size: 11px; color: var(--text-secondary);">Emphasized (3)</div>
+                            <div style="font-size: 11px; color: #666;">Emphasized (3)</div>
                         </div>
                         <div style="text-align: center; padding: 10px; background: #e3f2fd; border-radius: 6px;">
                             <div style="font-size: 20px; font-weight: bold; color: var(--champlain-bright-blue);">${reinforced}</div>
-                            <div style="font-size: 11px; color: var(--text-secondary);">Reinforced (2)</div>
+                            <div style="font-size: 11px; color: #666;">Reinforced (2)</div>
                         </div>
                         <div style="text-align: center; padding: 10px; background: #e0f2f1; border-radius: 6px;">
                             <div style="font-size: 20px; font-weight: bold; color: var(--champlain-teal);">${addressed}</div>
-                            <div style="font-size: 11px; color: var(--text-secondary);">Addressed (1)</div>
+                            <div style="font-size: 11px; color: #666;">Addressed (1)</div>
                         </div>
-                        <div style="text-align: center; padding: 10px; background: var(--bg-tertiary); border-radius: 6px;">
-                            <div style="font-size: 20px; font-weight: bold; color: var(--text-tertiary);">${notAddressed}</div>
-                            <div style="font-size: 11px; color: var(--text-secondary);">Not Addressed (0)</div>
+                        <div style="text-align: center; padding: 10px; background: #f8f9fa; border-radius: 6px;">
+                            <div style="font-size: 20px; font-weight: bold; color: #999;">${notAddressed}</div>
+                            <div style="font-size: 11px; color: #666;">Not Addressed (0)</div>
                         </div>
                     </div>
-                    <div style="margin-top: 10px; font-size: 12px; color: var(--text-secondary);">
+                    <div style="margin-top: 10px; font-size: 12px; color: #666;">
                         Courses: ${sd.courses.map(c => c.code).join(', ')}
                     </div>
                 </div>
