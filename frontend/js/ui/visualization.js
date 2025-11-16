@@ -993,9 +993,10 @@ const VisualizationModule = {
         const prerequisiteViewBtn = document.getElementById('prerequisiteViewBtn');
         const pathwayViewBtn = document.getElementById('pathwayViewBtn');
         const graphsViewBtn = document.getElementById('graphsViewBtn');
+        const semesterPlannerBtn = document.getElementById('semesterPlannerBtn');
 
-        const allViews = ['networkView', 'tableView', 'prerequisiteView', 'pathwayView', 'graphsView'];
-        const allBtns = [networkViewBtn, tableViewBtn, prerequisiteViewBtn, pathwayViewBtn, graphsViewBtn];
+        const allViews = ['networkView', 'tableView', 'prerequisiteView', 'pathwayView', 'graphsView', 'semesterPlannerView'];
+        const allBtns = [networkViewBtn, tableViewBtn, prerequisiteViewBtn, pathwayViewBtn, graphsViewBtn, semesterPlannerBtn];
 
         // Helper to switch views
         const switchView = (viewId, activeBtn) => {
@@ -1018,6 +1019,9 @@ const VisualizationModule = {
             } else if (viewId === 'graphsView') {
                 title.textContent = 'Competency Graphs';
                 description.textContent = 'Visual analytics showing competency weight distribution across selected courses';
+            } else if (viewId === 'semesterPlannerView') {
+                title.textContent = 'Semester Planner';
+                description.textContent = 'Plan your course schedule across semesters and track competency progression';
             }
 
             // Hide all views
@@ -1071,6 +1075,16 @@ const VisualizationModule = {
                 switchView('graphsView', graphsViewBtn);
                 if (typeof GraphsModule !== 'undefined') {
                     GraphsModule.init();
+                }
+            });
+        }
+
+        if (semesterPlannerBtn) {
+            semesterPlannerBtn.addEventListener('click', () => {
+                switchView('semesterPlannerView', semesterPlannerBtn);
+                // Initialize semester planner
+                if (typeof SemesterPlannerUI !== 'undefined' && typeof SemesterPlannerUI.initView === 'function') {
+                    SemesterPlannerUI.initView();
                 }
             });
         }
