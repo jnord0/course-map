@@ -467,7 +467,7 @@ body {
     background: white;
     border-radius: 16px;
     box-shadow: var(--shadow-md);
-    padding: 30px;
+    padding: 0; /* Removed - each view handles its own padding */
     height: calc(100vh - 250px); /* Increased from 280px to give more space */
     min-height: 700px;
     position: relative;
@@ -478,13 +478,15 @@ body {
 /* Ensure all view containers properly overlay and fill the space */
 .graph-wrapper > div {
     position: absolute !important;
-    top: 30px;
-    left: 30px;
-    right: 30px;
-    bottom: 30px;
-    width: calc(100% - 60px) !important;
-    height: calc(100% - 60px) !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100% !important;
+    height: 100% !important;
     overflow: auto !important;
+    padding: 30px; /* Apply padding to each view instead of offsetting */
+    box-sizing: border-box;
 }
 
 .legend {
