@@ -242,7 +242,7 @@
                 </div>
                 <div class="graph-wrapper">
                     <!-- Network View -->
-                    <div id="networkView" style="position: relative; width: 100%; height: 100%; overflow: auto;">
+                    <div id="networkView">
                         <svg id="networkGraph" style="width: 100%; min-height: 600px;"></svg>
                     </div>
 
@@ -252,15 +252,15 @@
                     </div>
 
                     <!-- Prerequisite Chain View -->
-                    <div id="prerequisiteView" class="hidden" style="position: relative; width: 100%; height: 100%; overflow: auto;">
+                    <div id="prerequisiteView" class="hidden">
                         <div id="prerequisiteGraphContainer" style="width: 100%; min-height: 600px;">
                             <svg id="prerequisiteGraph" style="width: 100%; min-height: 600px;"></svg>
                         </div>
                     </div>
 
                     <!-- Course Pathway View -->
-                    <div id="pathwayView" class="hidden" style="position: relative; width: 100%; height: 100%; overflow: auto;">
-                        <div style="padding: 20px;">
+                    <div id="pathwayView" class="hidden">
+                        <div style="height: 100%; overflow-y: auto;">
                             <h3 style="color: var(--champlain-navy); margin-bottom: 15px;">Student Course Pathway</h3>
                             <div style="margin-bottom: 20px;">
                                 <label style="display: block; margin-bottom: 8px; font-weight: 600;">Search Completed Courses:</label>
@@ -301,8 +301,8 @@
                     </div>
 
                     <!-- Competency Graphs View -->
-                    <div id="graphsView" class="hidden" style="position: relative; width: 100%; height: 100%; overflow: auto;">
-                        <div style="padding: 20px;">
+                    <div id="graphsView" class="hidden">
+                        <div style="height: 100%; overflow-y: auto;">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
                                 <h3 style="color: var(--champlain-navy); margin: 0;">Competency Weight Analysis</h3>
                                 <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
@@ -357,8 +357,8 @@
                     </div>
 
                     <!-- Semester Planner View -->
-                    <div id="semesterPlannerView" class="hidden" style="position: relative; width: 100%; height: 100%; overflow: auto;">
-                        <div style="padding: 20px;">
+                    <div id="semesterPlannerView" class="hidden">
+                        <div style="height: 100%; overflow-y: auto;">
                             <!-- Semester Tabs -->
                             <div id="semesterTabs" style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid var(--champlain-navy); padding-bottom: 10px; overflow-x: auto;"></div>
 
