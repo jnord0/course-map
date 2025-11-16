@@ -471,10 +471,20 @@ body {
     height: calc(100vh - 250px); /* Increased from 280px to give more space */
     min-height: 700px;
     position: relative;
-    overflow: hidden; /* Changed from hidden to auto */
-    display: flex;
-    flex-direction: column;
+    overflow: hidden;
     border: 1px solid #e8eaf0;
+}
+
+/* Ensure all view containers properly overlay and fill the space */
+.graph-wrapper > div {
+    position: absolute !important;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+    width: calc(100% - 60px) !important;
+    height: calc(100% - 60px) !important;
+    overflow: auto !important;
 }
 
 .legend {
