@@ -8,9 +8,10 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-    background: #f5f7fa;
-    color: #2c3e50;
+    background: var(--bg-primary);
+    color: var(--text-primary);
     line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Champlain Color Palette - Official Brand Colors */
@@ -28,6 +29,41 @@ body {
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+    /* Theme variables - Light mode (default) */
+    --bg-primary: #f5f7fa;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f8f9fa;
+    --text-primary: #2c3e50;
+    --text-secondary: #666;
+    --text-tertiary: #999;
+    --border-color: #ddd;
+    --border-color-light: #e0e0e0;
+    --card-bg: #ffffff;
+    --sidebar-bg: #ffffff;
+    --input-bg: #ffffff;
+    --input-border: #ddd;
+    --modal-overlay: rgba(0, 0, 0, 0.5);
+}
+
+/* Dark mode theme */
+[data-theme="dark"] {
+    --bg-primary: #1a1d23;
+    --bg-secondary: #23262e;
+    --bg-tertiary: #2a2d36;
+    --text-primary: #e4e6eb;
+    --text-secondary: #b8bbc3;
+    --text-tertiary: #8a8d96;
+    --border-color: #3a3d46;
+    --border-color-light: #2f323a;
+    --card-bg: #23262e;
+    --sidebar-bg: #1e2128;
+    --input-bg: #2a2d36;
+    --input-border: #3a3d46;
+    --modal-overlay: rgba(0, 0, 0, 0.7);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* Header */
@@ -244,13 +280,14 @@ body {
 
 .sidebar {
     width: 420px;
-    background: white;
-    border-right: 1px solid #e8eaf0;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
     padding: 30px;
     overflow-y: auto;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.04);
     flex-shrink: 0;
     max-height: calc(100vh - 73px);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .sidebar h2 {
@@ -667,7 +704,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: var(--modal-overlay);
     backdrop-filter: blur(4px);
     z-index: 2000;
     overflow-y: auto;
@@ -680,7 +717,7 @@ body {
 }
 
 .modal-content {
-    background: white;
+    background: var(--card-bg);
     margin: 50px auto;
     padding: 0;
     width: 90%;
@@ -688,6 +725,7 @@ body {
     border-radius: 16px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     animation: slideUp 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 @keyframes slideUp {
@@ -2473,4 +2511,70 @@ select:focus {
         box-shadow: none;
         border: 1px solid #ccc;
     }
+}
+
+/* Dark Mode Toggle Button */
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    padding: 8px 16px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.theme-toggle:active {
+    transform: translateY(0);
+}
+
+.theme-toggle-icon {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover .theme-toggle-icon {
+    transform: rotate(20deg);
+}
+
+/* Card elements */
+.section, .stat-card, .course-card, .proposal-card {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Input elements */
+input, textarea, select {
+    background: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--text-tertiary);
+}
+
+/* Dark mode specific adjustments */
+[data-theme="dark"] .sidebar h2,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .sidebar {
+    border-right-color: var(--border-color);
 }
