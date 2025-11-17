@@ -32,8 +32,11 @@ course-map/
 │   │   │   ├── competencies.js        # Competency tracking (146 lines)
 │   │   │   └── proposals.js           # Proposal workflow (546 lines)
 │   │   └── ui/                        # User interface modules
-│   │       ├── visualization.js       # D3.js network visualization (1,555 lines)
-│   │       └── modals.js              # Modal management (63 lines)
+│   │       ├── visualization.js       # D3.js network visualization & view switching (1,555 lines)
+│   │       ├── modals.js              # Modal management (63 lines)
+│   │       ├── semester-planner.js    # Semester scheduling & timeline charts
+│   │       ├── graphs.js              # Competency analytics (bar/pie/radar charts)
+│   │       └── pathway.js             # Prerequisite pathway planning
 │   └── data/
 │       └── courses.json               # Course and competency data
 └── .git/                              # Git repository
@@ -56,8 +59,11 @@ app.js (Entry Point)
   │   ├── competencies.js
   │   └── proposals.js
   └── ui/ (Presentation)
-      ├── visualization.js
-      └── modals.js
+      ├── visualization.js (View switching & network graph)
+      ├── modals.js
+      ├── semester-planner.js
+      ├── graphs.js
+      └── pathway.js
 ```
 
 ### Key Patterns
@@ -761,6 +767,59 @@ const scores = CompetencyTracker.calculateCompetencyScores(
 console.log('Competency Scores:', scores);
 ```
 
+### Views Not Switching Properly / Content Below Viewport
+
+**Symptoms**: When switching to Semester Planner or Competency Graphs, content appears below the visible area or underneath other views
+
+**Root Cause**: This was caused by improper layering and positioning of absolutely positioned view containers.
+
+**The Fix Applied:**
+All view containers (networkView, tableView, semesterPlannerView, graphsView, etc.) are now:
+1. Absolutely positioned at `top: 0, left: 0` within `.graph-wrapper`
+2. Use `visibility` and `opacity` instead of `display: none` for hiding
+3. Have explicit z-index layering:
+   - Hidden views: `z-index: -1, visibility: hidden, opacity: 0`
+   - Visible views: `z-index: 10, visibility: visible, opacity: 1`
+
+**CSS Implementation:**
+```css
+.graph-wrapper > div {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 30px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.graph-wrapper > div.hidden {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+}
+
+.graph-wrapper > div:not(.hidden) {
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 10 !important;
+}
+```
+
+**Why This Works:**
+- All views stay in the DOM at the same position (never re-positioned)
+- `visibility: hidden` instead of `display: none` prevents layout reflow
+- Z-index layering ensures active view is always on top
+- `pointer-events: none` prevents hidden views from capturing clicks
+
+**Checks if Issue Returns:**
+1. Verify `.hidden` class is being toggled correctly in JavaScript
+2. Check that no inline styles are overriding the CSS z-index
+3. Ensure `graph-wrapper` has `position: relative` and `overflow: hidden`
+4. Verify all view containers are direct children of `.graph-wrapper`
+
 ---
 
 ## Best Practices for AI Assistants
@@ -915,6 +974,16 @@ For questions about:
 
 ---
 
-**Last Updated**: November 14, 2025
+**Last Updated**: November 17, 2025
 **Version**: 1.0
 **Maintained by**: AI Assistants (Claude)
+
+## Recent Updates
+
+### November 17, 2025
+- **Fixed view switching issue**: Semester Planner and Competency Graphs now properly overlay instead of appearing below viewport
+- **Removed dark mode**: Cleaned up dark mode toggle and CSS variables
+- **Fixed login error**: Resolved updateStats() null reference error
+- **Improved layout**: Fixed double-padding issue in graph-wrapper views
+- **Added z-index layering**: Implemented proper visibility/opacity switching for views
+- **Documentation**: Created comprehensive README.md and updated troubleshooting guide
