@@ -737,20 +737,35 @@ const DataLoader = {
                 throw new Error('Failed to load courses data');
             }
             const data = await response.json();
-            
+
             // Set courses (will be normalized via adapter)
             StateSetters.setCourses(data.courses);
-            StateSetters.setCompetencies(data.competencies);
+
+            // Use competencies from JSON if available, otherwise use standard 10 Champlain competencies
+            const competencies = data.competencies || [
+                { id: 'INQ', name: 'Inquiry', color: '#003C5F' },
+                { id: 'INT', name: 'Integration', color: '#236192' },
+                { id: 'GCU', name: 'Global/Cultural Awareness', color: '#00A9E0' },
+                { id: 'ANL', name: 'Analysis', color: '#3DC4B2' },
+                { id: 'DEI', name: 'Diversity/Equity/Inclusion', color: '#74AA50' },
+                { id: 'COM', name: 'Communication', color: '#FF9800' },
+                { id: 'COL', name: 'Collaboration', color: '#E91E63' },
+                { id: 'CRE', name: 'Creativity', color: '#9C27B0' },
+                { id: 'ETH', name: 'Ethical Reasoning', color: '#607D8B' },
+                { id: 'QNT', name: 'Quantitative Literacy', color: '#795548' }
+            ];
+
+            StateSetters.setCompetencies(competencies);
             StateSetters.setDataLoaded(true);
-            
-            console.log('Course data loaded and normalized successfully:', 
+
+            console.log('Course data loaded and normalized successfully:',
                 AppState.coursesData.length, 'courses');
             console.log('Sample normalized course:', AppState.coursesData[0]);
-            
+
             return true;
         } catch (error) {
             console.error('Error loading course data:', error);
-            
+
             // Fallback to hardcoded data if JSON fails to load
             console.warn('Using fallback course data');
             StateSetters.setCourses([
@@ -774,7 +789,7 @@ const DataLoader = {
                 { id: 'ethics', name: 'Diversity, Equity & Inclusion' }
             ]);
             StateSetters.setDataLoaded(true);
-            
+
             return false;
         }
     }
