@@ -564,6 +564,13 @@ body {
     position: relative;
 }
 
+.competency-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    object-fit: contain;
+}
+
 /* Competency Weights Legend */
 .competency-weights {
     background: white;

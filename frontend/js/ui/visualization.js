@@ -194,25 +194,28 @@ const VisualizationModule = {
     
     getCompetencyColor: (compId) => {
         const colors = {
-            // New competency IDs
-            'INQ': '#2196F3',
-            'INT': '#FF9800',
-            'GCU': '#00BCD4',
-            'ANL': '#FFC107',
-            'DEI': '#F44336',
-            'COM': '#4CAF50',
-            'COL': '#9C27B0',
-            'CRE': '#E91E63',
-            'ETH': '#795548',
-            'QNT': '#009688',
+            // 12 Core Competencies - Official Champlain Colors (from wedge icons)
+            'ANL': '#E52019',  // Analysis - Red
+            'COL': '#F7931E',  // Collaboration - Orange
+            'COM': '#FFDD00',  // Communication - Yellow
+            'CRE': '#C4D82D',  // Creativity - Lime
+            'DEI': '#5CB85C',  // Diversity, Equity & Inclusion - Green
+            'GCU': '#7CC9B5',  // Global & Cultural Understanding - Light Teal
+            'INL': '#00B5AD',  // Information Literacy - Teal
+            'INQ': '#3C8DAD',  // Inquiry - Steel Blue
+            'INT': '#7B4FD0',  // Integration - Purple
+            'QNT': '#D640A8',  // Quantitative Literacy - Magenta
+            'SCI': '#F799C0',  // Scientific Literacy - Pink
+            'TEC': '#A61C3C',  // Technology Literacy - Burgundy
             // Legacy competency IDs (for backward compatibility)
-            'communication': '#4CAF50',
-            'thinking': '#2196F3',
-            'learning': '#FF9800',
-            'collaboration': '#9C27B0',
-            'global': '#00BCD4',
-            'ethics': '#F44336',
-            'information': '#FFC107'
+            'communication': '#FFDD00',
+            'thinking': '#3C8DAD',
+            'learning': '#7B4FD0',
+            'collaboration': '#F7931E',
+            'global': '#7CC9B5',
+            'ethics': '#5CB85C',
+            'information': '#00B5AD',
+            'ETH': '#5CB85C'  // Ethical Reasoning (legacy, mapped to DEI color)
         };
         return colors[compId] || '#999';
     },
