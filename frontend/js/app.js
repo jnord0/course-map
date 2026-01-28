@@ -79,6 +79,8 @@ const App = {
         document.getElementById('mainApp').classList.add('hidden');
         document.getElementById('username').value = '';
         document.getElementById('password').value = '';
+        // Scroll back to top of landing page
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     },
     
     /**
@@ -246,6 +248,19 @@ const App = {
         document.getElementById('editCourseForm').addEventListener('submit', CoursesModule.saveCourse);
     }
 };
+
+/**
+ * Quick login function for landing page role buttons
+ * @param {string} role - The role to login as (student, faculty, admin)
+ */
+function quickLogin(role) {
+    // Set the credentials based on role
+    document.getElementById('username').value = role;
+    document.getElementById('password').value = 'password';
+
+    // Trigger the login
+    App.handleLogin();
+}
 
 // Initialize app when DOM is ready
 if (document.readyState === 'loading') {
