@@ -83,7 +83,7 @@ const VisualizationModule = {
     toggleDiv.id = 'viewModeToggle';
     toggleDiv.style.cssText = `
         position: absolute;
-        top: 80px;
+        top: 10px;
         left: 20px;
         z-index: 1000;
         display: flex;

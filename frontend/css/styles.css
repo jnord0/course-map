@@ -697,10 +697,11 @@ body {
     padding: 35px;
     border-radius: 20px;
     box-shadow: 0 8px 30px rgba(0, 60, 95, 0.1);
-    transition: all 0.4s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(0, 60, 95, 0.08);
     position: relative;
     overflow: hidden;
+    will-change: transform;
 }
 
 .viz-feature-card::after {
@@ -712,7 +713,9 @@ body {
     height: 4px;
     background: linear-gradient(90deg, var(--champlain-bright-blue), var(--champlain-teal));
     transform: scaleX(0);
-    transition: transform 0.4s ease;
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    will-change: transform;
 }
 
 .viz-feature-card:hover {
