@@ -47,6 +47,78 @@ body {
     --modal-overlay: rgba(0, 0, 0, 0.5);
 }
 
+/* Dark Mode Theme */
+[data-theme="dark"] {
+    --bg-primary: #1a1d23;
+    --bg-secondary: #242830;
+    --bg-tertiary: #2d323c;
+    --text-primary: #e4e6eb;
+    --text-secondary: #b0b3b8;
+    --text-tertiary: #8a8d91;
+    --border-color: #3e4451;
+    --border-color-light: #4a5568;
+    --card-bg: #242830;
+    --sidebar-bg: #1e2128;
+    --input-bg: #2d323c;
+    --input-border: #3e4451;
+    --modal-overlay: rgba(0, 0, 0, 0.7);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Dark mode specific overrides */
+[data-theme="dark"] .section,
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .competency-card,
+[data-theme="dark"] .viz-feature-card {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .sidebar {
+    background: linear-gradient(180deg, var(--sidebar-bg) 0%, #1a1d21 100%);
+}
+
+[data-theme="dark"] .main-container {
+    background: linear-gradient(135deg, #1a1d23 0%, #242830 50%, #1e2128 100%);
+}
+
+[data-theme="dark"] .graph-wrapper {
+    background: var(--card-bg);
+}
+
+[data-theme="dark"] .viz-header {
+    background: var(--card-bg);
+}
+
+[data-theme="dark"] .competency-table td {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .competency-table tbody tr:hover td {
+    background: var(--bg-tertiary);
+}
+
+[data-theme="dark"] .modal-content {
+    background: var(--card-bg);
+}
+
+[data-theme="dark"] .login-card {
+    background: var(--card-bg);
+}
+
+[data-theme="dark"] .landing-about,
+[data-theme="dark"] .landing-competencies {
+    background: var(--bg-primary);
+}
+
+[data-theme="dark"] .competency-weights {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
 /* Utility Classes */
 .hidden {
     display: none !important;

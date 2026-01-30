@@ -388,6 +388,10 @@
             <div class="user-info">
                 <span id="currentUser">User</span>
                 <span class="user-badge" id="currentRole">Role</span>
+                <button class="theme-toggle" id="themeToggle" title="Toggle dark mode (D)">
+                    <span class="icon-sun">☀️</span>
+                    <span class="icon-moon">🌙</span>
+                </button>
                 <button class="logout-btn" id="logoutButton">Logout</button>
             </div>
         </div>
@@ -533,6 +537,12 @@
                 <div class="section">
                     <h3>Competency Tracker</h3>
                     <div id="competencyTracker"></div>
+                </div>
+
+                <!-- Recently Viewed Courses -->
+                <div id="recentlyViewedCourses" class="recently-viewed" style="display: none;">
+                    <h4>🕒 Recently Viewed</h4>
+                    <div class="recent-courses-list"></div>
                 </div>
 
                 <div id="adminSection" class="section hidden">
@@ -1683,6 +1693,55 @@
         </div>
     </div>
 
+    <!-- Keyboard Shortcuts Modal -->
+    <div class="shortcuts-modal" id="shortcutsModal">
+        <div class="shortcuts-content">
+            <h3>⌨️ Keyboard Shortcuts</h3>
+            <div class="shortcut-list">
+                <div class="shortcut-item">
+                    <span class="shortcut-desc">Focus search</span>
+                    <div class="shortcut-keys"><kbd>/</kbd></div>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-desc">Close modal / Clear search</span>
+                    <div class="shortcut-keys"><kbd>Esc</kbd></div>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-desc">Toggle dark mode</span>
+                    <div class="shortcut-keys"><kbd>D</kbd></div>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-desc">Show keyboard shortcuts</span>
+                    <div class="shortcut-keys"><kbd>?</kbd></div>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-desc">Switch to Network view</span>
+                    <div class="shortcut-keys"><kbd>1</kbd></div>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-desc">Switch to Table view</span>
+                    <div class="shortcut-keys"><kbd>2</kbd></div>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-desc">Switch to Semester view</span>
+                    <div class="shortcut-keys"><kbd>3</kbd></div>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-desc">Switch to Graphs view</span>
+                    <div class="shortcut-keys"><kbd>4</kbd></div>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 12px; color: var(--text-tertiary); text-align: center;">
+                Press <kbd>Esc</kbd> or click outside to close
+            </p>
+        </div>
+    </div>
+
+    <!-- Keyboard Shortcuts Hint (shown in corner) -->
+    <div class="keyboard-shortcuts-hint" id="shortcutsHint">
+        <span>Press</span> <kbd>?</kbd> <span>for shortcuts</span>
+    </div>
+
     <!-- JavaScript Files -->
     <script src="js/state.js"></script>
     <script src="js/auth.js"></script>
@@ -1697,6 +1756,7 @@
     <script src="js/ui/semester-planner.js"></script>
     <script src="js/ui/modals.js"></script>
     <script src="js/ui/graphs.js"></script>
+    <script src="js/ui/ux-enhancements.js"></script>
     <script src="js/mobile.js"></script>
     <script src="js/app.js"></script>
 </body>

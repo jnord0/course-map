@@ -61,9 +61,15 @@ const App = {
             
             document.getElementById('loginPage').classList.add('hidden');
             document.getElementById('mainApp').classList.remove('hidden');
-            
+
             setTimeout(() => VisualizationModule.init(), 200);
-            
+
+            // Show keyboard shortcuts hint and render recently viewed
+            if (typeof UXEnhancements !== 'undefined') {
+                UXEnhancements.showShortcutsHint();
+                UXEnhancements.renderRecentlyViewed();
+            }
+
             errorDiv.textContent = '';
         } else {
             errorDiv.textContent = result.error;
@@ -79,6 +85,10 @@ const App = {
         document.getElementById('mainApp').classList.add('hidden');
         document.getElementById('username').value = '';
         document.getElementById('password').value = '';
+        // Hide keyboard shortcuts hint
+        if (typeof UXEnhancements !== 'undefined') {
+            UXEnhancements.hideShortcutsHint();
+        }
         // Scroll back to top of landing page
         window.scrollTo({ top: 0, behavior: 'smooth' });
     },
@@ -427,9 +437,11 @@ const LandingAnimations = {
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         LandingAnimations.init();
+        UXEnhancements.init();
         App.init();
     });
 } else {
     LandingAnimations.init();
+    UXEnhancements.init();
     App.init();
 }

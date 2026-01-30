@@ -1,6 +1,231 @@
 /* Champlain College Academic Affairs - Utilities */
 /* Scrollbar, Loading States, Cards, Touch States */
 
+/* Theme Toggle Button */
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle .icon-sun {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+.theme-toggle .icon-moon {
+    opacity: 0;
+    transform: rotate(-90deg);
+}
+
+[data-theme="dark"] .theme-toggle .icon-sun {
+    opacity: 0;
+    transform: rotate(90deg);
+}
+
+[data-theme="dark"] .theme-toggle .icon-moon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+/* Keyboard Shortcuts Help */
+.keyboard-shortcuts-hint {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-md);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.keyboard-shortcuts-hint:hover {
+    opacity: 1;
+}
+
+.keyboard-shortcuts-hint kbd {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: monospace;
+    font-size: 11px;
+    color: var(--text-primary);
+}
+
+/* Keyboard Shortcuts Modal */
+.shortcuts-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--modal-overlay);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.shortcuts-modal.active {
+    display: flex;
+}
+
+.shortcuts-content {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: var(--shadow-lg);
+}
+
+.shortcuts-content h3 {
+    color: var(--champlain-navy);
+    margin-bottom: 20px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+[data-theme="dark"] .shortcuts-content h3 {
+    color: var(--text-primary);
+}
+
+.shortcut-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.shortcut-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.shortcut-item:last-child {
+    border-bottom: none;
+}
+
+.shortcut-keys {
+    display: flex;
+    gap: 6px;
+}
+
+.shortcut-keys kbd {
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-family: monospace;
+    font-size: 13px;
+    color: var(--text-primary);
+    box-shadow: 0 2px 0 var(--border-color);
+}
+
+.shortcut-desc {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* Recently Viewed Section */
+.recently-viewed {
+    margin-top: 15px;
+}
+
+.recently-viewed h4 {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.recent-courses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.recent-course-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 13px;
+}
+
+.recent-course-item:hover {
+    background: var(--champlain-bright-blue);
+    color: white;
+    transform: translateX(4px);
+}
+
+.recent-course-code {
+    font-weight: 700;
+    color: var(--champlain-blue);
+}
+
+.recent-course-item:hover .recent-course-code {
+    color: white;
+}
+
+.recent-course-name {
+    color: var(--text-secondary);
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.recent-course-item:hover .recent-course-name {
+    color: rgba(255, 255, 255, 0.9);
+}
+
 /* Competency Management Cards */
 .competency-manage-card {
     background: white;

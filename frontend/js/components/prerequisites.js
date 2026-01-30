@@ -354,6 +354,11 @@ const PrerequisitesModule = {
             return;
         }
 
+        // Track recently viewed courses
+        if (typeof UXEnhancements !== 'undefined') {
+            UXEnhancements.addToRecentlyViewed(course.code, course.name);
+        }
+
         const prereqs = PrerequisitesModule.getDirectPrerequisites(course);
         const prereqChain = PrerequisitesModule.getPrerequisiteChain(courseCode, courses);
         const enables = PrerequisitesModule.getCoursesEnabled(courseCode, courses);

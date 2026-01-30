@@ -1293,7 +1293,12 @@ const VisualizationModule = {
     
     showCourseDetailsModal: (course) => {
         const competencies = StateGetters.getCompetencies();
-        
+
+        // Track recently viewed courses
+        if (typeof UXEnhancements !== 'undefined') {
+            UXEnhancements.addToRecentlyViewed(course.code, course.name);
+        }
+
         let modal = document.getElementById('courseDetailsModal');
         if (!modal) {
             modal = document.createElement('div');
@@ -1327,6 +1332,15 @@ const VisualizationModule = {
         const closNames = course.clos ? course.clos.join(', ') : 'Not specified';
         
         document.getElementById('courseDetailsBody').innerHTML = `
+            <!-- Breadcrumb Navigation -->
+            <nav style="margin-bottom: 16px; padding: 8px 12px; background: var(--bg-tertiary, #f8f9fa); border-radius: 8px; font-size: 13px;">
+                <span style="color: var(--text-secondary, #666);">Dashboard</span>
+                <span style="color: var(--text-tertiary, #999); margin: 0 8px;">›</span>
+                <span style="color: var(--text-secondary, #666);">Courses</span>
+                <span style="color: var(--text-tertiary, #999); margin: 0 8px;">›</span>
+                <span style="color: var(--champlain-blue); font-weight: 600;">${course.code}</span>
+            </nav>
+
             <div style="margin-bottom: 24px;">
                 <h3 style="color: var(--champlain-navy); margin-bottom: 4px; font-size: 26px; font-weight: bold;">
                     ${course.code}
