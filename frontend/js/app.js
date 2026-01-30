@@ -262,9 +262,174 @@ function quickLogin(role) {
     App.handleLogin();
 }
 
+/**
+ * Landing Page Animations Module
+ * Handles scroll-triggered animations and counter effects
+ */
+const LandingAnimations = {
+    /**
+     * Initialize all landing page animations
+     */
+    init: () => {
+        // Check for reduced motion preference
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            // Still show elements, just without animation
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                el.classList.add('animated');
+            });
+            return;
+        }
+
+        LandingAnimations.setupScrollAnimations();
+        LandingAnimations.setupCounterAnimation();
+        LandingAnimations.addAnimationClasses();
+    },
+
+    /**
+     * Add animation classes to elements
+     */
+    addAnimationClasses: () => {
+        // About section - feature cards with staggered delays
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach((card, index) => {
+            card.classList.add('animate-on-scroll', `delay-${(index % 4) + 1}`);
+        });
+
+        // Competency cards with staggered delays
+        const competencyCards = document.querySelectorAll('.competency-card');
+        competencyCards.forEach((card, index) => {
+            card.classList.add('animate-on-scroll', `delay-${(index % 6) + 1}`);
+        });
+
+        // Visualization feature cards
+        const vizCards = document.querySelectorAll('.viz-feature-card');
+        vizCards.forEach((card, index) => {
+            card.classList.add('animate-on-scroll', `delay-${(index % 6) + 1}`);
+        });
+
+        // Section headers
+        const aboutHeader = document.querySelector('.about-header');
+        if (aboutHeader) aboutHeader.classList.add('animate-on-scroll', 'from-left');
+
+        const compHeader = document.querySelector('.competencies-header');
+        if (compHeader) compHeader.classList.add('animate-on-scroll', 'from-left');
+
+        const vizHeader = document.querySelector('.visualizations-header');
+        if (vizHeader) vizHeader.classList.add('animate-on-scroll', 'from-left');
+
+        // Weight legend items
+        const weightItems = document.querySelectorAll('.weight-item');
+        weightItems.forEach((item, index) => {
+            item.classList.add('animate-on-scroll', `delay-${index + 1}`);
+        });
+
+        // CTA sections
+        const visualizationsCta = document.querySelector('.visualizations-cta');
+        if (visualizationsCta) visualizationsCta.classList.add('animate-on-scroll');
+    },
+
+    /**
+     * Setup Intersection Observer for scroll-triggered animations
+     */
+    setupScrollAnimations: () => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -50px 0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    // Optionally unobserve after animation
+                    // observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements after a short delay to allow class additions
+        setTimeout(() => {
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        }, 100);
+    },
+
+    /**
+     * Setup counter animation for hero stats
+     */
+    setupCounterAnimation: () => {
+        const statNumbers = document.querySelectorAll('.hero-stat .stat-number');
+
+        const observerOptions = {
+            root: null,
+            threshold: 0.5
+        };
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = 'true';
+                    LandingAnimations.animateCounter(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        statNumbers.forEach(stat => {
+            counterObserver.observe(stat);
+        });
+    },
+
+    /**
+     * Animate a counter element
+     */
+    animateCounter: (element) => {
+        const text = element.textContent;
+        const hasPlus = text.includes('+');
+        const targetNumber = parseInt(text.replace(/\D/g, ''), 10);
+
+        if (isNaN(targetNumber)) return;
+
+        const duration = 1500; // 1.5 seconds
+        const steps = 30;
+        const stepDuration = duration / steps;
+        let currentStep = 0;
+
+        const easeOutQuad = (t) => t * (2 - t);
+
+        const updateCounter = () => {
+            currentStep++;
+            const progress = easeOutQuad(currentStep / steps);
+            const currentValue = Math.round(targetNumber * progress);
+
+            element.textContent = currentValue + (hasPlus ? '+' : '');
+            element.classList.add('counting');
+
+            setTimeout(() => {
+                element.classList.remove('counting');
+            }, 50);
+
+            if (currentStep < steps) {
+                setTimeout(updateCounter, stepDuration);
+            } else {
+                element.textContent = text; // Restore original text
+            }
+        };
+
+        // Start from 0
+        element.textContent = '0' + (hasPlus ? '+' : '');
+        setTimeout(updateCounter, stepDuration);
+    }
+};
+
 // Initialize app when DOM is ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', App.init);
+    document.addEventListener('DOMContentLoaded', () => {
+        LandingAnimations.init();
+        App.init();
+    });
 } else {
+    LandingAnimations.init();
     App.init();
 }
