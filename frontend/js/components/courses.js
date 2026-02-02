@@ -155,6 +155,11 @@ const CoursesModule = {
         if (typeof FilterModule !== 'undefined' && FilterModule.updateSimilarCourses) {
             FilterModule.updateSimilarCourses();
         }
+
+        // Update comparison button state
+        if (typeof ComparisonTool !== 'undefined') {
+            ComparisonTool.updateButtonState();
+        }
     },
 
     /**
@@ -171,6 +176,11 @@ const CoursesModule = {
         // Update similar courses display
         if (typeof FilterModule !== 'undefined' && FilterModule.updateSimilarCourses) {
             FilterModule.updateSimilarCourses();
+        }
+
+        // Update comparison button state
+        if (typeof ComparisonTool !== 'undefined') {
+            ComparisonTool.updateButtonState();
         }
     },
 

@@ -1,59 +1,6 @@
 /* Champlain College Academic Affairs - Utilities */
 /* Scrollbar, Loading States, Cards, Touch States */
 
-/* Theme Toggle Button */
-.theme-toggle {
-    background: rgba(255, 255, 255, 0.15);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.theme-toggle:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: scale(1.05);
-}
-
-.theme-toggle:active {
-    transform: scale(0.95);
-}
-
-.theme-toggle .icon-sun,
-.theme-toggle .icon-moon {
-    position: absolute;
-    transition: all 0.3s ease;
-}
-
-.theme-toggle .icon-sun {
-    opacity: 1;
-    transform: rotate(0deg);
-}
-
-.theme-toggle .icon-moon {
-    opacity: 0;
-    transform: rotate(-90deg);
-}
-
-[data-theme="dark"] .theme-toggle .icon-sun {
-    opacity: 0;
-    transform: rotate(90deg);
-}
-
-[data-theme="dark"] .theme-toggle .icon-moon {
-    opacity: 1;
-    transform: rotate(0deg);
-}
-
 /* Keyboard Shortcuts Help */
 .keyboard-shortcuts-hint {
     position: fixed;
@@ -415,5 +362,313 @@
     height: 100%;
     min-height: 700px; /* Increased from 600px to 700px */
     border-radius: 8px;
+}
+
+/* ==========================================
+   COURSE COMPARISON TOOL
+   ========================================== */
+
+.comparison-btn {
+    background: linear-gradient(135deg, var(--champlain-green) 0%, #5a9a3a 100%);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    width: 100%;
+    justify-content: center;
+}
+
+.comparison-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(116, 170, 80, 0.4);
+}
+
+.comparison-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.comparison-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--modal-overlay);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.comparison-modal.active {
+    display: flex;
+}
+
+.comparison-content {
+    background: white;
+    border-radius: 16px;
+    max-width: 1200px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.comparison-header {
+    padding: 20px 24px;
+    background: linear-gradient(135deg, var(--champlain-navy) 0%, var(--champlain-blue) 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comparison-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.comparison-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.comparison-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.comparison-body {
+    padding: 24px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.comparison-course {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px solid #e8eaf0;
+    transition: all 0.3s ease;
+}
+
+.comparison-course:hover {
+    border-color: var(--champlain-bright-blue);
+}
+
+.comparison-course-header {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e8eaf0;
+}
+
+.comparison-course-code {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--champlain-navy);
+    margin-bottom: 4px;
+}
+
+.comparison-course-name {
+    font-size: 14px;
+    color: #666;
+}
+
+.comparison-section {
+    margin-bottom: 16px;
+}
+
+.comparison-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--champlain-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.comparison-competency-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.comparison-competency-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: white;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.comparison-competency-name {
+    color: #333;
+    flex: 1;
+}
+
+.comparison-competency-weight {
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.weight-1 {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.weight-2 {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.weight-3 {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.comparison-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.comparison-stat {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.comparison-stat-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--champlain-navy);
+}
+
+.comparison-stat-label {
+    font-size: 11px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.comparison-empty {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+.comparison-empty-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+/* ==========================================
+   EXPORT BUTTONS
+   ========================================== */
+
+.export-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.export-btn {
+    background: linear-gradient(135deg, var(--champlain-blue) 0%, var(--champlain-bright-blue) 100%);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.export-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 169, 224, 0.4);
+}
+
+.export-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    min-width: 180px;
+    padding: 8px;
+    z-index: 100;
+    display: none;
+    margin-top: 8px;
+}
+
+.export-menu.active {
+    display: block;
+}
+
+.export-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-size: 14px;
+    color: #333;
+}
+
+.export-menu-item:hover {
+    background: #f0f4f8;
+}
+
+.export-menu-item .icon {
+    font-size: 18px;
+}
+
+.export-menu-item .label {
+    font-weight: 600;
+}
+
+.export-menu-item .desc {
+    font-size: 11px;
+    color: #666;
 }
 

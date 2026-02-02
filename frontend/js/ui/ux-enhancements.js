@@ -1,11 +1,10 @@
 /**
  * UX Enhancements Module
- * Handles dark mode, keyboard shortcuts, and recently viewed courses
+ * Handles keyboard shortcuts and recently viewed courses
  */
 
 const UXEnhancements = {
     // Storage keys
-    THEME_KEY: 'champlain-theme',
     RECENT_COURSES_KEY: 'champlain-recent-courses',
     MAX_RECENT_COURSES: 5,
 
@@ -13,64 +12,10 @@ const UXEnhancements = {
      * Initialize all UX enhancements
      */
     init: () => {
-        UXEnhancements.initThemeToggle();
         UXEnhancements.initKeyboardShortcuts();
         UXEnhancements.initRecentlyViewed();
         UXEnhancements.initShortcutsModal();
         console.log('UX Enhancements initialized');
-    },
-
-    // ==========================================
-    // THEME TOGGLE (Dark Mode)
-    // ==========================================
-
-    /**
-     * Initialize theme toggle functionality
-     */
-    initThemeToggle: () => {
-        // Load saved theme preference
-        const savedTheme = localStorage.getItem(UXEnhancements.THEME_KEY);
-        if (savedTheme) {
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        } else {
-            // Check system preference
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-        }
-
-        // Setup toggle button listener
-        const themeToggle = document.getElementById('themeToggle');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', UXEnhancements.toggleTheme);
-        }
-
-        // Listen for system theme changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            if (!localStorage.getItem(UXEnhancements.THEME_KEY)) {
-                document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-            }
-        });
-    },
-
-    /**
-     * Toggle between light and dark themes
-     */
-    toggleTheme: () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem(UXEnhancements.THEME_KEY, newTheme);
-
-        // Add a subtle animation feedback
-        const toggle = document.getElementById('themeToggle');
-        if (toggle) {
-            toggle.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-                toggle.style.transform = '';
-            }, 150);
-        }
     },
 
     // ==========================================
@@ -122,14 +67,6 @@ const UXEnhancements = {
                 UXEnhancements.closeShortcutsModal();
                 if (typeof ModalsModule !== 'undefined') {
                     ModalsModule.closeAllModals();
-                }
-                break;
-
-            case 'd':
-            case 'D':
-                // Toggle dark mode
-                if (!e.ctrlKey && !e.metaKey) {
-                    UXEnhancements.toggleTheme();
                 }
                 break;
 
