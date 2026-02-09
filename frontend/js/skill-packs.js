@@ -25,13 +25,24 @@ const SkillPacksModule = {
      * Initialize the skill packs module
      */
     init: async () => {
+        console.log('SkillPacksModule: Starting initialization...');
+
+        // Check if required DOM elements exist
+        const categoriesContainer = document.getElementById('interestCategories');
+        if (!categoriesContainer) {
+            console.log('SkillPacksModule: Categories container not found, skipping init');
+            return;
+        }
+
         try {
             await SkillPacksModule.loadSkillPacks();
+            console.log('SkillPacksModule: Loaded', SkillPacksModule.skillPacks.length, 'skill packs');
             SkillPacksModule.renderCategories();
             SkillPacksModule.setupEventListeners();
-            console.log('Skill Packs Module initialized');
+            SkillPacksModule.renderSkillPacks();
+            console.log('SkillPacksModule: Initialization complete');
         } catch (error) {
-            console.error('Failed to initialize Skill Packs Module:', error);
+            console.error('SkillPacksModule: Failed to initialize:', error);
         }
     },
 
@@ -41,10 +52,18 @@ const SkillPacksModule = {
     loadSkillPacks: async () => {
         try {
             const response = await fetch('data/skill_packs.json');
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
             const data = await response.json();
-            SkillPacksModule.skillPacks = data.skillPacks || [];
+            SkillPacksModule.skillPacks = data.skillPacks || data || [];
+
+            // Handle case where data might be the array directly
+            if (Array.isArray(data)) {
+                SkillPacksModule.skillPacks = data;
+            }
         } catch (error) {
-            console.error('Failed to load skill packs:', error);
+            console.error('SkillPacksModule: Failed to load skill packs:', error);
             SkillPacksModule.skillPacks = [];
         }
     },

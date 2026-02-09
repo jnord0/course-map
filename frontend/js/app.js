@@ -434,20 +434,17 @@ const LandingAnimations = {
 };
 
 // Initialize app when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        LandingAnimations.init();
-        UXEnhancements.init();
-        if (typeof SkillPacksModule !== 'undefined') {
-            SkillPacksModule.init();
-        }
-        App.init();
-    });
-} else {
+async function initializeApp() {
     LandingAnimations.init();
     UXEnhancements.init();
     if (typeof SkillPacksModule !== 'undefined') {
-        SkillPacksModule.init();
+        await SkillPacksModule.init();
     }
     App.init();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+    initializeApp();
 }
