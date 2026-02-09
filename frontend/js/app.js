@@ -438,10 +438,16 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         LandingAnimations.init();
         UXEnhancements.init();
+        if (typeof SkillPacksModule !== 'undefined') {
+            SkillPacksModule.init();
+        }
         App.init();
     });
 } else {
     LandingAnimations.init();
     UXEnhancements.init();
+    if (typeof SkillPacksModule !== 'undefined') {
+        SkillPacksModule.init();
+    }
     App.init();
 }

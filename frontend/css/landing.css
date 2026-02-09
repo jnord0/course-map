@@ -722,6 +722,331 @@
     box-shadow: 0 8px 25px rgba(0, 169, 224, 0.5);
 }
 
+/* ============================================
+   EXPLORE BY INTEREST / SKILL PACKS SECTION
+   ============================================ */
+
+.landing-discovery {
+    padding: 100px 40px;
+    background: linear-gradient(180deg, #f0f4f8 0%, #ffffff 100%);
+}
+
+.discovery-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.discovery-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.discovery-header h2 {
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--champlain-navy);
+    margin-bottom: 20px;
+}
+
+.discovery-header h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--champlain-bright-blue), var(--champlain-teal));
+    margin: 16px auto 0;
+    border-radius: 2px;
+}
+
+.discovery-header p {
+    font-size: 18px;
+    color: var(--champlain-gray);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* Interest Category Buttons */
+.interest-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.interest-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: white;
+    border: 2px solid #e0e5eb;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--champlain-navy);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.interest-btn:hover {
+    border-color: var(--champlain-bright-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 169, 224, 0.15);
+}
+
+.interest-btn.active {
+    background: linear-gradient(135deg, var(--champlain-navy) 0%, var(--champlain-blue) 100%);
+    border-color: var(--champlain-navy);
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 60, 95, 0.3);
+}
+
+.interest-btn svg {
+    flex-shrink: 0;
+}
+
+.interest-btn .count {
+    background: rgba(0, 169, 224, 0.15);
+    color: var(--champlain-bright-blue);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.interest-btn.active .count {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Skill Packs Container */
+.skill-packs-container {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e8eaf0;
+}
+
+.skill-packs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.skill-packs-header h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--champlain-navy);
+    margin: 0;
+}
+
+.skill-packs-filters {
+    display: flex;
+    gap: 8px;
+}
+
+.filter-chip {
+    padding: 8px 16px;
+    background: #f5f7fa;
+    border: 1px solid #e0e5eb;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--champlain-gray);
+    transition: all 0.2s ease;
+}
+
+.filter-chip:hover {
+    background: #e8eef4;
+    color: var(--champlain-navy);
+}
+
+.filter-chip.active {
+    background: var(--champlain-bright-blue);
+    border-color: var(--champlain-bright-blue);
+    color: white;
+}
+
+/* Skill Packs Grid */
+.skill-packs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    min-height: 200px;
+}
+
+.skill-packs-empty {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    color: var(--champlain-gray);
+    text-align: center;
+}
+
+.skill-packs-empty svg {
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.skill-packs-empty p {
+    font-size: 16px;
+    max-width: 300px;
+}
+
+/* Individual Skill Pack Card */
+.skill-pack-card {
+    background: #f8fafc;
+    border: 1px solid #e8eaf0;
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.skill-pack-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--champlain-bright-blue);
+}
+
+.skill-pack-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    width: fit-content;
+}
+
+.skill-pack-badge.open {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.skill-pack-badge.required {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.skill-pack-badge.choice {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.skill-pack-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--champlain-navy);
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+.skill-pack-program {
+    font-size: 13px;
+    color: var(--champlain-bright-blue);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.skill-pack-description {
+    font-size: 14px;
+    color: var(--champlain-gray);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.skill-pack-courses {
+    border-top: 1px solid #e8eaf0;
+    padding-top: 16px;
+    margin-top: auto;
+}
+
+.skill-pack-courses-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--champlain-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.skill-pack-course-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.skill-pack-course {
+    background: white;
+    border: 1px solid #e0e5eb;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--champlain-navy);
+}
+
+/* Discovery Section Responsive */
+@media (max-width: 768px) {
+    .landing-discovery {
+        padding: 60px 20px;
+    }
+
+    .discovery-header h2 {
+        font-size: 32px;
+    }
+
+    .interest-categories {
+        gap: 8px;
+    }
+
+    .interest-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .skill-packs-container {
+        padding: 20px;
+    }
+
+    .skill-packs-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .skill-packs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-packs-filters {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+}
+
 /* Footer */
 .landing-footer {
     background: linear-gradient(135deg, var(--champlain-navy) 0%, var(--champlain-dark-blue) 100%);

@@ -34,6 +34,7 @@
                     <a href="#about">About</a>
                     <a href="#competencies">Competencies</a>
                     <a href="#visualizations">Visualizations</a>
+                    <a href="#discover">Skill Packs</a>
                     <a href="#login">Sign In</a>
                 </div>
             </div>
@@ -352,6 +353,37 @@
                 <div class="visualizations-cta">
                     <p>Ready to explore your academic journey?</p>
                     <a href="#login" class="cta-button">Get Started</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Explore by Interest Section -->
+        <section class="landing-discovery" id="discover">
+            <div class="discovery-content">
+                <div class="discovery-header">
+                    <h2>Explore by Interest</h2>
+                    <p>Discover skill packs across different fields. Each pack bundles related courses to build expertise in a specific area.</p>
+                </div>
+
+                <div class="interest-categories" id="interestCategories">
+                    <!-- Categories will be populated by JavaScript -->
+                </div>
+
+                <div class="skill-packs-container" id="skillPacksContainer">
+                    <div class="skill-packs-header">
+                        <h3 id="selectedCategoryTitle">Select a category to explore</h3>
+                        <div class="skill-packs-filters">
+                            <button class="filter-chip active" data-filter="all">All Packs</button>
+                            <button class="filter-chip" data-filter="open">Open to All</button>
+                            <button class="filter-chip" data-filter="required">Program Required</button>
+                        </div>
+                    </div>
+                    <div class="skill-packs-grid" id="skillPacksGrid">
+                        <div class="skill-packs-empty">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-gray)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                            <p>Choose an interest category above to see available skill packs</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1809,6 +1841,7 @@
     <script src="js/ui/graphs.js"></script>
     <script src="js/ui/comparison-export.js"></script>
     <script src="js/ui/ux-enhancements.js"></script>
+    <script src="js/skill-packs.js"></script>
     <script src="js/mobile.js"></script>
     <script src="js/app.js"></script>
 </body>
