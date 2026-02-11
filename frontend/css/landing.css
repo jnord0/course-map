@@ -63,9 +63,9 @@
 /* Hero Section */
 .landing-hero {
     background: linear-gradient(135deg, #002A3A 0%, #003C5F 50%, #236192 100%);
-    padding: 140px 40px 80px;
+    padding: 140px 40px 60px;
     position: relative;
-    min-height: 100vh;
+    min-height: calc(100vh - 54px);
     display: flex;
     align-items: center;
 }

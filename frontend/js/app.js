@@ -1,5 +1,150 @@
 // Main Application Entry Point
 
+/**
+ * Dashboard Module
+ * Handles the post-login dashboard navigation page
+ */
+const Dashboard = {
+    /**
+     * Show the dashboard and configure role-based cards
+     */
+    show: (username) => {
+        const displayName = username.charAt(0).toUpperCase() + username.slice(1);
+        const role = StateGetters.getCurrentRole();
+
+        // Update dashboard header
+        document.getElementById('dashboardUser').textContent = displayName;
+        document.getElementById('dashboardRole').textContent = role;
+        document.getElementById('dashboardGreetName').textContent = displayName;
+
+        // Show/hide role-based cards
+        document.querySelectorAll('.dashboard-faculty-only').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.dashboard-admin-only').forEach(el => el.classList.add('hidden'));
+
+        if (Auth.isAdmin()) {
+            // Admins see both faculty and admin cards
+            document.querySelectorAll('.dashboard-faculty-only').forEach(el => el.classList.remove('hidden'));
+            document.querySelectorAll('.dashboard-admin-only').forEach(el => el.classList.remove('hidden'));
+        } else if (Auth.isFaculty()) {
+            document.querySelectorAll('.dashboard-faculty-only').forEach(el => el.classList.remove('hidden'));
+        }
+
+        // Transition pages
+        document.getElementById('loginPage').classList.add('hidden');
+        document.getElementById('mainApp').classList.add('hidden');
+        document.getElementById('dashboardPage').classList.remove('hidden');
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+
+    /**
+     * Navigate to the main app and optionally switch to a specific view
+     * @param {string} view - The view to activate (network, graphs, semester, skillpacks)
+     */
+    goToMainApp: (view) => {
+        document.getElementById('dashboardPage').classList.add('hidden');
+        document.getElementById('mainApp').classList.remove('hidden');
+
+        // Ensure main app is set up
+        if (!Dashboard._mainAppInitialized) {
+            App.setupRoleBasedAccess();
+            Dashboard._mainAppInitialized = true;
+        }
+
+        // Update the main app header info
+        const username = StateGetters.getCurrentUser();
+        if (username) {
+            document.getElementById('currentUser').textContent =
+                username.charAt(0).toUpperCase() + username.slice(1);
+            document.getElementById('currentRole').textContent = StateGetters.getCurrentRole();
+        }
+
+        // Initialize visualization if needed
+        setTimeout(() => {
+            if (typeof VisualizationModule !== 'undefined') {
+                VisualizationModule.init();
+            }
+
+            // Switch to the requested view
+            Dashboard._switchView(view);
+
+            // Initialize skill packs sidebar
+            if (typeof SkillPacksModule !== 'undefined') {
+                SkillPacksModule.initMainApp();
+            }
+
+            // Show keyboard shortcuts hint
+            if (typeof UXEnhancements !== 'undefined') {
+                UXEnhancements.showShortcutsHint();
+                UXEnhancements.renderRecentlyViewed();
+            }
+        }, 200);
+    },
+
+    /**
+     * Switch to a specific visualization view
+     */
+    _switchView: (view) => {
+        if (!view) return;
+
+        // Map dashboard sections to view button IDs
+        const viewMap = {
+            'network': 'networkViewBtn',
+            'graphs': 'graphsViewBtn',
+            'semester': 'semesterPlannerBtn',
+            'skillpacks': null // handled separately
+        };
+
+        const btnId = viewMap[view];
+        if (btnId) {
+            const btn = document.getElementById(btnId);
+            if (btn) btn.click();
+        }
+    },
+
+    /**
+     * Open proposal-related modals from dashboard
+     */
+    openProposals: () => {
+        Dashboard.goToMainApp('network');
+        // After main app loads, open proposal modal
+        setTimeout(() => {
+            if (Auth.isAdmin()) {
+                ProposalsModule.showReviewModal();
+            } else if (Auth.isFaculty()) {
+                ModalsModule.openProposalModal();
+            }
+        }, 400);
+    },
+
+    /**
+     * Open admin management from dashboard
+     */
+    openAdmin: () => {
+        Dashboard.goToMainApp('network');
+        // After main app loads, open manage modal
+        setTimeout(() => {
+            CoursesModule.showManageModal();
+        }, 400);
+    },
+
+    /**
+     * Go back to dashboard from main app
+     */
+    backToDashboard: () => {
+        document.getElementById('mainApp').classList.add('hidden');
+        document.getElementById('dashboardPage').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Hide keyboard shortcuts hint
+        if (typeof UXEnhancements !== 'undefined') {
+            UXEnhancements.hideShortcutsHint();
+        }
+    },
+
+    _mainAppInitialized: false
+};
+
 const App = {
     /**
      * Initialize the application
@@ -16,13 +161,14 @@ const App = {
         // Setup event listeners
         App.setupLoginListeners();
         App.setupModalListeners();
+        App.setupDashboardListeners();
 
         // Setup modal click-outside functionality
         ModalsModule.setupModalListeners();
 
         console.log('Application initialized successfully');
     },
-    
+
     /**
      * Setup login page event listeners
      */
@@ -30,66 +176,64 @@ const App = {
         const loginButton = document.getElementById('loginButton');
         const usernameInput = document.getElementById('username');
         const passwordInput = document.getElementById('password');
-        
+
         loginButton.addEventListener('click', App.handleLogin);
-        
+
         usernameInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') App.handleLogin();
         });
-        
+
         passwordInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') App.handleLogin();
         });
     },
-    
+
     /**
-     * Handle login
+     * Setup dashboard event listeners
+     */
+    setupDashboardListeners: () => {
+        const dashboardLogoutBtn = document.getElementById('dashboardLogoutBtn');
+        if (dashboardLogoutBtn) {
+            dashboardLogoutBtn.addEventListener('click', App.handleLogout);
+        }
+
+        const backBtn = document.getElementById('backToDashboardBtn');
+        if (backBtn) {
+            backBtn.addEventListener('click', Dashboard.backToDashboard);
+        }
+    },
+
+    /**
+     * Handle login - now goes to dashboard instead of main app
      */
     handleLogin: () => {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const errorDiv = document.getElementById('loginError');
-        
+
         const result = Auth.login(username, password);
-        
+
         if (result.success) {
-            document.getElementById('currentUser').textContent = 
-                username.charAt(0).toUpperCase() + username.slice(1);
-            document.getElementById('currentRole').textContent = StateGetters.getCurrentRole();
-            
-            App.setupRoleBasedAccess();
-            
-            document.getElementById('loginPage').classList.add('hidden');
-            document.getElementById('mainApp').classList.remove('hidden');
-
-            setTimeout(() => VisualizationModule.init(), 200);
-
-            // Show keyboard shortcuts hint and render recently viewed
-            if (typeof UXEnhancements !== 'undefined') {
-                UXEnhancements.showShortcutsHint();
-                UXEnhancements.renderRecentlyViewed();
-            }
-
-            // Initialize skill packs sidebar in main app
-            if (typeof SkillPacksModule !== 'undefined') {
-                SkillPacksModule.initMainApp();
-            }
-
+            Dashboard.show(username);
             errorDiv.textContent = '';
         } else {
             errorDiv.textContent = result.error;
         }
     },
-    
+
     /**
-     * Handle logout
+     * Handle logout - returns to landing page
      */
     handleLogout: () => {
         Auth.logout();
+        Dashboard._mainAppInitialized = false;
+
         document.getElementById('loginPage').classList.remove('hidden');
         document.getElementById('mainApp').classList.add('hidden');
+        document.getElementById('dashboardPage').classList.add('hidden');
         document.getElementById('username').value = '';
         document.getElementById('password').value = '';
+
         // Hide keyboard shortcuts hint
         if (typeof UXEnhancements !== 'undefined') {
             UXEnhancements.hideShortcutsHint();
@@ -97,21 +241,21 @@ const App = {
         // Scroll back to top of landing page
         window.scrollTo({ top: 0, behavior: 'smooth' });
     },
-    
+
     /**
      * Setup role-based access and UI
      */
     setupRoleBasedAccess: () => {
         document.getElementById('adminSection').classList.add('hidden');
         document.getElementById('facultySection').classList.add('hidden');
-        
+
         if (Auth.isAdmin()) {
             document.getElementById('adminSection').classList.remove('hidden');
             ProposalsModule.updatePendingBadge();
         } else if (Auth.isFaculty()) {
             document.getElementById('facultySection').classList.remove('hidden');
         }
-        
+
         // Always show competency tracker and course selection
         CoursesModule.updateAvailableCourses();
         CoursesModule.updateSelectedCourses();
@@ -132,13 +276,13 @@ const App = {
                 CoursesModule.updateAvailableCourses(e.target.value);
             });
         }
-        
+
         // Setup main app button listeners after login
         setTimeout(() => {
             App.setupMainAppListeners();
         }, 100);
     },
-    
+
     /**
      * Update system overview stats
      */
@@ -146,7 +290,7 @@ const App = {
         // Stats are now managed by individual modules (e.g., SemesterPlannerUI)
         // This function is kept for compatibility but no longer updates DOM directly
     },
-    
+
     /**
      * Setup main application event listeners
      */
@@ -156,22 +300,22 @@ const App = {
         if (logoutBtn) {
             logoutBtn.addEventListener('click', App.handleLogout);
         }
-        
+
         // Faculty buttons
         const submitProposalBtn = document.getElementById('submitProposalBtn');
         const myProposalsBtn = document.getElementById('myProposalsBtn');
-        
+
         if (submitProposalBtn) {
             submitProposalBtn.addEventListener('click', ModalsModule.openProposalModal);
         }
         if (myProposalsBtn) {
             myProposalsBtn.addEventListener('click', ProposalsModule.showMyProposals);
         }
-        
+
         // Admin buttons
         const reviewBtn = document.getElementById('reviewProposalsBtn');
         const manageBtn = document.getElementById('manageCoursesBtn');
-        
+
         if (reviewBtn) {
             reviewBtn.addEventListener('click', ProposalsModule.showReviewModal);
         }
@@ -192,7 +336,7 @@ const App = {
             SemesterPlannerUI.updateQuickView();
         }
     },
-    
+
     /**
      * Setup modal event listeners
      */
@@ -257,7 +401,7 @@ const App = {
         document.getElementById('addCourseBtn').addEventListener('click', () => {
             CoursesModule.showEditModal(null);
         });
-        
+
         // Form submissions
         document.getElementById('proposalForm').addEventListener('submit', ProposalsModule.submitProposal);
         document.getElementById('editCourseForm').addEventListener('submit', CoursesModule.saveCourse);
@@ -297,50 +441,6 @@ const LandingAnimations = {
 
         LandingAnimations.setupScrollAnimations();
         LandingAnimations.setupCounterAnimation();
-        LandingAnimations.addAnimationClasses();
-    },
-
-    /**
-     * Add animation classes to elements
-     */
-    addAnimationClasses: () => {
-        // About section - feature cards with staggered delays
-        const featureCards = document.querySelectorAll('.feature-card');
-        featureCards.forEach((card, index) => {
-            card.classList.add('animate-on-scroll', `delay-${(index % 4) + 1}`);
-        });
-
-        // Competency cards with staggered delays
-        const competencyCards = document.querySelectorAll('.competency-card');
-        competencyCards.forEach((card, index) => {
-            card.classList.add('animate-on-scroll', `delay-${(index % 6) + 1}`);
-        });
-
-        // Visualization feature cards
-        const vizCards = document.querySelectorAll('.viz-feature-card');
-        vizCards.forEach((card, index) => {
-            card.classList.add('animate-on-scroll', `delay-${(index % 6) + 1}`);
-        });
-
-        // Section headers
-        const aboutHeader = document.querySelector('.about-header');
-        if (aboutHeader) aboutHeader.classList.add('animate-on-scroll', 'from-left');
-
-        const compHeader = document.querySelector('.competencies-header');
-        if (compHeader) compHeader.classList.add('animate-on-scroll', 'from-left');
-
-        const vizHeader = document.querySelector('.visualizations-header');
-        if (vizHeader) vizHeader.classList.add('animate-on-scroll', 'from-left');
-
-        // Weight legend items
-        const weightItems = document.querySelectorAll('.weight-item');
-        weightItems.forEach((item, index) => {
-            item.classList.add('animate-on-scroll', `delay-${index + 1}`);
-        });
-
-        // CTA sections
-        const visualizationsCta = document.querySelector('.visualizations-cta');
-        if (visualizationsCta) visualizationsCta.classList.add('animate-on-scroll');
     },
 
     /**
@@ -357,8 +457,6 @@ const LandingAnimations = {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animated');
-                    // Optionally unobserve after animation
-                    // observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
