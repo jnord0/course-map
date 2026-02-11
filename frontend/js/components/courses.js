@@ -155,6 +155,16 @@ const CoursesModule = {
         if (typeof FilterModule !== 'undefined' && FilterModule.updateSimilarCourses) {
             FilterModule.updateSimilarCourses();
         }
+
+        // Update comparison button state
+        if (typeof ComparisonTool !== 'undefined') {
+            ComparisonTool.updateButtonState();
+        }
+
+        // Update skill packs sidebar
+        if (typeof SkillPacksModule !== 'undefined' && SkillPacksModule.updateSidebar) {
+            SkillPacksModule.updateSidebar();
+        }
     },
 
     /**
@@ -171,6 +181,16 @@ const CoursesModule = {
         // Update similar courses display
         if (typeof FilterModule !== 'undefined' && FilterModule.updateSimilarCourses) {
             FilterModule.updateSimilarCourses();
+        }
+
+        // Update comparison button state
+        if (typeof ComparisonTool !== 'undefined') {
+            ComparisonTool.updateButtonState();
+        }
+
+        // Update skill packs sidebar
+        if (typeof SkillPacksModule !== 'undefined' && SkillPacksModule.updateSidebar) {
+            SkillPacksModule.updateSidebar();
         }
     },
 

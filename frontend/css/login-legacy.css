@@ -1,0 +1,122 @@
+/* Champlain College Academic Affairs - Login Page (Legacy) */
+
+/* ============================================
+   ORIGINAL LOGIN PAGE STYLES (for reference)
+   ============================================ */
+
+/* Login Page (Legacy - kept for backward compatibility) */
+.login-page-old {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #002A3A 0%, #003C5F 50%, #236192 100%);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-card {
+    background: white;
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    z-index: 10;
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-title {
+    color: var(--champlain-navy);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.login-subtitle {
+    color: var(--champlain-gray);
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 15px;
+}
+
+.input-group {
+    margin-bottom: 24px;
+}
+
+.input-group label {
+    display: block;
+    color: var(--champlain-dark);
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #fafbfc;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--champlain-bright-blue);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(0, 169, 224, 0.1);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--champlain-bright-blue) 0%, var(--champlain-blue) 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 169, 224, 0.3);
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 169, 224, 0.4);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.login-info {
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--champlain-gray);
+    border-left: 4px solid var(--champlain-bright-blue);
+}
+
+.error-message {
+    color: #d32f2f;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+    padding: 12px;
+    background: #ffebee;
+    border-radius: 6px;
+    border-left: 4px solid #d32f2f;
+}
+

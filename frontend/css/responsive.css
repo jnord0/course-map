@@ -1,0 +1,453 @@
+/* Champlain College Academic Affairs - Responsive Styles */
+/* Mobile, Tablet, Print, Accessibility */
+
+/* Sidebar Overlay for Mobile */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    backdrop-filter: blur(2px);
+    animation: fadeIn 0.3s ease;
+}
+
+/* Touch-friendly button states */
+.touch-active {
+    transform: scale(0.95);
+    opacity: 0.8;
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 768px) {
+    .btn,
+    .action-btn,
+    .toggle-btn {
+        min-height: 48px;
+        padding: 14px 20px;
+        font-size: 16px;
+    }
+
+    .close-btn {
+        min-width: 48px;
+        min-height: 48px;
+    }
+
+    input,
+    textarea,
+    select {
+        min-height: 48px;
+        font-size: 16px !important; /* Prevent zoom on iOS */
+    }
+}
+
+/* Swipe Indicator for Modals */
+.swipe-indicator {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .swipe-indicator {
+        display: block;
+    }
+}
+
+/* Mobile Scroll Hint */
+.mobile-scroll-hint {
+    animation: pulse 2s infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 360px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Show mobile menu toggle */
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    /* Main container adjustments */
+    .main-container {
+        flex-direction: column;
+        position: relative;
+    }
+
+    /* Sidebar mobile behavior */
+    .sidebar {
+        position: fixed;
+        top: 73px;
+        left: 0;
+        width: 85%;
+        max-width: 320px;
+        height: calc(100vh - 73px);
+        border-right: 1px solid #e8eaf0;
+        border-bottom: none;
+        z-index: 100;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        background: white;
+        box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .sidebar.sidebar-open {
+        transform: translateX(0);
+    }
+
+    .sidebar.sidebar-closed {
+        transform: translateX(-100%);
+    }
+
+    .sidebar-overlay {
+        display: block;
+    }
+
+    /* Visualization container adjustments */
+    .viz-container {
+        padding: 15px;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .viz-header {
+        margin-bottom: 12px;
+    }
+
+    .viz-header h1 {
+        font-size: 20px;
+    }
+
+    .viz-header p {
+        font-size: 13px;
+    }
+
+    /* View toggle adjustments */
+    .view-toggle {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .toggle-btn {
+        flex: 1;
+        min-width: calc(50% - 4px);
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    /* Graph wrapper adjustments */
+    .graph-wrapper {
+        height: calc(100vh - 320px);
+        min-height: 400px;
+        padding: 15px;
+    }
+
+    /* Network graph responsive */
+    #networkGraph {
+        min-height: 400px;
+    }
+
+    /* Table responsive improvements */
+    .competency-table {
+        font-size: 11px;
+    }
+
+    .competency-table th,
+    .competency-table td {
+        padding: 10px 8px;
+    }
+
+    .competency-table th {
+        font-size: 10px;
+    }
+
+    .competency-table th:first-child {
+        min-width: 150px;
+    }
+
+    /* Improve horizontal scrolling on mobile */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Competency grid single column on mobile */
+    .competency-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Modal improvements for mobile */
+    .modal-content {
+        width: 95%;
+        margin: 20px auto;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modal-header {
+        padding: 20px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .modal-header h2 {
+        font-size: 20px;
+    }
+
+    .modal-body {
+        padding: 20px;
+        max-height: none;
+    }
+
+    /* Login card mobile */
+    .login-card {
+        padding: 30px 25px;
+        margin: 15px;
+    }
+
+    .login-title {
+        font-size: 26px;
+    }
+
+    /* Header mobile */
+    .header {
+        padding: 12px 15px;
+        flex-wrap: nowrap;
+    }
+
+    .logo-text {
+        font-size: 16px;
+        padding-left: 12px;
+    }
+
+    .logo-section img {
+        height: 40px !important;
+        margin-right: 10px !important;
+    }
+
+    .user-info {
+        gap: 8px;
+    }
+
+    .user-badge {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+
+    .logout-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    /* Stats grid mobile */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 18px;
+    }
+
+    .stat-value {
+        font-size: 32px;
+    }
+
+    /* Legend mobile */
+    .legend {
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .legend-item {
+        font-size: 12px;
+    }
+
+    /* Form improvements for mobile */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    /* Proposal cards mobile */
+    .proposal-card {
+        padding: 18px;
+    }
+
+    .proposal-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .proposal-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .action-btn {
+        width: 100%;
+    }
+
+    /* Course search items mobile */
+    .course-search-item {
+        padding: 12px;
+    }
+
+    .course-search-code {
+        font-size: 13px;
+    }
+
+    .course-search-name {
+        font-size: 12px;
+    }
+
+    /* Selected course items mobile */
+    .selected-course-item {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .remove-course-btn {
+        margin-left: auto;
+    }
+
+    /* Section spacing mobile */
+    .section {
+        padding: 18px;
+        margin-bottom: 18px;
+    }
+
+    .section h3 {
+        font-size: 15px;
+    }
+
+    /* Competency tracker mobile */
+    .competency-item {
+        font-size: 12px;
+    }
+
+    /* Filter panel mobile */
+    #filterPanel {
+        padding: 12px;
+    }
+
+    .filter-checkbox {
+        font-size: 11px;
+        padding: 8px 10px;
+    }
+
+    /* Pathway view mobile */
+    #pathwayGraphContainer {
+        flex-direction: column;
+    }
+
+    #pathwayGraphContainer > div {
+        min-width: 100%;
+    }
+
+    .pathway-box {
+        height: 300px !important;
+    }
+
+    /* Hide some elements on very small screens */
+    @media (max-width: 480px) {
+        .viz-header p {
+            display: none;
+        }
+
+        .user-badge {
+            display: none;
+        }
+
+        .logo-section img {
+            display: none !important;
+        }
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .sidebar {
+        width: 60%;
+        max-width: 280px;
+    }
+
+    .graph-wrapper {
+        height: calc(100vh - 200px);
+    }
+
+    .modal-content {
+        max-height: 85vh;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .header,
+    .sidebar,
+    .modal,
+    .btn,
+    .action-btn {
+        display: none;
+    }
+    
+    .viz-container {
+        padding: 0;
+    }
+    
+    .graph-wrapper {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+}
+
+/* Accessibility */
+.btn:focus,
+.action-btn:focus,
+.toggle-btn:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 3px solid var(--champlain-bright-blue);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .btn,
+    .action-btn {
+        border-width: 3px;
+    }
+    
+    .stat-card {
+        border: 2px solid white;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus visible for keyboard navigation */
+.btn:focus-visible,
+.action-btn:focus-visible,
+.course-search-item:focus-visible {
+    outline: 3px solid var(--champlain-bright-blue);
+    outline-offset: 3px;
+}
+

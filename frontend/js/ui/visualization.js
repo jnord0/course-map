@@ -83,7 +83,7 @@ const VisualizationModule = {
     toggleDiv.id = 'viewModeToggle';
     toggleDiv.style.cssText = `
         position: absolute;
-        top: 80px;
+        top: 10px;
         left: 20px;
         z-index: 1000;
         display: flex;
@@ -194,25 +194,28 @@ const VisualizationModule = {
     
     getCompetencyColor: (compId) => {
         const colors = {
-            // New competency IDs
-            'INQ': '#2196F3',
-            'INT': '#FF9800',
-            'GCU': '#00BCD4',
-            'ANL': '#FFC107',
-            'DEI': '#F44336',
-            'COM': '#4CAF50',
-            'COL': '#9C27B0',
-            'CRE': '#E91E63',
-            'ETH': '#795548',
-            'QNT': '#009688',
+            // 12 Core Competencies - Official Champlain Colors (from wedge icons)
+            'ANL': '#E52019',  // Analysis - Red
+            'COL': '#F7931E',  // Collaboration - Orange
+            'COM': '#FFDD00',  // Communication - Yellow
+            'CRE': '#C4D82D',  // Creativity - Lime
+            'DEI': '#5CB85C',  // Diversity, Equity & Inclusion - Green
+            'GCU': '#7CC9B5',  // Global & Cultural Understanding - Light Teal
+            'INL': '#00B5AD',  // Information Literacy - Teal
+            'INQ': '#3C8DAD',  // Inquiry - Steel Blue
+            'INT': '#7B4FD0',  // Integration - Purple
+            'QNT': '#D640A8',  // Quantitative Literacy - Magenta
+            'SCI': '#F799C0',  // Scientific Literacy - Pink
+            'TEC': '#A61C3C',  // Technology Literacy - Burgundy
             // Legacy competency IDs (for backward compatibility)
-            'communication': '#4CAF50',
-            'thinking': '#2196F3',
-            'learning': '#FF9800',
-            'collaboration': '#9C27B0',
-            'global': '#00BCD4',
-            'ethics': '#F44336',
-            'information': '#FFC107'
+            'communication': '#FFDD00',
+            'thinking': '#3C8DAD',
+            'learning': '#7B4FD0',
+            'collaboration': '#F7931E',
+            'global': '#7CC9B5',
+            'ethics': '#5CB85C',
+            'information': '#00B5AD',
+            'ETH': '#5CB85C'  // Ethical Reasoning (legacy, mapped to DEI color)
         };
         return colors[compId] || '#999';
     },
@@ -1290,7 +1293,12 @@ const VisualizationModule = {
     
     showCourseDetailsModal: (course) => {
         const competencies = StateGetters.getCompetencies();
-        
+
+        // Track recently viewed courses
+        if (typeof UXEnhancements !== 'undefined') {
+            UXEnhancements.addToRecentlyViewed(course.code, course.name);
+        }
+
         let modal = document.getElementById('courseDetailsModal');
         if (!modal) {
             modal = document.createElement('div');
@@ -1324,6 +1332,15 @@ const VisualizationModule = {
         const closNames = course.clos ? course.clos.join(', ') : 'Not specified';
         
         document.getElementById('courseDetailsBody').innerHTML = `
+            <!-- Breadcrumb Navigation -->
+            <nav style="margin-bottom: 16px; padding: 8px 12px; background: var(--bg-tertiary, #f8f9fa); border-radius: 8px; font-size: 13px;">
+                <span style="color: var(--text-secondary, #666);">Dashboard</span>
+                <span style="color: var(--text-tertiary, #999); margin: 0 8px;">›</span>
+                <span style="color: var(--text-secondary, #666);">Courses</span>
+                <span style="color: var(--text-tertiary, #999); margin: 0 8px;">›</span>
+                <span style="color: var(--champlain-blue); font-weight: 600;">${course.code}</span>
+            </nav>
+
             <div style="margin-bottom: 24px;">
                 <h3 style="color: var(--champlain-navy); margin-bottom: 4px; font-size: 26px; font-weight: bold;">
                     ${course.code}

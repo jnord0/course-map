@@ -1,0 +1,135 @@
+/* Champlain College Academic Affairs - Graph Chart Styles */
+/* Bar Charts, Pie Charts, Radar Charts */
+
+/* ============================================
+   COMPETENCY GRAPHS STYLES
+   ============================================ */
+
+/* Graph Type Toggle Buttons */
+.graph-type-btn {
+    transition: all 0.3s ease;
+}
+
+.graph-type-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.graph-type-btn.active {
+    box-shadow: 0 2px 8px rgba(0, 169, 224, 0.4);
+}
+
+/* Graph Chart Container */
+.graph-chart-container {
+    transition: opacity 0.3s ease;
+}
+
+.graph-chart-container.hidden {
+    display: none;
+}
+
+/* Graph Tooltip */
+.graph-tooltip {
+    line-height: 1.6;
+}
+
+.graph-tooltip strong {
+    color: #00A9E0;
+}
+
+/* SVG Elements */
+#barChart, #pieChart, #radarChart {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Bar Chart Specific */
+#barChart .bar {
+    transition: opacity 0.2s ease;
+}
+
+/* Pie Chart Specific */
+#pieChart .arc path {
+    transition: all 0.2s ease;
+}
+
+/* Radar Chart Specific */
+#radarChart circle,
+#radarChart line,
+#radarChart path {
+    transition: all 0.3s ease;
+}
+
+/* Course Summary Cards in Graphs */
+#graphsCourseList > div {
+    transition: all 0.2s ease;
+}
+
+#graphsCourseList > div:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Info Box Animation */
+#graphsInfoBox {
+    animation: slideInFromTop 0.5s ease;
+}
+
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Graph Styles */
+@media (max-width: 768px) {
+    #graphTypeToggle {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .graph-type-btn {
+        width: 100%;
+    }
+
+    #graphsContainer {
+        padding: 15px;
+    }
+
+    #barChart, #pieChart, #radarChart {
+        height: 400px !important;
+    }
+}
+
+/* Print Styles for Graphs */
+@media print {
+    .graph-type-btn {
+        display: none;
+    }
+
+    #graphsContainer {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
+
+/* Card elements */
+.section, .stat-card, .course-card, .proposal-card {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Input elements */
+input, textarea, select {
+    background: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--text-tertiary);
+}

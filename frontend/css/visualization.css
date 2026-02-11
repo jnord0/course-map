@@ -1,0 +1,315 @@
+/* Champlain College Academic Affairs - Visualization Styles */
+/* Network Graph, Tables, Charts, and View Toggle */
+
+/* Visualization Area */
+.viz-container {
+    flex: 1;
+    padding: 25px 35px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: calc(100vh - 73px);
+}
+
+.viz-header {
+    margin-bottom: 20px;
+    flex-shrink: 0;
+    background: white;
+    padding: 25px 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 60, 95, 0.08);
+}
+
+.viz-header h1 {
+    color: var(--champlain-navy);
+    font-size: 28px;
+    margin-bottom: 6px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--champlain-navy) 0%, var(--champlain-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.viz-header p {
+    color: #6c757d;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* View Toggle */
+.view-toggle {
+    display: flex;
+    gap: 0;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e8eef3 100%);
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: inset 0 2px 4px rgba(0, 60, 95, 0.08);
+    border: none;
+}
+
+.toggle-btn {
+    padding: 12px 28px;
+    border: none;
+    background: transparent;
+    color: #6c757d;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+    background: #f8f9fa;
+    color: var(--champlain-navy);
+}
+
+.toggle-btn.active {
+    background: linear-gradient(135deg, var(--champlain-bright-blue) 0%, var(--champlain-blue) 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 169, 224, 0.3);
+}
+
+.graph-wrapper {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(0, 60, 95, 0.1);
+    padding: 0;
+    height: calc(100vh - 250px);
+    min-height: 700px;
+    position: relative;
+    overflow: hidden;
+    border: none;
+}
+
+/* Ensure all view containers properly overlay and fill the space */
+.graph-wrapper > div {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: auto !important;
+    padding: 30px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+/* Hidden views should be completely removed from view */
+.graph-wrapper > div.hidden {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+}
+
+/* Visible views should be on top */
+.graph-wrapper > div:not(.hidden) {
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 10 !important;
+}
+
+.legend {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 12px;
+    border: 1px solid #e8eaf0;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--champlain-navy);
+    font-weight: 600;
+}
+
+.legend-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+}
+
+#networkView {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+#networkGraph {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+    border-radius: 8px;
+}
+
+/* Competency Table Styles */
+#tableView {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.table-container {
+    flex: 1;
+    overflow: auto;
+    border-radius: 8px;
+    border: 1px solid #e8eaf0;
+}
+
+.competency-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 13px;
+    min-width: 100%;
+}
+
+.competency-table thead {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(135deg, var(--champlain-navy) 0%, var(--champlain-blue) 100%);
+    color: white;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.competency-table th {
+    padding: 16px 12px;
+    text-align: left;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    background: var(--champlain-navy);
+}
+
+.competency-table th:first-child {
+    min-width: 200px;
+    position: sticky;
+    left: 0;
+    z-index: 11;
+    background: var(--champlain-navy);
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.competency-table td {
+    padding: 14px 12px;
+    border: 1px solid #e8eaf0;
+    text-align: center;
+    background: white;
+    white-space: nowrap;
+}
+
+.competency-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.competency-table tbody tr:hover {
+    background: #f8fbff;
+}
+
+.competency-table tbody tr:hover td {
+    background: #f8fbff;
+}
+
+.competency-table td:first-child {
+    text-align: left;
+    font-weight: 600;
+    color: var(--champlain-navy);
+    position: sticky;
+    left: 0;
+    background: white;
+    z-index: 5;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.competency-table tbody tr:hover td:first-child {
+    background: #f8fbff;
+}
+
+.competency-table tfoot {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    font-weight: bold;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    border-top: 3px solid var(--champlain-navy);
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.competency-table tfoot td {
+    padding: 16px 12px;
+    text-align: center;
+    border: 1px solid #e8eaf0;
+    font-size: 14px;
+    color: var(--champlain-navy);
+    font-weight: 700;
+    background: #f8f9fa;
+}
+
+.competency-table tfoot td.total-label {
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    position: sticky;
+    left: 0;
+    z-index: 11;
+    background: #f8f9fa;
+    border-right: 2px solid #e8eaf0;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.competency-table tfoot td.total-cell {
+    font-size: 16px;
+    color: var(--champlain-blue);
+    font-weight: 800;
+}
+
+.course-code-cell {
+    font-weight: bold;
+    color: var(--champlain-blue);
+    font-size: 13px;
+}
+
+.course-name-cell {
+    font-size: 11px;
+    color: #6c757d;
+    margin-top: 4px;
+    font-weight: 400;
+}
+
+.check-mark {
+    color: var(--champlain-green);
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.empty-table-message {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6c757d;
+    font-size: 16px;
+}

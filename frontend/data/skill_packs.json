@@ -1,0 +1,2453 @@
+{
+  "skillPacks": [
+    {
+      "skillPackTitle": "Fundamentals Art & Visual Storytelling",
+      "programCode": "ANIM",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Animation BFA",
+      "proposalLink": "1. Animation Program Modification New Model (Revised) FALL 2025",
+      "description": "The Foundation Skill Pack offers a thorough exploration of visual development and compositing artistry, encompassing critical techniques in figure drawing, concept art creation, and 3D animation compositing. Students commence with figure drawing fundamentals, familiarizing themselves with human anatomy, proportion, and gesture to build strong observational skills. In the Concept Art segment, students develop compelling visual narratives and character designs, emphasizing ideation, principles of design, and professional presentation techniques. The course culminates with compositing for 3D animation, where students acquire technical integration and artistic enhancement workflows, enabling them to produce polished, production-quality final compositions.",
+      "courses": [
+        {
+          "courseCode": "ART-125",
+          "courseTitle": "Figure Drawing I",
+          "prerequisites": "Game Art, Animation majors or ART-110"
+        },
+        {
+          "courseCode": "ART-105",
+          "courseTitle": "Concept Art",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "ANM-140",
+          "courseTitle": "Compositing & Visual Storytelling",
+          "prerequisites": "None"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "2D & 3D Animation Fundamentals",
+      "programCode": "ANIM",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Animation BFA",
+      "proposalLink": "1. Animation Program Modification New Model (Revised) FALL 2025",
+      "description": "Students will create 2D and 3D animated characters and assets by applying core animation principles, modeling and texturing techniques, and industry-standard workflows, gaining hands-on experience in storytelling, motion, and professional production processes.",
+      "courses": [
+        {
+          "courseCode": "ANM - 175",
+          "courseTitle": "3D Animation Fundamentals",
+          "prerequisites": "None Animation and Game Art students priority"
+        },
+        {
+          "courseCode": "MOD 100",
+          "courseTitle": "3D Modeling & Texturing Fundamentals",
+          "prerequisites": "None Animation and Game Art students priority"
+        },
+        {
+          "courseCode": "ANM - 114",
+          "courseTitle": "2D Animation fundamentals",
+          "prerequisites": "ART 125, ART 100"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Animation Workshops",
+      "programCode": "ANIM",
+      "skillPackType": "Program Required",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Animation BFA",
+      "proposalLink": "1. Animation Program Modification New Model (Revised) FALL 2025",
+      "description": "This three-course sequence guides students through a progressive journey in animation production, moving from exploratory learning to professional-level execution. Beginning with fundamental research and technique acquisition across the complete pipeline, from storyboarding and concept design through character animation, rigging, and post-production, students build core competencies through experimental projects. The sequence then advances to discovering specialized tools and advanced methodologies, where students identify opportunities to refine their craft and develop a distinctive creative voice. Finally, students synthesize their knowledge in a capstone production experience, creating industry-standard animation work that demonstrates mastery of collaboration, workflow management, and technical excellence across all production stages. This progression prepares students for seamless integration into professional animation studio environments.",
+      "courses": [
+        {
+          "courseCode": "ANM-222",
+          "courseTitle": "Animation Workshop I",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "ANM-333",
+          "courseTitle": "Animation Workshop II",
+          "prerequisites": "ANM-210"
+        },
+        {
+          "courseCode": "ANM-444",
+          "courseTitle": "Animation Workshop III",
+          "prerequisites": "ANM-310"
+        },
+        {
+          "courseCode": "CCC - 410ANM",
+          "courseTitle": "Animation Capstone (Production & Post Production Oriented)",
+          "prerequisites": "ANM-410"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "VFX & Digital Compositing for Animation",
+      "programCode": "ANIM",
+      "skillPackType": "Program Choice",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Animation BFA",
+      "proposalLink": "1. Animation Program Modification New Model (Revised) FALL 2025",
+      "description": "The VFX Compositing Skill Pack provides students with the expertise to integrate digital elements seamlessly into live-action and CG environments. Starting with compositing for 3D Animation, students learn industry-standard techniques for layering, color correction, keying, and visual integration using professional node based compositing software. In VFX Animation, they explore motion graphics, particle effects, and dynamic simulations to create stunning visual effects. Finally, Real-Time Animation introduces cutting-edge workflows for generating high-quality VFX in game engines and virtual production environments.",
+      "courses": [
+        {
+          "courseCode": "ANM-140",
+          "courseTitle": "Compositing for 3D Animation",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "ANM-240",
+          "courseTitle": "VFX Animation",
+          "prerequisites": "MOD 100 and ANM-175"
+        },
+        {
+          "courseCode": "ANM-400",
+          "courseTitle": "Animation & VFX Senior Portfolio",
+          "prerequisites": "Animation & Game Art, film, 90 credits complete"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "3D Design",
+      "programCode": "ANIM",
+      "skillPackType": "Program Choice",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Animation BFA",
+      "proposalLink": "1. Animation Program Modification New Model (Revised) FALL 2025",
+      "description": "The Modeling Skill Pack offers a thorough and foundational exploration of 3D asset creation, encompassing critical techniques in modeling, texturing, character development, and rendering. Students commence with an introductory focus on modeling and texturing, where they familiarize themselves with essential workflows for constructing and surfacing 3D objects. In the Character Modeling segment, students refine their craft by sculpting and optimizing detailed, animation-ready characters, with a particular emphasis on anatomical accuracy and topology. The course culminates with a study of 3D lighting and rendering, where students acquire knowledge in both artistic and cinematic lighting techniques, enabling them to produce visually compelling, production-quality renders.",
+      "courses": [
+        {
+          "courseCode": "MOD 245",
+          "courseTitle": "Character Modeling I",
+          "prerequisites": "C or better in MOD 100 - 3D Modeling & Texturing Foundation"
+        },
+        {
+          "courseCode": "ANM 220",
+          "courseTitle": "3D Lighting & Rendering",
+          "prerequisites": "MOD 100 - 3D Modeling & Texturing"
+        },
+        {
+          "courseCode": "ANM 400",
+          "courseTitle": "Animation Senior Portfolio",
+          "prerequisites": "Animation & Game Art, film, 90 credits completed"
+        },
+        {
+          "courseCode": "MOD 345",
+          "courseTitle": "Character Modeling II (Elective, not required)",
+          "prerequisites": "C or better in MOD 245"
+        },
+        {
+          "courseCode": "ANM 380",
+          "courseTitle": "Animation Advanced Seminar (Elective, not required)",
+          "prerequisites": "Animation & Game Art, # credits completed"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "2D Animation",
+      "programCode": "ANIM",
+      "skillPackType": "Program Choice",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Animation BFA",
+      "proposalLink": "1. Animation Program Modification New Model (Revised) FALL 2025",
+      "description": "The 2D Animation Skill Pack provides students with the core competencies necessary to effectively convey narratives through dynamic and expressive animation. The course begins with Storyboarding, where students acquire proficiency in visual storytelling, shot composition, and sequencing, enabling them to construct cohesive and compelling narrative frameworks. In the 2D Animation Principles segment, students develop a strong grasp of fundamental animation concepts, including timing, spacing, weight, and movement, applying industry-standard methodologies to create believable and fluid motion. The final stage, 2D Advanced Animation, challenges students to refine their craft through complex motion, character acting, storytelling, culminating in the creation of polished, industry-ready animations.",
+      "courses": [
+        {
+          "courseCode": "ANM - 200",
+          "courseTitle": "2D Animation I",
+          "prerequisites": "C or better in ANM 200 - 2D Animation Principles"
+        },
+        {
+          "courseCode": "ANM - 330",
+          "courseTitle": "2D Animation II",
+          "prerequisites": "C or better in ANM 300"
+        },
+        {
+          "courseCode": "ANM 400",
+          "courseTitle": "Animation Senior Portfolio",
+          "prerequisites": "Animation & Game Art, film, 90 credits completed"
+        },
+        {
+          "courseCode": "ANM 320",
+          "courseTitle": "Experimental Animation (Elective, not required)",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "ANM 360",
+          "courseTitle": "2D Animation Rigging and VFX (Elective, not required)",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "ANM 380",
+          "courseTitle": "Animation Advanced Seminar (Elective, not required)",
+          "prerequisites": "Animation & Game Art, # credits completed"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Calculus Techniques and Applications",
+      "programCode": "MATH",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Math & Data",
+      "programName": "Applied Mathematics BS",
+      "proposalLink": "Applied Mathematics B.S. - Program Modification - New Model 2025 (version 3.0)",
+      "description": "This skill pack equips students with tools for modeling and interpreting continuous systems—how things change, move, grow, and accumulate. Beyond mastering derivatives and integrals, students learn to analyze multi-dimensional systems and draw conclusions from complex functions that appear in physics, biology, economics, and beyond.",
+      "courses": [
+        {
+          "courseCode": "MTH-240",
+          "courseTitle": "Calculus II",
+          "prerequisites": "MTH-230"
+        },
+        {
+          "courseCode": "MTH-340",
+          "courseTitle": "Vector Calculus",
+          "prerequisites": "MTH-240"
+        },
+        {
+          "courseCode": "MTH-380",
+          "courseTitle": "Probability and Statistics",
+          "prerequisites": "MTH-240"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Discrete Math Techniques and Applications",
+      "programCode": "MATH",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Math & Data",
+      "programName": "Applied Mathematics BS",
+      "proposalLink": "Applied Mathematics B.S. - Program Modification - New Model 2025 (version 3.0)",
+      "description": "This pack focuses on the non-continuous side of mathematics, where reasoning, structure, and order matter most. Students explore systems made of discrete parts: logic, graphs, algorithms, matrices, and abstract geometry. This pack is foundational for students entering computing, cryptography, education, and any domain requiring precision and abstract thinking.",
+      "courses": [
+        {
+          "courseCode": "MTH-270",
+          "courseTitle": "Discrete Mathematics",
+          "prerequisites": "MTH-230"
+        },
+        {
+          "courseCode": "MTH-310",
+          "courseTitle": "Linear Algebra",
+          "prerequisites": "MTH-230"
+        },
+        {
+          "courseCode": "MTH-315",
+          "courseTitle": "Survey of Geometries",
+          "prerequisites": "MTH-270"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Numerical Methods and Computational Problem-Solving",
+      "programCode": "MATH",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Math & Data",
+      "programName": "Applied Mathematics BS",
+      "proposalLink": "Applied Mathematics B.S. - Program Modification - New Model 2025 (version 3.0)",
+      "description": "This skill pack develops the ability to translate mathematical problems into computational processes. Students learn how algorithms, iteration, and approximation can solve problems beyond the reach of exact methods. It's a bridge between pure math and practical application—critical for work in engineering, science, and data modeling.",
+      "courses": [
+        {
+          "courseCode": "MTH-275",
+          "courseTitle": "Mathematical Cryptography",
+          "prerequisites": "MTH-125, MTH-180, or MTH-230"
+        },
+        {
+          "courseCode": "MTH-350",
+          "courseTitle": "Numerical Methods",
+          "prerequisites": "MTH-240 or MTH-250"
+        },
+        {
+          "courseCode": "MTH-400",
+          "courseTitle": "MTH-400 Advanced Topics in Mathematics",
+          "prerequisites": "MTH-270"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Sustainability Policy, Justice and Action: Places and People",
+      "programCode": "ASUS",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Systems & Policy",
+      "programName": "Applied Sustainability BS",
+      "proposalLink": "Applied Sustainability Program Modification - New Academic Model - Spring 2025",
+      "description": "Students will actively engage in projects which integrate knowledge of environmental policy, sustainable development through project-based learning and begin to serve in an active role in shaping a more equitable and sustainable future using data, professional methodologies and fieldwork skills.",
+      "courses": [
+        {
+          "courseCode": "ASU-200",
+          "courseTitle": "Policy and Governance for Sustainability",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "ASU-310",
+          "courseTitle": "Equity, Justice and Sustainability",
+          "prerequisites": "30 credits"
+        },
+        {
+          "courseCode": "ASU-300",
+          "courseTitle": "Place-based Sustainability (Food Systems)",
+          "prerequisites": "30 credits"
+        },
+        {
+          "courseCode": "ASU-100",
+          "courseTitle": "Introduction to Sustainability",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "ASU-450",
+          "courseTitle": "Decision-Making for Sustainability",
+          "prerequisites": "60 credits"
+        },
+        {
+          "courseCode": "ASU-410",
+          "courseTitle": "Ecological Economics",
+          "prerequisites": "60 credits"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "The Science of Sustainability",
+      "programCode": "ASUS",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Systems & Policy",
+      "programName": "Applied Sustainability BS",
+      "proposalLink": "Applied Sustainability Program Modification - New Academic Model - Spring 2025",
+      "description": "Through scientific method, practice and application, students will use scientific discovery to understand the role of human influence in ecosystems and wildlife conservation, promote ethical and equitable conservation practices and present scientific findings and ecological research in clear, effective written and oral formats, targeted to diverse audiences including policymakers, stakeholders, and the general public.",
+      "courses": [
+        {
+          "courseCode": "SCI-210",
+          "courseTitle": "Foundations of Ecology",
+          "prerequisites": "SCI 150"
+        },
+        {
+          "courseCode": "ASU-350",
+          "courseTitle": "Sustainability Science (formerly SCI 310)",
+          "prerequisites": "SCI 150 or relevant science course"
+        },
+        {
+          "courseCode": "ASU-330",
+          "courseTitle": "Environmental Field Methods: (insert theme)",
+          "prerequisites": "None"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Foundations of Business",
+      "programCode": "BSBA, GMBP, GPMG",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Business, Management & Marketing",
+      "programName": "Business Administration BSBA, Game Business & Publishing, Game Production Management",
+      "proposalLink": "BSBA - Program Modification - New Model Spring 2025 rev2025-09",
+      "description": "These courses provide a comprehensive foundation in business by fostering an entrepreneurial mindset, developing human-centered leadership skills, and applying core marketing principles to create ethical and market-driven solutions in real-world contexts.",
+      "courses": [
+        {
+          "courseCode": "BUS-110",
+          "courseTitle": "Exploring Business Principles",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "BUS-125",
+          "courseTitle": "Leading to Succeed: Human-Centered Leadership & Business Done Better",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "MKT-110",
+          "courseTitle": "Marketing Fundamentals",
+          "prerequisites": "None"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "The Data-Driven Advantage: Finance, Economics & Business Analytics",
+      "programCode": "BSBA, GMBP, GPMG",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Business, Management & Marketing",
+      "programName": "Business Administration BSBA, Game Business & Publishing, Game Production Management",
+      "proposalLink": "BSBA - Program Modification - New Model Spring 2025 rev2025-09",
+      "description": "Through case study analysis, quantitative exercises, and hands-on activities, students will develop an understanding of accounting and finance the economic context of businesses. Students will explore using data to make informed business decisions.",
+      "courses": [
+        {
+          "courseCode": "BUS-112",
+          "courseTitle": "Financial Concepts for Organizations OR Financial Language of Business",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "MGT-150",
+          "courseTitle": "Exploring Analytics",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "ECN-255",
+          "courseTitle": "Managerial Economics",
+          "prerequisites": "None"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Succeeding in a Global Economy",
+      "programCode": "BSBA",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Business, Management & Marketing",
+      "programName": "Business Administration BSBA",
+      "proposalLink": "BSBA - Program Modification - New Model Spring 2025 rev2025-09",
+      "description": "Through hands-on activities, team-based and individual projects, case study analysis, and reflection, students will understand and develop their strengths, emotional intelligence, leadership, and management skills to work effectively in today’s global business environment across different cultures, political/legal systems, socio-economic realities, and financial markets.",
+      "courses": [
+        {
+          "courseCode": "BUS 310",
+          "courseTitle": "International Business & Macroeconomics",
+          "prerequisites": "24 credits"
+        },
+        {
+          "courseCode": "MGT-260",
+          "courseTitle": "Principles of Project Management",
+          "prerequisites": "24 credits ?"
+        },
+        {
+          "courseCode": "MGT-xxx",
+          "courseTitle": "High-Impact Teams: Managing People & Driving Success in a Changing World",
+          "prerequisites": "BUS-125"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Foundations for Cybersecurity and Digital Forensics",
+      "programCode": "DIGF, CNCS",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Cybersecurity & Forensics",
+      "programName": "Computer Networking & Cybersecurity BS, Computer and Digital Forensics BS",
+      "proposalLink": "CNCS B.S. Program Modification New Model Spring 2025",
+      "description": "This skillpack introduces foundational concepts in systems, networking, and cybersecurity, providing the building blocks for a career in cybersecurity.",
+      "courses": [
+        {
+          "courseCode": "SEC-110",
+          "courseTitle": "Cybersecurity and Digital Investigation Fundamentals",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "SYS-140",
+          "courseTitle": "Operating Systems Fundamentals",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "NET-150",
+          "courseTitle": "Network Fundamentals",
+          "prerequisites": "None"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Networking and System Security",
+      "programCode": "CNCS",
+      "skillPackType": "Program Required",
+      "interestCategory": "Cybersecurity & Forensics",
+      "programName": "Computer Networking & Cybersecurity BS",
+      "proposalLink": "CNCS B.S. Program Modification New Model Spring 2025",
+      "description": "Students will develop skills in network implementations, system administration, and enterprise-level infrastructure management, enabling them to configure, troubleshoot, and secure complex IT systems in professional settings.",
+      "courses": [
+        {
+          "courseCode": "NET-215",
+          "courseTitle": "Network Protocols",
+          "prerequisites": "NET-150"
+        },
+        {
+          "courseCode": "SEC-255",
+          "courseTitle": "Sys Admin 1",
+          "prerequisites": "SYS-140"
+        },
+        {
+          "courseCode": "SYS-265",
+          "courseTitle": "Sys Admin 2",
+          "prerequisites": "SYS-255"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Advanced Systems and Web Security",
+      "programCode": "CNCS",
+      "skillPackType": "Program Required",
+      "interestCategory": "Cybersecurity & Forensics",
+      "programName": "Computer Networking & Cybersecurity BS",
+      "proposalLink": "CNCS B.S. Program Modification New Model Spring 2025",
+      "description": "This skillpack focuses on advanced system administration, scripting, automation, and securing web systems to meet modern cybersecurity challenges",
+      "courses": [
+        {
+          "courseCode": "SEC-250",
+          "courseTitle": "Cybersecurity principles for risk management and advanced defense.",
+          "prerequisites": "SEC-110"
+        },
+        {
+          "courseCode": "SEC-260",
+          "courseTitle": "Web System Security",
+          "prerequisites": "SYS-250"
+        },
+        {
+          "courseCode": "SYS-320",
+          "courseTitle": "Scripting and Automation",
+          "prerequisites": "SYS-255 or CSI-xxx"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Enterprise Threat Management",
+      "programCode": "CNCS",
+      "skillPackType": "Program Required",
+      "interestCategory": "Cybersecurity & Forensics",
+      "programName": "Computer Networking & Cybersecurity BS",
+      "proposalLink": "CNCS B.S. Program Modification New Model Spring 2025",
+      "description": "This skillpack provides expertise in securing enterprise environments through threat hunting, information assurance, and implementing robust security controls.",
+      "courses": [
+        {
+          "courseCode": "SEC-345",
+          "courseTitle": "Information Assurance",
+          "prerequisites": "SEC-250"
+        },
+        {
+          "courseCode": "SEC-350",
+          "courseTitle": "Enterprise Security Controls",
+          "prerequisites": "NET-215 + SYS-255"
+        },
+        {
+          "courseCode": "SEC-440/FOR-440",
+          "courseTitle": "Threat Hunting",
+          "prerequisites": "SEC-350 or FOR?"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Intermediate Digital Investigations",
+      "programCode": "DIGF",
+      "skillPackType": "Program Required",
+      "interestCategory": "Cybersecurity & Forensics",
+      "programName": "Computer and Digital Forensics BS",
+      "proposalLink": "Digital Forensics Program Modification New Model Spring 2025",
+      "description": "Equips students with a comprehensive foundation in digital forensics, covering evidence identification, preservation, analysis, and reporting across key domains, including civil and criminal investigations, Windows artifact analysis, and mobile device forensics. Students will use industry-standard tools and forensic methodologies to interpret digital evidence, reconstruct system activity, and produce detailed investigative reports.",
+      "courses": [
+        {
+          "courseCode": "FOR-120",
+          "courseTitle": "Digital Forensics Analysis",
+          "prerequisites": "FOR-100"
+        },
+        {
+          "courseCode": "FOR-230",
+          "courseTitle": "OS Forensics I",
+          "prerequisites": "FOR-120"
+        },
+        {
+          "courseCode": "FOR-240",
+          "courseTitle": "Mobile Forensics",
+          "prerequisites": "FOR-120"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Cyber Defense and Forensic Investigations",
+      "programCode": "DIGF",
+      "skillPackType": "Program Required",
+      "interestCategory": "Cybersecurity & Forensics",
+      "programName": "Computer and Digital Forensics BS",
+      "proposalLink": "Digital Forensics Program Modification New Model Spring 2025",
+      "description": "This skill pack integrates advanced cybersecurity risk management and defense strategies with comprehensive digital forensic techniques, enabling students to analyze operating system artifacts across Linux, Mac, and Windows to reconstruct digital timelines, while also developing expertise in malware behavior analysis, detection evasion, and incident response.",
+      "courses": [
+        {
+          "courseCode": "SEC-250",
+          "courseTitle": "Computer and Network Security",
+          "prerequisites": "SEC-110"
+        },
+        {
+          "courseCode": "FOR-330",
+          "courseTitle": "OS Forensics II",
+          "prerequisites": "FOR-230"
+        },
+        {
+          "courseCode": "FOR-350",
+          "courseTitle": "Malware Analysis and Incident Response",
+          "prerequisites": "FOR-230"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Enterprise Digital Forensics and Threat Hunting",
+      "programCode": "DIGF",
+      "skillPackType": "Program Required",
+      "interestCategory": "Cybersecurity & Forensics",
+      "programName": "Computer and Digital Forensics BS",
+      "proposalLink": "Digital Forensics Program Modification New Model Spring 2025",
+      "description": "This skill pack integrates comprehensive digital forensics competencies, combining the analysis of disks, volumes, and file systems with practical, real-world case investigations and network forensics techniques for threat detection and mitigation.",
+      "courses": [
+        {
+          "courseCode": "FOR-370",
+          "courseTitle": "File System Forensics",
+          "prerequisites": "FOR-230 or any intro level programming class (CSI-1xx)"
+        },
+        {
+          "courseCode": "FOR-480",
+          "courseTitle": "Forensics Practicum",
+          "prerequisites": "FOR-230"
+        },
+        {
+          "courseCode": "SEC-440/FOR-440",
+          "courseTitle": "Threat Hunting",
+          "prerequisites": "FOR-350 or SEC-350"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Basics of Computer Science",
+      "programCode": "CSIN, GPRO",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Computer Science & Systems",
+      "programName": "Computer Science & Innovation BS, Game Programming BS",
+      "proposalLink": "Computer Science B.S. - Program Modification - New Model 2025",
+      "description": "",
+      "courses": [
+        {
+          "courseCode": "CSI 140",
+          "courseTitle": "Introduction to Programming",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "CSI 240",
+          "courseTitle": "Advanced Programming",
+          "prerequisites": "CSI 140 with a Grade of C or Better"
+        },
+        {
+          "courseCode": "CSI 281",
+          "courseTitle": "Data Structures & Algorithms",
+          "prerequisites": "CSI 240 with a Grade of C or Better"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Intermediate Computer Science",
+      "programCode": "CSIN, GPRO",
+      "skillPackType": "Program Required",
+      "interestCategory": "Computer Science & Systems",
+      "programName": "Computer Science & Innovation BS, Game Programming BS",
+      "proposalLink": "Computer Science B.S. - Program Modification - New Model 2025",
+      "description": "Builds off the knowledge gained in the Basics of Computer Science Skill pack and MTH-230 (Calculus I); shared with GPR",
+      "courses": [
+        {
+          "courseCode": "MTH-270",
+          "courseTitle": "Discrete Math",
+          "prerequisites": "MTH-230 (Calculus I)"
+        },
+        {
+          "courseCode": "CSI-275",
+          "courseTitle": "Network Programming",
+          "prerequisites": "CSI-240 (Advanced Programming) C or better grade"
+        },
+        {
+          "courseCode": "GPR-200",
+          "courseTitle": "Introduction to Computer Graphics",
+          "prerequisites": "CSI-240 (Advanced Programming) C or better grade"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Essential Computer Science Subdisciplines",
+      "programCode": "CSIN",
+      "skillPackType": "Program Required",
+      "interestCategory": "Computer Science & Systems",
+      "programName": "Computer Science & Innovation BS, Game Programming BS",
+      "proposalLink": "Computer Science B.S. - Program Modification - New Model 2025",
+      "description": "These courses cover database management systems, programming language theory and applied practice, as well as computer architecture.",
+      "courses": [
+        {
+          "courseCode": "CSI 300",
+          "courseTitle": "Database Management Systems",
+          "prerequisites": "CSI 281 with a C or Better"
+        },
+        {
+          "courseCode": "CSI 370",
+          "courseTitle": "Computer Architecture",
+          "prerequisites": "CSI 281 with a C or Better"
+        },
+        {
+          "courseCode": "CSI 380",
+          "courseTitle": "Emerging Languages",
+          "prerequisites": "CSI 281 with a C or Better"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Artificial Intelligence and Software Engineering",
+      "programCode": "CSIN",
+      "skillPackType": "Program Required",
+      "interestCategory": "Computer Science & Systems",
+      "programName": "Computer Science & Innovation BS, Game Programming BS",
+      "proposalLink": "Computer Science B.S. - Program Modification - New Model 2025",
+      "description": "Students will learn to design robust software using foundational design patterns and apply core artificial intelligence and machine learning algorithms—from classic approaches to neural networks—to analyze problems and build intelligent systems.",
+      "courses": [
+        {
+          "courseCode": "CSI 340",
+          "courseTitle": "Software Design Patterns",
+          "prerequisites": "CSI 281 with Grade of C or Better"
+        },
+        {
+          "courseCode": "CSI 480",
+          "courseTitle": "Introduction to Artificial Intelligence",
+          "prerequisites": "CSI 281 with Grade of C or Better"
+        },
+        {
+          "courseCode": "DAT 410",
+          "courseTitle": "Machine Learning",
+          "prerequisites": "CSI 281 with Grade of C or Better"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Artistic Process",
+      "programCode": "CREM",
+      "skillPackType": "Program Required",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Creative Media BFA",
+      "proposalLink": "REVISED-9-10-25-Creative Media BFA - Program Modification - New Model 2025",
+      "description": "Students will be able to articulate and apply various creative methods as they pertain to artistic inquiry and artistic production. Methods to include processes and techniques such as ideation, iteration, critique, chance operations and working in series, as well as lenses such as media specificity, genre awareness, body of work.",
+      "courses": [
+        {
+          "courseCode": "CRE-100",
+          "courseTitle": "Making Art: Process",
+          "prerequisites": "Creative Studio majors or perm"
+        },
+        {
+          "courseCode": "CRE-250",
+          "courseTitle": "Creative Media Projects",
+          "prerequisites": "CRE 100. Other Creative Studio, GAA, GMS or GMD students with 27+ credits"
+        },
+        {
+          "courseCode": "CRE-400",
+          "courseTitle": "Professional Practices",
+          "prerequisites": "CREM students with 87+ credits)"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Creative Media Foundations",
+      "programCode": "CREM",
+      "skillPackType": "Program Required",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Creative Media BFA",
+      "proposalLink": "REVISED-9-10-25-Creative Media BFA - Program Modification - New Model 2025",
+      "description": "This skillpack provides a grounding in art and media analysis through theoretical, critical and ethical approaches to art and aesthetics. Questions explored include: How have the creations of artists and media makers shaped the culture in which we live? How do the narratives, images, and experiences of fine art and popular media help us understand, describe and interpret the world? What opportunities are there today for artists to make an impact and contribute to social discourse?",
+      "courses": [
+        {
+          "courseCode": "GDV 203 OR FLM 110 OR ANM 175",
+          "courseTitle": "Form & Motion OR Intro to Filmmaking OR Intro to Animation",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "One of the courses above OR SON 120 OR WRT 120 OR UXD 100",
+          "courseTitle": "Intro to Digital Music, Intro to Creative Writing, Intro to Interaction Design",
+          "prerequisites": "None"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Artistic Inquiry",
+      "programCode": "CREM",
+      "skillPackType": "Program Required",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Creative Media BFA",
+      "proposalLink": "REVISED-9-10-25-Creative Media BFA - Program Modification - New Model 2025",
+      "description": "Students will be able to draw upon their art/media production skills, their experience with artistic process and their general education learning to explore of an idea, theme or issue through their creative work.",
+      "courses": [
+        {
+          "courseCode": "CRE-125",
+          "courseTitle": "Integrated Studio Foundations",
+          "prerequisites": "first & second year Creative Studio students only (or by permission)"
+        },
+        {
+          "courseCode": "CRE-310",
+          "courseTitle": "Art & Global Perspectives",
+          "prerequisites": "57 credits"
+        },
+        {
+          "courseCode": "CRE-350",
+          "courseTitle": "Creative Media Advanced Studio",
+          "prerequisites": "Creative Media students: CRE 250. Other Creative Studio, GAA, GMS or GMD students with 57+ credits"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Sociological Perspectives on Crime",
+      "programCode": "CCRJ",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Psychology & Criminology",
+      "programName": "Criminology & Criminal Justice BS",
+      "proposalLink": "Criminology & Criminal Justice B.S. Program Modification",
+      "description": "Students will analyze sociological theories and case studies of deviance and crime, critique media portrayals of crime, and compare global social control systems through case studies, media analysis, and cross-cultural research.",
+      "courses": [
+        {
+          "courseCode": "CRJ-100",
+          "courseTitle": "Social Deviance and Crime",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "CRJ-130",
+          "courseTitle": "Crime and Media",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "CRJ-XXX",
+          "courseTitle": "Comparative Systems of Social Control",
+          "prerequisites": "None"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "U.S. Law, Policy and Reform",
+      "programCode": "CCRJ",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Systems & Policy",
+      "programName": "Criminology & Criminal Justice BS",
+      "proposalLink": "Criminology & Criminal Justice B.S. Program Modification",
+      "description": "Students will analyze legal case law, engage in policy debates, and evaluate and develop reform strategies through mock trials, case studies, and policy analysis.",
+      "courses": [
+        {
+          "courseCode": "CRJ-125",
+          "courseTitle": "Criminal Law and Procedure",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "CRJ-XXX",
+          "courseTitle": "Technology, Surveillance, and Civil Rights and Liberties",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "CRJ-450",
+          "courseTitle": "Reform and Federal Crime Policy",
+          "prerequisites": "None"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Applied Criminology",
+      "programCode": "CCRJ",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Psychology & Criminology",
+      "programName": "Criminology & Criminal Justice BS",
+      "proposalLink": "Criminology & Criminal Justice B.S. Program Modification",
+      "description": "Students will examine theories of behavior labeled in the U.S. as “criminal,” crime patterns, victim experiences, and justice system responses by applying criminological theories, conducting research, and analyzing crime data using real-world case studies and statistical methods.",
+      "courses": [
+        {
+          "courseCode": "CRJ-250",
+          "courseTitle": "Criminology",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "CRJ-265",
+          "courseTitle": "Victimology",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "RSH-3XX",
+          "courseTitle": "Quantitative Research Methods",
+          "prerequisites": "24 completed credits and MTH-180"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Investigating Tech Crimes",
+      "programCode": "CCRJ",
+      "skillPackType": "Open to All",
+      "interestCategory": "Psychology & Criminology",
+      "programName": "Criminology & Criminal Justice BS",
+      "proposalLink": "",
+      "description": "Students will analyze legal principles, investigative techniques, and procedural rules related to technology-facilitated crimes, focusing on criminal law, digital evidence collection, and white-collar crime investigations.",
+      "courses": [
+        {
+          "courseCode": "CRJ-120",
+          "courseTitle": "Criminal Law and Procedure",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "CRJ-225",
+          "courseTitle": "Law of Digital Evidence",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "CRJ-255",
+          "courseTitle": "White Collar Crime",
+          "prerequisites": "None"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Analyzing Data",
+      "programCode": "DHMS",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Math & Data",
+      "programName": "Digital Humanities BS",
+      "proposalLink": "DIGITAL HUMANITIES - Program Modification New Model Spring 2025",
+      "description": "This skillpack is focused on data analysis. Students begin with Python, and then focus on fundamentals of data analysis. Depending on course availability and prerequisites, they can choose to dig deeper into data visualization or data mining.",
+      "courses": [
+        {
+          "courseCode": "CSI 160",
+          "courseTitle": "Python Programming",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "DAT 210",
+          "courseTitle": "Introduction to Data Analytics",
+          "prerequisites": "CSI-160 (or any programming course) and MTH-180"
+        },
+        {
+          "courseCode": "DAT 230 OR DAT 330",
+          "courseTitle": "Data Visualization OR Data Mining",
+          "prerequisites": "none for DAT 230; DAT 210 is a pre-req for DAT 330"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Ethical AI",
+      "programCode": "DHMS",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Systems & Policy",
+      "programName": "Digital Humanities BS",
+      "proposalLink": "DIGITAL HUMANITIES - Program Modification New Model Spring 2025",
+      "description": "The “Ethical AI” skillpack focuses on the contexts, ethical frameworks, and many applications of AI in public and private sectors. Students will learn through the combination of cultural analysis, case studies, and applied projects focused on the ethical integration of AI into organizations and institutions.",
+      "courses": [
+        {
+          "courseCode": "DHS 2xx",
+          "courseTitle": "Digital Humanities",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "DHS 3xx",
+          "courseTitle": "Applied AI Ethics",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "DHS 4xx",
+          "courseTitle": "Designing Digital Futures",
+          "prerequisites": "none"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Foundations of Education",
+      "programCode": "EDUC",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Human Systems",
+      "programName": "Education BS",
+      "proposalLink": "V2 REVISED Education B.S. - Program Modification - New Model Revised 2025",
+      "description": "Foundations of education refer to the underlying principles, theories, and historical, philosophical, psychological, and sociological factors that shape the development and practice of teaching and learning",
+      "courses": [
+        {
+          "courseCode": "EDU 110",
+          "courseTitle": "Foundations of Learning and Teaching",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "EDU 223",
+          "courseTitle": "Teaching Diverse Learners in an Inclusive Classroom",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "SWK 235",
+          "courseTitle": "Human Behavior and Development",
+          "prerequisites": "None"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Instructional Practice",
+      "programCode": "EDUC",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Human Systems",
+      "programName": "Education BS",
+      "proposalLink": "V2 REVISED Education B.S. - Program Modification - New Model Revised 2025",
+      "description": "Instructional practice involves the strategies, methods, and techniques teachers use to facilitate student learning and help them achieve educational goals.",
+      "courses": [
+        {
+          "courseCode": "EDU 265",
+          "courseTitle": "Literacy and Language Development",
+          "prerequisites": "EDU 110"
+        },
+        {
+          "courseCode": "EDU 2XX",
+          "courseTitle": "Unit Planning and AssessmentPracticum Experiences",
+          "prerequisites": "EDU 110"
+        },
+        {
+          "courseCode": "EDU 425",
+          "courseTitle": "Reflective Practices in Education",
+          "prerequisites": "EDU 110"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Elementary and Early Childhood Math and Science",
+      "programCode": "EDUC",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Human Systems",
+      "programName": "Education BS",
+      "proposalLink": "V2 REVISED Education B.S. - Program Modification - New Model Revised 2025",
+      "description": "Elementary and early childhood math and science focus on building foundational skills through hands-on exploration, problem-solving, and inquiry-based learning to develop mathematical, science and engineering curiosity, critical thinking, and a strong understanding of basic concepts.",
+      "courses": [
+        {
+          "courseCode": "EDU 160",
+          "courseTitle": "Math and Science for Young Children",
+          "prerequisites": "EDU 110"
+        },
+        {
+          "courseCode": "EDU 3SS",
+          "courseTitle": "Elementary Mathematics & Science Methods",
+          "prerequisites": "EDU 110"
+        },
+        {
+          "courseCode": "EDU 310",
+          "courseTitle": "Elementary Language Arts and Social Studies Methods",
+          "prerequisites": "EDU 110"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Middle and Secondary Methods",
+      "programCode": "EDUC",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Human Systems",
+      "programName": "Education BS",
+      "proposalLink": "V2 REVISED Education B.S. - Program Modification - New Model Revised 2025",
+      "description": "Middle and secondary education methods focus on diverse instructional strategies, classroom management, and assessment techniques to engage students, promote critical thinking, and support content mastery across math, social studies, english and computer science subjects.",
+      "courses": [
+        {
+          "courseCode": "EDU 230",
+          "courseTitle": "Content Literacy",
+          "prerequisites": "EDU 110"
+        },
+        {
+          "courseCode": "EDU 315",
+          "courseTitle": "Middle Level Organization",
+          "prerequisites": "EDU 110"
+        },
+        {
+          "courseCode": "EDU 332",
+          "courseTitle": "Middle and Secondary Methods",
+          "prerequisites": "EDU 110"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Filmmaking Fundamentals",
+      "programCode": "FILM",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Filmmaking BFA",
+      "proposalLink": "Film Program Modification New Model Fall 2025",
+      "description": "Students make connections between the written word and the moving image by examining motion picture production from screenwriting to editing, and developing a deep understanding of the filmmaking process. Students use professional tools in labs, on soundstages, and in studios.",
+      "courses": [
+        {
+          "courseCode": "FLM-110",
+          "courseTitle": "Introduction to Filmmaking",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "FLM-128",
+          "courseTitle": "Screenwriting I",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "FLM-260",
+          "courseTitle": "Documentary Filmmaking",
+          "prerequisites": "FLM-110"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Filmmaking Technical Production",
+      "programCode": "FILM",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Filmmaking BFA",
+      "proposalLink": "Film Program Modification New Model Fall 2025",
+      "description": "Through hands-on projects and classroom learning students build a wide variety of technical and professional skills they’ll need throughout their careers.",
+      "courses": [
+        {
+          "courseCode": "FLM-125",
+          "courseTitle": "Audio Production for Film",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "FLM-225",
+          "courseTitle": "Cinematography and LIghting",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "FLM-230",
+          "courseTitle": "Audio and Video Editing",
+          "prerequisites": "None"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Filmmaking Approaches",
+      "programCode": "FILM",
+      "skillPackType": "Program Required",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Filmmaking BFA",
+      "proposalLink": "Film Program Modification New Model Fall 2025",
+      "description": "Through hands-on projects and classroom learning students build a wide variety of technical, organizational, and professional skills they’ll need throughout their careers.",
+      "courses": [
+        {
+          "courseCode": "FLM-320",
+          "courseTitle": "Business of Film",
+          "prerequisites": "30 credits"
+        },
+        {
+          "courseCode": "FLM-285",
+          "courseTitle": "Directing and Acting for the Screen",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "FLM-330",
+          "courseTitle": "Video Comp. and SFX",
+          "prerequisites": "FLM-230"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Filmmaking Production",
+      "programCode": "FILM",
+      "skillPackType": "Program Required",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Filmmaking BFA",
+      "proposalLink": "Film Program Modification New Model Fall 2025",
+      "description": "Students will be able to apply their collaborative knowledge to team projects that produce a finished film while honing their voice and finding their place within the filmmaking landscape.",
+      "courses": [
+        {
+          "courseCode": "FLM-215",
+          "courseTitle": "Filmmaking I: Narrative Short Film",
+          "prerequisites": "FLM-110"
+        },
+        {
+          "courseCode": "FLM-315",
+          "courseTitle": "Filmmaking II: Production Design",
+          "prerequisites": "FLM-215"
+        },
+        {
+          "courseCode": "FLM-415",
+          "courseTitle": "Filmmaking III: Preproduction to Post",
+          "prerequisites": "FLM-315"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "2D Game Art Foundations",
+      "programCode": "GART",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Game Studio",
+      "programName": "Game Art BFA",
+      "proposalLink": "Game Art BFA - Program Modification - New Model 2025",
+      "description": "Through project based coursework and the application of foundation art and design principles, students gain the skills to draw the human form, create aesthetically successful 2D digital art, and implement 2D art and animation assets in a game engine.",
+      "courses": [
+        {
+          "courseCode": "ART-125",
+          "courseTitle": "Figure Drawing",
+          "prerequisites": "Game Art, Animation majors or ART 110"
+        },
+        {
+          "courseCode": "ART-105",
+          "courseTitle": "Concept Art I",
+          "prerequisites": "None, Animation and Game Art students must have priority"
+        },
+        {
+          "courseCode": "GAA-205",
+          "courseTitle": "2D Game Engines: Art & Animation",
+          "prerequisites": "ART-105"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "3D Game Art Foundations",
+      "programCode": "GART",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Game Studio",
+      "programName": "Game Art BFA",
+      "proposalLink": "Game Art BFA - Program Modification - New Model 2025",
+      "description": "Through project based coursework students apply foundation 3D modeling, texturing and animation principles and implement 3D art and animation assets in a game engine.",
+      "courses": [
+        {
+          "courseCode": "MOD-100",
+          "courseTitle": "3D Modeling & Foundation",
+          "prerequisites": "None, Animation and Game Art students must have priority"
+        },
+        {
+          "courseCode": "ANM-175",
+          "courseTitle": "3D Animation Foundation",
+          "prerequisites": "None, Animation and Game Art students must have priority"
+        },
+        {
+          "courseCode": "GAA-210",
+          "courseTitle": "3D Game Engines: Art & Animation",
+          "prerequisites": "MOD-100 and ANM-175"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Game Art Career Launch",
+      "programCode": "GART",
+      "skillPackType": "Program Required",
+      "interestCategory": "Game Studio",
+      "programName": "Game Art BFA",
+      "proposalLink": "Game Art BFA - Program Modification - New Model 2025",
+      "description": "Students prepare to launch their career by successfully collaborating with a team of developers in the Game Studio and by preparing a professional quality portfolio and other marketing material required for their job search.",
+      "courses": [
+        {
+          "courseCode": "GAA-415",
+          "courseTitle": "Senior Portfolio: Game Art",
+          "prerequisites": "Game Art, 90 credits completed"
+        },
+        {
+          "courseCode": "EGD-420",
+          "courseTitle": "Game Studio III",
+          "prerequisites": "PLS-480 Capstone in Game Development"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "3D Modeling for Games - Props",
+      "programCode": "GART",
+      "skillPackType": "Program Choice",
+      "interestCategory": "Game Studio",
+      "programName": "Game Art BFA",
+      "proposalLink": "Game Art BFA - Program Modification - New Model 2025",
+      "description": "Through project-based coursework students apply intermediate to advanced 3D modeling and texturing skills to create game ready 3D assets.",
+      "courses": [
+        {
+          "courseCode": "GAA 235",
+          "courseTitle": "3D Game Asset Modeling & Texturing",
+          "prerequisites": "C or better in MOD 100 3D Modeling & Texturing Foundation"
+        },
+        {
+          "courseCode": "GAA 255",
+          "courseTitle": "Game Asset Sculpting & Texturing",
+          "prerequisites": "C or better in GAA 235"
+        },
+        {
+          "courseCode": "MOD 260",
+          "courseTitle": "Procedural 3D Modeling",
+          "prerequisites": "MOD 100 3D Modeling & Texturing Foundation"
+        },
+        {
+          "courseCode": "GAA 380",
+          "courseTitle": "Advanced Seminar: Game Art",
+          "prerequisites": "Game Art, 60 credits completed"
+        },
+        {
+          "courseCode": "MOD 360",
+          "courseTitle": "Procedural Modeling & VFX",
+          "prerequisites": "MOD 2XX Procedural 3D Modeling"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "3D Game Environment Art",
+      "programCode": "GART",
+      "skillPackType": "Program Choice",
+      "interestCategory": "Game Studio",
+      "programName": "Game Art BFA",
+      "proposalLink": "Game Art BFA - Program Modification - New Model 2025",
+      "description": "Through project-based coursework students apply intermediate to advanced 3D modeling and texturing skills to create game environment assets and build visually compelling, immersive 3D environments in a game engine.",
+      "courses": [
+        {
+          "courseCode": "GAA 235",
+          "courseTitle": "3D Game Asset Modeling & Texturing",
+          "prerequisites": "C or better in MOD 100 3D Modeling & Texturing Foundation"
+        },
+        {
+          "courseCode": "GAA 255",
+          "courseTitle": "Game Asset Sculpting & Texturing",
+          "prerequisites": "C or better in GAA 235"
+        },
+        {
+          "courseCode": "MOD 260",
+          "courseTitle": "Procedural 3D Modeling",
+          "prerequisites": "MOD 100 3D Modeling & Texturing Foundation"
+        },
+        {
+          "courseCode": "GAA 355",
+          "courseTitle": "Game Environments",
+          "prerequisites": "C or better in GAA 235"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "3D Character Modeling",
+      "programCode": "GART",
+      "skillPackType": "Program Choice",
+      "interestCategory": "Game Studio",
+      "programName": "Game Art BFA",
+      "proposalLink": "Game Art BFA - Program Modification - New Model 2025",
+      "description": "Through project based coursework students apply intermediate to advanced digital sculpting, 3D modeling and texturing techniques while creating anatomically accurate characters and creatures that are optimized for animation.",
+      "courses": [
+        {
+          "courseCode": "MOD 245",
+          "courseTitle": "Character Modeling I",
+          "prerequisites": "C or better in MOD 100"
+        },
+        {
+          "courseCode": "MOD 345",
+          "courseTitle": "Character Modeling II",
+          "prerequisites": "C or better in MOD 200"
+        },
+        {
+          "courseCode": "GAA 380",
+          "courseTitle": "Advanced Seminar: Game Art",
+          "prerequisites": "Game Art, 60 credits completed"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "3D Animation for Games",
+      "programCode": "GART",
+      "skillPackType": "Program Choice",
+      "interestCategory": "Game Studio",
+      "programName": "Game Art BFA",
+      "proposalLink": "Game Art BFA - Program Modification - New Model 2025",
+      "description": "Through project based coursework students gain intermediate to advanced skills in 3D animation for games, including solid body mechanics in the creation of 3D animation cycles, optimization of animation for use in game engines and motion capture animation.",
+      "courses": [
+        {
+          "courseCode": "ANM 275",
+          "courseTitle": "3D Body Mechanics",
+          "prerequisites": "C or better in ANM-175 3D Animation Fundamentals"
+        },
+        {
+          "courseCode": "GAA 375",
+          "courseTitle": "3D Animation for Games",
+          "prerequisites": "C or better in ANM-275"
+        },
+        {
+          "courseCode": "GAA 370",
+          "courseTitle": "Motion Capture Animation",
+          "prerequisites": "C or better in ANM-275"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Technical Art",
+      "programCode": "GART",
+      "skillPackType": "Program Choice",
+      "interestCategory": "Game Studio",
+      "programName": "Game Art BFA",
+      "proposalLink": "Game Art BFA - Program Modification - New Model 2025",
+      "description": "Through project based coursework students learn to combine 3D modeling and programming skills to develop tools that streamline workflows and can be used in their own art pipelines and by other artists and production teams.",
+      "courses": [
+        {
+          "courseCode": "GAA 235",
+          "courseTitle": "3D Game Asset Modeling & Texturing",
+          "prerequisites": "C or better in MOD 100 3D Modeling & Texturing Foundation"
+        },
+        {
+          "courseCode": "MOD 260",
+          "courseTitle": "Procedural 3D Modeling",
+          "prerequisites": "MOD 100 3D Modeling & Texturing Foundation"
+        },
+        {
+          "courseCode": "GAA 365",
+          "courseTitle": "Technical Art",
+          "prerequisites": "C or better in GAA 235 or ANM XXX Rigging Fundamentals"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Technical Animation",
+      "programCode": "GART",
+      "skillPackType": "Program Choice",
+      "interestCategory": "Game Studio",
+      "programName": "Game Art BFA",
+      "proposalLink": "Game Art BFA - Program Modification - New Model 2025",
+      "description": "Through project based coursework students learn technical skills in rigging, 3D animation and animation optimization in order to create animations that are functional, aesthetically successful and perform well in a game engine.",
+      "courses": [
+        {
+          "courseCode": "ANM-275",
+          "courseTitle": "3D Animation - Body Mechanics",
+          "prerequisites": "C or better in ANM-175 3D Animation Fundamentals"
+        },
+        {
+          "courseCode": "ANM-255",
+          "courseTitle": "Rigging for 3D Animation Fundamentals",
+          "prerequisites": "C or better in ANM-175"
+        },
+        {
+          "courseCode": "GAA-375",
+          "courseTitle": "3D Game Animation Implementation",
+          "prerequisites": "C or better in ANM-275"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "The Marketplace of Games",
+      "programCode": "GMBP",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Game Studio",
+      "programName": "Game Business & Publishing BS",
+      "proposalLink": "Game Business and Publishing B.S. - Program Modification - New Model 2025",
+      "description": "This is the core “spine” of the GBP major and moves students from being a games consumer to a games business insider. Students understand the development and launch of video games within the context of the industry as it stands today. This includes the business of researching, planning for, marketing, launching and maintaining a game, including in international contexts. They also are exposed to many current events within the industry.",
+      "courses": [
+        {
+          "courseCode": "GBP 100",
+          "courseTitle": "Introduction to the Game Industry",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "GBP 200",
+          "courseTitle": "The Game Business Lifecycle",
+          "prerequisites": "GBP 100, C or Higher, 30 Credits Earned, or permission of PD"
+        },
+        {
+          "courseCode": "GBP 300",
+          "courseTitle": "Global Game Business",
+          "prerequisites": "GBP 200, C or Higher, 60 Credits Earned, or permission of PD"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Applying Game Business and Publishing to a Shipped Game",
+      "programCode": "GMBP",
+      "skillPackType": "Program Required",
+      "interestCategory": "Game Studio",
+      "programName": "Game Business & Publishing BS",
+      "proposalLink": "Game Business and Publishing B.S. - Program Modification - New Model 2025",
+      "description": "Students have practical experience in shipping a game, including developing market insights, marketing and launch strategy. They are capable of achieving their goals while working on multiple multidisciplinary teams and being largely self-directed.",
+      "courses": [
+        {
+          "courseCode": "MKT 210",
+          "courseTitle": "Consumer Behavior",
+          "prerequisites": "BUS 120 or MKT 110"
+        },
+        {
+          "courseCode": "EGD 420",
+          "courseTitle": "Game Studio Senior Production (AKA Studio III) - 6 credits",
+          "prerequisites": "CCC 410/EGD 410, C or Higher"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Interdisciplinary Game Development Management Methodologies",
+      "programCode": "GPMG",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Game Studio",
+      "programName": "Game Production Management BS",
+      "proposalLink": "Game Production Management B.S. - Program Modification - New Model 2025",
+      "description": "This skill pack prepares students to join the Game Studio Production sequence as project managers and game business consultants.",
+      "courses": [
+        {
+          "courseCode": "GBP 100",
+          "courseTitle": "Introduction to the Game Industry",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "MGT 140",
+          "courseTitle": "Introduction to Game Production Management",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "GBP 200",
+          "courseTitle": "The Game Business Lifecycle",
+          "prerequisites": "GBP 100, C or Higher or PD permission"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Team Leadership & Management",
+      "programCode": "GPMG",
+      "skillPackType": "Program Required",
+      "interestCategory": "Game Studio",
+      "programName": "Game Production Management BS",
+      "proposalLink": "Game Production Management B.S. - Program Modification - New Model 2025",
+      "description": "Students have exposure to a broad breadth of project management methodologies while also having experience in managing (or co-managing) a large team of software developers (15-20 people) in a professionally-simulated studio environment.",
+      "courses": [
+        {
+          "courseCode": "MGT-260",
+          "courseTitle": "Principles of Project Management",
+          "prerequisites": "24 credits ???"
+        },
+        {
+          "courseCode": "EGD 420",
+          "courseTitle": "Game Studio III",
+          "prerequisites": "CCC 410, C or Higher"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Game Design Fundamentals",
+      "programCode": "GDES",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Game Studio",
+      "programName": "Game Design BS",
+      "proposalLink": "Game Design B.S. - Program Modification - New Model 2025",
+      "description": "Students will gain a core understanding of what it means to be a game designer while also learning how to develop ideas and communicate those ideas effectively.",
+      "courses": [
+        {
+          "courseCode": "GMD-100",
+          "courseTitle": "Visual Comm. for Game Design",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "GMD-110",
+          "courseTitle": "Introduction to Game Design",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "GMD-120",
+          "courseTitle": "Creativity and Play",
+          "prerequisites": "None"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Game Design Practices",
+      "programCode": "GDES",
+      "skillPackType": "Program Required",
+      "interestCategory": "Game Studio",
+      "programName": "Game Design BS",
+      "proposalLink": "Game Design B.S. - Program Modification - New Model 2025",
+      "description": "Students will gain experience deconstructing ideas, iterating ideas and integrating those ideas in a meaningful way. At the completion of this sequence, student will be ready to work collaboratively with under disciplined as a lead designer",
+      "courses": [
+        {
+          "courseCode": "GMD-210",
+          "courseTitle": "Principles of Game Design",
+          "prerequisites": "Complete GMD-110 with a \"C\" or better and complete GMD-200 or be taking GMD-200 concurrently."
+        },
+        {
+          "courseCode": "GMD-240",
+          "courseTitle": "Level Design",
+          "prerequisites": "Complete GMD-200 and GMD-210 with a \"C\" or better."
+        },
+        {
+          "courseCode": "GMD-310",
+          "courseTitle": "Applied Ludology",
+          "prerequisites": "Complete GMD-210 with a C or better."
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Game Design Technical Skills",
+      "programCode": "GDES",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Game Studio",
+      "programName": "Game Design BS",
+      "proposalLink": "Game Design B.S. - Program Modification - New Model 2025",
+      "description": "Students will gain core programming knowledge and learn how to implement those skills in current game engines.",
+      "courses": [
+        {
+          "courseCode": "CSI-140 or IXD-215",
+          "courseTitle": "Introduction to Programming or Creative Code 1",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "GMD-200",
+          "courseTitle": "Game Technology I",
+          "prerequisites": "CSI-140 or CSI-160 or IXD-215"
+        },
+        {
+          "courseCode": "GMD-300",
+          "courseTitle": "Game Technology II",
+          "prerequisites": "Complete GMD-200 with a \"C\" or better."
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Game Design Senior",
+      "programCode": "GDES",
+      "skillPackType": "Program Required",
+      "interestCategory": "Game Studio",
+      "programName": "Game Design BS",
+      "proposalLink": "Game Design B.S. - Program Modification - New Model 2025",
+      "description": "Students will experience working on a large team as a game designer producing a game that will be ready for release. They will also create a professional portfolio of their work and be fully prepared to apply for game design positions.",
+      "courses": [
+        {
+          "courseCode": "EGD-420",
+          "courseTitle": "Game Studio III",
+          "prerequisites": "Complete CCC-410EGD with a minimum grade of C or better."
+        },
+        {
+          "courseCode": "GMD 410",
+          "courseTitle": "Senior Portfolio: Game Design",
+          "prerequisites": "90 credits completed, GDES.BS students only"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Basics of Game Programming",
+      "programCode": "GRPO",
+      "skillPackType": "Program Required",
+      "interestCategory": "Game Studio",
+      "programName": "Game Programming BS",
+      "proposalLink": "Game Programming B.S. - Program Modification New Model Spring 2025",
+      "description": "This is the prerequisite knowledge for being able to apply Game Programming techniques to Computer Science concepts.",
+      "courses": [
+        {
+          "courseCode": "MTH-250",
+          "courseTitle": "Matrices, Vectors and 3D Math",
+          "prerequisites": "MTH-230 (Calculus I)"
+        },
+        {
+          "courseCode": "GMD-200",
+          "courseTitle": "Game Tech I",
+          "prerequisites": "CSI-140 (Intro to Programming)"
+        },
+        {
+          "courseCode": "GPR-250",
+          "courseTitle": "Game Architecture",
+          "prerequisites": "CSI-240 (Advanced Programming) C or better grade"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Intermediate Game Programming",
+      "programCode": "GRPO",
+      "skillPackType": "Program Required",
+      "interestCategory": "Game Studio",
+      "programName": "Game Programming BS",
+      "proposalLink": "Game Programming B.S. - Program Modification New Model Spring 2025",
+      "description": "",
+      "courses": [
+        {
+          "courseCode": "GPR-300",
+          "courseTitle": "Intermediate Graphics Programming",
+          "prerequisites": "GPR-200 (Computer Graphics) and GPR250 (Game Architecture)"
+        },
+        {
+          "courseCode": "GPR-340",
+          "courseTitle": "Game AI",
+          "prerequisites": "GPR250 (Game Architecture)"
+        },
+        {
+          "courseCode": "GPR-350",
+          "courseTitle": "Game Physics",
+          "prerequisites": "GPR250 (Game Architecture)"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Technological Foundations for Game Sound Designers",
+      "programCode": "GMSD",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Game Studio",
+      "programName": "Game Sound Design BS",
+      "proposalLink": "Game Sound Design B.S. - Program Modification - New Model 2025",
+      "description": "Students are well versed at the introductory level of three distinct technological skills that will be required for the completion of the rest of their degree: game development in-engine, audio recording and production, and programming.",
+      "courses": [
+        {
+          "courseCode": "GMS-110",
+          "courseTitle": "Intro to Game Engines",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "SON-101",
+          "courseTitle": "Sound Studio Production",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "Programming Elective",
+          "courseTitle": "Choose from IXD-215, CSI-140, CSI-160",
+          "prerequisites": "none"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Designing Sound",
+      "programCode": "GMSD",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Game Studio",
+      "programName": "Game Sound Design BS",
+      "proposalLink": "Game Sound Design B.S. - Program Modification - New Model 2025",
+      "description": "Students are able to use the computer to aid in the creation of music, sound effects, environmental ambiances, and other audio assets.",
+      "courses": [
+        {
+          "courseCode": "SON-120",
+          "courseTitle": "Fundamentals of Digital Music",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "SON-282",
+          "courseTitle": "Synthesis and Sound Design",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "SON-350",
+          "courseTitle": "Foley Sound Design",
+          "prerequisites": "SON-120"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Game Audio",
+      "programCode": "GMSD",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Game Studio",
+      "programName": "Game Sound Design BS",
+      "proposalLink": "Game Sound Design B.S. - Program Modification - New Model 2025",
+      "description": "Students have an understanding of how different audio assets, such as music, sound effects, voiceover, and environmental ambiences, function within games, as well as the ability to create the assets and implement them in conjunction with industry standard game engines and audio middleware solutions.",
+      "courses": [
+        {
+          "courseCode": "GMS-200",
+          "courseTitle": "Game Sound Design 1",
+          "prerequisites": "SON-120"
+        },
+        {
+          "courseCode": "GMS-300",
+          "courseTitle": "Game Sound Design 2",
+          "prerequisites": "GMS-200"
+        },
+        {
+          "courseCode": "GMS-370",
+          "courseTitle": "Middleware for Adaptive Audio",
+          "prerequisites": "GMS-300"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Game Sound Design Career Launch",
+      "programCode": "GMSD",
+      "skillPackType": "Program Required",
+      "interestCategory": "Game Studio",
+      "programName": "Game Sound Design BS",
+      "proposalLink": "Game Sound Design B.S. - Program Modification - New Model 2025",
+      "description": "Students are ready to enter the workforce with complete professional portfolios including high level collaborative game development work.",
+      "courses": [
+        {
+          "courseCode": "GMS-200",
+          "courseTitle": "Game Sound Design 1",
+          "prerequisites": "90 credits."
+        },
+        {
+          "courseCode": "GMS-300",
+          "courseTitle": "Game Sound Design 2",
+          "prerequisites": "CCC-410EGD"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Visual Communication: Formalism/Semiotics/Constructing Meaning",
+      "programCode": "VCDS, GDBA",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Graphic Design & Visual Communication BFA, Graphic Design BA",
+      "proposalLink": "Graphic Design & Visual Communication BFA - Program Modification - New Model 2025",
+      "description": "This course series guides students from foundational principles of form, color, and non-objective communication through the study of semiotics and cultural context, culminating in applied design projects that integrate formal structure with meaningful visual communication.",
+      "courses": [
+        {
+          "courseCode": "GDV 100",
+          "courseTitle": "Form & Color",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "GDV 200",
+          "courseTitle": "Design & Communication",
+          "prerequisites": "GDV 100 (can be taken concurrently)"
+        },
+        {
+          "courseCode": "GDV 300",
+          "courseTitle": "Projects I",
+          "prerequisites": "60 credits"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Type Systems",
+      "programCode": "VCDS, GDBA",
+      "skillPackType": "Program Required",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Graphic Design & Visual Communication BFA, Graphic Design BA",
+      "proposalLink": "Graphic Design & Visual Communication BFA - Program Modification - New Model 2025",
+      "description": "Students explore the fundamentals of typography and advances into complex typographic systems, and apply design systems across multiple media to create visually compelling and cohesive communications.",
+      "courses": [
+        {
+          "courseCode": "GDV 201",
+          "courseTitle": "Introduction to Type",
+          "prerequisites": "GDV 100 or GDV 110"
+        },
+        {
+          "courseCode": "GDV 270",
+          "courseTitle": "Intermediate Type",
+          "prerequisites": "GDV 100 or GDV 110"
+        },
+        {
+          "courseCode": "GDV 290",
+          "courseTitle": "Design Systems I",
+          "prerequisites": "GDV 200 or UXD 200"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Graphic Design Portfolio Development & Professional Launch",
+      "programCode": "VCDS",
+      "skillPackType": "Program Required",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Graphic Design & Visual Communication BFA",
+      "proposalLink": "Graphic Design & Visual Communication BFA - Program Modification - New Model 2025",
+      "description": "Students prepare for professional practice by refining their design skills through applied projects, portfolio development, and advanced exploration of either typographic or motion-based communication.",
+      "courses": [
+        {
+          "courseCode": "GDV 400",
+          "courseTitle": "Projects in Graphic Design II",
+          "prerequisites": "90 credits"
+        },
+        {
+          "courseCode": "GDV 450",
+          "courseTitle": "Portfolio Studio",
+          "prerequisites": "90 credits"
+        },
+        {
+          "courseCode": "GDV 301 or GDV 307",
+          "courseTitle": "Adv Type or Form & Motion II",
+          "prerequisites": "GDV 270 or GDV 203"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Image Making",
+      "programCode": "VCDS, GDBA",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Graphic Design & Visual Communication BFA, Graphic Design BA",
+      "proposalLink": "Graphic Design & Visual Communication BFA - Program Modification - New Model 2025",
+      "description": "Students build a foundation in visual communication by developing drawing skills, exploring digital image-making through illustration or photography, and integrating typography with motion to create compelling time-based narratives.",
+      "courses": [
+        {
+          "courseCode": "ART 110",
+          "courseTitle": "Drawing",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "GDV 110 or ART 111",
+          "courseTitle": "Image Technology or Digital Photography",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "GDV 203",
+          "courseTitle": "Form & Motion I",
+          "prerequisites": "none"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Integrative Thinking",
+      "programCode": "INPS",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Human Systems",
+      "programName": "Integrative Professional Studies BS",
+      "proposalLink": "Program Modification Template - Degree Design Lab (IPS) - New Academic Model - Spring 2025",
+      "description": "Students will bring together their disparate interests, knowledges, and skills through a slate of courses that compel them to ask good questions, synthesize their areas of study and apply the college competencies to their past and future experiences.",
+      "courses": [
+        {
+          "courseCode": "DDL-300",
+          "courseTitle": "Demistifying Complexity",
+          "prerequisites": "30 credits"
+        },
+        {
+          "courseCode": "DDL-390",
+          "courseTitle": "Integrating Knowledge",
+          "prerequisites": "DDL-300"
+        },
+        {
+          "courseCode": "DDL-486",
+          "courseTitle": "Self-Awareness and Future Possibilities",
+          "prerequisites": "60 credits"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Visual Communication for Interaction Design",
+      "programCode": "UXIX",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Art, Media & Design",
+      "programName": "User Experience & Interaction Design BS",
+      "proposalLink": "User Experience & Interaction Design BS - Program Modification Fall 2025",
+      "description": "Demonstrate fluency in two-dimensional design principles, digital image creation, and aesthetic judgment as applied to interactive and visual communication contexts.",
+      "courses": [
+        {
+          "courseCode": "GDV 100",
+          "courseTitle": "Form & color",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "UXD 200",
+          "courseTitle": "Visual Systems for UX",
+          "prerequisites": "Any foundational design course (will update this list in the fall)"
+        },
+        {
+          "courseCode": "UXD 300",
+          "courseTitle": "Applied User Experience & Interface Design",
+          "prerequisites": "57 credits + UXD 200 (or other intermediate art/design courses)"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Prototyping, Process, & Creative Technology",
+      "programCode": "UXIX",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Art, Media & Design",
+      "programName": "User Experience & Interaction Design BS",
+      "proposalLink": "User Experience & Interaction Design BS - Program Modification Fall 2025",
+      "description": "Apply iterative design methods, creative coding practices, and user-centered workflows to prototype, evaluate, and refine interactive experiences.",
+      "courses": [
+        {
+          "courseCode": "UXD 100",
+          "courseTitle": "Intro to User Experience & Interaction Design",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "UXD 215",
+          "courseTitle": "Creative Code",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "UXD 315",
+          "courseTitle": "Experimental Interfaces for Games and Interactive Art",
+          "prerequisites": "27 cr + 1 programming course"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Web Design",
+      "programCode": "UXIX",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Art, Media & Design",
+      "programName": "User Experience & Interaction Design BS",
+      "proposalLink": "User Experience & Interaction Design BS - Program Modification Fall 2025",
+      "description": "Design and develop interactive web and experimental interface-based experiences using a range of front-end technologies, frameworks, and creative coding approaches.",
+      "courses": [
+        {
+          "courseCode": "GDV 110",
+          "courseTitle": "Image Technology",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "IXD 206",
+          "courseTitle": "Web Design I",
+          "prerequisites": "Any foundational design course"
+        },
+        {
+          "courseCode": "IXD 306",
+          "courseTitle": "Web II",
+          "prerequisites": "IXD 206"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Foundations of Interactive Narrative",
+      "programCode": "INAR",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Interactive Narrative for Games and Digital Media BS",
+      "proposalLink": "Interactive Narrative for Games and Digital Media BS - Program Modification - New Model 2025",
+      "description": "Students will learn the fundamentals of writing and designing story for interactive media. They will learn the role of a professional working in interactive narrative, and how to work in the role on multidisciplinary teams. Analysis of canonical works will demonstrate best practices and also familiarize them with trends and successes in the industry.",
+      "courses": [
+        {
+          "courseCode": "INN-110",
+          "courseTitle": "Intro to Interactive Narrative",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "INN-200",
+          "courseTitle": "Interactive Narrative I",
+          "prerequisites": "INN-110"
+        },
+        {
+          "courseCode": "INN-300",
+          "courseTitle": "Interactive Narrative II",
+          "prerequisites": "INN-230"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Foundations of Writing and Interaction",
+      "programCode": "INAR",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Interactive Narrative for Games and Digital Media BS",
+      "proposalLink": "Interactive Narrative for Games and Digital Media BS - Program Modification - New Model 2025",
+      "description": "Students will develop traditional writing skills, to inform and complement skills learned in nonlinear narrative. Students will understand how to think and design for a user, both in theory and practice; digitally and experientially.",
+      "courses": [
+        {
+          "courseCode": "UXD 100",
+          "courseTitle": "Intro to User Experience & Interaction Design",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "WRT 120",
+          "courseTitle": "Creative Writing I",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "UXD 200",
+          "courseTitle": "Visual Systems for UX",
+          "prerequisites": "Any foundational design course (will update this list in the fall)"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Interactive Narrative Careers in Interactive Media",
+      "programCode": "INAR",
+      "skillPackType": "Program Required",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Interactive Narrative for Games and Digital Media BS",
+      "proposalLink": "Interactive Narrative for Games and Digital Media BS - Program Modification - New Model 2025",
+      "description": "Students will be able to create interactivity and story on multiple platforms for a range of audiences, with technical (coding) proficiency, and create a career launching portfolio that highlights these skills.",
+      "courses": [
+        {
+          "courseCode": "INN-400",
+          "courseTitle": "Senior Portfolio: Interactive Narrative",
+          "prerequisites": "INN, 90 credits completed"
+        },
+        {
+          "courseCode": "WRT-347",
+          "courseTitle": "Transmedia Storytelling",
+          "prerequisites": "COM-120, WRT-200 or WRT-220"
+        },
+        {
+          "courseCode": "UXD-215\n\nOR\n\nGMS-110\n\nOR\n\nCSI-140/160",
+          "courseTitle": "Creative Code\n\nOR\n\nIntroduction to Game Engines for Sound Designers\n\nOR\n\nIntro Programming",
+          "prerequisites": "none"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Interactive Narrative Career Launch",
+      "programCode": "INAR",
+      "skillPackType": "Program Required",
+      "interestCategory": "Game Studio",
+      "programName": "Interactive Narrative for Games and Digital Media BS",
+      "proposalLink": "Interactive Narrative for Games and Digital Media BS - Program Modification - New Model 2025",
+      "description": "Students work collaboratively on their senior game in order to make it ready for publication and create a professional quality portfolio, demo reel and other marketing material essential for launching their career.",
+      "courses": [
+        {
+          "courseCode": "INN-400",
+          "courseTitle": "Senior Portfolio: Interactive Narrative",
+          "prerequisites": "INN, 90 credits completed"
+        },
+        {
+          "courseCode": "EGD 420",
+          "courseTitle": "Game Studio III",
+          "prerequisites": "Must have completed all three Game Studio levels"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Integrated Marketing Communication Essentials",
+      "programCode": "MKTG",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Business, Management & Marketing",
+      "programName": "Marketing BS",
+      "proposalLink": "Program Modification - BS Marketing - New Academic Model - Spring 2025",
+      "description": "Students explore foundational business principles, marketing fundamentals, and integrated campaign development through hands-on activities and real-world community partner projects to build essential marketing communication capabilities.",
+      "courses": [
+        {
+          "courseCode": "BUS 110",
+          "courseTitle": "Exploring Business Principles",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "MKT 110",
+          "courseTitle": "Marketing Fundamentals",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "MKT 270",
+          "courseTitle": "Integrated Marketing Communication",
+          "prerequisites": "BUS 120 or MKT 110. C-"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Integrated Marketing Communication in Action",
+      "programCode": "MKTG",
+      "skillPackType": "Program Required",
+      "interestCategory": "Business, Management & Marketing",
+      "programName": "Marketing BS",
+      "proposalLink": "Program Modification - BS Marketing - New Academic Model - Spring 2025",
+      "description": "Students develop multimedia content creation abilities, digital marketing implementation skills, and understanding of emerging practices through hands-on projects that apply across diverse fields including media, design, business, and nonprofit organizations.",
+      "courses": [
+        {
+          "courseCode": "BRD-230",
+          "courseTitle": "Production of Social Media",
+          "prerequisites": "BRD-110"
+        },
+        {
+          "courseCode": "MKT 250",
+          "courseTitle": "Digital Marketing",
+          "prerequisites": "MKT 110"
+        },
+        {
+          "courseCode": "MKT 450",
+          "courseTitle": "Current Topics in Marketing",
+          "prerequisites": "90 credits completed – recommend changing to 72 credits"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Psychology Foundations",
+      "programCode": "PSYC",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Psychology & Criminology",
+      "programName": "Psychology BS",
+      "proposalLink": "Psychology B.S. Program Modification_v3",
+      "description": "This pack introduces students to the scientific foundations of psychology, human development across the lifespan, and the cognitive processes underlying learning, memory, and problem-solving. Students gain the theoretical and analytical grounding necessary for advanced study and applied work.",
+      "courses": [
+        {
+          "courseCode": "PSY-100",
+          "courseTitle": "Intro to Psych",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "PSY-220",
+          "courseTitle": "Developmental Psych",
+          "prerequisites": "None; PSY-100 recommended"
+        },
+        {
+          "courseCode": "PSY-210",
+          "courseTitle": "Cognitive Psychology",
+          "prerequisites": "None; PSY-100 recommended"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Psychology in Creativity and Culture",
+      "programCode": "PSYC",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Psychology & Criminology",
+      "programName": "Psychology BS",
+      "proposalLink": "Psychology B.S. Program Modification_v3",
+      "description": "This skillpack explores creativity, cultural perspectives, and applied decision-making. Students learn how imagination and play fuel innovation, how cultural identity shapes behavior, and how individuals and groups make choices in uncertain contexts.",
+      "courses": [
+        {
+          "courseCode": "PSY-3XX",
+          "courseTitle": "Psychology of Creativity & Play",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "PSY-4XX",
+          "courseTitle": "Culture, Identity & Global Psychology",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "PSY-4XY",
+          "courseTitle": "Psychology of Judgment and Decision-Making",
+          "prerequisites": "None; PSY-100 recommended"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Influence, Media and Behavior",
+      "programCode": "PSYC",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Psychology & Criminology",
+      "programName": "Psychology BS, Marketing BS",
+      "proposalLink": "Psychology B.S. Program Modification_v3",
+      "description": "This skillpack explores the factors shaping individual and group behavior in social, technological, and organizational contexts. Students explore social influence, persuasion, group dynamics, media effects, consumer behavior, and organizational dynamics, learning to apply psychology to practical problems in social, technological, business, media, and design environments. Applications include everyday social influence, marketing and organizational contexts, and forensic psychology scenarios, such as jury decision-making, eyewitness testimony, and behavioral analysis in legal settings.",
+      "courses": [
+        {
+          "courseCode": "PSY-240",
+          "courseTitle": "Social Psychology and Influence",
+          "prerequisites": "None; PSY-100 recommended"
+        },
+        {
+          "courseCode": "PSY-XXX",
+          "courseTitle": "Psychology of Media and Technology",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "PSY-XXY",
+          "courseTitle": "Consumer & Organizational Psychology",
+          "prerequisites": "none"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Social Sciences Research Methods",
+      "programCode": "PSYC",
+      "skillPackType": "Program Required, Open with Prerequisites",
+      "interestCategory": "Math & Data",
+      "programName": "Psychology BS",
+      "proposalLink": "Psychology B.S. Program Modification_v3",
+      "description": "This skill pack provides students with a comprehensive foundation in research methodology, from fundamental principles and hands-on application of qualitative and quantitative research methods to conducting independent research and applying psychological theories through statistical analysis.",
+      "courses": [
+        {
+          "courseCode": "RSH-3XX",
+          "courseTitle": "Quantitative Research Methods",
+          "prerequisites": "24 completed credits and MTH-180 co-requisite or prerequisite"
+        },
+        {
+          "courseCode": "MTH-280 OR RSH-3XZ",
+          "courseTitle": "Applied Statistics OR Digital Methods (COR-304)",
+          "prerequisites": "MTH-180 OR MTH-380"
+        },
+        {
+          "courseCode": "RSH-3XY",
+          "courseTitle": "Field Methods and Qualitative Research",
+          "prerequisites": "54 credits completed"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Organizations and Systems",
+      "programCode": "SOWK",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Human Systems",
+      "programName": "Social Work BSW",
+      "proposalLink": "Social Work Program Modification New Model Fall 2025",
+      "description": "Through direct engagement with community partners and investigation of societal and community-based responses to complex human needs, students will gain experience serving within the expansive systems of care network, engage with community partners, critically evaluate practices at the societal level and hone skills to serve in leadership roles to effectively lead group-based interventions.",
+      "courses": [
+        {
+          "courseCode": "SWK 100SL",
+          "courseTitle": "Intro to Community Care Systems",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "SWK 255",
+          "courseTitle": "Economic, Environmental, Racial & Social Justice",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "SWK 315",
+          "courseTitle": "Working with Groups & Organizations",
+          "prerequisites": "48 cr"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Advocacy",
+      "programCode": "SOWK",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Human Systems",
+      "programName": "Social Work BSW",
+      "proposalLink": "Social Work Program Modification New Model Fall 2025",
+      "description": "Through hands-on shared projects aligned with current needs in the broader community students will engage in practices of applied solidarity towards social and liberatory action collaborating or initiating actionable change efforts.",
+      "courses": [
+        {
+          "courseCode": "SWK 280",
+          "courseTitle": "Research for Impact",
+          "prerequisites": "24 cr *"
+        },
+        {
+          "courseCode": "SWK 300",
+          "courseTitle": "Policy For Social Change",
+          "prerequisites": "45 cr"
+        },
+        {
+          "courseCode": "SWK 305",
+          "courseTitle": "Social Justice: Oppression and Empowerment",
+          "prerequisites": "45 cr"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Essential Skills of Helping Professionals",
+      "programCode": "SOWK",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Human Systems",
+      "programName": "Social Work BSW",
+      "proposalLink": "Social Work Program Modification New Model Fall 2025",
+      "description": "Students will gain theoretical knowledge of the human experience, human development to practice effective professional interventions to impact positive growth at the individual, group and community levels.",
+      "courses": [
+        {
+          "courseCode": "SWK 235",
+          "courseTitle": "Human Behavior & Development",
+          "prerequisites": "N/A"
+        },
+        {
+          "courseCode": "SWK 310",
+          "courseTitle": "Practice Skills 1: Needs Assessment & Relationship Building",
+          "prerequisites": "48cr"
+        },
+        {
+          "courseCode": "SWK 450",
+          "courseTitle": "Practice Skills 2: Treatment Approaches",
+          "prerequisites": "SWK 310"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Social Determinants of Health and Wellness",
+      "programCode": "SOWK",
+      "skillPackType": "Open to All",
+      "interestCategory": "Human Systems",
+      "programName": "Social Work BSW",
+      "proposalLink": "Social Work Program Modification New Model Fall 2025",
+      "description": "Students will gain knowledge about diverse life experiences with sensitivity to cultural, ethical, and systemic factors affecting health and well-being and apply an understanding of the Social Determinants of Health to promote self-determination among individuals, using harm reduction strategies, restorative practices, interdisciplinary care networks, public health campaigns and natural support systems.",
+      "courses": [
+        {
+          "courseCode": "SWK 200",
+          "courseTitle": "Community Health and Harm Reduction",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "SWK 240",
+          "courseTitle": "Relationship Dynamics",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "SWK 410",
+          "courseTitle": "SWK w/Older Adults",
+          "prerequisites": "SWK 310 & SWK 315"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Music Fundamentals",
+      "programCode": "SONA",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Sonic Arts BS",
+      "proposalLink": "Sonic Arts B.S. - Program Modification - New Model 2026",
+      "description": "Students will investigate and gain experience in multiple aspects of music-making, including theory, composition, history, and recording/production in both digital and analog workflows.",
+      "courses": [
+        {
+          "courseCode": "SON 101",
+          "courseTitle": "Sound Studio Production",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "SON 120",
+          "courseTitle": "Fundamentals of Digital Music",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "SON 190",
+          "courseTitle": "Music Theory",
+          "prerequisites": "none"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Synthesis and Sound Design",
+      "programCode": "SONA",
+      "skillPackType": "Program Required",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Sonic Arts BS",
+      "proposalLink": "Sonic Arts B.S. - Program Modification - New Model 2026",
+      "description": "Students create music, sound effects, and other audio assets using a variety of techniques both in and out of the computer.",
+      "courses": [
+        {
+          "courseCode": "SON 282",
+          "courseTitle": "Synthesis and Sound Design",
+          "prerequisites": "None"
+        },
+        {
+          "courseCode": "SON 350",
+          "courseTitle": "Foley Sound Design",
+          "prerequisites": "SON 120 OR SON 282"
+        },
+        {
+          "courseCode": "SON 382",
+          "courseTitle": "Advanced Synthesis",
+          "prerequisites": "SON 282"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Advanced Topics in Sound",
+      "programCode": "SONA",
+      "skillPackType": "Program Required",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Sonic Arts BS",
+      "proposalLink": "Sonic Arts B.S. - Program Modification - New Model 2026",
+      "description": "",
+      "courses": [
+        {
+          "courseCode": "SON 340",
+          "courseTitle": "Media Scoring",
+          "prerequisites": "SON 120"
+        },
+        {
+          "courseCode": "SON 410",
+          "courseTitle": "Senior Portfolio in Sonic Arts",
+          "prerequisites": "90 credits"
+        },
+        {
+          "courseCode": "SON-325",
+          "courseTitle": "Live Sound",
+          "prerequisites": "none"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "The Art of Reading & Writing",
+      "programCode": "WRPB",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Writing & Publishing BS",
+      "proposalLink": "Revised Writing & Publishing: Program Modification New Model Fall 2025",
+      "description": "Sequence of courses that will introduce students to the foundational skills associated with Writing and Publishing, with emphasis on 3 core skill sets: writing, reading, and editing / publishing.",
+      "courses": [
+        {
+          "courseCode": "WRT 120",
+          "courseTitle": "Intro to Creative Writing",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "WRT 130",
+          "courseTitle": "Journalism for all",
+          "prerequisites": "none"
+        },
+        {
+          "courseCode": "WRT 2XX",
+          "courseTitle": "Creative Writing & Reading: Special Topics",
+          "prerequisites": "none"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "Advanced Storytelling Skills",
+      "programCode": "WRPB",
+      "skillPackType": "Program Required, Open to All",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Writing & Publishing BS",
+      "proposalLink": "Revised Writing & Publishing: Program Modification New Model Fall 2025",
+      "description": "This series immerses students in diverse and evolving literary genres through advanced workshops. Students will deepen their writing practice by working on more advanced, customizable projects and will explore the history of and social implications of stories that extend across different genres and forms.",
+      "courses": [
+        {
+          "courseCode": "WRT 237",
+          "courseTitle": "Telling True Stories",
+          "prerequisites": "None for non-WRT majors"
+        },
+        {
+          "courseCode": "WRT 2XY",
+          "courseTitle": "Fiction and Poetry",
+          "prerequisites": "None for non-WRT majors"
+        },
+        {
+          "courseCode": "WRT 347",
+          "courseTitle": "Transmedia Storytelling",
+          "prerequisites": "WRT 120 or any 200-level WRT"
+        }
+      ]
+    },
+    {
+      "skillPackTitle": "The Collaborative Craft of Writing & Publishing",
+      "programCode": "WRPB",
+      "skillPackType": "Program Required",
+      "interestCategory": "Art, Media & Design",
+      "programName": "Writing & Publishing BS",
+      "proposalLink": "Revised Writing & Publishing: Program Modification New Model Fall 2025",
+      "description": "Optional skillpack for Writing & Publishing students that will focus on professionalization and job preparation for careers in the publishing industry (i.e. editing, publishing, networking, professional collaboration, etc.)",
+      "courses": [
+        {
+          "courseCode": "WRT 3XX",
+          "courseTitle": "Developmental Editing & Revision Workshop",
+          "prerequisites": "WRT 120 or Any 200-level workshop-focused course"
+        },
+        {
+          "courseCode": "WRT 3XY",
+          "courseTitle": "Portfolio Workshop",
+          "prerequisites": "More than one 200-level workshop-focused course"
+        },
+        {
+          "courseCode": "WRT 3XZ",
+          "courseTitle": "Contemporary Publishing Studio",
+          "prerequisites": "45 credits"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "sourceFile": "Required_Program_Skill_Packs_in_Cute_Little_Boxes_Nov_2025.csv",
+    "asOf": "February 2026",
+    "totalSkillPacks": 93,
+    "description": "Required Program Skill Packs organized by program and skill pack type"
+  }
+}
