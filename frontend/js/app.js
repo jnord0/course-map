@@ -70,6 +70,11 @@ const App = {
                 UXEnhancements.renderRecentlyViewed();
             }
 
+            // Initialize skill packs sidebar in main app
+            if (typeof SkillPacksModule !== 'undefined') {
+                SkillPacksModule.initMainApp();
+            }
+
             errorDiv.textContent = '';
         } else {
             errorDiv.textContent = result.error;

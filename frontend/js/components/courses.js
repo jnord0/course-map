@@ -160,6 +160,11 @@ const CoursesModule = {
         if (typeof ComparisonTool !== 'undefined') {
             ComparisonTool.updateButtonState();
         }
+
+        // Update skill packs sidebar
+        if (typeof SkillPacksModule !== 'undefined' && SkillPacksModule.updateSidebar) {
+            SkillPacksModule.updateSidebar();
+        }
     },
 
     /**
@@ -181,6 +186,11 @@ const CoursesModule = {
         // Update comparison button state
         if (typeof ComparisonTool !== 'undefined') {
             ComparisonTool.updateButtonState();
+        }
+
+        // Update skill packs sidebar
+        if (typeof SkillPacksModule !== 'undefined' && SkillPacksModule.updateSidebar) {
+            SkillPacksModule.updateSidebar();
         }
     },
 

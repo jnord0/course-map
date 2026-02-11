@@ -1008,6 +1008,436 @@
     color: var(--champlain-navy);
 }
 
+.skill-pack-course.more {
+    background: var(--champlain-bright-blue);
+    color: white;
+    border-color: var(--champlain-bright-blue);
+}
+
+/* Skill Pack Search and Filters Row */
+.skill-packs-search-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.skill-packs-search {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: #f5f7fa;
+    border: 2px solid #e0e5eb;
+    border-radius: 12px;
+    padding: 0 16px;
+    transition: all 0.2s ease;
+}
+
+.skill-packs-search:focus-within {
+    border-color: var(--champlain-bright-blue);
+    background: white;
+}
+
+.skill-packs-search svg {
+    color: var(--champlain-gray);
+    flex-shrink: 0;
+}
+
+.skill-packs-search input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 12px;
+    font-size: 14px;
+    outline: none;
+}
+
+.program-filter {
+    padding: 12px 16px;
+    border: 2px solid #e0e5eb;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--champlain-navy);
+    background: #f5f7fa;
+    cursor: pointer;
+    min-width: 200px;
+    transition: all 0.2s ease;
+}
+
+.program-filter:focus {
+    border-color: var(--champlain-bright-blue);
+    outline: none;
+}
+
+/* Skill Pack Card - Clickable */
+.skill-pack-card {
+    cursor: pointer;
+}
+
+/* Skill Pack Progress Bar */
+.skill-pack-progress {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e8eaf0;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #e0e5eb;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress-bar.large {
+    height: 12px;
+    border-radius: 6px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--champlain-bright-blue), var(--champlain-teal));
+    border-radius: inherit;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-size: 12px;
+    color: var(--champlain-gray);
+    font-weight: 600;
+}
+
+/* Quick Add Button */
+.skill-pack-actions {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e8eaf0;
+}
+
+.quick-add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, var(--champlain-bright-blue) 0%, var(--champlain-teal) 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quick-add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 169, 224, 0.4);
+}
+
+.quick-add-btn:active {
+    transform: translateY(0);
+}
+
+/* Toast Notifications */
+.skill-pack-toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 16px 24px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 10000;
+    animation: slideUp 0.3s ease;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.toast-success {
+    background: #2e7d32;
+    color: white;
+}
+
+.toast-info {
+    background: var(--champlain-navy);
+    color: white;
+}
+
+.toast-warning {
+    background: #f57c00;
+    color: white;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.toast-close:hover {
+    opacity: 1;
+}
+
+/* Skill Pack Modal */
+.skill-pack-modal-content {
+    max-width: 700px;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.skill-pack-modal-header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e8eaf0;
+    margin-bottom: 20px;
+}
+
+.skill-pack-modal-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--champlain-navy);
+    margin: 12px 0 8px;
+}
+
+.skill-pack-modal-program {
+    color: var(--champlain-bright-blue);
+    font-weight: 600;
+    margin: 0;
+}
+
+.skill-pack-modal-body h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--champlain-navy);
+    margin: 0 0 12px;
+}
+
+.skill-pack-modal-description {
+    margin-bottom: 24px;
+}
+
+.skill-pack-modal-description p {
+    color: var(--champlain-gray);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.skill-pack-modal-progress {
+    margin-bottom: 24px;
+    padding: 20px;
+    background: #f5f7fa;
+    border-radius: 12px;
+}
+
+.skill-pack-modal-courses {
+    margin-bottom: 20px;
+}
+
+.course-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.course-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    background: #f8fafc;
+    border: 1px solid #e8eaf0;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.course-item.selected {
+    background: #e3f2fd;
+    border-color: var(--champlain-bright-blue);
+}
+
+.course-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.course-item-info .course-code {
+    font-weight: 700;
+    color: var(--champlain-navy);
+}
+
+.course-item-info .course-title {
+    font-size: 14px;
+    color: var(--champlain-gray);
+}
+
+.course-item-prereqs small {
+    font-size: 12px;
+    color: #999;
+}
+
+.selected-badge {
+    background: var(--champlain-green);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.skill-pack-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid #e8eaf0;
+}
+
+.btn-secondary {
+    padding: 12px 24px;
+    background: #f5f7fa;
+    color: var(--champlain-navy);
+    border: 1px solid #e0e5eb;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: #e8eef4;
+}
+
+.btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--champlain-bright-blue) 0%, var(--champlain-teal) 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 169, 224, 0.4);
+}
+
+.quick-add-modal-btn svg {
+    flex-shrink: 0;
+}
+
+/* Sidebar Skill Packs Section */
+.skill-packs-sidebar {
+    margin-top: 20px;
+    padding: 16px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #e8eaf0;
+}
+
+.skill-packs-sidebar h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--champlain-navy);
+    margin: 0 0 12px;
+}
+
+.skill-packs-suggestions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.suggestion-card {
+    padding: 12px;
+    background: white;
+    border: 1px solid #e0e5eb;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.suggestion-card:hover {
+    border-color: var(--champlain-bright-blue);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.suggestion-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--champlain-navy);
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.suggestion-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mini-progress-bar {
+    flex: 1;
+    height: 6px;
+    background: #e0e5eb;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.mini-progress-bar .progress-fill {
+    height: 100%;
+}
+
+.suggestion-progress span {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--champlain-gray);
+    white-space: nowrap;
+}
+
+.no-suggestions {
+    font-size: 13px;
+    color: var(--champlain-gray);
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+}
+
 /* Discovery Section Responsive */
 @media (max-width: 768px) {
     .landing-discovery {
@@ -1044,6 +1474,45 @@
         width: 100%;
         overflow-x: auto;
         padding-bottom: 5px;
+    }
+
+    .skill-packs-search-row {
+        flex-direction: column;
+    }
+
+    .program-filter {
+        min-width: 100%;
+    }
+
+    .skill-pack-modal-content {
+        margin: 10px;
+        max-height: 90vh;
+    }
+
+    .skill-pack-modal-footer {
+        flex-direction: column;
+    }
+
+    .skill-pack-modal-footer button {
+        width: 100%;
+    }
+
+    .skill-pack-toast {
+        left: 20px;
+        right: 20px;
+        transform: none;
+        width: auto;
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 }
 
