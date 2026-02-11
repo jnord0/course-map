@@ -333,8 +333,13 @@ const SkillPacksModule = {
         let completed = 0;
 
         pack.courses.forEach(course => {
-            const code = course.courseCode.replace(/\s+/g, '').replace(/-/g, '-');
-            if (selectedCourses.some(sc => sc.replace(/\s+/g, '').replace(/-/g, '-') === code)) {
+            const code = course.courseCode.replace(/\s+/g, '').replace(/-/g, '-').toUpperCase();
+            const isSelected = selectedCourses.some(sc => {
+                // Handle both string and non-string course IDs
+                const scStr = typeof sc === 'string' ? sc : String(sc || '');
+                return scStr.replace(/\s+/g, '').replace(/-/g, '-').toUpperCase() === code;
+            });
+            if (isSelected) {
                 completed++;
             }
         });
@@ -630,7 +635,10 @@ const SkillPacksModule = {
         if (typeof StateGetters === 'undefined') return false;
         const selectedCourses = StateGetters.getSelectedCourseIds ? StateGetters.getSelectedCourseIds() : [];
         const normalizedCode = courseCode.replace(/\s+/g, '').replace(/-/g, '-').toUpperCase();
-        return selectedCourses.some(sc => sc.replace(/\s+/g, '').replace(/-/g, '-').toUpperCase() === normalizedCode);
+        return selectedCourses.some(sc => {
+            const scStr = typeof sc === 'string' ? sc : String(sc || '');
+            return scStr.replace(/\s+/g, '').replace(/-/g, '-').toUpperCase() === normalizedCode;
+        });
     },
 
     /**
