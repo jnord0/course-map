@@ -51,6 +51,204 @@ const SkillPacksModule = {
     },
 
     /**
+     * Initialize for the standalone skill packs page
+     */
+    initStandalonePage: async () => {
+        if (SkillPacksModule.skillPacks.length === 0) {
+            await SkillPacksModule.loadSkillPacks();
+        }
+
+        const categoriesContainer = document.getElementById('spPageCategories');
+        if (!categoriesContainer) return;
+
+        // Render categories
+        const categories = SkillPacksModule.getCategories();
+        categoriesContainer.innerHTML = categories.map(cat => `
+            <button class="interest-btn" data-category="${cat.name}">
+                ${SkillPacksModule.categoryIcons[cat.name] || ''}
+                <span>${cat.name}</span>
+                <span class="count">${cat.count}</span>
+            </button>
+        `).join('');
+
+        // Add search and filters
+        const header = document.querySelector('#spPageContainer .skill-packs-header');
+        if (header && !document.getElementById('spPageSearch')) {
+            const searchHTML = `
+                <div class="skill-packs-search-row">
+                    <div class="skill-packs-search">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        <input type="text" id="spPageSearch" placeholder="Search skill packs...">
+                    </div>
+                    <select id="spPageProgramFilter" class="program-filter">
+                        <option value="all">All Programs</option>
+                        ${SkillPacksModule.getPrograms().map(p => `<option value="${p}">${p}</option>`).join('')}
+                    </select>
+                </div>
+            `;
+            header.insertAdjacentHTML('afterbegin', searchHTML);
+        }
+
+        // Render initial grid
+        SkillPacksModule._renderStandaloneGrid();
+
+        // Setup event listeners for standalone page
+        categoriesContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('.interest-btn');
+            if (!btn) return;
+            const category = btn.dataset.category;
+
+            // Toggle category
+            if (SkillPacksModule.selectedCategory === category) {
+                SkillPacksModule.selectedCategory = null;
+            } else {
+                SkillPacksModule.selectedCategory = category;
+            }
+
+            // Update active state
+            categoriesContainer.querySelectorAll('.interest-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.category === SkillPacksModule.selectedCategory);
+            });
+
+            // Update title
+            const title = document.getElementById('spPageCategoryTitle');
+            if (title) {
+                title.textContent = SkillPacksModule.selectedCategory || 'All Categories';
+            }
+
+            SkillPacksModule._renderStandaloneGrid();
+        });
+
+        // Filter chips
+        const filtersContainer = document.querySelector('#spPageContainer .skill-packs-filters');
+        if (filtersContainer) {
+            filtersContainer.addEventListener('click', (e) => {
+                const chip = e.target.closest('.filter-chip');
+                if (!chip) return;
+                SkillPacksModule.currentFilter = chip.dataset.filter;
+                filtersContainer.querySelectorAll('.filter-chip').forEach(c => {
+                    c.classList.toggle('active', c.dataset.filter === SkillPacksModule.currentFilter);
+                });
+                SkillPacksModule._renderStandaloneGrid();
+            });
+        }
+
+        // Search
+        const searchInput = document.getElementById('spPageSearch');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                SkillPacksModule.searchQuery = e.target.value.toLowerCase();
+                SkillPacksModule._renderStandaloneGrid();
+            });
+        }
+
+        // Program filter
+        const programFilter = document.getElementById('spPageProgramFilter');
+        if (programFilter) {
+            programFilter.addEventListener('change', (e) => {
+                SkillPacksModule.selectedProgram = e.target.value;
+                SkillPacksModule._renderStandaloneGrid();
+            });
+        }
+    },
+
+    /**
+     * Render skill packs grid on the standalone page
+     */
+    _renderStandaloneGrid: () => {
+        const grid = document.getElementById('spPageGrid');
+        if (!grid) return;
+
+        const packs = SkillPacksModule.getFilteredPacks();
+
+        if (packs.length === 0 && !SkillPacksModule.selectedCategory && !SkillPacksModule.searchQuery) {
+            grid.innerHTML = `
+                <div class="skill-packs-empty">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-gray)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <p>Choose an interest category above to see available skill packs</p>
+                </div>
+            `;
+            return;
+        }
+
+        if (packs.length === 0) {
+            grid.innerHTML = `
+                <div class="skill-packs-empty">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-gray)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+                    <p>No skill packs match your search. Try different keywords or filters.</p>
+                </div>
+            `;
+            return;
+        }
+
+        const packsWithIndex = packs.map(pack => ({
+            pack,
+            originalIndex: SkillPacksModule.skillPacks.indexOf(pack)
+        }));
+
+        grid.innerHTML = packsWithIndex.map(({ pack, originalIndex }) => {
+            const progress = SkillPacksModule.getPackProgress(pack);
+            const hasProgress = progress.completed > 0;
+
+            return `
+            <div class="skill-pack-card" data-pack-index="${originalIndex}">
+                <span class="skill-pack-badge ${SkillPacksModule.getBadgeClass(pack.skillPackType)}">
+                    ${SkillPacksModule.getBadgeText(pack.skillPackType)}
+                </span>
+                <div class="skill-pack-title">${pack.skillPackTitle}</div>
+                <div class="skill-pack-program">${pack.programName}</div>
+                <div class="skill-pack-description">${pack.description.substring(0, 150)}${pack.description.length > 150 ? '...' : ''}</div>
+                <div class="skill-pack-courses">
+                    <div class="skill-pack-courses-label">Courses (${pack.courses.length})</div>
+                    <div class="skill-pack-course-list">
+                        ${pack.courses.slice(0, 4).map(c => `
+                            <span class="skill-pack-course">${c.courseCode.replace(/\s+/g, '')}</span>
+                        `).join('')}
+                        ${pack.courses.length > 4 ? `<span class="skill-pack-course more">+${pack.courses.length - 4} more</span>` : ''}
+                    </div>
+                </div>
+                ${hasProgress ? `
+                <div class="skill-pack-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${progress.percent}%"></div>
+                    </div>
+                    <span class="progress-text">${progress.completed}/${progress.total} courses selected</span>
+                </div>
+                ` : ''}
+                <div class="skill-pack-actions">
+                    <button class="quick-add-btn" data-pack-index="${originalIndex}" title="Add all courses to selection">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                        Quick Add All
+                    </button>
+                </div>
+            </div>
+        `;
+        }).join('');
+
+        // Add click handlers for cards and quick-add buttons
+        grid.addEventListener('click', (e) => {
+            const quickAddBtn = e.target.closest('.quick-add-btn');
+            if (quickAddBtn) {
+                e.stopPropagation();
+                const packIndex = parseInt(quickAddBtn.dataset.packIndex);
+                SkillPacksModule.quickAddCourses(packIndex);
+                SkillPacksModule._renderStandaloneGrid();
+                return;
+            }
+
+            const card = e.target.closest('.skill-pack-card');
+            if (card) {
+                const packIndex = parseInt(card.dataset.packIndex);
+                SkillPacksModule.openPackModal(packIndex);
+            }
+        });
+    },
+
+    /**
      * Initialize for main app (after login)
      */
     initMainApp: async () => {

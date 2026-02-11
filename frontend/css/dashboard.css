@@ -152,6 +152,107 @@
     margin: 0;
 }
 
+/* ============================================
+   STANDALONE PAGES (Competencies, Skill Packs)
+   ============================================ */
+
+#competenciesPage,
+#skillPacksPage {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #f5f7fa 0%, #ffffff 100%);
+}
+
+.standalone-page-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 40px 80px;
+}
+
+.standalone-page-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.standalone-page-header h1 {
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--champlain-navy);
+    margin-bottom: 20px;
+}
+
+.standalone-page-header h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--champlain-bright-blue), var(--champlain-teal));
+    margin: 16px auto 0;
+    border-radius: 2px;
+}
+
+.standalone-page-header p {
+    font-size: 18px;
+    color: var(--champlain-gray);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* CTA at bottom of standalone pages */
+.standalone-page-cta {
+    text-align: center;
+    padding: 50px;
+    background: linear-gradient(135deg, var(--champlain-navy) 0%, var(--champlain-dark-blue) 100%);
+    border-radius: 20px;
+    color: white;
+    margin-top: 60px;
+}
+
+.standalone-page-cta p {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.standalone-page-cta .cta-button {
+    display: inline-block;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, var(--champlain-bright-blue) 0%, var(--champlain-teal) 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 169, 224, 0.4);
+    border: none;
+    cursor: pointer;
+}
+
+.standalone-page-cta .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 169, 224, 0.5);
+}
+
+/* Standalone page responsive */
+@media (max-width: 768px) {
+    .standalone-page-content {
+        padding: 30px 20px 60px;
+    }
+
+    .standalone-page-header h1 {
+        font-size: 32px;
+    }
+
+    .standalone-page-cta {
+        padding: 30px 20px;
+    }
+
+    .standalone-page-cta p {
+        font-size: 20px;
+    }
+}
+
 /* Dashboard Responsive */
 @media (max-width: 768px) {
     .dashboard-content {

@@ -29,9 +29,11 @@ const Dashboard = {
             document.querySelectorAll('.dashboard-faculty-only').forEach(el => el.classList.remove('hidden'));
         }
 
-        // Transition pages
+        // Transition pages - hide all, show dashboard
         document.getElementById('loginPage').classList.add('hidden');
         document.getElementById('mainApp').classList.add('hidden');
+        document.getElementById('competenciesPage').classList.add('hidden');
+        document.getElementById('skillPacksPage').classList.add('hidden');
         document.getElementById('dashboardPage').classList.remove('hidden');
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -42,7 +44,10 @@ const Dashboard = {
      * @param {string} view - The view to activate (network, graphs, semester, skillpacks)
      */
     goToMainApp: (view) => {
+        // Hide all pages, show main app
         document.getElementById('dashboardPage').classList.add('hidden');
+        document.getElementById('competenciesPage').classList.add('hidden');
+        document.getElementById('skillPacksPage').classList.add('hidden');
         document.getElementById('mainApp').classList.remove('hidden');
 
         // Ensure main app is set up
@@ -129,10 +134,35 @@ const Dashboard = {
     },
 
     /**
-     * Go back to dashboard from main app
+     * Show the competencies info page
+     */
+    showCompetencies: () => {
+        document.getElementById('dashboardPage').classList.add('hidden');
+        document.getElementById('competenciesPage').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+
+    /**
+     * Show the skill packs browsing page
+     */
+    showSkillPacks: () => {
+        document.getElementById('dashboardPage').classList.add('hidden');
+        document.getElementById('skillPacksPage').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Initialize skill packs on this page if available
+        if (typeof SkillPacksModule !== 'undefined') {
+            SkillPacksModule.initStandalonePage();
+        }
+    },
+
+    /**
+     * Go back to dashboard from any sub-page
      */
     backToDashboard: () => {
         document.getElementById('mainApp').classList.add('hidden');
+        document.getElementById('competenciesPage').classList.add('hidden');
+        document.getElementById('skillPacksPage').classList.add('hidden');
         document.getElementById('dashboardPage').classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -231,6 +261,8 @@ const App = {
         document.getElementById('loginPage').classList.remove('hidden');
         document.getElementById('mainApp').classList.add('hidden');
         document.getElementById('dashboardPage').classList.add('hidden');
+        document.getElementById('competenciesPage').classList.add('hidden');
+        document.getElementById('skillPacksPage').classList.add('hidden');
         document.getElementById('username').value = '';
         document.getElementById('password').value = '';
 
