@@ -739,10 +739,36 @@ const SkillPacksModule = {
                 </div>
 
                 <div class="skill-pack-modal-body">
+                    <div class="skill-pack-modal-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Program Code</span>
+                            <span class="detail-value">${pack.programCode}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Category</span>
+                            <span class="detail-value">${pack.interestCategory}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Access Type</span>
+                            <span class="detail-value">${pack.skillPackType}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Total Courses</span>
+                            <span class="detail-value">${pack.courses.length}</span>
+                        </div>
+                    </div>
+
                     <div class="skill-pack-modal-description">
                         <h3>Description</h3>
                         <p>${pack.description}</p>
                     </div>
+
+                    ${pack.proposalLink ? `
+                    <div class="skill-pack-modal-proposal">
+                        <h3>Related Proposal</h3>
+                        <p>${pack.proposalLink}</p>
+                    </div>
+                    ` : ''}
 
                     ${isLoggedIn ? `
                     <div class="skill-pack-modal-progress">
@@ -759,16 +785,17 @@ const SkillPacksModule = {
                         <div class="course-list">
                             ${pack.courses.map(course => {
                                 const isSelected = SkillPacksModule.isCourseSelected(course.courseCode);
+                                const hasPrereqs = course.prerequisites && course.prerequisites !== 'None';
                                 return `
                                 <div class="course-item ${isSelected ? 'selected' : ''}">
                                     <div class="course-item-info">
                                         <span class="course-code">${course.courseCode}</span>
                                         <span class="course-title">${course.courseTitle}</span>
-                                    </div>
-                                    <div class="course-item-prereqs">
-                                        ${course.prerequisites && course.prerequisites !== 'None'
-                                            ? `<small>Prerequisites: ${course.prerequisites}</small>`
-                                            : '<small>No prerequisites</small>'}
+                                        <span class="course-prereqs ${hasPrereqs ? 'has-prereqs' : ''}">
+                                            ${hasPrereqs
+                                                ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Prereqs: ' + course.prerequisites
+                                                : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> No prerequisites'}
+                                        </span>
                                     </div>
                                     ${isSelected ? '<span class="selected-badge">Selected</span>' : ''}
                                 </div>
