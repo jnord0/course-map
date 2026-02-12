@@ -715,104 +715,151 @@ const SkillPacksModule = {
         const pack = SkillPacksModule.skillPacks[packIndex];
         if (!pack) return;
 
-        const progress = SkillPacksModule.getPackProgress(pack);
-        const isLoggedIn = typeof StateGetters !== 'undefined';
-
         // Create modal if it doesn't exist
         let modal = document.getElementById('skillPackModal');
         if (!modal) {
             modal = document.createElement('div');
             modal.id = 'skillPackModal';
-            modal.className = 'modal-overlay';
+            modal.className = 'modal';
             document.body.appendChild(modal);
         }
 
-        modal.innerHTML = `
-            <div class="modal-content skill-pack-modal-content">
-                <button class="modal-close-btn" id="closeSkillPackModal">&times;</button>
-                <div class="skill-pack-modal-header">
-                    <span class="skill-pack-badge ${SkillPacksModule.getBadgeClass(pack.skillPackType)}">
-                        ${SkillPacksModule.getBadgeText(pack.skillPackType)}
+        const courseListHtml = pack.courses.map(course => {
+            const isSelected = SkillPacksModule.isCourseSelected(course.courseCode);
+            const hasPrereqs = course.prerequisites && course.prerequisites !== 'None';
+            return `
+                <div style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 10px 14px;
+                    border-radius: 20px;
+                    background: ${isSelected ? '#e3f2fd' : '#f8f9fa'};
+                    border: 2px solid ${isSelected ? 'var(--champlain-bright-blue)' : '#e8eaf0'};
+                ">
+                    <span style="font-size: 13px; font-weight: 600; color: var(--champlain-navy);">
+                        ${course.courseCode} - ${course.courseTitle}
                     </span>
-                    <h2>${pack.skillPackTitle}</h2>
-                    <p class="skill-pack-modal-program">${pack.programName}</p>
+                    <span style="font-size: 12px; font-weight: 600; color: ${isSelected ? 'var(--champlain-bright-blue)' : hasPrereqs ? '#e65100' : '#74AA50'};">
+                        ${isSelected ? 'Selected' : hasPrereqs ? 'Prereqs: ' + course.prerequisites : 'No prerequisites'}
+                    </span>
                 </div>
+            `;
+        }).join('');
 
-                <div class="skill-pack-modal-body">
-                    <div class="skill-pack-modal-details">
-                        <div class="detail-item">
-                            <span class="detail-label">Program Code</span>
-                            <span class="detail-value">${pack.programCode}</span>
+        modal.innerHTML = `
+            <div class="modal-content" style="max-width: 700px;">
+                <div class="modal-header">
+                    <h2>Skill Pack Details</h2>
+                    <button class="close-btn" id="closeSkillPackModal">&times;</button>
+                </div>
+                <div class="modal-body" id="skillPackDetailsBody" style="max-height: 70vh; overflow-y: auto;">
+                    <!-- Breadcrumb Navigation -->
+                    <nav style="margin-bottom: 16px; padding: 8px 12px; background: var(--bg-tertiary, #f8f9fa); border-radius: 8px; font-size: 13px;">
+                        <span style="color: var(--text-secondary, #666);">Dashboard</span>
+                        <span style="color: var(--text-tertiary, #999); margin: 0 8px;">›</span>
+                        <span style="color: var(--text-secondary, #666);">Skill Packs</span>
+                        <span style="color: var(--text-tertiary, #999); margin: 0 8px;">›</span>
+                        <span style="color: var(--champlain-blue); font-weight: 600;">${pack.programCode}</span>
+                    </nav>
+
+                    <div style="margin-bottom: 24px;">
+                        <div style="margin-bottom: 8px;">
+                            <span class="skill-pack-badge ${SkillPacksModule.getBadgeClass(pack.skillPackType)}">
+                                ${SkillPacksModule.getBadgeText(pack.skillPackType)}
+                            </span>
                         </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Category</span>
-                            <span class="detail-value">${pack.interestCategory}</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Access Type</span>
-                            <span class="detail-value">${pack.skillPackType}</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Total Courses</span>
-                            <span class="detail-value">${pack.courses.length}</span>
-                        </div>
+                        <h3 style="color: var(--champlain-navy); margin-bottom: 4px; font-size: 26px; font-weight: bold;">
+                            ${pack.skillPackTitle}
+                        </h3>
+                        <h4 style="color: #666; margin: 0; font-size: 18px; font-weight: 600;">
+                            ${pack.programName}
+                        </h4>
                     </div>
 
-                    <div class="skill-pack-modal-description">
-                        <h3>Description</h3>
-                        <p>${pack.description}</p>
-                    </div>
-
-                    ${pack.proposalLink ? `
-                    <div class="skill-pack-modal-proposal">
-                        <h3>Related Proposal</h3>
-                        <p>${pack.proposalLink}</p>
-                    </div>
+                    ${pack.description ? `
+                        <div style="margin-bottom: 20px; padding: 16px; background: #f8f9fa; border-left: 4px solid var(--champlain-navy); border-radius: 4px;">
+                            <h4 style="color: var(--champlain-navy); margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">
+                                Description
+                            </h4>
+                            <p style="color: #333; font-size: 14px; line-height: 1.6; margin: 0;">
+                                ${pack.description}
+                            </p>
+                        </div>
                     ` : ''}
 
-                    ${isLoggedIn ? `
-                    <div class="skill-pack-modal-progress">
-                        <h3>Your Progress</h3>
-                        <div class="progress-bar large">
-                            <div class="progress-fill" style="width: ${progress.percent}%"></div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+                        <div style="padding: 12px; background: #e3f2fd; border-radius: 8px;">
+                            <div style="font-size: 12px; color: #1565c0; font-weight: 600; margin-bottom: 4px;">PROGRAM CODE</div>
+                            <div style="font-size: 16px; color: #0d47a1; font-weight: bold;">${pack.programCode}</div>
                         </div>
-                        <span class="progress-text">${progress.completed} of ${progress.total} courses selected (${progress.percent}%)</span>
-                    </div>
-                    ` : ''}
-
-                    <div class="skill-pack-modal-courses">
-                        <h3>Courses in this Pack (${pack.courses.length})</h3>
-                        <div class="course-list">
-                            ${pack.courses.map(course => {
-                                const isSelected = SkillPacksModule.isCourseSelected(course.courseCode);
-                                const hasPrereqs = course.prerequisites && course.prerequisites !== 'None';
-                                return `
-                                <div class="course-item ${isSelected ? 'selected' : ''}">
-                                    <div class="course-item-info">
-                                        <span class="course-code">${course.courseCode}</span>
-                                        <span class="course-title">${course.courseTitle}</span>
-                                        <span class="course-prereqs ${hasPrereqs ? 'has-prereqs' : ''}">
-                                            ${hasPrereqs
-                                                ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Prereqs: ' + course.prerequisites
-                                                : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> No prerequisites'}
-                                        </span>
-                                    </div>
-                                    ${isSelected ? '<span class="selected-badge">Selected</span>' : ''}
-                                </div>
-                            `;
-                            }).join('')}
+                        <div style="padding: 12px; background: #e8f5e9; border-radius: 8px;">
+                            <div style="font-size: 12px; color: #2e7d32; font-weight: 600; margin-bottom: 4px;">TOTAL COURSES</div>
+                            <div style="font-size: 20px; color: #1b5e20; font-weight: bold;">${pack.courses.length}</div>
+                        </div>
+                        <div style="padding: 12px; background: #fff3e0; border-radius: 8px;">
+                            <div style="font-size: 12px; color: #e65100; font-weight: 600; margin-bottom: 4px;">CATEGORY</div>
+                            <div style="font-size: 14px; color: #bf360c; font-weight: 600;">${pack.interestCategory}</div>
+                        </div>
+                        <div style="padding: 12px; background: #f3e5f5; border-radius: 8px;">
+                            <div style="font-size: 12px; color: #7b1fa2; font-weight: 600; margin-bottom: 4px;">ACCESS TYPE</div>
+                            <div style="font-size: 14px; color: #4a148c; font-weight: 600;">${pack.skillPackType}</div>
                         </div>
                     </div>
-                </div>
 
-                <div class="skill-pack-modal-footer">
-                    <button class="btn-secondary" id="closeSkillPackModalBtn">Close</button>
-                    <button class="btn-primary quick-add-modal-btn" data-pack-index="${packIndex}">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 5v14M5 12h14"/>
-                        </svg>
-                        Add All Courses
-                    </button>
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="color: var(--champlain-navy); margin-bottom: 12px; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                            Courses in this Pack (${pack.courses.length})
+                        </h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            ${courseListHtml}
+                        </div>
+                    </div>
+
+                    <div style="background: #f5f7fa; padding: 16px; border-radius: 8px; margin-top: 20px;">
+                        <h4 style="color: var(--champlain-navy); margin-bottom: 12px; font-size: 14px;">
+                            Quick Actions
+                        </h4>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button
+                                class="quick-add-modal-btn"
+                                data-pack-index="${packIndex}"
+                                style="
+                                    padding: 10px 18px;
+                                    background: #17a2b8;
+                                    color: white;
+                                    border: none;
+                                    border-radius: 6px;
+                                    cursor: pointer;
+                                    font-size: 13px;
+                                    font-weight: 600;
+                                    transition: background 0.2s;
+                                "
+                                onmouseover="this.style.background='#138496'"
+                                onmouseout="this.style.background='#17a2b8'"
+                            >
+                                + Add All Courses
+                            </button>
+                            <button
+                                id="closeSkillPackModalBtn"
+                                style="
+                                    padding: 10px 18px;
+                                    background: #dc3545;
+                                    color: white;
+                                    border: none;
+                                    border-radius: 6px;
+                                    cursor: pointer;
+                                    font-size: 13px;
+                                    font-weight: 600;
+                                    transition: background 0.2s;
+                                "
+                                onmouseover="this.style.background='#c82333'"
+                                onmouseout="this.style.background='#dc3545'"
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         `;
