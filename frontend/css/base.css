@@ -1,6 +1,10 @@
 /* Champlain College Academic Affairs - Base Styles */
 /* Reset, Typography, and CSS Variables */
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
