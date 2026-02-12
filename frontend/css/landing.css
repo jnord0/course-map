@@ -1224,6 +1224,9 @@
     border-radius: 0;
     animation: none;
     min-height: 100%;
+    /* Override base .modal-content rules from responsive.css */
+    max-height: none;
+    overflow-y: visible;
 }
 
 /* Close button */

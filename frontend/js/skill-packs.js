@@ -817,7 +817,7 @@ const SkillPacksModule = {
             </div>
         `;
 
-        modal.style.display = 'flex';
+        modal.style.display = 'block';
 
         // Event listeners
         modal.querySelector('#closeSkillPackModal').addEventListener('click', () => SkillPacksModule.closePackModal());
