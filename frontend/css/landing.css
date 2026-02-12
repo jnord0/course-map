@@ -1216,7 +1216,7 @@
     padding: 0;
 }
 
-.skill-pack-modal-content {
+#skillPackModal .skill-pack-modal-content {
     max-width: 900px;
     width: 100%;
     min-height: 100vh;
@@ -1225,6 +1225,8 @@
     box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
     position: relative;
     margin: 0 auto;
+    border-radius: 0;
+    animation: none;
 }
 
 /* Close button */
