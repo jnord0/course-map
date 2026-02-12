@@ -1206,107 +1206,178 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
     z-index: 2000;
     display: none;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
-    padding: 20px;
+    overflow-y: auto;
+    padding: 0;
 }
 
 .skill-pack-modal-content {
-    max-width: 700px;
-    max-height: 85vh;
-    overflow-y: auto;
-    background: white;
-    border-radius: 16px;
-    padding: 35px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    position: relative;
+    max-width: 900px;
     width: 100%;
+    min-height: 100vh;
+    background: white;
+    padding: 0;
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
+    position: relative;
+    margin: 0 auto;
 }
 
+/* Close button */
+.skill-pack-modal-content .modal-close-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2001;
+    transition: all 0.2s ease;
+    line-height: 1;
+}
+
+.skill-pack-modal-content .modal-close-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+/* Modal header - full-width banner */
 .skill-pack-modal-header {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e8eaf0;
-    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--champlain-navy) 0%, var(--champlain-blue) 100%);
+    padding: 50px 50px 40px;
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.skill-pack-modal-header .skill-pack-badge {
+    font-size: 12px;
 }
 
 .skill-pack-modal-header h2 {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--champlain-navy);
-    margin: 12px 0 8px;
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    margin: 16px 0 10px;
+    line-height: 1.2;
 }
 
 .skill-pack-modal-program {
     color: var(--champlain-bright-blue);
     font-weight: 600;
+    font-size: 16px;
     margin: 0;
 }
 
-.skill-pack-modal-body h3 {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--champlain-navy);
-    margin: 0 0 12px;
+/* Modal body - padded content area */
+.skill-pack-modal-body {
+    padding: 40px 50px;
 }
 
-/* Skill Pack Modal Detail Grid */
+.skill-pack-modal-body h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--champlain-navy);
+    margin: 0 0 16px;
+}
+
+/* Detail Grid */
 .skill-pack-modal-details {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 24px;
-    padding: 20px;
-    background: #f5f7fa;
-    border-radius: 12px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0;
+    margin-bottom: 36px;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    border-top: 1px solid #e8eaf0;
+    border-bottom: 1px solid #e8eaf0;
 }
 
 .detail-item {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
+    padding: 20px 20px 20px 0;
+    border-right: 1px solid #e8eaf0;
+}
+
+.detail-item:last-child {
+    border-right: none;
+}
+
+.detail-item:first-child {
+    padding-left: 0;
 }
 
 .detail-label {
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
     color: var(--champlain-gray);
 }
 
 .detail-value {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--champlain-navy);
     line-height: 1.4;
 }
 
-/* Skill Pack Proposal Section */
+/* Description */
+.skill-pack-modal-description {
+    margin-bottom: 36px;
+}
+
+.skill-pack-modal-description p {
+    color: #444;
+    line-height: 1.8;
+    font-size: 15px;
+    margin: 0;
+}
+
+/* Proposal Section */
 .skill-pack-modal-proposal {
-    margin-bottom: 24px;
-    padding: 16px 20px;
-    background: #fff8e1;
+    margin-bottom: 36px;
+    padding: 20px 24px;
+    background: #fefbe8;
     border-radius: 12px;
     border-left: 4px solid #F7931E;
 }
 
 .skill-pack-modal-proposal p {
-    color: var(--champlain-gray);
+    color: #555;
     line-height: 1.6;
     margin: 0;
     font-size: 14px;
 }
 
-/* Course prerequisite line in modal */
+/* Progress */
+.skill-pack-modal-progress {
+    margin-bottom: 36px;
+    padding: 24px;
+    background: #f5f7fa;
+    border-radius: 12px;
+}
+
+/* Course prerequisite line */
 .course-prereqs {
     display: flex;
     align-items: center;
-    gap: 4px;
-    font-size: 12px;
+    gap: 5px;
+    font-size: 13px;
     color: var(--champlain-gray);
     margin-top: 4px;
 }
@@ -1319,44 +1390,33 @@
     color: #e65100;
 }
 
-.skill-pack-modal-description {
-    margin-bottom: 24px;
-}
-
-.skill-pack-modal-description p {
-    color: var(--champlain-gray);
-    line-height: 1.7;
-    margin: 0;
-}
-
-.skill-pack-modal-progress {
-    margin-bottom: 24px;
-    padding: 20px;
-    background: #f5f7fa;
-    border-radius: 12px;
-}
-
+/* Courses list */
 .skill-pack-modal-courses {
-    margin-bottom: 20px;
+    margin-bottom: 0;
 }
 
 .course-list {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-height: 300px;
-    overflow-y: auto;
+    max-height: none;
+    overflow-y: visible;
 }
 
 .course-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 16px;
+    padding: 18px 20px;
     background: #f8fafc;
     border: 1px solid #e8eaf0;
-    border-radius: 10px;
+    border-radius: 12px;
     transition: all 0.2s ease;
+}
+
+.course-item:hover {
+    background: #f0f4f8;
+    border-color: #cfd8e3;
 }
 
 .course-item.selected {
@@ -1372,12 +1432,20 @@
 
 .course-item-info .course-code {
     font-weight: 700;
+    font-size: 15px;
     color: var(--champlain-navy);
 }
 
 .course-item-info .course-title {
     font-size: 14px;
     color: var(--champlain-gray);
+}
+
+/* Footer */
+.skill-pack-modal-footer {
+    padding: 24px 50px 40px;
+    border-top: 1px solid #e8eaf0;
+    background: #f8fafc;
 }
 
 .course-item-prereqs small {
@@ -1572,12 +1640,33 @@
     }
 
     .skill-pack-modal-content {
-        margin: 10px;
-        max-height: 90vh;
+        margin: 0;
+        min-height: 100vh;
+    }
+
+    .skill-pack-modal-header {
+        padding: 40px 24px 30px;
+    }
+
+    .skill-pack-modal-header h2 {
+        font-size: 24px;
+    }
+
+    .skill-pack-modal-body {
+        padding: 30px 24px;
     }
 
     .skill-pack-modal-details {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .detail-item {
+        border-right: none;
+        padding: 12px 0;
+    }
+
+    .skill-pack-modal-footer {
+        padding: 20px 24px 30px;
     }
 
     .skill-pack-modal-footer {
