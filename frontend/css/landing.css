@@ -1301,6 +1301,15 @@
     font-size: 13px;
     font-weight: 600;
     color: var(--champlain-navy);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.suggestion-program {
+    font-size: 11px;
+    color: #888;
     margin-bottom: 8px;
     white-space: nowrap;
     overflow: hidden;
@@ -1315,14 +1324,24 @@
 
 .mini-progress-bar {
     flex: 1;
-    height: 6px;
+    height: 8px;
     background: #e0e5eb;
-    border-radius: 3px;
+    border-radius: 4px;
     overflow: hidden;
 }
 
 .mini-progress-bar .progress-fill {
     height: 100%;
+    background: linear-gradient(90deg, var(--champlain-bright-blue), var(--champlain-green));
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.progress-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--champlain-gray);
+    white-space: nowrap;
 }
 
 .suggestion-progress span {

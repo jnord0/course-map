@@ -523,21 +523,18 @@ const SkillPacksModule = {
 
     /**
      * Calculate completion progress for a skill pack
+     * Matches by course code (e.g. "CSI-440") against selected courses
      */
     getPackProgress: (pack) => {
         if (typeof StateGetters === 'undefined') return { completed: 0, total: pack.courses.length, percent: 0 };
 
-        const selectedCourses = StateGetters.getSelectedCourseIds ? StateGetters.getSelectedCourseIds() : [];
+        const selectedCourses = StateGetters.getSelectedCourses ? StateGetters.getSelectedCourses() : [];
+        const selectedCodes = selectedCourses.map(c => (c.code || '').replace(/\s+/g, '').toUpperCase());
         let completed = 0;
 
         pack.courses.forEach(course => {
-            const code = course.courseCode.replace(/\s+/g, '').replace(/-/g, '-').toUpperCase();
-            const isSelected = selectedCourses.some(sc => {
-                // Handle both string and non-string course IDs
-                const scStr = typeof sc === 'string' ? sc : String(sc || '');
-                return scStr.replace(/\s+/g, '').replace(/-/g, '-').toUpperCase() === code;
-            });
-            if (isSelected) {
+            const code = course.courseCode.replace(/\s+/g, '').toUpperCase();
+            if (selectedCodes.includes(code)) {
                 completed++;
             }
         });
@@ -901,76 +898,49 @@ const SkillPacksModule = {
     },
 
     /**
-     * Check if a course is selected
+     * Check if a course is selected by matching course codes
      */
     isCourseSelected: (courseCode) => {
         if (typeof StateGetters === 'undefined') return false;
-        const selectedCourses = StateGetters.getSelectedCourseIds ? StateGetters.getSelectedCourseIds() : [];
-        const normalizedCode = courseCode.replace(/\s+/g, '').replace(/-/g, '-').toUpperCase();
-        return selectedCourses.some(sc => {
-            const scStr = typeof sc === 'string' ? sc : String(sc || '');
-            return scStr.replace(/\s+/g, '').replace(/-/g, '-').toUpperCase() === normalizedCode;
-        });
+        const selectedCourses = StateGetters.getSelectedCourses ? StateGetters.getSelectedCourses() : [];
+        const normalizedCode = courseCode.replace(/\s+/g, '').toUpperCase();
+        return selectedCourses.some(c => (c.code || '').replace(/\s+/g, '').toUpperCase() === normalizedCode);
     },
 
     /**
-     * Render skill packs section in sidebar (main app)
+     * Render skill pack progress into the fixed sidebar container
      */
     renderSkillPacksSidebar: () => {
-        const sidebar = document.querySelector('.sidebar');
-        if (!sidebar) return;
+        const container = document.getElementById('skillPackProgressBody');
+        if (!container) return;
 
-        // Check if already added
-        if (document.getElementById('skillPacksSidebar')) return;
-
-        // Find suggested skill packs based on selected courses
         const suggestions = SkillPacksModule.getSuggestedPacks();
 
-        const sidebarSection = document.createElement('div');
-        sidebarSection.id = 'skillPacksSidebar';
-        sidebarSection.className = 'sidebar-section skill-packs-sidebar';
-        sidebarSection.innerHTML = `
-            <h3>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
-                </svg>
-                Skill Pack Progress
-            </h3>
+        if (suggestions.length === 0) {
+            container.innerHTML = '<p class="no-suggestions">Select courses to see skill pack progress</p>';
+            return;
+        }
+
+        container.innerHTML = `
             <div class="skill-packs-suggestions">
-                ${suggestions.length > 0 ? suggestions.map(({ pack, progress }) => `
-                    <div class="suggestion-card" data-pack-index="${SkillPacksModule.skillPacks.indexOf(pack)}">
+                ${suggestions.map(({ pack, progress }) => `
+                    <div class="suggestion-card" data-pack-index="${SkillPacksModule.skillPacks.indexOf(pack)}" onclick="SkillPacksModule.openPackModal(${SkillPacksModule.skillPacks.indexOf(pack)})">
                         <div class="suggestion-title">${pack.skillPackTitle}</div>
+                        <div class="suggestion-program">${pack.programName}</div>
                         <div class="suggestion-progress">
                             <div class="mini-progress-bar">
                                 <div class="progress-fill" style="width: ${progress.percent}%"></div>
                             </div>
-                            <span>${progress.completed}/${progress.total}</span>
+                            <span class="progress-label">${progress.completed}/${progress.total} courses</span>
                         </div>
                     </div>
-                `).join('') : '<p class="no-suggestions">Select courses to see skill pack progress</p>'}
+                `).join('')}
             </div>
         `;
-
-        // Find a good place to insert (after competency tracker)
-        const competencyTracker = document.getElementById('competencyTracker');
-        if (competencyTracker && competencyTracker.parentElement) {
-            competencyTracker.parentElement.insertAdjacentElement('afterend', sidebarSection);
-        } else {
-            sidebar.appendChild(sidebarSection);
-        }
-
-        // Add click handlers
-        sidebarSection.querySelectorAll('.suggestion-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const idx = parseInt(card.dataset.packIndex);
-                SkillPacksModule.openPackModal(idx);
-            });
-        });
     },
 
     /**
-     * Get skill packs that user has progress on
+     * Get all skill packs that contain at least one selected course
      */
     getSuggestedPacks: () => {
         if (typeof StateGetters === 'undefined') return [];
@@ -984,20 +954,16 @@ const SkillPacksModule = {
             }
         });
 
-        // Sort by progress percentage (highest first)
-        suggestions.sort((a, b) => b.progress.percent - a.progress.percent);
+        // Sort by progress percentage (highest first), then by name
+        suggestions.sort((a, b) => b.progress.percent - a.progress.percent || a.pack.skillPackTitle.localeCompare(b.pack.skillPackTitle));
 
-        return suggestions.slice(0, 5); // Top 5
+        return suggestions;
     },
 
     /**
      * Update sidebar when courses change
      */
     updateSidebar: () => {
-        const existing = document.getElementById('skillPacksSidebar');
-        if (existing) {
-            existing.remove();
-        }
         SkillPacksModule.renderSkillPacksSidebar();
     }
 };
