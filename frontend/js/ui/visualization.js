@@ -1812,13 +1812,13 @@ System: Champlain Academic Affairs Management System
                 }).join('');
         }
 
-        // Render available courses
+        // Render available courses (clicking marks them as completed)
         const availableBox = document.getElementById('availableCoursesBox');
         if (availableBox) {
             availableBox.innerHTML = pathway.available.length === 0
                 ? '<p style="color: #999; text-align: center; padding: 20px;">No available courses</p>'
                 : pathway.available.map(course => {
-                    return VisualizationModule.renderCourseCard(course, '#00A9E0');
+                    return VisualizationModule.renderAvailableCourseCard(course);
                 }).join('');
         }
 
@@ -1834,8 +1834,67 @@ System: Champlain Academic Affairs Management System
     },
 
     /**
-     * Render a course card for pathway view
+     * Mark an available course as completed and refresh the pathway view
      */
+    markCourseCompleted: (courseCode) => {
+        if (!VisualizationModule._completedCourses) return;
+        if (!VisualizationModule._completedCourses.includes(courseCode)) {
+            VisualizationModule._completedCourses.push(courseCode);
+            if (VisualizationModule._updateSelectedDisplay) {
+                VisualizationModule._updateSelectedDisplay();
+            }
+            VisualizationModule.updatePathwayView();
+        }
+    },
+
+    /**
+     * Render a clickable available course card that moves to completed on click
+     */
+    renderAvailableCourseCard: (course) => {
+        return `
+            <div style="
+                background: white;
+                border: 1px solid #00A9E0;
+                border-radius: 6px;
+                padding: 12px;
+                margin-bottom: 10px;
+                cursor: pointer;
+                transition: all 0.2s;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            "
+            onmouseover="this.style.boxShadow='0 2px 8px rgba(0,169,224,0.2)'; this.style.borderColor='#0088b8'"
+            onmouseout="this.style.boxShadow='none'; this.style.borderColor='#00A9E0'"
+            onclick="VisualizationModule.markCourseCompleted('${course.code}')">
+                <div>
+                    <div style="font-weight: bold; color: var(--champlain-navy); margin-bottom: 4px; font-size: 13px;">
+                        ${course.code}
+                    </div>
+                    <div style="font-size: 11px; color: #666; margin-bottom: 4px;">
+                        ${course.name || 'No title'}
+                    </div>
+                    <div style="font-size: 11px; color: #999;">
+                        ${course.credits || 3} credits
+                    </div>
+                </div>
+                <div style="
+                    color: #00A9E0;
+                    font-size: 11px;
+                    font-weight: 600;
+                    white-space: nowrap;
+                    padding-left: 10px;
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                ">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                    Complete
+                </div>
+            </div>
+        `;
+    },
+
     renderCourseCard: (course, borderColor, showMissingPrereqs = false) => {
         const missingPrereqs = showMissingPrereqs && course.missingPrerequisites
             ? `<div style="margin-top: 6px; padding-top: 6px; border-top: 1px solid #eee;">

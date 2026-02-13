@@ -208,18 +208,6 @@ const PrerequisiteVisualization = {
             .attr('pointer-events', 'none')
             .text(d => d.data.code || d.data.name);
 
-        // Course name label below pill
-        nodes.append('text')
-            .attr('dy', d => (d.data.isFocus ? PV.FOCUS_NODE_HEIGHT : PV.NODE_HEIGHT) / 2 + 14)
-            .attr('text-anchor', 'middle')
-            .attr('fill', '#666')
-            .attr('font-size', '10px')
-            .attr('pointer-events', 'none')
-            .text(d => {
-                const name = d.data.name || '';
-                return name.length > 28 ? name.substring(0, 28) + '...' : name;
-            });
-
         // Zoom/pan
         const zoom = d3.zoom()
             .scaleExtent([0.5, 3])
@@ -363,18 +351,6 @@ const PrerequisiteVisualization = {
             .attr('font-weight', '600')
             .attr('pointer-events', 'none')
             .text(d => d.code);
-
-        // Course name below pill
-        node.append('text')
-            .attr('dy', d => (d.isFocus ? PV.FOCUS_NODE_HEIGHT : PV.NODE_HEIGHT) / 2 + 14)
-            .attr('text-anchor', 'middle')
-            .attr('fill', '#666')
-            .attr('font-size', '10px')
-            .attr('pointer-events', 'none')
-            .text(d => {
-                const name = d.name || '';
-                return name.length > 22 ? name.substring(0, 22) + '...' : name;
-            });
 
         // Shorten links so they stop at pill edges, not center
         simulation.on('tick', () => {
