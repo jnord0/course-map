@@ -66,11 +66,11 @@ const ComparisonTool = {
 
     /**
      * Generate HTML for course comparison
+     * Uses a row-based layout where each competency is a row with
+     * all courses side-by-side for easy comparison
      */
     generateComparisonHTML: (courses) => {
-        const competencies = StateGetters.getCompetencies();
-
-        // Get all unique competency names across courses
+        // Collect all unique competency names across all courses
         const allCompetencyNames = new Set();
         courses.forEach(course => {
             if (course.competencies) {
@@ -82,105 +82,108 @@ const ComparisonTool = {
             }
         });
 
-        // Generate course cards
-        const courseCards = courses.map(course => {
-            const compList = Object.entries(course.competencies || {})
-                .filter(([name, weight]) => weight > 0)
-                .sort((a, b) => b[1] - a[1])
-                .map(([name, weight]) => `
-                    <div class="comparison-competency-item">
-                        <span class="comparison-competency-name">${name}</span>
-                        <span class="comparison-competency-weight weight-${weight}">
-                            ${weight === 1 ? 'Addressed' : weight === 2 ? 'Reinforced' : 'Emphasized'}
-                        </span>
-                    </div>
-                `).join('');
+        // Sort competencies alphabetically for consistent ordering
+        const sortedCompetencies = [...allCompetencyNames].sort();
 
-            // Calculate stats
-            const totalCompetencies = Object.values(course.competencies || {}).filter(w => w > 0).length;
-            const totalWeight = Object.values(course.competencies || {}).reduce((sum, w) => sum + (w || 0), 0);
-            const emphasized = Object.values(course.competencies || {}).filter(w => w === 3).length;
-            const avgWeight = totalCompetencies > 0 ? (totalWeight / totalCompetencies).toFixed(1) : 0;
+        // Weight label and color helpers
+        const weightLabel = (w) => w === 1 ? 'Addressed' : w === 2 ? 'Reinforced' : w === 3 ? 'Emphasized' : '';
+        const weightBarColor = (w) => w === 1 ? '#1565c0' : w === 2 ? '#e65100' : w === 3 ? '#2e7d32' : '#ccc';
+
+        // Course header columns
+        const courseColCount = courses.length;
+        const courseHeaders = courses.map(course => `
+            <div class="comparison-col-header">
+                <div class="comparison-course-code">${course.code}</div>
+                <div class="comparison-course-name">${course.name}</div>
+                ${course.creditHours ? `<div class="comparison-course-credits">${course.creditHours} credits</div>` : ''}
+            </div>
+        `).join('');
+
+        // Build competency rows — each row shows the same competency across all courses
+        const competencyRows = sortedCompetencies.map(compName => {
+            const isShared = courses.every(c => c.competencies && c.competencies[compName] > 0);
+
+            const cells = courses.map(course => {
+                const weight = (course.competencies && course.competencies[compName]) || 0;
+                const barWidthPct = weight > 0 ? Math.round((weight / 3) * 100) : 0;
+
+                if (weight === 0) {
+                    return `
+                        <div class="comparison-cell comparison-cell-empty">
+                            <span class="comparison-cell-dash">--</span>
+                        </div>
+                    `;
+                }
+
+                return `
+                    <div class="comparison-cell">
+                        <span class="comparison-competency-weight weight-${weight}">
+                            ${weightLabel(weight)}
+                        </span>
+                        <div class="comparison-weight-bar-track">
+                            <div class="comparison-weight-bar" style="width: ${barWidthPct}%; background: ${weightBarColor(weight)};"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
 
             return `
-                <div class="comparison-course">
-                    <div class="comparison-course-header">
-                        <div class="comparison-course-code">${course.code}</div>
-                        <div class="comparison-course-name">${course.name}</div>
-                    </div>
-
-                    ${course.creditHours ? `
-                        <div class="comparison-section">
-                            <div class="comparison-section-title">Credits</div>
-                            <div style="font-size: 24px; font-weight: 700; color: var(--champlain-navy);">
-                                ${course.creditHours}
-                            </div>
-                        </div>
-                    ` : ''}
-
-                    <div class="comparison-section">
-                        <div class="comparison-section-title">Competencies (${totalCompetencies})</div>
-                        <div class="comparison-competency-list">
-                            ${compList || '<p style="color: #666; font-size: 13px;">No competencies mapped</p>'}
-                        </div>
-                    </div>
-
-                    <div class="comparison-stats">
-                        <div class="comparison-stat">
-                            <div class="comparison-stat-value">${totalWeight}</div>
-                            <div class="comparison-stat-label">Total Weight</div>
-                        </div>
-                        <div class="comparison-stat">
-                            <div class="comparison-stat-value">${emphasized}</div>
-                            <div class="comparison-stat-label">Emphasized</div>
-                        </div>
+                <div class="comparison-row ${isShared ? 'comparison-row-shared' : ''}">
+                    <div class="comparison-row-label">${compName}</div>
+                    <div class="comparison-row-cells" style="grid-template-columns: repeat(${courseColCount}, 1fr);">
+                        ${cells}
                     </div>
                 </div>
             `;
         }).join('');
 
-        // Generate shared competencies section
-        const sharedCompetencies = ComparisonTool.findSharedCompetencies(courses);
-        const sharedSection = sharedCompetencies.length > 0 ? `
-            <div style="margin-top: 24px; padding: 20px; background: #e8f5e9; border-radius: 12px;">
-                <h3 style="margin: 0 0 12px 0; color: var(--champlain-green); font-size: 16px;">
-                    ✓ Shared Competencies (${sharedCompetencies.length})
-                </h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                    ${sharedCompetencies.map(name => `
-                        <span style="background: white; padding: 6px 12px; border-radius: 20px; font-size: 13px; color: #2e7d32; font-weight: 600;">
-                            ${name}
-                        </span>
-                    `).join('')}
+        // Per-course stats at the bottom
+        const statsRow = courses.map(course => {
+            const totalWeight = Object.values(course.competencies || {}).reduce((sum, w) => sum + (w || 0), 0);
+            const emphasized = Object.values(course.competencies || {}).filter(w => w === 3).length;
+            const mapped = Object.values(course.competencies || {}).filter(w => w > 0).length;
+            return `
+                <div class="comparison-stat-col">
+                    <div class="comparison-stat">
+                        <div class="comparison-stat-value">${totalWeight}</div>
+                        <div class="comparison-stat-label">Total Weight</div>
+                    </div>
+                    <div class="comparison-stat">
+                        <div class="comparison-stat-value">${emphasized}</div>
+                        <div class="comparison-stat-label">Emphasized</div>
+                    </div>
+                    <div class="comparison-stat">
+                        <div class="comparison-stat-value">${mapped}</div>
+                        <div class="comparison-stat-label">Mapped</div>
+                    </div>
                 </div>
-            </div>
-        ` : '';
+            `;
+        }).join('');
 
         return `
-            <div class="comparison-grid">
-                ${courseCards}
+            <div class="comparison-table">
+                <!-- Course header row -->
+                <div class="comparison-header-row">
+                    <div class="comparison-row-label comparison-corner-label">Competency</div>
+                    <div class="comparison-row-cells" style="grid-template-columns: repeat(${courseColCount}, 1fr);">
+                        ${courseHeaders}
+                    </div>
+                </div>
+
+                <!-- Competency rows -->
+                <div class="comparison-rows">
+                    ${competencyRows}
+                </div>
+
+                <!-- Stats row -->
+                <div class="comparison-stats-row">
+                    <div class="comparison-row-label comparison-corner-label">Summary</div>
+                    <div class="comparison-row-cells" style="grid-template-columns: repeat(${courseColCount}, 1fr);">
+                        ${statsRow}
+                    </div>
+                </div>
             </div>
-            ${sharedSection}
         `;
-    },
-
-    /**
-     * Find competencies shared by all courses
-     */
-    findSharedCompetencies: (courses) => {
-        if (courses.length === 0) return [];
-
-        // Get competencies from first course
-        const firstCourseComps = Object.entries(courses[0].competencies || {})
-            .filter(([name, weight]) => weight > 0)
-            .map(([name]) => name);
-
-        // Filter to those present in all courses
-        return firstCourseComps.filter(compName => {
-            return courses.every(course =>
-                course.competencies && course.competencies[compName] > 0
-            );
-        });
     }
 };
 
