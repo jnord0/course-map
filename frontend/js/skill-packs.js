@@ -10,6 +10,7 @@ const SkillPacksModule = {
     currentFilter: 'all',
     searchQuery: '',
     selectedProgram: 'all',
+    standaloneViewMode: 'cards', // 'cards' or 'list'
 
     // Category icons (SVG paths)
     categoryIcons: {
@@ -152,10 +153,27 @@ const SkillPacksModule = {
                 SkillPacksModule._renderStandaloneGrid();
             });
         }
+
+        // View toggle (cards vs list)
+        const viewToggle = document.getElementById('spViewToggle');
+        if (viewToggle) {
+            viewToggle.addEventListener('click', (e) => {
+                const btn = e.target.closest('.sp-view-btn');
+                if (!btn) return;
+                const view = btn.dataset.view;
+                if (view === SkillPacksModule.standaloneViewMode) return;
+
+                SkillPacksModule.standaloneViewMode = view;
+                viewToggle.querySelectorAll('.sp-view-btn').forEach(b => {
+                    b.classList.toggle('active', b.dataset.view === view);
+                });
+                SkillPacksModule._renderStandaloneGrid();
+            });
+        }
     },
 
     /**
-     * Render skill packs grid on the standalone page
+     * Render skill packs on the standalone page (delegates to card or list view)
      */
     _renderStandaloneGrid: () => {
         const grid = document.getElementById('spPageGrid');
@@ -164,6 +182,7 @@ const SkillPacksModule = {
         const packs = SkillPacksModule.getFilteredPacks();
 
         if (packs.length === 0 && !SkillPacksModule.selectedCategory && !SkillPacksModule.searchQuery) {
+            grid.className = 'skill-packs-grid';
             grid.innerHTML = `
                 <div class="skill-packs-empty">
                     <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-gray)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -174,6 +193,7 @@ const SkillPacksModule = {
         }
 
         if (packs.length === 0) {
+            grid.className = 'skill-packs-grid';
             grid.innerHTML = `
                 <div class="skill-packs-empty">
                     <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-gray)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
@@ -187,6 +207,19 @@ const SkillPacksModule = {
             pack,
             originalIndex: SkillPacksModule.skillPacks.indexOf(pack)
         }));
+
+        if (SkillPacksModule.standaloneViewMode === 'list') {
+            SkillPacksModule._renderStandaloneList(grid, packsWithIndex);
+        } else {
+            SkillPacksModule._renderStandaloneCards(grid, packsWithIndex);
+        }
+    },
+
+    /**
+     * Render card view for standalone page
+     */
+    _renderStandaloneCards: (grid, packsWithIndex) => {
+        grid.className = 'skill-packs-grid';
 
         grid.innerHTML = packsWithIndex.map(({ pack, originalIndex }) => {
             const progress = SkillPacksModule.getPackProgress(pack);
@@ -244,6 +277,112 @@ const SkillPacksModule = {
             if (card) {
                 const packIndex = parseInt(card.dataset.packIndex);
                 SkillPacksModule.openPackModal(packIndex);
+            }
+        });
+    },
+
+    /**
+     * Render collapsible list view for standalone page
+     */
+    _renderStandaloneList: (grid, packsWithIndex) => {
+        grid.className = 'skill-packs-list';
+
+        grid.innerHTML = packsWithIndex.map(({ pack, originalIndex }) => {
+            const progress = SkillPacksModule.getPackProgress(pack);
+            const hasProgress = progress.completed > 0;
+            const badgeClass = SkillPacksModule.getBadgeClass(pack.skillPackType);
+            const badgeText = SkillPacksModule.getBadgeText(pack.skillPackType);
+
+            return `
+            <div class="sp-list-item" data-pack-index="${originalIndex}">
+                <button class="sp-list-header" aria-expanded="false">
+                    <div class="sp-list-header-info">
+                        <span class="sp-list-title">${pack.skillPackTitle}</span>
+                        <div class="sp-list-meta">
+                            <span class="sp-list-code">${pack.programCode}</span>
+                            <span class="skill-pack-badge ${badgeClass}">${badgeText}</span>
+                            ${hasProgress ? `<span class="sp-list-progress-hint">${progress.completed}/${progress.total}</span>` : ''}
+                        </div>
+                    </div>
+                    <span class="sp-list-chevron">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </span>
+                </button>
+                <div class="sp-list-body">
+                    <div class="sp-list-body-inner">
+                        <div class="sp-list-detail-row">
+                            <span class="sp-list-label">Program</span>
+                            <span class="sp-list-value">${pack.programName}</span>
+                        </div>
+                        <div class="sp-list-detail-row">
+                            <span class="sp-list-label">Category</span>
+                            <span class="sp-list-value">${pack.interestCategory}</span>
+                        </div>
+
+                        ${pack.description ? `
+                        <div class="sp-list-description">
+                            <span class="sp-list-label">Description</span>
+                            <p>${pack.description}</p>
+                        </div>
+                        ` : ''}
+
+                        <div class="sp-list-courses-section">
+                            <span class="sp-list-label">Courses (${pack.courses.length})</span>
+                            <div class="sp-list-courses">
+                                ${pack.courses.map(c => {
+                                    const isSelected = SkillPacksModule.isCourseSelected(c.courseCode);
+                                    const hasPrereqs = c.prerequisites && c.prerequisites !== 'None';
+                                    return `
+                                    <div class="sp-list-course ${isSelected ? 'selected' : ''}">
+                                        <span class="sp-list-course-code">${c.courseCode.replace(/\s+/g, '')}</span>
+                                        <span class="sp-list-course-title">${c.courseTitle}</span>
+                                        ${isSelected ? '<span class="sp-list-course-status selected-tag">Selected</span>' :
+                                          hasPrereqs ? `<span class="sp-list-course-status prereq-tag">${c.prerequisites}</span>` : ''}
+                                    </div>`;
+                                }).join('')}
+                            </div>
+                        </div>
+
+                        ${hasProgress ? `
+                        <div class="sp-list-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${progress.percent}%"></div>
+                            </div>
+                            <span class="progress-text">${progress.completed}/${progress.total} courses selected</span>
+                        </div>
+                        ` : ''}
+
+                        <div class="sp-list-actions">
+                            <button class="quick-add-btn" data-pack-index="${originalIndex}" title="Add all courses to selection">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                Quick Add All
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        }).join('');
+
+        // Toggle expand/collapse on header click
+        grid.addEventListener('click', (e) => {
+            const quickAddBtn = e.target.closest('.quick-add-btn');
+            if (quickAddBtn) {
+                e.stopPropagation();
+                const packIndex = parseInt(quickAddBtn.dataset.packIndex);
+                SkillPacksModule.quickAddCourses(packIndex);
+                SkillPacksModule._renderStandaloneGrid();
+                return;
+            }
+
+            const header = e.target.closest('.sp-list-header');
+            if (header) {
+                const item = header.closest('.sp-list-item');
+                const isOpen = item.classList.contains('open');
+                item.classList.toggle('open', !isOpen);
+                header.setAttribute('aria-expanded', !isOpen);
             }
         });
     },
