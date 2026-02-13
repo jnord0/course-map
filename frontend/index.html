@@ -675,9 +675,12 @@
                         <div id="selectedCourses"></div>
 
                         <!-- Similar Courses Feature -->
-                        <div id="similarCoursesSection" style="display: none; margin-top: 15px; padding: 12px; background: #e8f5e9; border-radius: 6px; border: 1px solid var(--champlain-green);">
-                            <h4 style="margin: 0 0 10px 0; color: var(--champlain-green); font-size: 13px;">🎯 Similar Courses</h4>
-                            <div id="similarCoursesList"></div>
+                        <div id="similarCoursesSection" style="display: none; margin-top: 15px; background: #e8f5e9; border-radius: 6px; border: 1px solid var(--champlain-green);">
+                            <h4 class="collapsible-header collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');" style="margin: 0; padding: 12px; color: var(--champlain-green); font-size: 13px; cursor: pointer;">
+                                <span>Similar Courses</span>
+                                <span class="collapse-arrow">▸</span>
+                            </h4>
+                            <div id="similarCoursesList" class="collapsible-body collapsed" style="padding: 0 12px 12px 12px;"></div>
                         </div>
 
                         <!-- Compare Courses Button -->
@@ -693,8 +696,11 @@
                 </div>
 
                 <div class="section">
-                    <h3>Competency Tracker</h3>
-                    <div id="competencyTracker"></div>
+                    <h3 class="collapsible-header collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');">
+                        <span>Competency Tracker</span>
+                        <span class="collapse-arrow">▸</span>
+                    </h3>
+                    <div id="competencyTracker" class="collapsible-body collapsed"></div>
                 </div>
 
                 <!-- Recently Viewed Courses -->

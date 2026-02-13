@@ -62,9 +62,13 @@ const CompetenciesModule = {
         
         html += `
             <div class="competency-tracker">
-                <div class="competency-header">Competency Status</div>
+                <div class="competency-header collapsible-header collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');">
+                    <span>Competency Status</span>
+                    <span class="collapse-arrow">▸</span>
+                </div>
+                <div class="collapsible-body collapsed">
         `;
-        
+
         allCompetencies.forEach(comp => {
             const isEmphasized = metCompetencies.has(comp.id);
             const courses = competencyCourses[comp.id] || [];
@@ -104,8 +108,8 @@ const CompetenciesModule = {
             `;
         });
         
-        html += `</div>`;
-        
+        html += `</div></div>`;
+
         // Add missing competencies alert
         if (missingCompetencies.length > 0) {
             html += `

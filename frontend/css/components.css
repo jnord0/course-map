@@ -1,6 +1,39 @@
 /* Champlain College Academic Affairs - Component Styles */
 /* Proposals, Tracker, Search, Course Cards */
 
+/* Collapsible Sections */
+.collapsible-header {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.collapse-arrow {
+    font-size: 14px;
+    transition: transform 0.25s ease;
+    color: #999;
+    margin-left: auto;
+    padding-left: 8px;
+}
+
+.collapsible-header:not(.collapsed) .collapse-arrow {
+    transform: rotate(90deg);
+}
+
+.collapsible-body {
+    overflow: hidden;
+    max-height: 2000px;
+    transition: max-height 0.3s ease, opacity 0.25s ease;
+    opacity: 1;
+}
+
+.collapsible-body.collapsed {
+    max-height: 0;
+    opacity: 0;
+}
+
 /* Competency Tracker */
 .competency-tracker {
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
