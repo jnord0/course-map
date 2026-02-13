@@ -6,13 +6,14 @@ const CompetenciesModule = {
      */
     updateTracker: () => {
         const trackerDiv = document.getElementById('competencyTracker');
+        const statusDiv = document.getElementById('competencyStatus');
         const selectedCourses = StateGetters.getSelectedCourses();
         const allCompetencies = StateGetters.getCompetencies();
-        
+
         // Calculate which competencies are met (weight of 3)
         const metCompetencies = new Set();
         const competencyCourses = {};
-        
+
         selectedCourses.forEach(course => {
             Object.entries(course.competencies || {}).forEach(([compId, weight]) => {
                 if (weight === 3) {
@@ -26,11 +27,11 @@ const CompetenciesModule = {
                 }
             });
         });
-        
+
         const missingCompetencies = allCompetencies.filter(c => !metCompetencies.has(c.id));
-        
-        // Build the tracker HTML
-        let html = `
+
+        // --- Competency Tracker (summary + selected courses) ---
+        let trackerHTML = `
             <div class="summary-stats">
                 <div class="summary-stat stat-met">
                     <span class="stat-number">${metCompetencies.size}</span>
@@ -42,43 +43,71 @@ const CompetenciesModule = {
                 </div>
             </div>
         `;
-        
+
         if (selectedCourses.length > 0) {
-            html += `
+            trackerHTML += `
                 <div class="competency-tracker">
                     <div class="competency-header">Selected Courses</div>
                     <div class="course-list">
             `;
-            
+
             selectedCourses.forEach(course => {
-                html += `<div class="course-item"><span class="course-code">${course.code}</span> - ${course.name}</div>`;
+                trackerHTML += `<div class="course-item"><span class="course-code">${course.code}</span> - ${course.name}</div>`;
             });
-            
-            html += `
+
+            trackerHTML += `
                     </div>
                 </div>
             `;
         }
-        
-        html += `
-            <div class="competency-tracker">
-                <div class="competency-header collapsible-header collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');">
-                    <span>Competency Status</span>
-                    <span class="collapse-arrow">▸</span>
+
+        // Missing competencies alert goes in the tracker section
+        if (missingCompetencies.length > 0) {
+            trackerHTML += `
+                <div class="missing-alert">
+                    <div class="missing-alert-title">⚠ Competencies Not Emphasized (Level 3)</div>
+                    <ul class="missing-list">
+            `;
+
+            missingCompetencies.forEach(comp => {
+                const courses = competencyCourses[comp.id] || [];
+                const maxWeight = courses.length > 0 ? Math.max(...courses.map(c => c.weight)) : 0;
+                let note = '';
+                if (maxWeight === 2) note = ' (Reinforced at Level 2)';
+                else if (maxWeight === 1) note = ' (Addressed at Level 1)';
+                trackerHTML += `<li>${comp.name}${note}</li>`;
+            });
+
+            trackerHTML += `
+                    </ul>
+                    <p style="margin-top: 10px; font-size: 12px; color: #856404;">
+                        Select courses that emphasize these competencies at Level 3.
+                    </p>
                 </div>
-                <div class="collapsible-body collapsed">
-        `;
+            `;
+        } else if (selectedCourses.length > 0) {
+            trackerHTML += `
+                <div style="background: #e8f5e9; border: 1px solid #4caf50; border-radius: 6px; padding: 15px; margin-top: 15px; text-align: center;">
+                    <div style="color: #2e7d32; font-weight: bold; font-size: 14px;">✓ All Competencies Emphasized!</div>
+                    <p style="margin-top: 5px; font-size: 12px; color: #2e7d32;">Your selected courses emphasize all college competencies at Level 3.</p>
+                </div>
+            `;
+        }
+
+        trackerDiv.innerHTML = trackerHTML;
+
+        // --- Competency Status (separate section) ---
+        let statusHTML = `<div class="competency-tracker">`;
 
         allCompetencies.forEach(comp => {
-            const isEmphasized = metCompetencies.has(comp.id);
             const courses = competencyCourses[comp.id] || [];
             const maxWeight = courses.length > 0 ? Math.max(...courses.map(c => c.weight)) : 0;
-            
+
             // Determine status icon and color
             let statusIcon = '✗';
             let statusClass = 'status-not-met';
             let statusText = 'Not Addressed';
-            
+
             if (maxWeight === 3) {
                 statusIcon = '★';
                 statusClass = 'status-met';
@@ -92,8 +121,8 @@ const CompetenciesModule = {
                 statusClass = 'status-minimal';
                 statusText = 'Addressed';
             }
-            
-            html += `
+
+            statusHTML += `
                 <div class="competency-item">
                     <div class="competency-name">
                         ${comp.name}
@@ -107,43 +136,9 @@ const CompetenciesModule = {
                 </div>
             `;
         });
-        
-        html += `</div></div>`;
 
-        // Add missing competencies alert
-        if (missingCompetencies.length > 0) {
-            html += `
-                <div class="missing-alert">
-                    <div class="missing-alert-title">⚠ Competencies Not Emphasized (Level 3)</div>
-                    <ul class="missing-list">
-            `;
-            
-            missingCompetencies.forEach(comp => {
-                const courses = competencyCourses[comp.id] || [];
-                const maxWeight = courses.length > 0 ? Math.max(...courses.map(c => c.weight)) : 0;
-                let note = '';
-                if (maxWeight === 2) note = ' (Reinforced at Level 2)';
-                else if (maxWeight === 1) note = ' (Addressed at Level 1)';
-                html += `<li>${comp.name}${note}</li>`;
-            });
-            
-            html += `
-                    </ul>
-                    <p style="margin-top: 10px; font-size: 12px; color: #856404;">
-                        Select courses that emphasize these competencies at Level 3.
-                    </p>
-                </div>
-            `;
-        } else if (selectedCourses.length > 0) {
-            html += `
-                <div style="background: #e8f5e9; border: 1px solid #4caf50; border-radius: 6px; padding: 15px; margin-top: 15px; text-align: center;">
-                    <div style="color: #2e7d32; font-weight: bold; font-size: 14px;">✓ All Competencies Emphasized!</div>
-                    <p style="margin-top: 5px; font-size: 12px; color: #2e7d32;">Your selected courses emphasize all college competencies at Level 3.</p>
-                </div>
-            `;
-        }
-        
-        trackerDiv.innerHTML = html;
+        statusHTML += `</div>`;
+        statusDiv.innerHTML = statusHTML;
 
         // Update the visualization
         VisualizationModule.updateGraph();
