@@ -1806,6 +1806,10 @@
     flex-wrap: wrap;
 }
 
+.sp-list-meta .skill-pack-badge {
+    margin-bottom: 0;
+}
+
 .sp-list-code {
     font-size: 13px;
     font-weight: 700;
