@@ -82,16 +82,34 @@ const PrerequisiteVisualization = {
     /**
      * Render empty state message
      */
-    renderEmptyState: (message = 'Select courses to view prerequisite chains') => {
-        PrerequisiteVisualization.svg.selectAll('*').remove();
+    renderEmptyState: (message = 'No courses selected') => {
+        const PV = PrerequisiteVisualization;
+        PV.svg.selectAll('*').remove();
 
-        PrerequisiteVisualization.svg.append('text')
-            .attr('x', PrerequisiteVisualization.width / 2)
-            .attr('y', PrerequisiteVisualization.height / 2)
-            .attr('text-anchor', 'middle')
-            .attr('fill', '#999')
-            .attr('font-size', '16px')
+        const cx = PV.width / 2;
+        const cy = PV.height / 2;
+        const g = PV.svg.append('g').attr('transform', `translate(${cx},${cy})`);
+
+        // Icon: chain of three connected nodes
+        const icon = g.append('g').attr('transform', 'translate(0,-36)');
+        [-28, 0, 28].forEach(x => {
+            icon.append('circle').attr('cx', x).attr('cy', 0).attr('r', 10)
+                .attr('fill', 'none').attr('stroke', '#c8d6e5').attr('stroke-width', 2);
+        });
+        icon.append('line').attr('x1', -18).attr('y1', 0).attr('x2', -10).attr('y2', 0)
+            .attr('stroke', '#c8d6e5').attr('stroke-width', 2).attr('marker-end', 'none');
+        icon.append('line').attr('x1', 10).attr('y1', 0).attr('x2', 18).attr('y2', 0)
+            .attr('stroke', '#c8d6e5').attr('stroke-width', 2);
+
+        g.append('text')
+            .attr('text-anchor', 'middle').attr('y', 10)
+            .attr('fill', '#8395a7').attr('font-size', '16px').attr('font-weight', '600')
             .text(message);
+
+        g.append('text')
+            .attr('text-anchor', 'middle').attr('y', 32)
+            .attr('fill', '#b2bec3').attr('font-size', '13px')
+            .text('Select courses to see prerequisite chains and dependencies');
     },
 
     /**
