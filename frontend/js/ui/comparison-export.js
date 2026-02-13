@@ -70,24 +70,45 @@ const ComparisonTool = {
      * all courses side-by-side for easy comparison
      */
     generateComparisonHTML: (courses) => {
-        // Collect all unique competency names across all courses
-        const allCompetencyNames = new Set();
+        // Build competency ID-to-name lookup from state
+        const competencyList = StateGetters.getCompetencies();
+        const compNameMap = {};
+        competencyList.forEach(c => { compNameMap[c.id] = c.name; });
+
+        // Collect all unique competency IDs across all courses
+        const allCompetencyIds = new Set();
         courses.forEach(course => {
             if (course.competencies) {
-                Object.keys(course.competencies).forEach(name => {
-                    if (course.competencies[name] > 0) {
-                        allCompetencyNames.add(name);
+                Object.keys(course.competencies).forEach(id => {
+                    if (course.competencies[id] > 0) {
+                        allCompetencyIds.add(id);
                     }
                 });
             }
         });
 
-        // Sort competencies alphabetically for consistent ordering
-        const sortedCompetencies = [...allCompetencyNames].sort();
+        // Sort by display name for consistent ordering
+        const sortedCompetencies = [...allCompetencyIds].sort((a, b) => {
+            const nameA = compNameMap[a] || a;
+            const nameB = compNameMap[b] || b;
+            return nameA.localeCompare(nameB);
+        });
 
         // Weight label and color helpers
         const weightLabel = (w) => w === 1 ? 'Addressed' : w === 2 ? 'Reinforced' : w === 3 ? 'Emphasized' : '';
         const weightBarColor = (w) => w === 1 ? '#1565c0' : w === 2 ? '#e65100' : w === 3 ? '#2e7d32' : '#ccc';
+
+        // Generate a small SVG wedge icon for a competency
+        const wedgeIcon = (compId) => {
+            const color = (typeof VisualizationModule !== 'undefined')
+                ? VisualizationModule.getCompetencyColor(compId)
+                : '#999';
+            // SVG pie-wedge: a 270-degree arc slice
+            return `<svg class="comparison-wedge" width="22" height="22" viewBox="0 0 22 22">
+                <path d="M11 11 L11 1 A10 10 0 1 1 3.93 3.93 Z" fill="${color}" />
+                <circle cx="11" cy="11" r="10" fill="none" stroke="white" stroke-width="1"/>
+            </svg>`;
+        };
 
         // Course header columns
         const courseColCount = courses.length;
@@ -100,11 +121,12 @@ const ComparisonTool = {
         `).join('');
 
         // Build competency rows — each row shows the same competency across all courses
-        const competencyRows = sortedCompetencies.map(compName => {
-            const isShared = courses.every(c => c.competencies && c.competencies[compName] > 0);
+        const competencyRows = sortedCompetencies.map(compId => {
+            const displayName = compNameMap[compId] || compId;
+            const isShared = courses.every(c => c.competencies && c.competencies[compId] > 0);
 
             const cells = courses.map(course => {
-                const weight = (course.competencies && course.competencies[compName]) || 0;
+                const weight = (course.competencies && course.competencies[compId]) || 0;
                 const barWidthPct = weight > 0 ? Math.round((weight / 3) * 100) : 0;
 
                 if (weight === 0) {
@@ -129,7 +151,10 @@ const ComparisonTool = {
 
             return `
                 <div class="comparison-row ${isShared ? 'comparison-row-shared' : ''}">
-                    <div class="comparison-row-label">${compName}</div>
+                    <div class="comparison-row-label">
+                        ${wedgeIcon(compId)}
+                        <span>${displayName}</span>
+                    </div>
                     <div class="comparison-row-cells" style="grid-template-columns: repeat(${courseColCount}, 1fr);">
                         ${cells}
                     </div>

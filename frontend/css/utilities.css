@@ -477,7 +477,7 @@
 /* Header row with course columns */
 .comparison-header-row {
     display: grid;
-    grid-template-columns: 180px 1fr;
+    grid-template-columns: 220px 1fr;
     gap: 0;
     border-bottom: 2px solid var(--champlain-navy);
     padding-bottom: 16px;
@@ -529,7 +529,7 @@
 
 .comparison-row {
     display: grid;
-    grid-template-columns: 180px 1fr;
+    grid-template-columns: 220px 1fr;
     gap: 0;
     padding: 10px 0;
     border-bottom: 1px solid #eee;
@@ -554,7 +554,15 @@
     color: #333;
     display: flex;
     align-items: center;
-    padding-right: 16px;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 12px;
+    text-align: center;
+}
+
+/* Competency wedge icon */
+.comparison-wedge {
+    flex-shrink: 0;
 }
 
 .comparison-row-cells {
@@ -624,7 +632,7 @@
 /* Stats row at bottom */
 .comparison-stats-row {
     display: grid;
-    grid-template-columns: 180px 1fr;
+    grid-template-columns: 220px 1fr;
     gap: 0;
     margin-top: 12px;
     padding-top: 16px;
