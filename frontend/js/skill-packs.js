@@ -632,36 +632,31 @@ const SkillPacksModule = {
 
         // Check if we're in the main app (logged in)
         if (typeof StateGetters === 'undefined' || typeof CoursesModule === 'undefined') {
-            // Show login prompt
             SkillPacksModule.showToast('Please sign in to add courses to your selection', 'info');
-            // Scroll to login section
             document.getElementById('login')?.scrollIntoView({ behavior: 'smooth' });
             return;
         }
 
-        const allCourses = StateGetters.getAllCourses ? StateGetters.getAllCourses() : [];
-        const selectedCourses = StateGetters.getSelectedCourseIds ? StateGetters.getSelectedCourseIds() : [];
+        const allCourses = StateGetters.getCourses ? StateGetters.getCourses() : [];
+        const selectedIds = StateGetters.getSelectedCourseIds ? StateGetters.getSelectedCourseIds() : [];
         let addedCount = 0;
+        let alreadySelected = 0;
         let notFoundCount = 0;
 
         pack.courses.forEach(course => {
-            // Normalize the course code
-            const packCode = course.courseCode.replace(/\s+/g, '').replace(/-/g, '-').toUpperCase();
+            const packCode = course.courseCode.replace(/\s+/g, '').toUpperCase();
 
-            // Find matching course in the system
-            const matchingCourse = allCourses.find(c => {
-                const systemCode = `${c.courseData?.courseIdentity?.prefix || ''}-${c.courseData?.courseIdentity?.number || ''}`.toUpperCase();
-                return systemCode === packCode;
-            });
+            // Find matching course by normalized .code property
+            const matchingCourse = allCourses.find(c =>
+                (c.code || '').replace(/\s+/g, '').toUpperCase() === packCode
+            );
 
             if (matchingCourse) {
-                const courseCode = `${matchingCourse.courseData.courseIdentity.prefix}-${matchingCourse.courseData.courseIdentity.number}`;
-                if (!selectedCourses.includes(courseCode)) {
-                    // Add to selection
-                    if (typeof CoursesModule !== 'undefined' && CoursesModule.toggleCourseSelection) {
-                        CoursesModule.toggleCourseSelection(courseCode);
-                        addedCount++;
-                    }
+                if (selectedIds.includes(matchingCourse.id)) {
+                    alreadySelected++;
+                } else {
+                    CoursesModule.toggleCourseSelection(matchingCourse.id);
+                    addedCount++;
                 }
             } else {
                 notFoundCount++;
@@ -669,7 +664,9 @@ const SkillPacksModule = {
         });
 
         // Show feedback
-        if (addedCount > 0) {
+        if (addedCount > 0 && notFoundCount > 0) {
+            SkillPacksModule.showToast(`Added ${addedCount} course${addedCount > 1 ? 's' : ''}. ${notFoundCount} not in system.`, 'success');
+        } else if (addedCount > 0) {
             SkillPacksModule.showToast(`Added ${addedCount} course${addedCount > 1 ? 's' : ''} from "${pack.skillPackTitle}"`, 'success');
         } else if (notFoundCount === pack.courses.length) {
             SkillPacksModule.showToast(`Courses from this skill pack are not in the system yet`, 'warning');
@@ -677,8 +674,8 @@ const SkillPacksModule = {
             SkillPacksModule.showToast(`All courses from this pack are already selected`, 'info');
         }
 
-        // Update the display
-        SkillPacksModule.renderSkillPacks();
+        // Update sidebar progress
+        SkillPacksModule.updateSidebar();
     },
 
     /**
