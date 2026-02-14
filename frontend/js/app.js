@@ -17,12 +17,21 @@ const Dashboard = {
         document.getElementById('dashboardRole').textContent = role;
         document.getElementById('dashboardGreetName').textContent = displayName;
 
-        // Show/hide role-based cards
+        // Time-of-day greeting
+        const hour = new Date().getHours();
+        let greeting = 'Good evening';
+        if (hour < 12) greeting = 'Good morning';
+        else if (hour < 17) greeting = 'Good afternoon';
+        document.getElementById('dashboardGreeting').textContent = greeting;
+
+        // Populate quick stats
+        Dashboard._updateStats();
+
+        // Show/hide role-based cards and quick actions
         document.querySelectorAll('.dashboard-faculty-only').forEach(el => el.classList.add('hidden'));
         document.querySelectorAll('.dashboard-admin-only').forEach(el => el.classList.add('hidden'));
 
         if (Auth.isAdmin()) {
-            // Admins see both faculty and admin cards
             document.querySelectorAll('.dashboard-faculty-only').forEach(el => el.classList.remove('hidden'));
             document.querySelectorAll('.dashboard-admin-only').forEach(el => el.classList.remove('hidden'));
         } else if (Auth.isFaculty()) {
@@ -37,6 +46,47 @@ const Dashboard = {
         document.getElementById('dashboardPage').classList.remove('hidden');
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+
+    /**
+     * Populate the dashboard stats bar with live data
+     */
+    _updateStats: () => {
+        // Course count
+        const courses = StateGetters.getCourses ? StateGetters.getCourses() : [];
+        const courseCount = Array.isArray(courses) ? courses.length : 0;
+        const courseEl = document.getElementById('statCourseCount');
+        if (courseEl) courseEl.textContent = courseCount || '--';
+
+        // Proposal count (role-sensitive)
+        const proposals = StateGetters.getProposals ? StateGetters.getProposals() : [];
+        const proposalEl = document.getElementById('statProposalCount');
+        const proposalLabel = document.getElementById('statProposalLabel');
+        if (proposalEl && proposals) {
+            if (Auth.isAdmin()) {
+                const pending = proposals.filter(p => p.status === 'pending');
+                proposalEl.textContent = pending.length;
+                if (proposalLabel) proposalLabel.textContent = 'Pending Reviews';
+            } else if (Auth.isFaculty()) {
+                const user = StateGetters.getCurrentUser();
+                const mine = proposals.filter(p => p.submittedBy === user);
+                proposalEl.textContent = mine.length;
+                if (proposalLabel) proposalLabel.textContent = 'My Proposals';
+            } else {
+                // Student - show total approved
+                const approved = proposals.filter(p => p.status === 'approved');
+                proposalEl.textContent = approved.length;
+                if (proposalLabel) proposalLabel.textContent = 'Approved Courses';
+            }
+        }
+
+        // Skill pack count
+        const skillPackEl = document.getElementById('statSkillPackCount');
+        if (skillPackEl) {
+            const packs = (typeof SkillPacksModule !== 'undefined' && SkillPacksModule.skillPacks)
+                ? SkillPacksModule.skillPacks : [];
+            skillPackEl.textContent = Array.isArray(packs) && packs.length > 0 ? packs.length : '--';
+        }
     },
 
     /**
@@ -568,10 +618,104 @@ const LandingAnimations = {
     }
 };
 
+/**
+ * Renders a decorative mini bipartite graph in the landing page preview section
+ */
+function renderLandingPreviewGraph() {
+    const container = document.getElementById('landingPreviewGraph');
+    if (!container || typeof d3 === 'undefined') return;
+
+    const width = container.clientWidth || 900;
+    const height = 340;
+
+    const svg = d3.select(container).append('svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('preserveAspectRatio', 'xMidYMid meet');
+
+    // Sample course and competency nodes
+    const courses = [
+        { id: 'CSI-160', label: 'CSI-160' },
+        { id: 'CSI-260', label: 'CSI-260' },
+        { id: 'CSI-300', label: 'CSI-300' },
+        { id: 'CSI-340', label: 'CSI-340' },
+        { id: 'CSI-440', label: 'CSI-440' },
+    ];
+    const competencies = [
+        { id: 'Analysis', color: '#E52019' },
+        { id: 'Communication', color: '#FFDD00' },
+        { id: 'Collaboration', color: '#F7931E' },
+        { id: 'Inquiry', color: '#3C8DAD' },
+        { id: 'Creativity', color: '#C4D82D' },
+        { id: 'Integration', color: '#7B4FD0' },
+    ];
+
+    // Edges (course -> competency with weight)
+    const edges = [
+        { s: 0, t: 0, w: 3 }, { s: 0, t: 3, w: 2 },
+        { s: 1, t: 0, w: 2 }, { s: 1, t: 1, w: 3 }, { s: 1, t: 4, w: 1 },
+        { s: 2, t: 1, w: 2 }, { s: 2, t: 2, w: 3 }, { s: 2, t: 5, w: 2 },
+        { s: 3, t: 0, w: 3 }, { s: 3, t: 3, w: 3 }, { s: 3, t: 5, w: 1 },
+        { s: 4, t: 1, w: 2 }, { s: 4, t: 2, w: 2 }, { s: 4, t: 4, w: 3 }, { s: 4, t: 5, w: 3 },
+    ];
+
+    const leftX = width * 0.22;
+    const rightX = width * 0.78;
+    const courseSpacing = (height - 60) / (courses.length - 1);
+    const compSpacing = (height - 60) / (competencies.length - 1);
+
+    courses.forEach((c, i) => { c.x = leftX; c.y = 30 + i * courseSpacing; });
+    competencies.forEach((c, i) => { c.x = rightX; c.y = 30 + i * compSpacing; });
+
+    // Draw edges with animation
+    edges.forEach((e, i) => {
+        const s = courses[e.s];
+        const t = competencies[e.t];
+        const line = svg.append('line')
+            .attr('x1', s.x).attr('y1', s.y)
+            .attr('x2', s.x).attr('y2', s.y)
+            .attr('stroke', t.color)
+            .attr('stroke-width', e.w * 0.8)
+            .attr('stroke-opacity', 0.25);
+
+        line.transition()
+            .delay(300 + i * 60)
+            .duration(600)
+            .ease(d3.easeCubicOut)
+            .attr('x2', t.x).attr('y2', t.y);
+    });
+
+    // Draw course nodes
+    courses.forEach((c, i) => {
+        const g = svg.append('g').attr('transform', `translate(${c.x}, ${c.y})`).style('opacity', 0);
+        g.append('circle').attr('r', 22).attr('fill', '#003C5F').attr('stroke', 'white').attr('stroke-width', 2);
+        g.append('text').text(c.label).attr('text-anchor', 'middle').attr('dy', '0.35em')
+            .attr('fill', 'white').attr('font-size', '9px').attr('font-weight', '700');
+        g.transition().delay(200 + i * 80).duration(400).style('opacity', 1);
+    });
+
+    // Draw competency nodes
+    competencies.forEach((c, i) => {
+        const g = svg.append('g').attr('transform', `translate(${c.x}, ${c.y})`).style('opacity', 0);
+        g.append('circle').attr('r', 22).attr('fill', c.color).attr('stroke', 'white').attr('stroke-width', 2);
+        g.append('text').text(c.id.substring(0, 6)).attr('text-anchor', 'middle').attr('dy', '0.35em')
+            .attr('fill', 'white').attr('font-size', '8px').attr('font-weight', '700');
+        g.transition().delay(400 + i * 80).duration(400).style('opacity', 1);
+    });
+
+    // Column labels
+    svg.append('text').text('Courses').attr('x', leftX).attr('y', height - 4)
+        .attr('text-anchor', 'middle').attr('fill', '#003C5F').attr('font-size', '12px')
+        .attr('font-weight', '700').attr('opacity', 0.5);
+    svg.append('text').text('Competencies').attr('x', rightX).attr('y', height - 4)
+        .attr('text-anchor', 'middle').attr('fill', '#003C5F').attr('font-size', '12px')
+        .attr('font-weight', '700').attr('opacity', 0.5);
+}
+
 // Initialize app when DOM is ready
 async function initializeApp() {
     LandingAnimations.init();
     UXEnhancements.init();
+    renderLandingPreviewGraph();
     if (typeof SkillPacksModule !== 'undefined') {
         await SkillPacksModule.init();
     }
