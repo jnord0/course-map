@@ -150,6 +150,17 @@ const SkillPacksModule = {
         if (programFilter) {
             programFilter.addEventListener('change', (e) => {
                 SkillPacksModule.selectedProgram = e.target.value;
+                // Update title to reflect active filter
+                const title = document.getElementById('spPageCategoryTitle');
+                if (title) {
+                    if (SkillPacksModule.selectedCategory) {
+                        title.textContent = SkillPacksModule.selectedCategory;
+                    } else if (e.target.value !== 'all') {
+                        title.textContent = e.target.value;
+                    } else {
+                        title.textContent = 'All Categories';
+                    }
+                }
                 SkillPacksModule._renderStandaloneGrid();
             });
         }
@@ -179,9 +190,14 @@ const SkillPacksModule = {
         const grid = document.getElementById('spPageGrid');
         if (!grid) return;
 
+        const hasActiveFilter = SkillPacksModule.selectedCategory ||
+            SkillPacksModule.searchQuery ||
+            SkillPacksModule.selectedProgram !== 'all' ||
+            SkillPacksModule.currentFilter !== 'all';
+
         const packs = SkillPacksModule.getFilteredPacks();
 
-        if (packs.length === 0 && !SkillPacksModule.selectedCategory && !SkillPacksModule.searchQuery) {
+        if (packs.length === 0 && !hasActiveFilter) {
             grid.className = 'skill-packs-grid';
             grid.innerHTML = `
                 <div class="skill-packs-empty">
@@ -692,9 +708,14 @@ const SkillPacksModule = {
         const grid = document.getElementById('skillPacksGrid');
         if (!grid) return;
 
+        const hasActiveFilter = SkillPacksModule.selectedCategory ||
+            SkillPacksModule.searchQuery ||
+            SkillPacksModule.selectedProgram !== 'all' ||
+            SkillPacksModule.currentFilter !== 'all';
+
         const packs = SkillPacksModule.getFilteredPacks();
 
-        if (packs.length === 0 && !SkillPacksModule.selectedCategory && !SkillPacksModule.searchQuery) {
+        if (packs.length === 0 && !hasActiveFilter) {
             grid.innerHTML = `
                 <div class="skill-packs-empty">
                     <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-gray)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
