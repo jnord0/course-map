@@ -53,7 +53,7 @@
     text-decoration: none;
     font-weight: 600;
     font-size: 15px;
-    transition: color 0.3s ease;
+    transition: color var(--transition-normal);
 }
 
 .landing-nav-links a:hover {
@@ -205,7 +205,7 @@
     border-radius: 12px;
     background: white;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     text-align: left;
 }
 
@@ -353,7 +353,7 @@
     padding: 35px;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     border: 1px solid #e8eaf0;
 }
 
@@ -439,7 +439,7 @@
     padding: 30px;
     border-radius: 16px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     border: 1px solid #e8eaf0;
     position: relative;
     overflow: hidden;
@@ -713,7 +713,7 @@
     border-radius: 30px;
     font-size: 18px;
     font-weight: 700;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     box-shadow: 0 4px 15px rgba(0, 169, 224, 0.4);
 }
 
@@ -896,7 +896,7 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     border: 1px solid #e8eaf0;
     position: relative;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
 }
 
 .step-card:hover {
@@ -1151,7 +1151,7 @@
     font-size: 14px;
     font-weight: 600;
     color: var(--champlain-navy);
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
@@ -1225,7 +1225,7 @@
     font-size: 13px;
     font-weight: 600;
     color: var(--champlain-gray);
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
 .filter-chip:hover {
@@ -1274,7 +1274,7 @@
     border: 1px solid #e8eaf0;
     border-radius: 16px;
     padding: 24px;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     display: flex;
     flex-direction: column;
 }
@@ -1394,7 +1394,7 @@
     border: 2px solid #e0e5eb;
     border-radius: 12px;
     padding: 0 16px;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
 .skill-packs-search:focus-within {
@@ -1426,7 +1426,7 @@
     background: #f5f7fa;
     cursor: pointer;
     min-width: 200px;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
 .program-filter:focus {
@@ -1493,7 +1493,7 @@
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
 .quick-add-btn:hover {
@@ -1591,7 +1591,7 @@
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
 .btn-secondary:hover {
@@ -1610,7 +1610,7 @@
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
 .btn-primary:hover {
@@ -1653,7 +1653,7 @@
     border: 1px solid #e0e5eb;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
 .suggestion-card:hover {
@@ -1838,15 +1838,16 @@
 
 .footer-column a {
     display: block;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     font-size: 14px;
     margin-bottom: 12px;
-    transition: color 0.3s ease;
+    transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
 .footer-column a:hover {
-    color: white;
+    color: var(--champlain-bright-blue);
+    transform: translateX(3px);
 }
 
 .footer-bottom {
@@ -1857,8 +1858,9 @@
 
 .footer-bottom p {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
     margin: 0;
+    letter-spacing: 0.3px;
 }
 
 /* Landing Page Responsive */
@@ -2004,7 +2006,7 @@
     border: 2px solid #e0e0e0;
     border-radius: 10px;
     font-size: 15px;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
 }
 
 .input-group input:focus {
@@ -2023,7 +2025,7 @@
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     margin-top: 10px;
 }
 
@@ -2082,7 +2084,7 @@
     background: transparent;
     color: var(--champlain-gray);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
 .sp-view-btn:hover {

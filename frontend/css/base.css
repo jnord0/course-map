@@ -49,6 +49,10 @@ body {
     --input-bg: #ffffff;
     --input-border: #ddd;
     --modal-overlay: rgba(0, 0, 0, 0.5);
+
+    /* Transition timing */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
 }
 
 /* Utility Classes */

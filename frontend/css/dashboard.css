@@ -56,7 +56,7 @@
     max-width: 220px;
     box-shadow: 0 2px 12px rgba(0, 60, 95, 0.06);
     border: 1px solid rgba(0, 60, 95, 0.06);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .dash-stat:hover {
@@ -111,7 +111,7 @@
     font-size: 13px;
     font-weight: 600;
     color: var(--champlain-navy);
-    transition: all 0.25s ease;
+    transition: all var(--transition-normal);
     white-space: nowrap;
 }
 
@@ -140,7 +140,7 @@
     border-radius: 20px;
     padding: 35px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     box-shadow: 0 4px 20px rgba(0, 60, 95, 0.08);
     border: 1px solid rgba(0, 60, 95, 0.06);
     position: relative;
@@ -219,7 +219,7 @@
     cursor: pointer;
     font-weight: 700;
     font-size: 14px;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
 }
 
 .back-to-dashboard-btn:hover {
@@ -313,7 +313,7 @@
     border-radius: 30px;
     font-size: 18px;
     font-weight: 700;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     box-shadow: 0 4px 15px rgba(0, 169, 224, 0.4);
     border: none;
     cursor: pointer;
