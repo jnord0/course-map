@@ -56,8 +56,15 @@
     max-width: 220px;
     box-shadow: 0 2px 12px rgba(0, 60, 95, 0.06);
     border: 1px solid rgba(0, 60, 95, 0.06);
+    border-top: 3px solid transparent;
     transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
+
+/* Color-coded top borders per stat */
+.dash-stat:nth-child(1) { border-top-color: var(--champlain-bright-blue); }
+.dash-stat:nth-child(2) { border-top-color: #F7931E; }
+.dash-stat:nth-child(3) { border-top-color: #7B4FD0; }
+.dash-stat:nth-child(4) { border-top-color: var(--champlain-green); }
 
 .dash-stat:hover {
     transform: translateY(-3px);
@@ -177,6 +184,26 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 22px;
+}
+
+.dashboard-card-icon--viz {
+    background: linear-gradient(135deg, #003C5F, #236192);
+}
+
+.dashboard-card-icon--competency {
+    background: linear-gradient(135deg, #F7931E, #FF9800);
+}
+
+.dashboard-card-icon--skillpacks {
+    background: linear-gradient(135deg, #74AA50, #5CB85C);
+}
+
+.dashboard-card-icon--proposals {
+    background: linear-gradient(135deg, #7B4FD0, #9C27B0);
+}
+
+.dashboard-card-icon--admin {
+    background: linear-gradient(135deg, #d32f2f, #c62828);
 }
 
 .dashboard-card h3 {
