@@ -680,11 +680,19 @@
     <div id="mainApp" class="hidden">
         <div class="header">
             <div class="logo-section">
-                <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D" 
-                     alt="Champlain College Shield" 
+                <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D"
+                     alt="Champlain College Shield"
                      style="height: 50px; margin-right: 20px;"
                      onerror="this.style.display='none'">
                 <div class="logo-text">Academic Affairs</div>
+            </div>
+            <div class="header-nav-toggle view-toggle" id="headerViewToggle">
+                <button class="toggle-btn active" id="networkViewBtn">Network View</button>
+                <button class="toggle-btn" id="tableViewBtn">Table View</button>
+                <button class="toggle-btn" id="prerequisiteViewBtn">Prerequisite Chain</button>
+                <button class="toggle-btn" id="pathwayViewBtn">Course Pathway</button>
+                <button class="toggle-btn" id="graphsViewBtn">Competency Graphs</button>
+                <button class="toggle-btn" id="semesterPlannerBtn">Semester Planner</button>
             </div>
             <div class="user-info">
                 <span id="currentUser">User</span>
@@ -901,43 +909,42 @@
 
             <div class="viz-container">
                 <div class="viz-header">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="viz-header-row">
                         <div>
                             <h1 id="vizTitle">Competency Visualization</h1>
                             <p id="vizDescription">Interactive network showing relationships between courses and college competencies</p>
                         </div>
-                        <div style="display: flex; gap: 20px; align-items: center;">
-                            <div class="view-toggle">
-                                <button class="toggle-btn active" id="networkViewBtn">Network View</button>
-                                <button class="toggle-btn" id="tableViewBtn">Table View</button>
-                                <button class="toggle-btn" id="prerequisiteViewBtn">Prerequisite Chain</button>
-                                <button class="toggle-btn" id="pathwayViewBtn">Course Pathway</button>
-                                <button class="toggle-btn" id="graphsViewBtn">📊 Competency Graphs</button>
-                                <button class="toggle-btn" id="semesterPlannerBtn">📅 Semester Planner</button>
-                            </div>
-                            <!-- Export Dropdown -->
-                            <div class="export-dropdown" id="exportDropdown">
-                                <button class="export-btn" onclick="ExportTool.toggleMenu()">
-                                    📥 Export <span style="font-size: 10px;">▼</span>
-                                </button>
-                                <div class="export-menu" id="exportMenu">
-                                    <div class="export-menu-item" onclick="ExportTool.exportPNG()">
-                                        <span class="icon">🖼️</span>
-                                        <div>
-                                            <div class="label">Export as PNG</div>
-                                            <div class="desc">High-quality image</div>
-                                        </div>
+                        <!-- Export Dropdown -->
+                        <div class="export-dropdown" id="exportDropdown">
+                            <button class="export-btn" onclick="ExportTool.toggleMenu()">
+                                Export <span style="font-size: 10px;">▼</span>
+                            </button>
+                            <div class="export-menu" id="exportMenu">
+                                <div class="export-menu-item" onclick="ExportTool.exportPNG()">
+                                    <span class="icon">🖼️</span>
+                                    <div>
+                                        <div class="label">Export as PNG</div>
+                                        <div class="desc">High-quality image</div>
                                     </div>
-                                    <div class="export-menu-item" onclick="ExportTool.exportPDF()">
-                                        <span class="icon">📄</span>
-                                        <div>
-                                            <div class="label">Export as PDF</div>
-                                            <div class="desc">Print-ready document</div>
-                                        </div>
+                                </div>
+                                <div class="export-menu-item" onclick="ExportTool.exportPDF()">
+                                    <span class="icon">📄</span>
+                                    <div>
+                                        <div class="label">Export as PDF</div>
+                                        <div class="desc">Print-ready document</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <!-- Mobile-only view toggle (mirrors header nav) -->
+                    <div class="view-toggle view-toggle-mobile" id="mobileViewToggle">
+                        <button class="toggle-btn active" data-view="network">Network</button>
+                        <button class="toggle-btn" data-view="table">Table</button>
+                        <button class="toggle-btn" data-view="prerequisite">Prerequisites</button>
+                        <button class="toggle-btn" data-view="pathway">Pathway</button>
+                        <button class="toggle-btn" data-view="graphs">Graphs</button>
+                        <button class="toggle-btn" data-view="semester">Planner</button>
                     </div>
                 </div>
                 <div class="graph-wrapper">

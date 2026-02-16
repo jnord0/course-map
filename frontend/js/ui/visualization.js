@@ -1013,6 +1013,40 @@ const VisualizationModule = {
         const allViews = ['networkView', 'tableView', 'prerequisiteView', 'pathwayView', 'graphsView', 'semesterPlannerView'];
         const allBtns = [networkViewBtn, tableViewBtn, prerequisiteViewBtn, pathwayViewBtn, graphsViewBtn, semesterPlannerBtn];
 
+        // Map view keys to view IDs for mobile toggle
+        const viewKeyMap = {
+            'network': 'networkView',
+            'table': 'tableView',
+            'prerequisite': 'prerequisiteView',
+            'pathway': 'pathwayView',
+            'graphs': 'graphsView',
+            'semester': 'semesterPlannerView'
+        };
+
+        // Map view IDs to header button references
+        const viewBtnMap = {
+            'networkView': networkViewBtn,
+            'tableView': tableViewBtn,
+            'prerequisiteView': prerequisiteViewBtn,
+            'pathwayView': pathwayViewBtn,
+            'graphsView': graphsViewBtn,
+            'semesterPlannerView': semesterPlannerBtn
+        };
+
+        // Mobile toggle buttons
+        const mobileToggle = document.getElementById('mobileViewToggle');
+        const mobileBtns = mobileToggle ? mobileToggle.querySelectorAll('.toggle-btn') : [];
+
+        // Sync active state between header and mobile toggles
+        const syncMobileActive = (viewId) => {
+            mobileBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (viewKeyMap[btn.dataset.view] === viewId) {
+                    btn.classList.add('active');
+                }
+            });
+        };
+
         // Helper to switch views
         const switchView = (viewId, activeBtn) => {
             // Update title and description
@@ -1049,13 +1083,36 @@ const VisualizationModule = {
             const elem = document.getElementById(viewId);
             if (elem) elem.classList.remove('hidden');
 
-            // Update button states
+            // Update header button states
             allBtns.forEach(btn => {
                 if (btn) btn.classList.remove('active');
             });
             if (activeBtn) activeBtn.classList.add('active');
+
+            // Sync mobile toggle
+            syncMobileActive(viewId);
         };
 
+        // Post-switch actions per view
+        const postSwitch = {
+            'tableView': () => VisualizationModule.renderTableView(),
+            'prerequisiteView': () => {
+                const selectedCourses = StateGetters.getSelectedCourses();
+                const selectedCodes = selectedCourses.map(c => c.code);
+                PrerequisiteVisualization.render(selectedCodes, 'chain');
+            },
+            'pathwayView': () => VisualizationModule.renderPathwaySelector(),
+            'graphsView': () => {
+                if (typeof GraphsModule !== 'undefined') GraphsModule.init();
+            },
+            'semesterPlannerView': () => {
+                if (typeof SemesterPlannerUI !== 'undefined' && typeof SemesterPlannerUI.initView === 'function') {
+                    SemesterPlannerUI.initView();
+                }
+            }
+        };
+
+        // Wire up header buttons
         if (networkViewBtn) {
             networkViewBtn.addEventListener('click', () => {
                 switchView('networkView', networkViewBtn);
@@ -1065,44 +1122,48 @@ const VisualizationModule = {
         if (tableViewBtn) {
             tableViewBtn.addEventListener('click', () => {
                 switchView('tableView', tableViewBtn);
-                VisualizationModule.renderTableView();
+                postSwitch['tableView']();
             });
         }
 
         if (prerequisiteViewBtn) {
             prerequisiteViewBtn.addEventListener('click', () => {
                 switchView('prerequisiteView', prerequisiteViewBtn);
-                const selectedCourses = StateGetters.getSelectedCourses();
-                const selectedCodes = selectedCourses.map(c => c.code);
-                PrerequisiteVisualization.render(selectedCodes, 'chain');
+                postSwitch['prerequisiteView']();
             });
         }
 
         if (pathwayViewBtn) {
             pathwayViewBtn.addEventListener('click', () => {
                 switchView('pathwayView', pathwayViewBtn);
-                VisualizationModule.renderPathwaySelector();
+                postSwitch['pathwayView']();
             });
         }
 
         if (graphsViewBtn) {
             graphsViewBtn.addEventListener('click', () => {
                 switchView('graphsView', graphsViewBtn);
-                if (typeof GraphsModule !== 'undefined') {
-                    GraphsModule.init();
-                }
+                postSwitch['graphsView']();
             });
         }
 
         if (semesterPlannerBtn) {
             semesterPlannerBtn.addEventListener('click', () => {
                 switchView('semesterPlannerView', semesterPlannerBtn);
-                // Initialize semester planner
-                if (typeof SemesterPlannerUI !== 'undefined' && typeof SemesterPlannerUI.initView === 'function') {
-                    SemesterPlannerUI.initView();
-                }
+                postSwitch['semesterPlannerView']();
             });
         }
+
+        // Wire up mobile toggle buttons
+        mobileBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const viewId = viewKeyMap[btn.dataset.view];
+                if (!viewId) return;
+                const headerBtn = viewBtnMap[viewId];
+                switchView(viewId, headerBtn);
+                if (postSwitch[viewId]) postSwitch[viewId]();
+            });
+        });
     },
     
     // Table sort state

@@ -69,6 +69,12 @@
     .stats-grid {
         grid-template-columns: 1fr;
     }
+
+    /* Compact header toggle on medium screens */
+    .header-nav-toggle .toggle-btn {
+        padding: 7px 12px;
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -131,17 +137,14 @@
         font-size: 13px;
     }
 
-    /* View toggle adjustments */
-    .view-toggle {
-        flex-wrap: wrap;
-        gap: 8px;
+    /* View toggle adjustments in header */
+    .header-nav-toggle.view-toggle {
+        display: none;
     }
 
-    .toggle-btn {
-        flex: 1;
-        min-width: calc(50% - 4px);
-        padding: 10px 12px;
-        font-size: 13px;
+    /* Show a mobile view toggle below header when nav is hidden */
+    .view-toggle-mobile {
+        display: flex !important;
     }
 
     /* Graph wrapper adjustments */

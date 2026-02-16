@@ -14,18 +14,18 @@
 }
 
 .viz-header {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     flex-shrink: 0;
     background: white;
-    padding: 25px 30px;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 60, 95, 0.08);
+    padding: 18px 24px;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0, 60, 95, 0.06);
 }
 
 .viz-header h1 {
     color: var(--champlain-navy);
-    font-size: 28px;
-    margin-bottom: 6px;
+    font-size: 22px;
+    margin-bottom: 4px;
     font-weight: 800;
     background: linear-gradient(135deg, var(--champlain-navy) 0%, var(--champlain-blue) 100%);
     -webkit-background-clip: text;
@@ -35,11 +35,11 @@
 
 .viz-header p {
     color: #6c757d;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
 }
 
-/* View Toggle */
+/* View Toggle - default (standalone) */
 .view-toggle {
     display: flex;
     gap: 0;
@@ -60,6 +60,7 @@
     font-weight: 600;
     border-radius: 8px;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .toggle-btn:hover {
@@ -71,6 +72,67 @@
     background: linear-gradient(135deg, var(--champlain-bright-blue) 0%, var(--champlain-blue) 100%);
     color: white;
     box-shadow: 0 4px 12px rgba(0, 169, 224, 0.3);
+}
+
+/* View Toggle inside header navbar */
+.header-nav-toggle.view-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 4px;
+    box-shadow: none;
+    flex-shrink: 1;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+}
+
+.header-nav-toggle.view-toggle::-webkit-scrollbar {
+    display: none;
+}
+
+.header-nav-toggle .toggle-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 7px;
+}
+
+.header-nav-toggle .toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.header-nav-toggle .toggle-btn.active {
+    background: var(--champlain-bright-blue);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 169, 224, 0.4);
+}
+
+/* Viz header row (title + export) */
+.viz-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Mobile view toggle - hidden on desktop, shown on mobile */
+.view-toggle-mobile {
+    display: none !important;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e8eef3 100%);
+    border-radius: 10px;
+    padding: 6px;
+}
+
+.view-toggle-mobile .toggle-btn {
+    flex: 1;
+    min-width: calc(33% - 6px);
+    padding: 10px 12px;
+    font-size: 13px;
+    text-align: center;
 }
 
 .graph-wrapper {
