@@ -139,7 +139,7 @@
 .hero-stats {
     display: flex;
     gap: 0;
-    margin-left: 32px;
+    margin-left: 6px;
 }
 
 .hero-stat {
