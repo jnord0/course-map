@@ -139,6 +139,7 @@
 .hero-stats {
     display: flex;
     gap: 0;
+    margin-left: 32px;
 }
 
 .hero-stat {
@@ -162,6 +163,9 @@
     font-size: 42px;
     font-weight: 800;
     color: var(--champlain-bright-blue);
+    font-variant-numeric: tabular-nums;
+    min-width: 3ch;
+    line-height: 1.1;
 }
 
 .hero-stat .stat-text {
@@ -1897,6 +1901,7 @@
 
     .hero-stats {
         justify-content: center;
+        margin-left: 0;
     }
 
     .hero-text h1 {
@@ -1932,6 +1937,7 @@
     .hero-stats {
         flex-wrap: wrap;
         gap: 20px;
+        margin-left: 0;
     }
 
     .hero-stat {
