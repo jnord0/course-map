@@ -599,11 +599,6 @@ const LandingAnimations = {
             const currentValue = Math.round(targetNumber * progress);
 
             element.textContent = currentValue + (hasPlus ? '+' : '');
-            element.classList.add('counting');
-
-            setTimeout(() => {
-                element.classList.remove('counting');
-            }, 50);
 
             if (currentStep < steps) {
                 setTimeout(updateCounter, stepDuration);
