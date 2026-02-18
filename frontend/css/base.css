@@ -1,6 +1,10 @@
 /* Champlain College Academic Affairs - Base Styles */
 /* Reset, Typography, and CSS Variables */
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -45,11 +49,37 @@ body {
     --input-bg: #ffffff;
     --input-border: #ddd;
     --modal-overlay: rgba(0, 0, 0, 0.5);
+
+    /* Transition timing */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
 }
 
 /* Utility Classes */
 .hidden {
     display: none !important;
+}
+
+/* Global focus-visible styles for keyboard accessibility */
+:focus-visible {
+    outline: 2px solid var(--champlain-bright-blue);
+    outline-offset: 2px;
+}
+
+/* Remove outline for mouse clicks but keep for keyboard */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Specific focus styles for buttons with rounded corners */
+.role-btn:focus-visible,
+.quick-action-pill:focus-visible,
+.cta-button:focus-visible,
+.login-btn:focus-visible,
+.dashboard-card:focus-visible,
+.interest-btn:focus-visible {
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgba(0, 169, 224, 0.2);
 }
 
 /* Card elements base transitions */

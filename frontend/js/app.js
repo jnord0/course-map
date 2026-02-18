@@ -1,5 +1,230 @@
 // Main Application Entry Point
 
+/**
+ * Dashboard Module
+ * Handles the post-login dashboard navigation page
+ */
+const Dashboard = {
+    /**
+     * Show the dashboard and configure role-based cards
+     */
+    show: (username) => {
+        const displayName = username.charAt(0).toUpperCase() + username.slice(1);
+        const role = StateGetters.getCurrentRole();
+
+        // Update dashboard header
+        document.getElementById('dashboardUser').textContent = displayName;
+        document.getElementById('dashboardRole').textContent = role;
+        document.getElementById('dashboardGreetName').textContent = displayName;
+
+        // Time-of-day greeting
+        const hour = new Date().getHours();
+        let greeting = 'Good evening';
+        if (hour < 12) greeting = 'Good morning';
+        else if (hour < 17) greeting = 'Good afternoon';
+        document.getElementById('dashboardGreeting').textContent = greeting;
+
+        // Populate quick stats
+        Dashboard._updateStats();
+
+        // Show/hide role-based cards and quick actions
+        document.querySelectorAll('.dashboard-faculty-only').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.dashboard-admin-only').forEach(el => el.classList.add('hidden'));
+
+        if (Auth.isAdmin()) {
+            document.querySelectorAll('.dashboard-faculty-only').forEach(el => el.classList.remove('hidden'));
+            document.querySelectorAll('.dashboard-admin-only').forEach(el => el.classList.remove('hidden'));
+        } else if (Auth.isFaculty()) {
+            document.querySelectorAll('.dashboard-faculty-only').forEach(el => el.classList.remove('hidden'));
+        }
+
+        // Transition pages - hide all, show dashboard
+        document.getElementById('loginPage').classList.add('hidden');
+        document.getElementById('mainApp').classList.add('hidden');
+        document.getElementById('competenciesPage').classList.add('hidden');
+        document.getElementById('skillPacksPage').classList.add('hidden');
+        document.getElementById('dashboardPage').classList.remove('hidden');
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+
+    /**
+     * Populate the dashboard stats bar with live data
+     */
+    _updateStats: () => {
+        // Course count
+        const courses = StateGetters.getCourses ? StateGetters.getCourses() : [];
+        const courseCount = Array.isArray(courses) ? courses.length : 0;
+        const courseEl = document.getElementById('statCourseCount');
+        if (courseEl) courseEl.textContent = courseCount || '--';
+
+        // Proposal count (role-sensitive)
+        const proposals = StateGetters.getProposals ? StateGetters.getProposals() : [];
+        const proposalEl = document.getElementById('statProposalCount');
+        const proposalLabel = document.getElementById('statProposalLabel');
+        if (proposalEl && proposals) {
+            if (Auth.isAdmin()) {
+                const pending = proposals.filter(p => p.status === 'pending');
+                proposalEl.textContent = pending.length;
+                if (proposalLabel) proposalLabel.textContent = 'Pending Reviews';
+            } else if (Auth.isFaculty()) {
+                const user = StateGetters.getCurrentUser();
+                const mine = proposals.filter(p => p.submittedBy === user);
+                proposalEl.textContent = mine.length;
+                if (proposalLabel) proposalLabel.textContent = 'My Proposals';
+            } else {
+                // Student - show total approved
+                const approved = proposals.filter(p => p.status === 'approved');
+                proposalEl.textContent = approved.length;
+                if (proposalLabel) proposalLabel.textContent = 'Approved Courses';
+            }
+        }
+
+        // Skill pack count
+        const skillPackEl = document.getElementById('statSkillPackCount');
+        if (skillPackEl) {
+            const packs = (typeof SkillPacksModule !== 'undefined' && SkillPacksModule.skillPacks)
+                ? SkillPacksModule.skillPacks : [];
+            skillPackEl.textContent = Array.isArray(packs) && packs.length > 0 ? packs.length : '--';
+        }
+    },
+
+    /**
+     * Navigate to the main app and optionally switch to a specific view
+     * @param {string} view - The view to activate (network, graphs, semester, skillpacks)
+     */
+    goToMainApp: (view) => {
+        // Hide all pages, show main app
+        document.getElementById('dashboardPage').classList.add('hidden');
+        document.getElementById('competenciesPage').classList.add('hidden');
+        document.getElementById('skillPacksPage').classList.add('hidden');
+        document.getElementById('mainApp').classList.remove('hidden');
+
+        // Ensure main app is set up
+        if (!Dashboard._mainAppInitialized) {
+            App.setupRoleBasedAccess();
+            Dashboard._mainAppInitialized = true;
+        }
+
+        // Update the main app header info
+        const username = StateGetters.getCurrentUser();
+        if (username) {
+            document.getElementById('currentUser').textContent =
+                username.charAt(0).toUpperCase() + username.slice(1);
+            document.getElementById('currentRole').textContent = StateGetters.getCurrentRole();
+        }
+
+        // Initialize visualization if needed
+        setTimeout(() => {
+            if (typeof VisualizationModule !== 'undefined') {
+                VisualizationModule.init();
+            }
+
+            // Switch to the requested view
+            Dashboard._switchView(view);
+
+            // Initialize skill packs sidebar
+            if (typeof SkillPacksModule !== 'undefined') {
+                SkillPacksModule.initMainApp();
+            }
+
+            // Show keyboard shortcuts hint
+            if (typeof UXEnhancements !== 'undefined') {
+                UXEnhancements.showShortcutsHint();
+                UXEnhancements.renderRecentlyViewed();
+            }
+        }, 200);
+    },
+
+    /**
+     * Switch to a specific visualization view
+     */
+    _switchView: (view) => {
+        if (!view) return;
+
+        // Map dashboard sections to view button IDs
+        const viewMap = {
+            'network': 'networkViewBtn',
+            'graphs': 'graphsViewBtn',
+            'semester': 'semesterPlannerBtn',
+            'skillpacks': null // handled separately
+        };
+
+        const btnId = viewMap[view];
+        if (btnId) {
+            const btn = document.getElementById(btnId);
+            if (btn) btn.click();
+        }
+    },
+
+    /**
+     * Open proposal-related modals from dashboard
+     */
+    openProposals: () => {
+        Dashboard.goToMainApp('network');
+        // After main app loads, open proposal modal
+        setTimeout(() => {
+            if (Auth.isAdmin()) {
+                ProposalsModule.showReviewModal();
+            } else if (Auth.isFaculty()) {
+                ModalsModule.openProposalModal();
+            }
+        }, 400);
+    },
+
+    /**
+     * Open admin management from dashboard
+     */
+    openAdmin: () => {
+        Dashboard.goToMainApp('network');
+        // After main app loads, open manage modal
+        setTimeout(() => {
+            CoursesModule.showManageModal();
+        }, 400);
+    },
+
+    /**
+     * Show the competencies info page
+     */
+    showCompetencies: () => {
+        document.getElementById('dashboardPage').classList.add('hidden');
+        document.getElementById('competenciesPage').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+
+    /**
+     * Show the skill packs browsing page
+     */
+    showSkillPacks: () => {
+        document.getElementById('dashboardPage').classList.add('hidden');
+        document.getElementById('skillPacksPage').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Initialize skill packs on this page if available
+        if (typeof SkillPacksModule !== 'undefined') {
+            SkillPacksModule.initStandalonePage();
+        }
+    },
+
+    /**
+     * Go back to dashboard from any sub-page
+     */
+    backToDashboard: () => {
+        document.getElementById('mainApp').classList.add('hidden');
+        document.getElementById('competenciesPage').classList.add('hidden');
+        document.getElementById('skillPacksPage').classList.add('hidden');
+        document.getElementById('dashboardPage').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Hide keyboard shortcuts hint
+        if (typeof UXEnhancements !== 'undefined') {
+            UXEnhancements.hideShortcutsHint();
+        }
+    },
+
+    _mainAppInitialized: false
+};
+
 const App = {
     /**
      * Initialize the application
@@ -16,13 +241,14 @@ const App = {
         // Setup event listeners
         App.setupLoginListeners();
         App.setupModalListeners();
+        App.setupDashboardListeners();
 
         // Setup modal click-outside functionality
         ModalsModule.setupModalListeners();
 
         console.log('Application initialized successfully');
     },
-    
+
     /**
      * Setup login page event listeners
      */
@@ -30,66 +256,66 @@ const App = {
         const loginButton = document.getElementById('loginButton');
         const usernameInput = document.getElementById('username');
         const passwordInput = document.getElementById('password');
-        
+
         loginButton.addEventListener('click', App.handleLogin);
-        
+
         usernameInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') App.handleLogin();
         });
-        
+
         passwordInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') App.handleLogin();
         });
     },
-    
+
     /**
-     * Handle login
+     * Setup dashboard event listeners
+     */
+    setupDashboardListeners: () => {
+        const dashboardLogoutBtn = document.getElementById('dashboardLogoutBtn');
+        if (dashboardLogoutBtn) {
+            dashboardLogoutBtn.addEventListener('click', App.handleLogout);
+        }
+
+        const backBtn = document.getElementById('backToDashboardBtn');
+        if (backBtn) {
+            backBtn.addEventListener('click', Dashboard.backToDashboard);
+        }
+    },
+
+    /**
+     * Handle login - now goes to dashboard instead of main app
      */
     handleLogin: () => {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const errorDiv = document.getElementById('loginError');
-        
+
         const result = Auth.login(username, password);
-        
+
         if (result.success) {
-            document.getElementById('currentUser').textContent = 
-                username.charAt(0).toUpperCase() + username.slice(1);
-            document.getElementById('currentRole').textContent = StateGetters.getCurrentRole();
-            
-            App.setupRoleBasedAccess();
-            
-            document.getElementById('loginPage').classList.add('hidden');
-            document.getElementById('mainApp').classList.remove('hidden');
-
-            setTimeout(() => VisualizationModule.init(), 200);
-
-            // Show keyboard shortcuts hint and render recently viewed
-            if (typeof UXEnhancements !== 'undefined') {
-                UXEnhancements.showShortcutsHint();
-                UXEnhancements.renderRecentlyViewed();
-            }
-
-            // Initialize skill packs sidebar in main app
-            if (typeof SkillPacksModule !== 'undefined') {
-                SkillPacksModule.initMainApp();
-            }
-
+            Dashboard.show(username);
             errorDiv.textContent = '';
         } else {
             errorDiv.textContent = result.error;
         }
     },
-    
+
     /**
-     * Handle logout
+     * Handle logout - returns to landing page
      */
     handleLogout: () => {
         Auth.logout();
+        Dashboard._mainAppInitialized = false;
+
         document.getElementById('loginPage').classList.remove('hidden');
         document.getElementById('mainApp').classList.add('hidden');
+        document.getElementById('dashboardPage').classList.add('hidden');
+        document.getElementById('competenciesPage').classList.add('hidden');
+        document.getElementById('skillPacksPage').classList.add('hidden');
         document.getElementById('username').value = '';
         document.getElementById('password').value = '';
+
         // Hide keyboard shortcuts hint
         if (typeof UXEnhancements !== 'undefined') {
             UXEnhancements.hideShortcutsHint();
@@ -97,21 +323,21 @@ const App = {
         // Scroll back to top of landing page
         window.scrollTo({ top: 0, behavior: 'smooth' });
     },
-    
+
     /**
      * Setup role-based access and UI
      */
     setupRoleBasedAccess: () => {
         document.getElementById('adminSection').classList.add('hidden');
         document.getElementById('facultySection').classList.add('hidden');
-        
+
         if (Auth.isAdmin()) {
             document.getElementById('adminSection').classList.remove('hidden');
             ProposalsModule.updatePendingBadge();
         } else if (Auth.isFaculty()) {
             document.getElementById('facultySection').classList.remove('hidden');
         }
-        
+
         // Always show competency tracker and course selection
         CoursesModule.updateAvailableCourses();
         CoursesModule.updateSelectedCourses();
@@ -132,13 +358,13 @@ const App = {
                 CoursesModule.updateAvailableCourses(e.target.value);
             });
         }
-        
+
         // Setup main app button listeners after login
         setTimeout(() => {
             App.setupMainAppListeners();
         }, 100);
     },
-    
+
     /**
      * Update system overview stats
      */
@@ -146,7 +372,7 @@ const App = {
         // Stats are now managed by individual modules (e.g., SemesterPlannerUI)
         // This function is kept for compatibility but no longer updates DOM directly
     },
-    
+
     /**
      * Setup main application event listeners
      */
@@ -156,22 +382,22 @@ const App = {
         if (logoutBtn) {
             logoutBtn.addEventListener('click', App.handleLogout);
         }
-        
+
         // Faculty buttons
         const submitProposalBtn = document.getElementById('submitProposalBtn');
         const myProposalsBtn = document.getElementById('myProposalsBtn');
-        
+
         if (submitProposalBtn) {
             submitProposalBtn.addEventListener('click', ModalsModule.openProposalModal);
         }
         if (myProposalsBtn) {
             myProposalsBtn.addEventListener('click', ProposalsModule.showMyProposals);
         }
-        
+
         // Admin buttons
         const reviewBtn = document.getElementById('reviewProposalsBtn');
         const manageBtn = document.getElementById('manageCoursesBtn');
-        
+
         if (reviewBtn) {
             reviewBtn.addEventListener('click', ProposalsModule.showReviewModal);
         }
@@ -192,7 +418,7 @@ const App = {
             SemesterPlannerUI.updateQuickView();
         }
     },
-    
+
     /**
      * Setup modal event listeners
      */
@@ -257,7 +483,7 @@ const App = {
         document.getElementById('addCourseBtn').addEventListener('click', () => {
             CoursesModule.showEditModal(null);
         });
-        
+
         // Form submissions
         document.getElementById('proposalForm').addEventListener('submit', ProposalsModule.submitProposal);
         document.getElementById('editCourseForm').addEventListener('submit', CoursesModule.saveCourse);
@@ -297,50 +523,6 @@ const LandingAnimations = {
 
         LandingAnimations.setupScrollAnimations();
         LandingAnimations.setupCounterAnimation();
-        LandingAnimations.addAnimationClasses();
-    },
-
-    /**
-     * Add animation classes to elements
-     */
-    addAnimationClasses: () => {
-        // About section - feature cards with staggered delays
-        const featureCards = document.querySelectorAll('.feature-card');
-        featureCards.forEach((card, index) => {
-            card.classList.add('animate-on-scroll', `delay-${(index % 4) + 1}`);
-        });
-
-        // Competency cards with staggered delays
-        const competencyCards = document.querySelectorAll('.competency-card');
-        competencyCards.forEach((card, index) => {
-            card.classList.add('animate-on-scroll', `delay-${(index % 6) + 1}`);
-        });
-
-        // Visualization feature cards
-        const vizCards = document.querySelectorAll('.viz-feature-card');
-        vizCards.forEach((card, index) => {
-            card.classList.add('animate-on-scroll', `delay-${(index % 6) + 1}`);
-        });
-
-        // Section headers
-        const aboutHeader = document.querySelector('.about-header');
-        if (aboutHeader) aboutHeader.classList.add('animate-on-scroll', 'from-left');
-
-        const compHeader = document.querySelector('.competencies-header');
-        if (compHeader) compHeader.classList.add('animate-on-scroll', 'from-left');
-
-        const vizHeader = document.querySelector('.visualizations-header');
-        if (vizHeader) vizHeader.classList.add('animate-on-scroll', 'from-left');
-
-        // Weight legend items
-        const weightItems = document.querySelectorAll('.weight-item');
-        weightItems.forEach((item, index) => {
-            item.classList.add('animate-on-scroll', `delay-${index + 1}`);
-        });
-
-        // CTA sections
-        const visualizationsCta = document.querySelector('.visualizations-cta');
-        if (visualizationsCta) visualizationsCta.classList.add('animate-on-scroll');
     },
 
     /**
@@ -357,8 +539,6 @@ const LandingAnimations = {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animated');
-                    // Optionally unobserve after animation
-                    // observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -419,11 +599,6 @@ const LandingAnimations = {
             const currentValue = Math.round(targetNumber * progress);
 
             element.textContent = currentValue + (hasPlus ? '+' : '');
-            element.classList.add('counting');
-
-            setTimeout(() => {
-                element.classList.remove('counting');
-            }, 50);
 
             if (currentStep < steps) {
                 setTimeout(updateCounter, stepDuration);
@@ -438,10 +613,104 @@ const LandingAnimations = {
     }
 };
 
+/**
+ * Renders a decorative mini bipartite graph in the landing page preview section
+ */
+function renderLandingPreviewGraph() {
+    const container = document.getElementById('landingPreviewGraph');
+    if (!container || typeof d3 === 'undefined') return;
+
+    const width = container.clientWidth || 900;
+    const height = 340;
+
+    const svg = d3.select(container).append('svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('preserveAspectRatio', 'xMidYMid meet');
+
+    // Sample course and competency nodes
+    const courses = [
+        { id: 'CSI-160', label: 'CSI-160' },
+        { id: 'CSI-260', label: 'CSI-260' },
+        { id: 'CSI-300', label: 'CSI-300' },
+        { id: 'CSI-340', label: 'CSI-340' },
+        { id: 'CSI-440', label: 'CSI-440' },
+    ];
+    const competencies = [
+        { id: 'Analysis', color: '#E52019' },
+        { id: 'Communication', color: '#FFDD00' },
+        { id: 'Collaboration', color: '#F7931E' },
+        { id: 'Inquiry', color: '#3C8DAD' },
+        { id: 'Creativity', color: '#C4D82D' },
+        { id: 'Integration', color: '#7B4FD0' },
+    ];
+
+    // Edges (course -> competency with weight)
+    const edges = [
+        { s: 0, t: 0, w: 3 }, { s: 0, t: 3, w: 2 },
+        { s: 1, t: 0, w: 2 }, { s: 1, t: 1, w: 3 }, { s: 1, t: 4, w: 1 },
+        { s: 2, t: 1, w: 2 }, { s: 2, t: 2, w: 3 }, { s: 2, t: 5, w: 2 },
+        { s: 3, t: 0, w: 3 }, { s: 3, t: 3, w: 3 }, { s: 3, t: 5, w: 1 },
+        { s: 4, t: 1, w: 2 }, { s: 4, t: 2, w: 2 }, { s: 4, t: 4, w: 3 }, { s: 4, t: 5, w: 3 },
+    ];
+
+    const leftX = width * 0.22;
+    const rightX = width * 0.78;
+    const courseSpacing = (height - 60) / (courses.length - 1);
+    const compSpacing = (height - 60) / (competencies.length - 1);
+
+    courses.forEach((c, i) => { c.x = leftX; c.y = 30 + i * courseSpacing; });
+    competencies.forEach((c, i) => { c.x = rightX; c.y = 30 + i * compSpacing; });
+
+    // Draw edges with animation
+    edges.forEach((e, i) => {
+        const s = courses[e.s];
+        const t = competencies[e.t];
+        const line = svg.append('line')
+            .attr('x1', s.x).attr('y1', s.y)
+            .attr('x2', s.x).attr('y2', s.y)
+            .attr('stroke', t.color)
+            .attr('stroke-width', e.w * 0.8)
+            .attr('stroke-opacity', 0.25);
+
+        line.transition()
+            .delay(300 + i * 60)
+            .duration(600)
+            .ease(d3.easeCubicOut)
+            .attr('x2', t.x).attr('y2', t.y);
+    });
+
+    // Draw course nodes
+    courses.forEach((c, i) => {
+        const g = svg.append('g').attr('transform', `translate(${c.x}, ${c.y})`).style('opacity', 0);
+        g.append('circle').attr('r', 22).attr('fill', '#003C5F').attr('stroke', 'white').attr('stroke-width', 2);
+        g.append('text').text(c.label).attr('text-anchor', 'middle').attr('dy', '0.35em')
+            .attr('fill', 'white').attr('font-size', '9px').attr('font-weight', '700');
+        g.transition().delay(200 + i * 80).duration(400).style('opacity', 1);
+    });
+
+    // Draw competency nodes
+    competencies.forEach((c, i) => {
+        const g = svg.append('g').attr('transform', `translate(${c.x}, ${c.y})`).style('opacity', 0);
+        g.append('circle').attr('r', 22).attr('fill', c.color).attr('stroke', 'white').attr('stroke-width', 2);
+        g.append('text').text(c.id.substring(0, 6)).attr('text-anchor', 'middle').attr('dy', '0.35em')
+            .attr('fill', 'white').attr('font-size', '8px').attr('font-weight', '700');
+        g.transition().delay(400 + i * 80).duration(400).style('opacity', 1);
+    });
+
+    // Column labels
+    svg.append('text').text('Courses').attr('x', leftX).attr('y', height - 4)
+        .attr('text-anchor', 'middle').attr('fill', '#003C5F').attr('font-size', '12px')
+        .attr('font-weight', '700').attr('opacity', 0.5);
+    svg.append('text').text('Competencies').attr('x', rightX).attr('y', height - 4)
+        .attr('text-anchor', 'middle').attr('fill', '#003C5F').attr('font-size', '12px')
+        .attr('font-weight', '700').attr('opacity', 0.5);
+}
+
 // Initialize app when DOM is ready
 async function initializeApp() {
     LandingAnimations.init();
     UXEnhancements.init();
+    renderLandingPreviewGraph();
     if (typeof SkillPacksModule !== 'undefined') {
         await SkillPacksModule.init();
     }

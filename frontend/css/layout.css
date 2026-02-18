@@ -5,10 +5,11 @@
 .header {
     background: linear-gradient(135deg, var(--champlain-navy) 0%, var(--champlain-dark-blue) 100%);
     color: white;
-    padding: 18px 40px;
+    padding: 12px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
     box-shadow: 0 4px 20px rgba(0, 42, 58, 0.3);
     border-bottom: none;
     position: sticky;
@@ -30,6 +31,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    flex-shrink: 0;
 }
 
 .logo-text {
@@ -45,6 +47,7 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    flex-shrink: 0;
 }
 
 .user-badge {
@@ -69,7 +72,7 @@
     cursor: pointer;
     font-weight: 700;
     font-size: 14px;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
 }
 
 .logout-btn:hover {
@@ -97,7 +100,31 @@
     box-shadow: 4px 0 20px rgba(0, 60, 95, 0.08);
     flex-shrink: 0;
     max-height: calc(100vh - 73px);
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition: background-color var(--transition-normal), border-color var(--transition-normal);
+}
+
+/* Custom scrollbar for sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(0, 60, 95, 0.15);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 60, 95, 0.3);
+}
+
+/* Firefox scrollbar */
+.sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 60, 95, 0.15) transparent;
 }
 
 .sidebar h2 {
@@ -131,7 +158,7 @@
     border-radius: 16px;
     padding: 24px;
     margin-bottom: 25px;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     box-shadow: 0 4px 15px rgba(0, 60, 95, 0.06);
     position: relative;
     overflow: hidden;
@@ -146,7 +173,7 @@
     height: 3px;
     background: linear-gradient(90deg, var(--champlain-bright-blue), var(--champlain-teal));
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--transition-normal);
 }
 
 .section:hover {
@@ -187,7 +214,7 @@
     margin: 10px 0;
     font-size: 15px;
     font-weight: 700;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -205,7 +232,7 @@
     width: 4px;
     background: linear-gradient(180deg, var(--champlain-bright-blue), var(--champlain-teal));
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--transition-normal);
 }
 
 .btn:hover {
@@ -234,6 +261,210 @@
     50% { transform: scale(1.1); }
 }
 
+/* ============================================
+   SIDEBAR FORM COMPONENTS
+   ============================================ */
+
+/* Course search input */
+.sidebar-search-input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color var(--transition-fast);
+}
+
+.sidebar-search-input:focus {
+    border-color: var(--champlain-bright-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 169, 224, 0.1);
+}
+
+.sidebar-search-wrap {
+    margin-bottom: 15px;
+}
+
+/* Filter button row */
+.sidebar-filter-row {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.sidebar-filter-btn {
+    flex: 1;
+    padding: 8px 12px;
+    background: var(--champlain-bright-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.sidebar-filter-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.sidebar-filter-btn--secondary {
+    flex: none;
+    background: #6c757d;
+}
+
+/* Filter results summary */
+.sidebar-filter-summary {
+    margin-bottom: 10px;
+    padding: 8px;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.sidebar-filter-summary__count {
+    font-weight: 600;
+    color: var(--champlain-navy);
+}
+
+.sidebar-filter-summary__detail {
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* Advanced filter panel */
+.sidebar-filter-panel {
+    display: none;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.sidebar-filter-panel h4 {
+    margin: 0 0 12px 0;
+    color: var(--champlain-navy);
+    font-size: 14px;
+}
+
+/* Filter group (label + checkboxes/options) */
+.sidebar-filter-group {
+    margin-bottom: 12px;
+}
+
+.sidebar-filter-group__label {
+    font-weight: 600;
+    font-size: 12px;
+    color: #333;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.sidebar-filter-group__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.sidebar-filter-group__options--column {
+    flex-direction: column;
+    gap: 4px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+/* Filter preset actions */
+.sidebar-filter-presets {
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color);
+}
+
+.sidebar-preset-btn {
+    width: 100%;
+    padding: 8px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    transition: opacity var(--transition-fast);
+}
+
+.sidebar-preset-btn:hover {
+    opacity: 0.9;
+}
+
+.sidebar-preset-btn--save {
+    background: var(--champlain-green);
+}
+
+.sidebar-preset-btn--load {
+    background: var(--champlain-blue);
+}
+
+/* Available courses list */
+.sidebar-course-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.sidebar-course-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sidebar-course-list::-webkit-scrollbar-thumb {
+    background: rgba(0, 60, 95, 0.15);
+    border-radius: 2px;
+}
+
+/* Selected courses section */
+.sidebar-selected-section {
+    margin-top: 20px;
+}
+
+.sidebar-selected-section h4 {
+    color: var(--champlain-navy);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Similar courses */
+.sidebar-similar-courses {
+    display: none;
+    margin-top: 15px;
+    background: #e8f5e9;
+    border-radius: 6px;
+    border: 1px solid var(--champlain-green);
+}
+
+.sidebar-similar-courses .collapsible-toggle {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border-color: var(--champlain-green);
+    color: var(--champlain-green);
+}
+
+.sidebar-similar-courses__list {
+    padding: 0 12px 12px 12px;
+}
+
+/* Compare button area */
+.sidebar-compare-section {
+    margin-top: 15px;
+}
+
+.sidebar-compare-hint {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    text-align: center;
+}
+
 .stats-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -247,7 +478,7 @@
     text-align: center;
     color: white;
     box-shadow: var(--shadow-md);
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     position: relative;
     overflow: hidden;
 }

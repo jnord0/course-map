@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/utilities.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/dashboard.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 </head>
 <body>
@@ -31,10 +32,8 @@
                     <span>Champlain College</span>
                 </div>
                 <div class="landing-nav-links">
+                    <a href="#features">Features</a>
                     <a href="#about">About</a>
-                    <a href="#competencies">Competencies</a>
-                    <a href="#visualizations">Visualizations</a>
-                    <a href="#discover">Skill Packs</a>
                     <a href="#login">Sign In</a>
                 </div>
             </div>
@@ -120,269 +119,211 @@
                     </div>
                 </div>
             </div>
-            <div class="hero-wave">
-                <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-                    <path d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,64C960,75,1056,85,1152,80C1248,75,1344,53,1392,42.7L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z" fill="#f5f7fa"></path>
-                </svg>
-            </div>
         </section>
 
-        <!-- About Section -->
-        <section class="landing-about" id="about">
-            <div class="about-content">
-                <div class="about-header">
-                    <h2>Competency-Based Education</h2>
-                    <p>At Champlain College, we believe in preparing students for the real world through a unique competency-based curriculum that goes beyond traditional learning.</p>
-                </div>
-
-                <div class="about-features">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-bright-blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-                        </div>
-                        <h3>Skill-Focused Learning</h3>
-                        <p>Our curriculum emphasizes practical skills and knowledge that employers value, ensuring graduates are career-ready from day one.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-bright-blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.12 8.12L15.88 15.88"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M15.88 8.12L8.12 15.88"/></svg>
-                        </div>
-                        <h3>Integrated Approach</h3>
-                        <p>Competencies are woven throughout courses, creating meaningful connections between disciplines and real-world applications.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-bright-blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
-                        </div>
-                        <h3>Measurable Outcomes</h3>
-                        <p>Track your progress across all competencies with clear metrics and visualizations that demonstrate your growth.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-bright-blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                        </div>
-                        <h3>Global Perspective</h3>
-                        <p>Develop cultural awareness and global citizenship skills essential for success in today's interconnected world.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Competencies Section -->
-        <section class="landing-competencies" id="competencies">
-            <div class="competencies-content">
-                <div class="competencies-header">
-                    <h2>The 12 Core Competencies</h2>
-                    <p>These foundational skills form the backbone of every Champlain College graduate's education, preparing them for professional and personal success.</p>
-                </div>
-
-                <div class="competencies-grid">
-                    <div class="competency-card" style="--accent-color: #E52019;">
-                        <img src="data/12 CComp Icons PNGs/Analysis Icon.png" alt="Analysis" class="competency-icon">
-                        <h3>Analysis</h3>
-                        <p>Examine information critically, evaluate evidence, and construct well-reasoned arguments and conclusions.</p>
-                    </div>
-                    <div class="competency-card" style="--accent-color: #F7931E;">
-                        <img src="data/12 CComp Icons PNGs/Collaboration Icon.png" alt="Collaboration" class="competency-icon">
-                        <h3>Collaboration</h3>
-                        <p>Work effectively with others, leveraging diverse strengths to achieve shared goals and outcomes.</p>
-                    </div>
-                    <div class="competency-card" style="--accent-color: #FFDD00;">
-                        <img src="data/12 CComp Icons PNGs/Communication Icon.png" alt="Communication" class="competency-icon">
-                        <h3>Communication</h3>
-                        <p>Express ideas clearly and effectively through written, oral, and visual means for diverse audiences.</p>
-                    </div>
-                    <div class="competency-card" style="--accent-color: #C4D82D;">
-                        <img src="data/12 CComp Icons PNGs/Creativity Icon.png" alt="Creativity" class="competency-icon">
-                        <h3>Creativity</h3>
-                        <p>Generate original ideas, approach challenges from new angles, and develop innovative solutions.</p>
-                    </div>
-                    <div class="competency-card" style="--accent-color: #5CB85C;">
-                        <img src="data/12 CComp Icons PNGs/Diversity Equity & Inclusion Icon.png" alt="DEI" class="competency-icon">
-                        <h3>Diversity, Equity & Inclusion</h3>
-                        <p>Recognize systemic inequities and actively contribute to creating inclusive environments and opportunities.</p>
-                    </div>
-                    <div class="competency-card" style="--accent-color: #7CC9B5;">
-                        <img src="data/12 CComp Icons PNGs/Global & Cultural Understanding Icon.png" alt="Global" class="competency-icon">
-                        <h3>Global & Cultural Understanding</h3>
-                        <p>Understand diverse perspectives and navigate cultural differences with respect, empathy, and appreciation.</p>
-                    </div>
-                    <div class="competency-card" style="--accent-color: #00B5AD;">
-                        <img src="data/12 CComp Icons PNGs/Information Literacy Icon.png" alt="Information Literacy" class="competency-icon">
-                        <h3>Information Literacy</h3>
-                        <p>Locate, evaluate, and effectively use information from diverse sources with critical discernment.</p>
-                    </div>
-                    <div class="competency-card" style="--accent-color: #3C8DAD;">
-                        <img src="data/12 CComp Icons PNGs/Inquiry Icon.png" alt="Inquiry" class="competency-icon">
-                        <h3>Inquiry</h3>
-                        <p>Develop and refine questions to explore complex issues, gather relevant information, and pursue deeper understanding.</p>
-                    </div>
-                    <div class="competency-card" style="--accent-color: #7B4FD0;">
-                        <img src="data/12 CComp Icons PNGs/Integration Icon.png" alt="Integration" class="competency-icon">
-                        <h3>Integration</h3>
-                        <p>Synthesize knowledge from multiple sources and disciplines to create comprehensive understanding and innovative solutions.</p>
-                    </div>
-                    <div class="competency-card" style="--accent-color: #D640A8;">
-                        <img src="data/12 CComp Icons PNGs/Quantitative Icon.png" alt="Quantitative" class="competency-icon">
-                        <h3>Quantitative Literacy</h3>
-                        <p>Interpret and apply numerical data, statistics, and mathematical reasoning to solve real-world problems.</p>
-                    </div>
-                    <div class="competency-card" style="--accent-color: #F799C0;">
-                        <img src="data/12 CComp Icons PNGs/Scientific Literacy Icon.png" alt="Scientific Literacy" class="competency-icon">
-                        <h3>Scientific Literacy</h3>
-                        <p>Understand and apply scientific methods, principles, and reasoning to interpret the natural world.</p>
-                    </div>
-                    <div class="competency-card" style="--accent-color: #A61C3C;">
-                        <img src="data/12 CComp Icons PNGs/Technology Literacy Icon.png" alt="Technology Literacy" class="competency-icon">
-                        <h3>Technology Literacy</h3>
-                        <p>Effectively use and critically evaluate technology to solve problems and enhance productivity.</p>
-                    </div>
-                </div>
-
-                <div class="competency-weights">
-                    <h3>Understanding Competency Weights</h3>
-                    <div class="weight-legend">
-                        <div class="weight-item">
-                            <span class="weight-badge weight-1">1</span>
-                            <div class="weight-info">
-                                <strong>Addressed</strong>
-                                <p>Competency is introduced and touched upon in the course</p>
-                            </div>
-                        </div>
-                        <div class="weight-item">
-                            <span class="weight-badge weight-2">2</span>
-                            <div class="weight-info">
-                                <strong>Reinforced</strong>
-                                <p>Competency is practiced and developed through coursework</p>
-                            </div>
-                        </div>
-                        <div class="weight-item">
-                            <span class="weight-badge weight-3">3</span>
-                            <div class="weight-info">
-                                <strong>Emphasized</strong>
-                                <p>Competency is a primary focus of the course curriculum</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Visualizations Section -->
-        <section class="landing-visualizations" id="visualizations">
+        <!-- Features Section -->
+        <section id="features" class="landing-visualizations">
             <div class="visualizations-content">
-                <div class="visualizations-header">
-                    <h2>Powerful Visualization Tools</h2>
-                    <p>Explore your academic journey through interactive visualizations designed to help you understand course relationships, track competency development, and plan your path to graduation.</p>
+                <div class="visualizations-header animate-on-scroll">
+                    <h2>Powerful Tools for Academic Planning</h2>
+                    <p>Interactive visualizations and planning tools to help you understand course relationships, track competency development, and plan your academic journey.</p>
                 </div>
 
                 <div class="visualizations-grid">
-                    <div class="viz-feature-card">
+                    <div class="viz-feature-card animate-on-scroll delay-1">
                         <div class="viz-feature-icon" style="background: linear-gradient(135deg, #003C5F, #236192);">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><circle cx="12" cy="6" r="2"/><line x1="7" y1="6" x2="10" y2="6"/><line x1="14" y1="6" x2="17" y2="6"/><line x1="6.5" y1="7.5" x2="10.5" y2="16.5"/><line x1="17.5" y1="7.5" x2="13.5" y2="16.5"/></svg>
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><circle cx="12" cy="6" r="2"/><line x1="7" y1="6" x2="10" y2="6"/><line x1="14" y1="6" x2="17" y2="6"/><line x1="6.5" y1="7.5" x2="10.5" y2="16.5"/><line x1="17.5" y1="7.5" x2="13.5" y2="16.5"/></svg>
                         </div>
-                        <h3>Network View</h3>
-                        <p>See the connections between courses and competencies in an interactive network graph. Understand how each course contributes to your skill development at a glance.</p>
+                        <h3>Network Visualization</h3>
+                        <p>See how courses connect to competencies through an interactive bipartite graph. Hover, click, and explore relationships at a glance.</p>
                         <div class="viz-feature-benefits">
-                            <span>Visual relationships</span>
-                            <span>Interactive exploration</span>
+                            <span>Interactive Graph</span>
+                            <span>Weighted Edges</span>
+                            <span>Hover Details</span>
                         </div>
                     </div>
 
-                    <div class="viz-feature-card">
-                        <div class="viz-feature-icon" style="background: linear-gradient(135deg, #00A9E0, #3DC4B2);">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
-                        </div>
-                        <h3>Table View</h3>
-                        <p>Analyze competency coverage across all your selected courses in a detailed matrix format. Perfect for identifying gaps and ensuring comprehensive skill development.</p>
-                        <div class="viz-feature-benefits">
-                            <span>Detailed analysis</span>
-                            <span>Gap identification</span>
-                        </div>
-                    </div>
-
-                    <div class="viz-feature-card">
-                        <div class="viz-feature-icon" style="background: linear-gradient(135deg, #74AA50, #5CB85C);">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                        </div>
-                        <h3>Prerequisite Chain</h3>
-                        <p>Visualize course dependencies and prerequisites. Plan your academic sequence efficiently by understanding which courses unlock others.</p>
-                        <div class="viz-feature-benefits">
-                            <span>Course sequencing</span>
-                            <span>Dependency mapping</span>
-                        </div>
-                    </div>
-
-                    <div class="viz-feature-card">
-                        <div class="viz-feature-icon" style="background: linear-gradient(135deg, #7B4FD0, #9C27B0);">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8L22 12L18 16"/><path d="M2 12h20"/><circle cx="7" cy="6" r="2"/><circle cx="7" cy="18" r="2"/><line x1="7" y1="8" x2="7" y2="16"/></svg>
-                        </div>
-                        <h3>Course Pathway</h3>
-                        <p>Track your progress from completed courses to available options. See which courses are unlocked based on your academic history.</p>
-                        <div class="viz-feature-benefits">
-                            <span>Progress tracking</span>
-                            <span>Available courses</span>
-                        </div>
-                    </div>
-
-                    <div class="viz-feature-card">
+                    <div class="viz-feature-card animate-on-scroll delay-2">
                         <div class="viz-feature-icon" style="background: linear-gradient(135deg, #F7931E, #FF9800);">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
                         </div>
-                        <h3>Competency Graphs</h3>
-                        <p>Analyze your competency coverage with bar charts, pie charts, and radar diagrams. Multiple perspectives help you understand your strengths and areas for growth.</p>
+                        <h3>Competency Analytics</h3>
+                        <p>Track your competency coverage with bar charts, pie charts, and radar diagrams. Identify gaps and strengths in your academic plan.</p>
                         <div class="viz-feature-benefits">
-                            <span>Multiple chart types</span>
-                            <span>Strength analysis</span>
+                            <span>Bar Charts</span>
+                            <span>Radar Diagrams</span>
+                            <span>Gap Analysis</span>
                         </div>
                     </div>
 
-                    <div class="viz-feature-card">
-                        <div class="viz-feature-icon" style="background: linear-gradient(135deg, #E52019, #D640A8);">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="16" y1="14" x2="16" y2="14.01"/><line x1="8" y1="18" x2="8" y2="18.01"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+                    <div class="viz-feature-card animate-on-scroll delay-3">
+                        <div class="viz-feature-icon" style="background: linear-gradient(135deg, #74AA50, #5CB85C);">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/></svg>
                         </div>
                         <h3>Semester Planner</h3>
-                        <p>Plan your academic semesters with an intuitive drag-and-drop interface. Balance your course load and ensure you're meeting competency requirements each term.</p>
+                        <p>Plan your semesters visually with a drag-and-drop timeline. Balance your course load and see prerequisite chains at a glance.</p>
                         <div class="viz-feature-benefits">
-                            <span>Schedule planning</span>
-                            <span>Load balancing</span>
+                            <span>Timeline View</span>
+                            <span>Prerequisites</span>
+                            <span>Load Balancing</span>
+                        </div>
+                    </div>
+
+                    <div class="viz-feature-card animate-on-scroll delay-4">
+                        <div class="viz-feature-icon" style="background: linear-gradient(135deg, #7B4FD0, #9C27B0);">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        </div>
+                        <h3>Proposal Workflow</h3>
+                        <p>Faculty can submit course proposals, and administrators can review, approve, or provide feedback &mdash; all within one streamlined system.</p>
+                        <div class="viz-feature-benefits">
+                            <span>Submit & Track</span>
+                            <span>Admin Review</span>
+                            <span>Status Updates</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="visualizations-cta">
-                    <p>Ready to explore your academic journey?</p>
+                <div class="visualizations-cta animate-on-scroll">
+                    <p>Ready to explore your academic path?</p>
                     <a href="#login" class="cta-button">Get Started</a>
                 </div>
             </div>
         </section>
 
-        <!-- Explore by Interest Section -->
-        <section class="landing-discovery" id="discover">
-            <div class="discovery-content">
-                <div class="discovery-header">
-                    <h2>Explore by Interest</h2>
-                    <p>Discover skill packs across different fields. Each pack bundles related courses to build expertise in a specific area.</p>
+        <!-- Platform Preview Section -->
+        <section class="landing-preview">
+            <div class="preview-content">
+                <div class="preview-header animate-on-scroll">
+                    <h2>See Your Curriculum Come to Life</h2>
+                    <p>Interactive visualizations reveal connections between courses and the competencies they build.</p>
                 </div>
-
-                <div class="interest-categories" id="interestCategories">
-                    <!-- Categories will be populated by JavaScript -->
-                </div>
-
-                <div class="skill-packs-container" id="skillPacksContainer">
-                    <div class="skill-packs-header">
-                        <h3 id="selectedCategoryTitle">Select a category to explore</h3>
-                        <div class="skill-packs-filters">
-                            <button class="filter-chip active" data-filter="all">All Packs</button>
-                            <button class="filter-chip" data-filter="open">Open to All</button>
-                            <button class="filter-chip" data-filter="required">Program Required</button>
+                <div class="preview-showcase animate-on-scroll">
+                    <div class="preview-window">
+                        <div class="preview-toolbar">
+                            <span class="preview-dot" style="background: #ff5f57;"></span>
+                            <span class="preview-dot" style="background: #ffbd2e;"></span>
+                            <span class="preview-dot" style="background: #28c840;"></span>
+                            <span class="preview-toolbar-title">Course &harr; Competency Network</span>
+                        </div>
+                        <div class="preview-body">
+                            <div class="preview-graph" id="landingPreviewGraph"></div>
                         </div>
                     </div>
-                    <div class="skill-packs-grid" id="skillPacksGrid">
-                        <div class="skill-packs-empty">
-                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-gray)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                            <p>Choose an interest category above to see available skill packs</p>
+                    <div class="preview-caption">
+                        <div class="preview-caption-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-bright-blue)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+                            <span>Select courses to see competency coverage</span>
                         </div>
+                        <div class="preview-caption-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-bright-blue)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+                            <span>Hover nodes for details &amp; weights</span>
+                        </div>
+                        <div class="preview-caption-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-bright-blue)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+                            <span>Switch between network, table &amp; chart views</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="about" class="landing-how-it-works">
+            <div class="how-it-works-content">
+                <div class="how-it-works-header animate-on-scroll">
+                    <h2>Get Started in 3 Steps</h2>
+                    <p>From sign-in to insight in under a minute.</p>
+                </div>
+                <div class="how-it-works-steps">
+                    <div class="step-card animate-on-scroll delay-1">
+                        <div class="step-number">1</div>
+                        <div class="step-icon" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                        </div>
+                        <h3>Sign In</h3>
+                        <p>Log in as a student, faculty member, or administrator. Each role unlocks different tools and capabilities.</p>
+                    </div>
+                    <div class="step-connector animate-on-scroll delay-1">
+                        <svg width="40" height="24" viewBox="0 0 40 24"><path d="M0 12h36m0 0l-6-6m6 6l-6 6" stroke="var(--champlain-bright-blue)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="step-card animate-on-scroll delay-2">
+                        <div class="step-number">2</div>
+                        <div class="step-icon" style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        </div>
+                        <h3>Select Courses</h3>
+                        <p>Browse the catalog and pick the courses you're interested in. The system instantly maps them to competencies.</p>
+                    </div>
+                    <div class="step-connector animate-on-scroll delay-2">
+                        <svg width="40" height="24" viewBox="0 0 40 24"><path d="M0 12h36m0 0l-6-6m6 6l-6 6" stroke="var(--champlain-bright-blue)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="step-card animate-on-scroll delay-3">
+                        <div class="step-number">3</div>
+                        <div class="step-icon" style="background: linear-gradient(135deg, #e8f5e9 0%, #a5d6a7 100%);">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                        </div>
+                        <h3>Explore &amp; Plan</h3>
+                        <p>Visualize competency coverage, plan semesters, discover skill packs, and track your academic progress.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competency Showcase Strip -->
+        <section class="landing-competency-strip">
+            <div class="competency-strip-content">
+                <div class="competency-strip-header animate-on-scroll">
+                    <h2>12 Core Competencies</h2>
+                    <p>Every Champlain graduate develops these foundational skills.</p>
+                </div>
+                <div class="competency-strip-scroll animate-on-scroll">
+                    <div class="competency-strip-item" style="--accent: #E52019;">
+                        <img src="data/12 CComp Icons PNGs/Analysis Icon.png" alt="Analysis">
+                        <span>Analysis</span>
+                    </div>
+                    <div class="competency-strip-item" style="--accent: #F7931E;">
+                        <img src="data/12 CComp Icons PNGs/Collaboration Icon.png" alt="Collaboration">
+                        <span>Collaboration</span>
+                    </div>
+                    <div class="competency-strip-item" style="--accent: #FFDD00;">
+                        <img src="data/12 CComp Icons PNGs/Communication Icon.png" alt="Communication">
+                        <span>Communication</span>
+                    </div>
+                    <div class="competency-strip-item" style="--accent: #C4D82D;">
+                        <img src="data/12 CComp Icons PNGs/Creativity Icon.png" alt="Creativity">
+                        <span>Creativity</span>
+                    </div>
+                    <div class="competency-strip-item" style="--accent: #5CB85C;">
+                        <img src="data/12 CComp Icons PNGs/Diversity Equity & Inclusion Icon.png" alt="DEI">
+                        <span>DEI</span>
+                    </div>
+                    <div class="competency-strip-item" style="--accent: #7CC9B5;">
+                        <img src="data/12 CComp Icons PNGs/Global & Cultural Understanding Icon.png" alt="Global">
+                        <span>Global</span>
+                    </div>
+                    <div class="competency-strip-item" style="--accent: #00B5AD;">
+                        <img src="data/12 CComp Icons PNGs/Information Literacy Icon.png" alt="Info Literacy">
+                        <span>Info Literacy</span>
+                    </div>
+                    <div class="competency-strip-item" style="--accent: #3C8DAD;">
+                        <img src="data/12 CComp Icons PNGs/Inquiry Icon.png" alt="Inquiry">
+                        <span>Inquiry</span>
+                    </div>
+                    <div class="competency-strip-item" style="--accent: #7B4FD0;">
+                        <img src="data/12 CComp Icons PNGs/Integration Icon.png" alt="Integration">
+                        <span>Integration</span>
+                    </div>
+                    <div class="competency-strip-item" style="--accent: #D640A8;">
+                        <img src="data/12 CComp Icons PNGs/Quantitative Icon.png" alt="Quantitative">
+                        <span>Quantitative</span>
+                    </div>
+                    <div class="competency-strip-item" style="--accent: #F799C0;">
+                        <img src="data/12 CComp Icons PNGs/Scientific Literacy Icon.png" alt="Scientific">
+                        <span>Scientific</span>
+                    </div>
+                    <div class="competency-strip-item" style="--accent: #A61C3C;">
+                        <img src="data/12 CComp Icons PNGs/Technology Literacy Icon.png" alt="Technology">
+                        <span>Technology</span>
                     </div>
                 </div>
             </div>
@@ -397,43 +338,366 @@
                          onerror="this.style.display='none'">
                     <div>
                         <strong>Champlain College</strong>
-                        <p>Academic Affairs System</p>
+                        <p>Academic Affairs Course Management System</p>
                     </div>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4>Quick Links</h4>
+                        <h4>Platform</h4>
+                        <a href="#features">Features</a>
                         <a href="#about">About</a>
-                        <a href="#competencies">Competencies</a>
                         <a href="#login">Sign In</a>
                     </div>
                     <div class="footer-column">
                         <h4>Resources</h4>
-                        <a href="https://www.champlain.edu" target="_blank">Champlain.edu</a>
-                        <a href="https://www.champlain.edu/academics" target="_blank">Academics</a>
-                        <a href="https://www.champlain.edu/current-students" target="_blank">Student Resources</a>
+                        <a href="https://www.champlain.edu" target="_blank" rel="noopener">Champlain College</a>
+                        <a href="#features">Competency Framework</a>
+                        <a href="#features">Course Catalog</a>
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; 2025 Champlain College. Academic Affairs Course Management System.</p>
+                    <p>&copy; 2026 Champlain College. Academic Affairs Course Management System.</p>
                 </div>
             </div>
         </footer>
+    </div>
+
+    <!-- Dashboard Page (shown after login, before main app) -->
+    <div id="dashboardPage" class="hidden">
+        <div class="header">
+            <div class="logo-section">
+                <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D"
+                     alt="Champlain College Shield"
+                     style="height: 50px; margin-right: 20px;"
+                     onerror="this.style.display='none'">
+                <div class="logo-text">Academic Affairs</div>
+            </div>
+            <div class="user-info">
+                <span id="dashboardUser">User</span>
+                <span class="user-badge" id="dashboardRole">Role</span>
+                <button class="logout-btn" id="dashboardLogoutBtn">Logout</button>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="dashboard-welcome">
+                <h1><span id="dashboardGreeting">Welcome</span>, <span id="dashboardGreetName">User</span></h1>
+                <p>Select a section below to get started with the Academic Affairs System.</p>
+            </div>
+
+            <!-- Quick Stats Bar -->
+            <div class="dashboard-stats-bar" id="dashboardStatsBar">
+                <div class="dash-stat">
+                    <div class="dash-stat-value" id="statCourseCount">--</div>
+                    <div class="dash-stat-label">Courses Available</div>
+                </div>
+                <div class="dash-stat">
+                    <div class="dash-stat-value">12</div>
+                    <div class="dash-stat-label">Core Competencies</div>
+                </div>
+                <div class="dash-stat" id="statProposalsContainer">
+                    <div class="dash-stat-value" id="statProposalCount">--</div>
+                    <div class="dash-stat-label" id="statProposalLabel">Proposals</div>
+                </div>
+                <div class="dash-stat">
+                    <div class="dash-stat-value" id="statSkillPackCount">--</div>
+                    <div class="dash-stat-label">Skill Packs</div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="dashboard-quick-actions" id="dashboardQuickActions">
+                <span class="quick-actions-label">Quick Actions:</span>
+                <button class="quick-action-pill" onclick="Dashboard.goToMainApp('network')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><line x1="3" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="21" y2="12"/></svg>
+                    Browse Courses
+                </button>
+                <button class="quick-action-pill" onclick="Dashboard.showCompetencies()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    View Competencies
+                </button>
+                <button class="quick-action-pill" onclick="Dashboard.showSkillPacks()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    Explore Skill Packs
+                </button>
+                <button class="quick-action-pill dashboard-faculty-only hidden" onclick="Dashboard.openProposals()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Submit Proposal
+                </button>
+                <button class="quick-action-pill dashboard-admin-only hidden" onclick="Dashboard.openAdmin()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09"/></svg>
+                    Review Proposals
+                </button>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Visualization Section - All roles -->
+                <div class="dashboard-card" data-section="visualization" onclick="Dashboard.goToMainApp('network')">
+                    <div class="dashboard-card-icon dashboard-card-icon--viz">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><circle cx="12" cy="6" r="2"/><line x1="7" y1="6" x2="10" y2="6"/><line x1="14" y1="6" x2="17" y2="6"/><line x1="6.5" y1="7.5" x2="10.5" y2="16.5"/><line x1="17.5" y1="7.5" x2="13.5" y2="16.5"/></svg>
+                    </div>
+                    <h3>Course Visualization</h3>
+                    <p>Explore interactive network graphs, table views, prerequisite chains, and course pathways.</p>
+                    <div class="dashboard-card-tags">
+                        <span>Network View</span>
+                        <span>Table View</span>
+                        <span>Prerequisites</span>
+                    </div>
+                </div>
+
+                <!-- Competency Info - All roles -->
+                <div class="dashboard-card" data-section="competencies" onclick="Dashboard.showCompetencies()">
+                    <div class="dashboard-card-icon dashboard-card-icon--competency">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                    </div>
+                    <h3>Competency Info</h3>
+                    <p>Learn about Champlain College's 12 core competencies and how they shape your education.</p>
+                    <div class="dashboard-card-tags">
+                        <span>12 Competencies</span>
+                        <span>Weight System</span>
+                        <span>Outcomes</span>
+                    </div>
+                </div>
+
+                <!-- Skill Packs - All roles -->
+                <div class="dashboard-card" data-section="skillpacks" onclick="Dashboard.showSkillPacks()">
+                    <div class="dashboard-card-icon dashboard-card-icon--skillpacks">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    </div>
+                    <h3>Skill Packs</h3>
+                    <p>Discover curated course bundles across different fields to build expertise in specific areas.</p>
+                    <div class="dashboard-card-tags">
+                        <span>Course Bundles</span>
+                        <span>Career Paths</span>
+                    </div>
+                </div>
+
+                <!-- Proposals - Faculty only -->
+                <div class="dashboard-card dashboard-faculty-only hidden" data-section="proposals" onclick="Dashboard.openProposals()">
+                    <div class="dashboard-card-icon dashboard-card-icon--proposals">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
+                    <h3>Course Proposals</h3>
+                    <p>Submit new course proposals, track their status, and manage your pending submissions.</p>
+                    <div class="dashboard-card-tags">
+                        <span>Submit Proposals</span>
+                        <span>Track Status</span>
+                    </div>
+                </div>
+
+                <!-- Admin Management - Admin only -->
+                <div class="dashboard-card dashboard-admin-only hidden" data-section="admin" onclick="Dashboard.openAdmin()">
+                    <div class="dashboard-card-icon dashboard-card-icon--admin">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    </div>
+                    <h3>System Management</h3>
+                    <p>Review proposals, manage courses and programs, oversee competencies, and administer the system.</p>
+                    <div class="dashboard-card-tags">
+                        <span>Review Proposals</span>
+                        <span>Manage Courses</span>
+                        <span>Administration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Competencies Page (standalone info page) -->
+    <div id="competenciesPage" class="hidden">
+        <div class="header">
+            <div class="logo-section">
+                <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D"
+                     alt="Champlain College Shield"
+                     style="height: 50px; margin-right: 20px;"
+                     onerror="this.style.display='none'">
+                <div class="logo-text">Academic Affairs</div>
+            </div>
+            <div class="user-info">
+                <button class="back-to-dashboard-btn" onclick="Dashboard.backToDashboard()">Back to Dashboard</button>
+                <button class="logout-btn" onclick="App.handleLogout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="standalone-page-content">
+            <div class="standalone-page-header">
+                <h1>The 12 Core Competencies</h1>
+                <p>These foundational skills form the backbone of every Champlain College graduate's education, preparing them for professional and personal success.</p>
+            </div>
+
+            <div class="competencies-grid">
+                <div class="competency-card" style="--accent-color: #E52019;">
+                    <img src="data/12 CComp Icons PNGs/Analysis Icon.png" alt="Analysis" class="competency-icon">
+                    <h3>Analysis</h3>
+                    <p>Examine information critically, evaluate evidence, and construct well-reasoned arguments and conclusions.</p>
+                </div>
+                <div class="competency-card" style="--accent-color: #F7931E;">
+                    <img src="data/12 CComp Icons PNGs/Collaboration Icon.png" alt="Collaboration" class="competency-icon">
+                    <h3>Collaboration</h3>
+                    <p>Work effectively with others, leveraging diverse strengths to achieve shared goals and outcomes.</p>
+                </div>
+                <div class="competency-card" style="--accent-color: #FFDD00;">
+                    <img src="data/12 CComp Icons PNGs/Communication Icon.png" alt="Communication" class="competency-icon">
+                    <h3>Communication</h3>
+                    <p>Express ideas clearly and effectively through written, oral, and visual means for diverse audiences.</p>
+                </div>
+                <div class="competency-card" style="--accent-color: #C4D82D;">
+                    <img src="data/12 CComp Icons PNGs/Creativity Icon.png" alt="Creativity" class="competency-icon">
+                    <h3>Creativity</h3>
+                    <p>Generate original ideas, approach challenges from new angles, and develop innovative solutions.</p>
+                </div>
+                <div class="competency-card" style="--accent-color: #5CB85C;">
+                    <img src="data/12 CComp Icons PNGs/Diversity Equity & Inclusion Icon.png" alt="DEI" class="competency-icon">
+                    <h3>Diversity, Equity & Inclusion</h3>
+                    <p>Recognize systemic inequities and actively contribute to creating inclusive environments and opportunities.</p>
+                </div>
+                <div class="competency-card" style="--accent-color: #7CC9B5;">
+                    <img src="data/12 CComp Icons PNGs/Global & Cultural Understanding Icon.png" alt="Global" class="competency-icon">
+                    <h3>Global & Cultural Understanding</h3>
+                    <p>Understand diverse perspectives and navigate cultural differences with respect, empathy, and appreciation.</p>
+                </div>
+                <div class="competency-card" style="--accent-color: #00B5AD;">
+                    <img src="data/12 CComp Icons PNGs/Information Literacy Icon.png" alt="Information Literacy" class="competency-icon">
+                    <h3>Information Literacy</h3>
+                    <p>Locate, evaluate, and effectively use information from diverse sources with critical discernment.</p>
+                </div>
+                <div class="competency-card" style="--accent-color: #3C8DAD;">
+                    <img src="data/12 CComp Icons PNGs/Inquiry Icon.png" alt="Inquiry" class="competency-icon">
+                    <h3>Inquiry</h3>
+                    <p>Develop and refine questions to explore complex issues, gather relevant information, and pursue deeper understanding.</p>
+                </div>
+                <div class="competency-card" style="--accent-color: #7B4FD0;">
+                    <img src="data/12 CComp Icons PNGs/Integration Icon.png" alt="Integration" class="competency-icon">
+                    <h3>Integration</h3>
+                    <p>Synthesize knowledge from multiple sources and disciplines to create comprehensive understanding and innovative solutions.</p>
+                </div>
+                <div class="competency-card" style="--accent-color: #D640A8;">
+                    <img src="data/12 CComp Icons PNGs/Quantitative Icon.png" alt="Quantitative" class="competency-icon">
+                    <h3>Quantitative Literacy</h3>
+                    <p>Interpret and apply numerical data, statistics, and mathematical reasoning to solve real-world problems.</p>
+                </div>
+                <div class="competency-card" style="--accent-color: #F799C0;">
+                    <img src="data/12 CComp Icons PNGs/Scientific Literacy Icon.png" alt="Scientific Literacy" class="competency-icon">
+                    <h3>Scientific Literacy</h3>
+                    <p>Understand and apply scientific methods, principles, and reasoning to interpret the natural world.</p>
+                </div>
+                <div class="competency-card" style="--accent-color: #A61C3C;">
+                    <img src="data/12 CComp Icons PNGs/Technology Literacy Icon.png" alt="Technology Literacy" class="competency-icon">
+                    <h3>Technology Literacy</h3>
+                    <p>Effectively use and critically evaluate technology to solve problems and enhance productivity.</p>
+                </div>
+            </div>
+
+            <div class="competency-weights">
+                <h3>Understanding Competency Weights</h3>
+                <div class="weight-legend">
+                    <div class="weight-item">
+                        <span class="weight-badge weight-1">1</span>
+                        <div class="weight-info">
+                            <strong>Addressed</strong>
+                            <p>Competency is introduced and touched upon in the course</p>
+                        </div>
+                    </div>
+                    <div class="weight-item">
+                        <span class="weight-badge weight-2">2</span>
+                        <div class="weight-info">
+                            <strong>Reinforced</strong>
+                            <p>Competency is practiced and developed through coursework</p>
+                        </div>
+                    </div>
+                    <div class="weight-item">
+                        <span class="weight-badge weight-3">3</span>
+                        <div class="weight-info">
+                            <strong>Emphasized</strong>
+                            <p>Competency is a primary focus of the course curriculum</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="standalone-page-cta">
+                <p>Ready to see how competencies map to your courses?</p>
+                <button class="cta-button" onclick="Dashboard.goToMainApp('graphs')">View Competency Analytics</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skill Packs Page (standalone browsing page) -->
+    <div id="skillPacksPage" class="hidden">
+        <div class="header">
+            <div class="logo-section">
+                <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D"
+                     alt="Champlain College Shield"
+                     style="height: 50px; margin-right: 20px;"
+                     onerror="this.style.display='none'">
+                <div class="logo-text">Academic Affairs</div>
+            </div>
+            <div class="user-info">
+                <button class="back-to-dashboard-btn" onclick="Dashboard.backToDashboard()">Back to Dashboard</button>
+                <button class="logout-btn" onclick="App.handleLogout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="standalone-page-content">
+            <div class="standalone-page-header">
+                <h1>Explore by Interest</h1>
+                <p>Discover skill packs across different fields. Each pack bundles related courses to build expertise in a specific area.</p>
+            </div>
+
+            <div class="interest-categories" id="spPageCategories">
+                <!-- Categories populated by JS -->
+            </div>
+
+            <div class="skill-packs-container" id="spPageContainer">
+                <div class="skill-packs-header">
+                    <h3 id="spPageCategoryTitle">Select a category to explore</h3>
+                    <div class="skill-packs-header-controls">
+                        <div class="skill-packs-filters">
+                            <button class="filter-chip active" data-filter="all">All Packs</button>
+                            <button class="filter-chip" data-filter="open">Open to All</button>
+                            <button class="filter-chip" data-filter="required">Program Required</button>
+                        </div>
+                        <div class="sp-view-toggle" id="spViewToggle">
+                            <button class="sp-view-btn active" data-view="cards" title="Card View">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                            </button>
+                            <button class="sp-view-btn" data-view="list" title="List View">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-packs-grid" id="spPageGrid">
+                    <div class="skill-packs-empty">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-gray)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                        <p>Choose an interest category above to see available skill packs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Main Application -->
     <div id="mainApp" class="hidden">
         <div class="header">
             <div class="logo-section">
-                <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D" 
-                     alt="Champlain College Shield" 
+                <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D"
+                     alt="Champlain College Shield"
                      style="height: 50px; margin-right: 20px;"
                      onerror="this.style.display='none'">
                 <div class="logo-text">Academic Affairs</div>
             </div>
+            <div class="header-nav-toggle view-toggle" id="headerViewToggle">
+                <button class="toggle-btn active" id="networkViewBtn">Network View</button>
+                <button class="toggle-btn" id="tableViewBtn">Table View</button>
+                <button class="toggle-btn" id="prerequisiteViewBtn">Prerequisite Chain</button>
+                <button class="toggle-btn" id="pathwayViewBtn">Course Pathway</button>
+                <button class="toggle-btn" id="graphsViewBtn">Competency Graphs</button>
+                <button class="toggle-btn" id="semesterPlannerBtn">Semester Planner</button>
+            </div>
             <div class="user-info">
                 <span id="currentUser">User</span>
                 <span class="user-badge" id="currentRole">Role</span>
+                <button class="back-to-dashboard-btn" id="backToDashboardBtn">Dashboard</button>
                 <button class="logout-btn" id="logoutButton">Logout</button>
             </div>
         </div>
@@ -444,55 +708,55 @@
                 
                 <div class="section">
                     <h3>Course Selection</h3>
-                    <div style="margin-bottom: 15px;">
+                    <div class="sidebar-search-wrap">
                         <input type="text"
                                id="courseSearch"
-                               placeholder="Search courses..."
-                               style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; font-size: 14px;">
+                               class="sidebar-search-input"
+                               placeholder="Search courses...">
                     </div>
 
                     <!-- Advanced Filters Button -->
-                    <div style="margin-bottom: 10px; display: flex; gap: 8px;">
+                    <div class="sidebar-filter-row">
                         <button
                             id="toggleFiltersBtn"
-                            onclick="FilterModule.toggleFilterPanel()"
-                            style="flex: 1; padding: 8px 12px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600;">
-                            🔍 Advanced Filters
+                            class="sidebar-filter-btn"
+                            onclick="FilterModule.toggleFilterPanel()">
+                            Advanced Filters
                         </button>
                         <button
                             id="clearFiltersBtn"
-                            onclick="FilterModule.clearFilters(); FilterModule.applyFiltersAndUpdate();"
-                            style="padding: 8px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">
+                            class="sidebar-filter-btn sidebar-filter-btn--secondary"
+                            onclick="FilterModule.clearFilters(); FilterModule.applyFiltersAndUpdate();">
                             Clear
                         </button>
                     </div>
 
                     <!-- Filter Results Summary -->
-                    <div style="margin-bottom: 10px; padding: 8px; background: #f8f9fa; border-radius: 4px; font-size: 12px;">
-                        <div id="filterResultsCount" style="font-weight: 600; color: var(--champlain-navy);">All courses</div>
-                        <div id="filterSummary" style="color: #666; margin-top: 4px;">No filters active</div>
+                    <div class="sidebar-filter-summary">
+                        <div id="filterResultsCount" class="sidebar-filter-summary__count">All courses</div>
+                        <div id="filterSummary" class="sidebar-filter-summary__detail">No filters active</div>
                     </div>
 
                     <!-- Advanced Filter Panel (collapsible) -->
-                    <div id="filterPanel" style="display: none; margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-radius: 6px; border: 1px solid #ddd;">
-                        <h4 style="margin: 0 0 12px 0; color: var(--champlain-navy); font-size: 14px;">Advanced Filters</h4>
+                    <div id="filterPanel" class="sidebar-filter-panel">
+                        <h4>Advanced Filters</h4>
 
                         <!-- Department Filter -->
-                        <div style="margin-bottom: 12px;">
-                            <label style="font-weight: 600; font-size: 12px; color: #333; display: block; margin-bottom: 6px;">Department</label>
-                            <div id="filterDepartments" style="display: flex; flex-wrap: wrap; gap: 6px;"></div>
+                        <div class="sidebar-filter-group">
+                            <label class="sidebar-filter-group__label">Department</label>
+                            <div id="filterDepartments" class="sidebar-filter-group__options"></div>
                         </div>
 
                         <!-- Credit Hours Filter -->
-                        <div style="margin-bottom: 12px;">
-                            <label style="font-weight: 600; font-size: 12px; color: #333; display: block; margin-bottom: 6px;">Credit Hours</label>
-                            <div id="filterCredits" style="display: flex; flex-wrap: wrap; gap: 6px;"></div>
+                        <div class="sidebar-filter-group">
+                            <label class="sidebar-filter-group__label">Credit Hours</label>
+                            <div id="filterCredits" class="sidebar-filter-group__options"></div>
                         </div>
 
                         <!-- Semester Offered Filter -->
-                        <div style="margin-bottom: 12px;">
-                            <label style="font-weight: 600; font-size: 12px; color: #333; display: block; margin-bottom: 6px;">Semester Offered</label>
-                            <div id="filterSemesters" style="display: flex; flex-wrap: wrap; gap: 6px;">
+                        <div class="sidebar-filter-group">
+                            <label class="sidebar-filter-group__label">Semester Offered</label>
+                            <div id="filterSemesters" class="sidebar-filter-group__options">
                                 <label class="filter-checkbox">
                                     <input type="checkbox" value="FALL" onchange="FilterModule.updateFilters()">
                                     <span>Fall</span>
@@ -509,15 +773,15 @@
                         </div>
 
                         <!-- Competency Filter -->
-                        <div style="margin-bottom: 12px;">
-                            <label style="font-weight: 600; font-size: 12px; color: #333; display: block; margin-bottom: 6px;">Competencies (must have ALL selected)</label>
-                            <div id="filterCompetencies" style="display: flex; flex-direction: column; gap: 4px; max-height: 150px; overflow-y: auto;"></div>
+                        <div class="sidebar-filter-group">
+                            <label class="sidebar-filter-group__label">Competencies (must have ALL selected)</label>
+                            <div id="filterCompetencies" class="sidebar-filter-group__options sidebar-filter-group__options--column"></div>
                         </div>
 
                         <!-- Competency Weight Filter -->
-                        <div style="margin-bottom: 12px;">
-                            <label style="font-weight: 600; font-size: 12px; color: #333; display: block; margin-bottom: 6px;">Competency Weight</label>
-                            <div id="filterWeights" style="display: flex; flex-wrap: wrap; gap: 6px;">
+                        <div class="sidebar-filter-group">
+                            <label class="sidebar-filter-group__label">Competency Weight</label>
+                            <div id="filterWeights" class="sidebar-filter-group__options">
                                 <label class="filter-checkbox">
                                     <input type="checkbox" value="1" onchange="FilterModule.updateFilters()">
                                     <span>Addressed (1)</span>
@@ -534,9 +798,9 @@
                         </div>
 
                         <!-- Course Type Filter -->
-                        <div style="margin-bottom: 12px;">
-                            <label style="font-weight: 600; font-size: 12px; color: #333; display: block; margin-bottom: 6px;">Course Type</label>
-                            <div id="filterCourseType" style="display: flex; flex-wrap: wrap; gap: 6px;">
+                        <div class="sidebar-filter-group">
+                            <label class="sidebar-filter-group__label">Course Type</label>
+                            <div id="filterCourseType" class="sidebar-filter-group__options">
                                 <label class="filter-checkbox">
                                     <input type="checkbox" value="Major" onchange="FilterModule.updateFilters()">
                                     <span>Major</span>
@@ -549,37 +813,40 @@
                         </div>
 
                         <!-- Filter Preset Actions -->
-                        <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid #ddd;">
+                        <div class="sidebar-filter-presets">
                             <button
-                                onclick="FilterModule.showSavePresetDialog()"
-                                style="width: 100%; padding: 8px; background: var(--champlain-green); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; margin-bottom: 6px;">
-                                💾 Save Filter Preset
+                                class="sidebar-preset-btn sidebar-preset-btn--save"
+                                onclick="FilterModule.showSavePresetDialog()">
+                                Save Filter Preset
                             </button>
                             <button
-                                onclick="FilterModule.showLoadPresetDialog()"
-                                style="width: 100%; padding: 8px; background: var(--champlain-blue); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600;">
-                                📂 Load Preset
+                                class="sidebar-preset-btn sidebar-preset-btn--load"
+                                onclick="FilterModule.showLoadPresetDialog()">
+                                Load Preset
                             </button>
                         </div>
                     </div>
 
-                    <div id="availableCourses" style="max-height: 200px; overflow-y: auto;"></div>
-                    <div style="margin-top: 20px;">
-                        <h4 style="color: var(--champlain-navy); font-size: 14px; margin-bottom: 10px;">Selected Courses</h4>
+                    <div id="availableCourses" class="sidebar-course-list"></div>
+                    <div class="sidebar-selected-section">
+                        <h4>Selected Courses</h4>
                         <div id="selectedCourses"></div>
 
                         <!-- Similar Courses Feature -->
-                        <div id="similarCoursesSection" style="display: none; margin-top: 15px; padding: 12px; background: #e8f5e9; border-radius: 6px; border: 1px solid var(--champlain-green);">
-                            <h4 style="margin: 0 0 10px 0; color: var(--champlain-green); font-size: 13px;">🎯 Similar Courses</h4>
-                            <div id="similarCoursesList"></div>
+                        <div id="similarCoursesSection" class="sidebar-similar-courses">
+                            <div class="collapsible-toggle collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');">
+                                <span class="collapsible-toggle-label">Similar Courses</span>
+                                <span class="collapsible-toggle-arrow"></span>
+                            </div>
+                            <div id="similarCoursesList" class="collapsible-body collapsed sidebar-similar-courses__list"></div>
                         </div>
 
                         <!-- Compare Courses Button -->
-                        <div style="margin-top: 15px;">
+                        <div class="sidebar-compare-section">
                             <button class="comparison-btn" id="compareCoursesBtn" onclick="ComparisonTool.openModal()" disabled>
-                                📊 Compare Selected Courses
+                                Compare Selected Courses
                             </button>
-                            <p id="compareHint" style="font-size: 11px; color: #666; margin-top: 6px; text-align: center;">
+                            <p id="compareHint" class="sidebar-compare-hint">
                                 Select 2-3 courses to compare
                             </p>
                         </div>
@@ -587,8 +854,27 @@
                 </div>
 
                 <div class="section">
-                    <h3>Competency Tracker</h3>
-                    <div id="competencyTracker"></div>
+                    <div class="collapsible-toggle collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');">
+                        <span class="collapsible-toggle-label">Competency Tracker</span>
+                        <span class="collapsible-toggle-arrow"></span>
+                    </div>
+                    <div id="competencyTracker" class="collapsible-body collapsed"></div>
+                </div>
+
+                <div class="section">
+                    <div class="collapsible-toggle collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');">
+                        <span class="collapsible-toggle-label">Competency Status</span>
+                        <span class="collapsible-toggle-arrow"></span>
+                    </div>
+                    <div id="competencyStatus" class="collapsible-body collapsed"></div>
+                </div>
+
+                <div class="section" id="skillPackProgressSection">
+                    <div class="collapsible-toggle collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');">
+                        <span class="collapsible-toggle-label">Skill Pack Progress</span>
+                        <span class="collapsible-toggle-arrow"></span>
+                    </div>
+                    <div id="skillPackProgressBody" class="collapsible-body collapsed"></div>
                 </div>
 
                 <!-- Recently Viewed Courses -->
@@ -623,43 +909,42 @@
 
             <div class="viz-container">
                 <div class="viz-header">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="viz-header-row">
                         <div>
                             <h1 id="vizTitle">Competency Visualization</h1>
                             <p id="vizDescription">Interactive network showing relationships between courses and college competencies</p>
                         </div>
-                        <div style="display: flex; gap: 20px; align-items: center;">
-                            <div class="view-toggle">
-                                <button class="toggle-btn active" id="networkViewBtn">Network View</button>
-                                <button class="toggle-btn" id="tableViewBtn">Table View</button>
-                                <button class="toggle-btn" id="prerequisiteViewBtn">Prerequisite Chain</button>
-                                <button class="toggle-btn" id="pathwayViewBtn">Course Pathway</button>
-                                <button class="toggle-btn" id="graphsViewBtn">📊 Competency Graphs</button>
-                                <button class="toggle-btn" id="semesterPlannerBtn">📅 Semester Planner</button>
-                            </div>
-                            <!-- Export Dropdown -->
-                            <div class="export-dropdown" id="exportDropdown">
-                                <button class="export-btn" onclick="ExportTool.toggleMenu()">
-                                    📥 Export <span style="font-size: 10px;">▼</span>
-                                </button>
-                                <div class="export-menu" id="exportMenu">
-                                    <div class="export-menu-item" onclick="ExportTool.exportPNG()">
-                                        <span class="icon">🖼️</span>
-                                        <div>
-                                            <div class="label">Export as PNG</div>
-                                            <div class="desc">High-quality image</div>
-                                        </div>
+                        <!-- Export Dropdown -->
+                        <div class="export-dropdown" id="exportDropdown">
+                            <button class="export-btn" onclick="ExportTool.toggleMenu()">
+                                Export <span style="font-size: 10px;">▼</span>
+                            </button>
+                            <div class="export-menu" id="exportMenu">
+                                <div class="export-menu-item" onclick="ExportTool.exportPNG()">
+                                    <span class="icon">🖼️</span>
+                                    <div>
+                                        <div class="label">Export as PNG</div>
+                                        <div class="desc">High-quality image</div>
                                     </div>
-                                    <div class="export-menu-item" onclick="ExportTool.exportPDF()">
-                                        <span class="icon">📄</span>
-                                        <div>
-                                            <div class="label">Export as PDF</div>
-                                            <div class="desc">Print-ready document</div>
-                                        </div>
+                                </div>
+                                <div class="export-menu-item" onclick="ExportTool.exportPDF()">
+                                    <span class="icon">📄</span>
+                                    <div>
+                                        <div class="label">Export as PDF</div>
+                                        <div class="desc">Print-ready document</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <!-- Mobile-only view toggle (mirrors header nav) -->
+                    <div class="view-toggle view-toggle-mobile" id="mobileViewToggle">
+                        <button class="toggle-btn active" data-view="network">Network</button>
+                        <button class="toggle-btn" data-view="table">Table</button>
+                        <button class="toggle-btn" data-view="prerequisite">Prerequisites</button>
+                        <button class="toggle-btn" data-view="pathway">Pathway</button>
+                        <button class="toggle-btn" data-view="graphs">Graphs</button>
+                        <button class="toggle-btn" data-view="semester">Planner</button>
                     </div>
                 </div>
                 <div class="graph-wrapper">

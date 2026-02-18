@@ -250,23 +250,35 @@ const VisualizationModule = {
     showEmptyState: () => {
         const svg = VisualizationModule.svg;
         svg.selectAll('*').remove();
-        
+
+        const cx = VisualizationModule.width / 2;
+        const cy = VisualizationModule.height / 2;
         const g = svg.append('g')
-            .attr('transform', `translate(${VisualizationModule.width/2},${VisualizationModule.height/2})`);
-        
+            .attr('transform', `translate(${cx},${cy})`);
+
+        // Icon: two connected nodes
+        const icon = g.append('g').attr('transform', 'translate(0,-40)');
+        icon.append('circle').attr('cx', -22).attr('cy', 0).attr('r', 14)
+            .attr('fill', 'none').attr('stroke', '#c8d6e5').attr('stroke-width', 2);
+        icon.append('circle').attr('cx', 22).attr('cy', 0).attr('r', 14)
+            .attr('fill', 'none').attr('stroke', '#c8d6e5').attr('stroke-width', 2);
+        icon.append('line').attr('x1', -8).attr('y1', 0).attr('x2', 8).attr('y2', 0)
+            .attr('stroke', '#c8d6e5').attr('stroke-width', 2);
+
         g.append('text')
             .attr('text-anchor', 'middle')
-            .attr('fill', '#999')
-            .style('font-size', '18px')
+            .attr('y', 10)
+            .attr('fill', '#8395a7')
+            .style('font-size', '17px')
             .style('font-weight', '600')
-            .text('Select courses to visualize competency coverage');
-        
+            .text('No courses selected');
+
         g.append('text')
             .attr('text-anchor', 'middle')
-            .attr('y', 30)
-            .attr('fill', '#bbb')
-            .style('font-size', '14px')
-            .text('Use the course selection panel on the left to get started');
+            .attr('y', 36)
+            .attr('fill', '#b2bec3')
+            .style('font-size', '13px')
+            .text('Use the course panel on the left to add courses');
     },
     
     renderBipartiteGraph: () => {
@@ -1001,6 +1013,40 @@ const VisualizationModule = {
         const allViews = ['networkView', 'tableView', 'prerequisiteView', 'pathwayView', 'graphsView', 'semesterPlannerView'];
         const allBtns = [networkViewBtn, tableViewBtn, prerequisiteViewBtn, pathwayViewBtn, graphsViewBtn, semesterPlannerBtn];
 
+        // Map view keys to view IDs for mobile toggle
+        const viewKeyMap = {
+            'network': 'networkView',
+            'table': 'tableView',
+            'prerequisite': 'prerequisiteView',
+            'pathway': 'pathwayView',
+            'graphs': 'graphsView',
+            'semester': 'semesterPlannerView'
+        };
+
+        // Map view IDs to header button references
+        const viewBtnMap = {
+            'networkView': networkViewBtn,
+            'tableView': tableViewBtn,
+            'prerequisiteView': prerequisiteViewBtn,
+            'pathwayView': pathwayViewBtn,
+            'graphsView': graphsViewBtn,
+            'semesterPlannerView': semesterPlannerBtn
+        };
+
+        // Mobile toggle buttons
+        const mobileToggle = document.getElementById('mobileViewToggle');
+        const mobileBtns = mobileToggle ? mobileToggle.querySelectorAll('.toggle-btn') : [];
+
+        // Sync active state between header and mobile toggles
+        const syncMobileActive = (viewId) => {
+            mobileBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (viewKeyMap[btn.dataset.view] === viewId) {
+                    btn.classList.add('active');
+                }
+            });
+        };
+
         // Helper to switch views
         const switchView = (viewId, activeBtn) => {
             // Update title and description
@@ -1037,13 +1083,36 @@ const VisualizationModule = {
             const elem = document.getElementById(viewId);
             if (elem) elem.classList.remove('hidden');
 
-            // Update button states
+            // Update header button states
             allBtns.forEach(btn => {
                 if (btn) btn.classList.remove('active');
             });
             if (activeBtn) activeBtn.classList.add('active');
+
+            // Sync mobile toggle
+            syncMobileActive(viewId);
         };
 
+        // Post-switch actions per view
+        const postSwitch = {
+            'tableView': () => VisualizationModule.renderTableView(),
+            'prerequisiteView': () => {
+                const selectedCourses = StateGetters.getSelectedCourses();
+                const selectedCodes = selectedCourses.map(c => c.code);
+                PrerequisiteVisualization.render(selectedCodes, 'chain');
+            },
+            'pathwayView': () => VisualizationModule.renderPathwaySelector(),
+            'graphsView': () => {
+                if (typeof GraphsModule !== 'undefined') GraphsModule.init();
+            },
+            'semesterPlannerView': () => {
+                if (typeof SemesterPlannerUI !== 'undefined' && typeof SemesterPlannerUI.initView === 'function') {
+                    SemesterPlannerUI.initView();
+                }
+            }
+        };
+
+        // Wire up header buttons
         if (networkViewBtn) {
             networkViewBtn.addEventListener('click', () => {
                 switchView('networkView', networkViewBtn);
@@ -1053,72 +1122,108 @@ const VisualizationModule = {
         if (tableViewBtn) {
             tableViewBtn.addEventListener('click', () => {
                 switchView('tableView', tableViewBtn);
-                VisualizationModule.renderTableView();
+                postSwitch['tableView']();
             });
         }
 
         if (prerequisiteViewBtn) {
             prerequisiteViewBtn.addEventListener('click', () => {
                 switchView('prerequisiteView', prerequisiteViewBtn);
-                const selectedCourses = StateGetters.getSelectedCourses();
-                const selectedCodes = selectedCourses.map(c => c.code);
-                PrerequisiteVisualization.render(selectedCodes, 'chain');
+                postSwitch['prerequisiteView']();
             });
         }
 
         if (pathwayViewBtn) {
             pathwayViewBtn.addEventListener('click', () => {
                 switchView('pathwayView', pathwayViewBtn);
-                VisualizationModule.renderPathwaySelector();
+                postSwitch['pathwayView']();
             });
         }
 
         if (graphsViewBtn) {
             graphsViewBtn.addEventListener('click', () => {
                 switchView('graphsView', graphsViewBtn);
-                if (typeof GraphsModule !== 'undefined') {
-                    GraphsModule.init();
-                }
+                postSwitch['graphsView']();
             });
         }
 
         if (semesterPlannerBtn) {
             semesterPlannerBtn.addEventListener('click', () => {
                 switchView('semesterPlannerView', semesterPlannerBtn);
-                // Initialize semester planner
-                if (typeof SemesterPlannerUI !== 'undefined' && typeof SemesterPlannerUI.initView === 'function') {
-                    SemesterPlannerUI.initView();
-                }
+                postSwitch['semesterPlannerView']();
             });
         }
+
+        // Wire up mobile toggle buttons
+        mobileBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const viewId = viewKeyMap[btn.dataset.view];
+                if (!viewId) return;
+                const headerBtn = viewBtnMap[viewId];
+                switchView(viewId, headerBtn);
+                if (postSwitch[viewId]) postSwitch[viewId]();
+            });
+        });
     },
     
+    // Table sort state
+    _tableSortKey: null,   // null, 'name', 'total', or course index string
+    _tableSortAsc: true,
+
     renderTableView: () => {
         const tableDiv = document.getElementById('competencyTable');
         const selectedCourses = StateGetters.getSelectedCourses();
         const competencies = StateGetters.getCompetencies();
-        
+
         if (selectedCourses.length === 0) {
-            tableDiv.innerHTML = '<p style="text-align: center; padding: 40px; color: #999;">Select courses to view competency coverage table</p>';
+            tableDiv.innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 20px; color: #8395a7;">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c8d6e5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 16px;">
+                        <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+                    </svg>
+                    <div style="font-size: 17px; font-weight: 600; margin-bottom: 6px;">No courses selected</div>
+                    <div style="font-size: 13px; color: #b2bec3;">Add courses from the panel on the left to see the competency matrix</div>
+                </div>`;
             return;
         }
-        
-        const columnTotals = selectedCourses.map(course => {
-            return Object.values(course.competencies || {}).reduce((sum, weight) => sum + weight, 0);
+
+        // Build sortable rows: each row has comp info + per-course weights + total
+        const rows = competencies.map(comp => {
+            const weights = selectedCourses.map(course => VisualizationModule.getCompetencyWeight(course, comp.id));
+            const total = weights.reduce((s, w) => s + w, 0);
+            return { comp, weights, total };
         });
-        
-        const rowTotals = competencies.map(comp => {
-            return selectedCourses.reduce((sum, course) => {
-                return sum + (VisualizationModule.getCompetencyWeight(course, comp.id));
-            }, 0);
-        });
-        
-        const grandTotal = columnTotals.reduce((sum, val) => sum + val, 0);
-        
+
+        // Sort rows
+        const sortKey = VisualizationModule._tableSortKey;
+        const asc = VisualizationModule._tableSortAsc;
+        if (sortKey === 'name') {
+            rows.sort((a, b) => asc ? a.comp.name.localeCompare(b.comp.name) : b.comp.name.localeCompare(a.comp.name));
+        } else if (sortKey === 'total') {
+            rows.sort((a, b) => asc ? a.total - b.total : b.total - a.total);
+        } else if (sortKey != null) {
+            const ci = parseInt(sortKey, 10);
+            if (!isNaN(ci)) {
+                rows.sort((a, b) => asc ? a.weights[ci] - b.weights[ci] : b.weights[ci] - a.weights[ci]);
+            }
+        }
+
+        const columnTotals = selectedCourses.map((_, ci) => rows.reduce((s, r) => s + r.weights[ci], 0));
+        const grandTotal = columnTotals.reduce((s, v) => s + v, 0);
+
+        const arrow = (key) => {
+            if (VisualizationModule._tableSortKey !== key) return '<span class="sort-indicator">&#8597;</span>';
+            return VisualizationModule._tableSortAsc
+                ? '<span class="sort-indicator">&#9650;</span>'
+                : '<span class="sort-indicator">&#9660;</span>';
+        };
+        const sortedClass = (key) => VisualizationModule._tableSortKey === key ? 'sortable sorted' : 'sortable';
+
         const exportBtn = `
             <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
                 <h3 style="margin: 0; color: var(--champlain-navy); font-size: 20px; font-weight: 700;">Competency Coverage Matrix</h3>
-                <button 
+                <button
                     onclick="VisualizationModule.exportTableToCSV()"
                     style="
                         padding: 12px 20px;
@@ -1142,46 +1247,42 @@ const VisualizationModule = {
                 </button>
             </div>
         `;
-        
+
         let html = exportBtn;
         html += '<div class="table-container" style="flex: 1; overflow: auto; border-radius: 12px; border: 1px solid #e8eaf0; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">';
         html += '<table class="competency-table">';
         html += '<thead><tr>';
-        html += '<th style="min-width: 200px;">Competency</th>';
-        
-        selectedCourses.forEach(course => {
-            html += `<th style="min-width: 120px; text-align: center;">${course.code}<br><span style="font-size: 10px; font-weight: 400; opacity: 0.8; text-transform: none;">${course.name.substring(0, 20)}...</span></th>`;
+        html += `<th class="${sortedClass('name')}" onclick="VisualizationModule.sortTable('name')" style="min-width: 200px;">Competency ${arrow('name')}</th>`;
+
+        selectedCourses.forEach((course, ci) => {
+            html += `<th class="${sortedClass(String(ci))}" onclick="VisualizationModule.sortTable('${ci}')" style="min-width: 120px; text-align: center;">${course.code} ${arrow(String(ci))}<br><span style="font-size: 10px; font-weight: 400; opacity: 0.8; text-transform: none;">${course.name.substring(0, 20)}...</span></th>`;
         });
-        
-        html += '<th style="min-width: 100px; text-align: center; background: #003C71;">Total</th>';
+
+        html += `<th class="${sortedClass('total')}" onclick="VisualizationModule.sortTable('total')" style="min-width: 100px; text-align: center; background: #003C71;">Total ${arrow('total')}</th>`;
         html += '</tr></thead><tbody>';
-        
-        competencies.forEach((comp, index) => {
+
+        rows.forEach(row => {
             html += '<tr>';
-            html += `<td style="font-weight: 700; color: ${VisualizationModule.getCompetencyColor(comp.id)}; font-size: 13px;">${comp.name}</td>`;
-            
-            selectedCourses.forEach(course => {
-                const weight = VisualizationModule.getCompetencyWeight(course, comp.id);
-                const baseColor = VisualizationModule.getCompetencyColor(comp.id);
-                
+            html += `<td style="font-weight: 700; color: ${VisualizationModule.getCompetencyColor(row.comp.id)}; font-size: 13px;">${row.comp.name}</td>`;
+
+            row.weights.forEach(weight => {
+                const baseColor = VisualizationModule.getCompetencyColor(row.comp.id);
                 const opacity = weight === 0 ? 0 : (weight / 3) * 0.7 + 0.1;
                 const bgColor = weight === 0 ? '#fafbfc' : baseColor + Math.round(opacity * 255).toString(16).padStart(2, '0');
-                
-                const symbol = weight === 0 ? '—' : 
-                               weight === 1 ? '◉' : 
-                               weight === 2 ? '◆' : 
-                               '★';
-                
+                const symbol = weight === 0 ? '—' : weight === 1 ? '◉' : weight === 2 ? '◆' : '★';
+                const symbolColor = weight === 0 ? '#ccc' : '#1a1a2e';
+                const labelColor = weight === 0 ? '#ccc' : '#2d2d44';
+
                 html += `<td style="padding: 14px 12px; border: 1px solid #e8eaf0; text-align: center; background: ${bgColor}; transition: all 0.2s ease;">`;
-                html += `<span style="color: ${weight === 0 ? '#ccc' : baseColor}; font-weight: bold; font-size: 18px;" title="Weight: ${weight}">${symbol}</span>`;
-                html += `<div style="font-size: 10px; color: ${weight === 0 ? '#ccc' : baseColor}; margin-top: 2px; font-weight: 600;">${weight === 0 ? 'None' : weight === 1 ? 'Address' : weight === 2 ? 'Reinforce' : 'Emphasize'}</div>`;
+                html += `<span style="color: ${symbolColor}; font-weight: bold; font-size: 24px; text-shadow: 0 1px 2px rgba(0,0,0,0.15);" title="Weight: ${weight}">${symbol}</span>`;
+                html += `<div style="font-size: 11px; color: ${labelColor}; margin-top: 4px; font-weight: 700;">${weight === 0 ? 'None' : weight === 1 ? 'Address' : weight === 2 ? 'Reinforce' : 'Emphasize'}</div>`;
                 html += '</td>';
             });
-            
-            html += `<td style="padding: 14px 12px; text-align: center; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); font-weight: 700; font-size: 15px; color: var(--champlain-navy);">${rowTotals[index]}</td>`;
+
+            html += `<td style="padding: 14px 12px; text-align: center; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); font-weight: 700; font-size: 15px; color: var(--champlain-navy);">${row.total}</td>`;
             html += '</tr>';
         });
-        
+
         html += '<tr style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); font-weight: 700; border-top: 3px solid var(--champlain-navy);">';
         html += '<td style="padding: 16px 12px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--champlain-navy);">Total</td>';
         columnTotals.forEach(total => {
@@ -1189,28 +1290,28 @@ const VisualizationModule = {
         });
         html += `<td style="padding: 16px 12px; text-align: center; background: linear-gradient(135deg, #003C5F 0%, #236192 100%); color: white; font-size: 18px; font-weight: 800;">${grandTotal}</td>`;
         html += '</tr>';
-        
+
         html += '</tbody></table>';
         html += '</div>';
-        
+
         html += `
             <div style="margin-top: 20px; padding: 20px; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); border-radius: 12px; border: 1px solid #e8eaf0; flex-shrink: 0;">
                 <div style="font-weight: 700; margin-bottom: 12px; color: var(--champlain-navy); font-size: 15px;">Legend:</div>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; font-size: 13px;">
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <span style="font-size: 18px; color: #ccc;">—</span> 
+                        <span style="font-size: 24px; color: #ccc;">—</span>
                         <span><strong>None (0)</strong> - Not addressed</span>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <span style="font-size: 18px;">◉</span> 
+                        <span style="font-size: 24px; color: #1a1a2e;">◉</span>
                         <span><strong>Addressed (1)</strong> - Introduced</span>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <span style="font-size: 18px;">◆</span> 
+                        <span style="font-size: 24px; color: #1a1a2e;">◆</span>
                         <span><strong>Reinforced (2)</strong> - Practiced</span>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <span style="font-size: 18px;">★</span> 
+                        <span style="font-size: 24px; color: #1a1a2e;">★</span>
                         <span><strong>Emphasized (3)</strong> - Mastered</span>
                     </div>
                 </div>
@@ -1219,10 +1320,23 @@ const VisualizationModule = {
                 </div>
             </div>
         `;
-        
+
         tableDiv.innerHTML = html;
     },
-    
+
+    /**
+     * Sort the competency table by clicking column headers
+     */
+    sortTable: (key) => {
+        if (VisualizationModule._tableSortKey === key) {
+            VisualizationModule._tableSortAsc = !VisualizationModule._tableSortAsc;
+        } else {
+            VisualizationModule._tableSortKey = key;
+            VisualizationModule._tableSortAsc = true;
+        }
+        VisualizationModule.renderTableView();
+    },
+
     exportTableToCSV: () => {
         const selectedCourses = StateGetters.getSelectedCourses();
         const competencies = StateGetters.getCompetencies();
@@ -1812,13 +1926,13 @@ System: Champlain Academic Affairs Management System
                 }).join('');
         }
 
-        // Render available courses
+        // Render available courses (clicking marks them as completed)
         const availableBox = document.getElementById('availableCoursesBox');
         if (availableBox) {
             availableBox.innerHTML = pathway.available.length === 0
                 ? '<p style="color: #999; text-align: center; padding: 20px;">No available courses</p>'
                 : pathway.available.map(course => {
-                    return VisualizationModule.renderCourseCard(course, '#00A9E0');
+                    return VisualizationModule.renderAvailableCourseCard(course);
                 }).join('');
         }
 
@@ -1834,8 +1948,117 @@ System: Champlain Academic Affairs Management System
     },
 
     /**
-     * Render a course card for pathway view
+     * Mark an available course as completed and refresh the pathway view
      */
+    markCourseCompleted: (courseCode) => {
+        if (!VisualizationModule._completedCourses) return;
+        if (!VisualizationModule._completedCourses.includes(courseCode)) {
+            VisualizationModule._completedCourses.push(courseCode);
+            if (VisualizationModule._updateSelectedDisplay) {
+                VisualizationModule._updateSelectedDisplay();
+            }
+            VisualizationModule.updatePathwayView();
+            VisualizationModule.showToast(`Marked ${courseCode} complete`, courseCode);
+        }
+    },
+
+    /**
+     * Show a toast notification with an optional undo action
+     */
+    _toastTimer: null,
+    showToast: (message, undoCourseCode) => {
+        // Remove any existing toast
+        let toast = document.getElementById('pathwayToast');
+        if (toast) toast.remove();
+        if (VisualizationModule._toastTimer) clearTimeout(VisualizationModule._toastTimer);
+
+        toast = document.createElement('div');
+        toast.id = 'pathwayToast';
+        toast.className = 'toast-notification';
+        toast.innerHTML = `
+            <span>${message}</span>
+            <button class="toast-undo" onclick="VisualizationModule.undoComplete('${undoCourseCode}')">Undo</button>
+        `;
+        document.body.appendChild(toast);
+
+        // Trigger reflow then show
+        requestAnimationFrame(() => toast.classList.add('visible'));
+
+        VisualizationModule._toastTimer = setTimeout(() => {
+            toast.classList.remove('visible');
+            setTimeout(() => toast.remove(), 200);
+        }, 4000);
+    },
+
+    /**
+     * Undo marking a course as completed
+     */
+    undoComplete: (courseCode) => {
+        if (!VisualizationModule._completedCourses) return;
+        const index = VisualizationModule._completedCourses.indexOf(courseCode);
+        if (index > -1) {
+            VisualizationModule._completedCourses.splice(index, 1);
+            if (VisualizationModule._updateSelectedDisplay) {
+                VisualizationModule._updateSelectedDisplay();
+            }
+            VisualizationModule.updatePathwayView();
+        }
+        const toast = document.getElementById('pathwayToast');
+        if (toast) {
+            toast.classList.remove('visible');
+            setTimeout(() => toast.remove(), 200);
+        }
+        if (VisualizationModule._toastTimer) clearTimeout(VisualizationModule._toastTimer);
+    },
+
+    /**
+     * Render a clickable available course card that moves to completed on click
+     */
+    renderAvailableCourseCard: (course) => {
+        return `
+            <div style="
+                background: white;
+                border: 1px solid #00A9E0;
+                border-radius: 6px;
+                padding: 12px;
+                margin-bottom: 10px;
+                cursor: pointer;
+                transition: all 0.2s;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            "
+            onmouseover="this.style.boxShadow='0 2px 8px rgba(0,169,224,0.2)'; this.style.borderColor='#0088b8'"
+            onmouseout="this.style.boxShadow='none'; this.style.borderColor='#00A9E0'"
+            onclick="VisualizationModule.markCourseCompleted('${course.code}')">
+                <div>
+                    <div style="font-weight: bold; color: var(--champlain-navy); margin-bottom: 4px; font-size: 13px;">
+                        ${course.code}
+                    </div>
+                    <div style="font-size: 11px; color: #666; margin-bottom: 4px;">
+                        ${course.name || 'No title'}
+                    </div>
+                    <div style="font-size: 11px; color: #999;">
+                        ${course.credits || 3} credits
+                    </div>
+                </div>
+                <div style="
+                    color: #00A9E0;
+                    font-size: 11px;
+                    font-weight: 600;
+                    white-space: nowrap;
+                    padding-left: 10px;
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                ">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                    Complete
+                </div>
+            </div>
+        `;
+    },
+
     renderCourseCard: (course, borderColor, showMissingPrereqs = false) => {
         const missingPrereqs = showMissingPrereqs && course.missingPrerequisites
             ? `<div style="margin-top: 6px; padding-top: 6px; border-top: 1px solid #eee;">

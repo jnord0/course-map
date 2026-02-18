@@ -10,6 +10,7 @@ const SkillPacksModule = {
     currentFilter: 'all',
     searchQuery: '',
     selectedProgram: 'all',
+    standaloneViewMode: 'cards', // 'cards' or 'list'
 
     // Category icons (SVG paths)
     categoryIcons: {
@@ -48,6 +49,358 @@ const SkillPacksModule = {
         } catch (error) {
             console.error('SkillPacksModule: Failed to initialize:', error);
         }
+    },
+
+    /**
+     * Initialize for the standalone skill packs page
+     */
+    initStandalonePage: async () => {
+        if (SkillPacksModule.skillPacks.length === 0) {
+            await SkillPacksModule.loadSkillPacks();
+        }
+
+        const categoriesContainer = document.getElementById('spPageCategories');
+        if (!categoriesContainer) return;
+
+        // Render categories
+        const categories = SkillPacksModule.getCategories();
+        categoriesContainer.innerHTML = categories.map(cat => `
+            <button class="interest-btn" data-category="${cat.name}">
+                ${SkillPacksModule.categoryIcons[cat.name] || ''}
+                <span>${cat.name}</span>
+                <span class="count">${cat.count}</span>
+            </button>
+        `).join('');
+
+        // Add search and filters
+        const header = document.querySelector('#spPageContainer .skill-packs-header');
+        if (header && !document.getElementById('spPageSearch')) {
+            const searchHTML = `
+                <div class="skill-packs-search-row">
+                    <div class="skill-packs-search">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        <input type="text" id="spPageSearch" placeholder="Search skill packs...">
+                    </div>
+                    <select id="spPageProgramFilter" class="program-filter">
+                        <option value="all">All Programs</option>
+                        ${SkillPacksModule.getPrograms().map(p => `<option value="${p}">${p}</option>`).join('')}
+                    </select>
+                </div>
+            `;
+            header.insertAdjacentHTML('afterbegin', searchHTML);
+        }
+
+        // Render initial grid
+        SkillPacksModule._renderStandaloneGrid();
+
+        // Setup event listeners for standalone page
+        categoriesContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('.interest-btn');
+            if (!btn) return;
+            const category = btn.dataset.category;
+
+            // Toggle category
+            if (SkillPacksModule.selectedCategory === category) {
+                SkillPacksModule.selectedCategory = null;
+            } else {
+                SkillPacksModule.selectedCategory = category;
+            }
+
+            // Update active state
+            categoriesContainer.querySelectorAll('.interest-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.category === SkillPacksModule.selectedCategory);
+            });
+
+            // Update title
+            const title = document.getElementById('spPageCategoryTitle');
+            if (title) {
+                title.textContent = SkillPacksModule.selectedCategory || 'All Categories';
+            }
+
+            SkillPacksModule._renderStandaloneGrid();
+        });
+
+        // Filter chips
+        const filtersContainer = document.querySelector('#spPageContainer .skill-packs-filters');
+        if (filtersContainer) {
+            filtersContainer.addEventListener('click', (e) => {
+                const chip = e.target.closest('.filter-chip');
+                if (!chip) return;
+                SkillPacksModule.currentFilter = chip.dataset.filter;
+                filtersContainer.querySelectorAll('.filter-chip').forEach(c => {
+                    c.classList.toggle('active', c.dataset.filter === SkillPacksModule.currentFilter);
+                });
+                SkillPacksModule._renderStandaloneGrid();
+            });
+        }
+
+        // Search
+        const searchInput = document.getElementById('spPageSearch');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                SkillPacksModule.searchQuery = e.target.value.toLowerCase();
+                SkillPacksModule._renderStandaloneGrid();
+            });
+        }
+
+        // Program filter
+        const programFilter = document.getElementById('spPageProgramFilter');
+        if (programFilter) {
+            programFilter.addEventListener('change', (e) => {
+                SkillPacksModule.selectedProgram = e.target.value;
+                // Update title to reflect active filter
+                const title = document.getElementById('spPageCategoryTitle');
+                if (title) {
+                    if (SkillPacksModule.selectedCategory) {
+                        title.textContent = SkillPacksModule.selectedCategory;
+                    } else if (e.target.value !== 'all') {
+                        title.textContent = e.target.value;
+                    } else {
+                        title.textContent = 'All Categories';
+                    }
+                }
+                SkillPacksModule._renderStandaloneGrid();
+            });
+        }
+
+        // View toggle (cards vs list)
+        const viewToggle = document.getElementById('spViewToggle');
+        if (viewToggle) {
+            viewToggle.addEventListener('click', (e) => {
+                const btn = e.target.closest('.sp-view-btn');
+                if (!btn) return;
+                const view = btn.dataset.view;
+                if (view === SkillPacksModule.standaloneViewMode) return;
+
+                SkillPacksModule.standaloneViewMode = view;
+                viewToggle.querySelectorAll('.sp-view-btn').forEach(b => {
+                    b.classList.toggle('active', b.dataset.view === view);
+                });
+                SkillPacksModule._renderStandaloneGrid();
+            });
+        }
+    },
+
+    /**
+     * Render skill packs on the standalone page (delegates to card or list view)
+     */
+    _renderStandaloneGrid: () => {
+        const grid = document.getElementById('spPageGrid');
+        if (!grid) return;
+
+        const hasActiveFilter = SkillPacksModule.selectedCategory ||
+            SkillPacksModule.searchQuery ||
+            SkillPacksModule.selectedProgram !== 'all' ||
+            SkillPacksModule.currentFilter !== 'all';
+
+        const packs = SkillPacksModule.getFilteredPacks();
+
+        if (packs.length === 0 && !hasActiveFilter) {
+            grid.className = 'skill-packs-grid';
+            grid.innerHTML = `
+                <div class="skill-packs-empty">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-gray)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <p>Choose an interest category above to see available skill packs</p>
+                </div>
+            `;
+            return;
+        }
+
+        if (packs.length === 0) {
+            grid.className = 'skill-packs-grid';
+            grid.innerHTML = `
+                <div class="skill-packs-empty">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-gray)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+                    <p>No skill packs match your search. Try different keywords or filters.</p>
+                </div>
+            `;
+            return;
+        }
+
+        const packsWithIndex = packs.map(pack => ({
+            pack,
+            originalIndex: SkillPacksModule.skillPacks.indexOf(pack)
+        }));
+
+        if (SkillPacksModule.standaloneViewMode === 'list') {
+            SkillPacksModule._renderStandaloneList(grid, packsWithIndex);
+        } else {
+            SkillPacksModule._renderStandaloneCards(grid, packsWithIndex);
+        }
+    },
+
+    /**
+     * Render card view for standalone page
+     */
+    _renderStandaloneCards: (grid, packsWithIndex) => {
+        grid.className = 'skill-packs-grid';
+
+        grid.innerHTML = packsWithIndex.map(({ pack, originalIndex }) => {
+            const progress = SkillPacksModule.getPackProgress(pack);
+            const hasProgress = progress.completed > 0;
+
+            return `
+            <div class="skill-pack-card" data-pack-index="${originalIndex}">
+                <span class="skill-pack-badge ${SkillPacksModule.getBadgeClass(pack.skillPackType)}">
+                    ${SkillPacksModule.getBadgeText(pack.skillPackType)}
+                </span>
+                <div class="skill-pack-title">${pack.skillPackTitle}</div>
+                <div class="skill-pack-program">${pack.programName}</div>
+                <div class="skill-pack-description">${pack.description.substring(0, 150)}${pack.description.length > 150 ? '...' : ''}</div>
+                <div class="skill-pack-courses">
+                    <div class="skill-pack-courses-label">Courses (${pack.courses.length})</div>
+                    <div class="skill-pack-course-list">
+                        ${pack.courses.slice(0, 4).map(c => `
+                            <span class="skill-pack-course">${c.courseCode.replace(/\s+/g, '')}</span>
+                        `).join('')}
+                        ${pack.courses.length > 4 ? `<span class="skill-pack-course more">+${pack.courses.length - 4} more</span>` : ''}
+                    </div>
+                </div>
+                ${hasProgress ? `
+                <div class="skill-pack-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${progress.percent}%"></div>
+                    </div>
+                    <span class="progress-text">${progress.completed}/${progress.total} courses selected</span>
+                </div>
+                ` : ''}
+                <div class="skill-pack-actions">
+                    <button class="quick-add-btn" data-pack-index="${originalIndex}" title="Add all courses to selection">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                        Quick Add All
+                    </button>
+                </div>
+            </div>
+        `;
+        }).join('');
+
+        // Add click handlers for cards and quick-add buttons
+        grid.addEventListener('click', (e) => {
+            const quickAddBtn = e.target.closest('.quick-add-btn');
+            if (quickAddBtn) {
+                e.stopPropagation();
+                const packIndex = parseInt(quickAddBtn.dataset.packIndex);
+                SkillPacksModule.quickAddCourses(packIndex);
+                SkillPacksModule._renderStandaloneGrid();
+                return;
+            }
+
+            const card = e.target.closest('.skill-pack-card');
+            if (card) {
+                const packIndex = parseInt(card.dataset.packIndex);
+                SkillPacksModule.openPackModal(packIndex);
+            }
+        });
+    },
+
+    /**
+     * Render collapsible list view for standalone page
+     */
+    _renderStandaloneList: (grid, packsWithIndex) => {
+        grid.className = 'skill-packs-list';
+
+        grid.innerHTML = packsWithIndex.map(({ pack, originalIndex }) => {
+            const progress = SkillPacksModule.getPackProgress(pack);
+            const hasProgress = progress.completed > 0;
+            const badgeClass = SkillPacksModule.getBadgeClass(pack.skillPackType);
+            const badgeText = SkillPacksModule.getBadgeText(pack.skillPackType);
+
+            return `
+            <div class="sp-list-item" data-pack-index="${originalIndex}">
+                <button class="sp-list-header" aria-expanded="false">
+                    <div class="sp-list-header-info">
+                        <span class="sp-list-title">${pack.skillPackTitle}</span>
+                        <div class="sp-list-meta">
+                            <span class="sp-list-code">${pack.programCode}</span>
+                            <span class="skill-pack-badge ${badgeClass}">${badgeText}</span>
+                            ${hasProgress ? `<span class="sp-list-progress-hint">${progress.completed}/${progress.total}</span>` : ''}
+                        </div>
+                    </div>
+                    <span class="sp-list-chevron">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </span>
+                </button>
+                <div class="sp-list-body">
+                    <div class="sp-list-body-inner">
+                        <div class="sp-list-detail-row">
+                            <span class="sp-list-label">Program</span>
+                            <span class="sp-list-value">${pack.programName}</span>
+                        </div>
+                        <div class="sp-list-detail-row">
+                            <span class="sp-list-label">Category</span>
+                            <span class="sp-list-value">${pack.interestCategory}</span>
+                        </div>
+
+                        ${pack.description ? `
+                        <div class="sp-list-description">
+                            <span class="sp-list-label">Description</span>
+                            <p>${pack.description}</p>
+                        </div>
+                        ` : ''}
+
+                        <div class="sp-list-courses-section">
+                            <span class="sp-list-label">Courses (${pack.courses.length})</span>
+                            <div class="sp-list-courses">
+                                ${pack.courses.map(c => {
+                                    const isSelected = SkillPacksModule.isCourseSelected(c.courseCode);
+                                    const hasPrereqs = c.prerequisites && c.prerequisites !== 'None';
+                                    return `
+                                    <div class="sp-list-course ${isSelected ? 'selected' : ''}">
+                                        <span class="sp-list-course-code">${c.courseCode.replace(/\s+/g, '')}</span>
+                                        <span class="sp-list-course-title">${c.courseTitle}</span>
+                                        ${isSelected ? '<span class="sp-list-course-status selected-tag">Selected</span>' :
+                                          hasPrereqs ? `<span class="sp-list-course-status prereq-tag">${c.prerequisites}</span>` : ''}
+                                    </div>`;
+                                }).join('')}
+                            </div>
+                        </div>
+
+                        ${hasProgress ? `
+                        <div class="sp-list-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${progress.percent}%"></div>
+                            </div>
+                            <span class="progress-text">${progress.completed}/${progress.total} courses selected</span>
+                        </div>
+                        ` : ''}
+
+                        <div class="sp-list-actions">
+                            <button class="quick-add-btn" data-pack-index="${originalIndex}" title="Add all courses to selection">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                Quick Add All
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        }).join('');
+
+        // Toggle expand/collapse on header click
+        grid.addEventListener('click', (e) => {
+            const quickAddBtn = e.target.closest('.quick-add-btn');
+            if (quickAddBtn) {
+                e.stopPropagation();
+                const packIndex = parseInt(quickAddBtn.dataset.packIndex);
+                SkillPacksModule.quickAddCourses(packIndex);
+                SkillPacksModule._renderStandaloneGrid();
+                return;
+            }
+
+            const header = e.target.closest('.sp-list-header');
+            if (header) {
+                const item = header.closest('.sp-list-item');
+                const isOpen = item.classList.contains('open');
+                item.classList.toggle('open', !isOpen);
+                header.setAttribute('aria-expanded', !isOpen);
+            }
+        });
     },
 
     /**
@@ -325,21 +678,18 @@ const SkillPacksModule = {
 
     /**
      * Calculate completion progress for a skill pack
+     * Matches by course code (e.g. "CSI-440") against selected courses
      */
     getPackProgress: (pack) => {
         if (typeof StateGetters === 'undefined') return { completed: 0, total: pack.courses.length, percent: 0 };
 
-        const selectedCourses = StateGetters.getSelectedCourseIds ? StateGetters.getSelectedCourseIds() : [];
+        const selectedCourses = StateGetters.getSelectedCourses ? StateGetters.getSelectedCourses() : [];
+        const selectedCodes = selectedCourses.map(c => (c.code || '').replace(/\s+/g, '').toUpperCase());
         let completed = 0;
 
         pack.courses.forEach(course => {
-            const code = course.courseCode.replace(/\s+/g, '').replace(/-/g, '-').toUpperCase();
-            const isSelected = selectedCourses.some(sc => {
-                // Handle both string and non-string course IDs
-                const scStr = typeof sc === 'string' ? sc : String(sc || '');
-                return scStr.replace(/\s+/g, '').replace(/-/g, '-').toUpperCase() === code;
-            });
-            if (isSelected) {
+            const code = course.courseCode.replace(/\s+/g, '').toUpperCase();
+            if (selectedCodes.includes(code)) {
                 completed++;
             }
         });
@@ -358,9 +708,14 @@ const SkillPacksModule = {
         const grid = document.getElementById('skillPacksGrid');
         if (!grid) return;
 
+        const hasActiveFilter = SkillPacksModule.selectedCategory ||
+            SkillPacksModule.searchQuery ||
+            SkillPacksModule.selectedProgram !== 'all' ||
+            SkillPacksModule.currentFilter !== 'all';
+
         const packs = SkillPacksModule.getFilteredPacks();
 
-        if (packs.length === 0 && !SkillPacksModule.selectedCategory && !SkillPacksModule.searchQuery) {
+        if (packs.length === 0 && !hasActiveFilter) {
             grid.innerHTML = `
                 <div class="skill-packs-empty">
                     <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--champlain-gray)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -437,36 +792,31 @@ const SkillPacksModule = {
 
         // Check if we're in the main app (logged in)
         if (typeof StateGetters === 'undefined' || typeof CoursesModule === 'undefined') {
-            // Show login prompt
             SkillPacksModule.showToast('Please sign in to add courses to your selection', 'info');
-            // Scroll to login section
             document.getElementById('login')?.scrollIntoView({ behavior: 'smooth' });
             return;
         }
 
-        const allCourses = StateGetters.getAllCourses ? StateGetters.getAllCourses() : [];
-        const selectedCourses = StateGetters.getSelectedCourseIds ? StateGetters.getSelectedCourseIds() : [];
+        const allCourses = StateGetters.getCourses ? StateGetters.getCourses() : [];
+        const selectedIds = StateGetters.getSelectedCourseIds ? StateGetters.getSelectedCourseIds() : [];
         let addedCount = 0;
+        let alreadySelected = 0;
         let notFoundCount = 0;
 
         pack.courses.forEach(course => {
-            // Normalize the course code
-            const packCode = course.courseCode.replace(/\s+/g, '').replace(/-/g, '-').toUpperCase();
+            const packCode = course.courseCode.replace(/\s+/g, '').toUpperCase();
 
-            // Find matching course in the system
-            const matchingCourse = allCourses.find(c => {
-                const systemCode = `${c.courseData?.courseIdentity?.prefix || ''}-${c.courseData?.courseIdentity?.number || ''}`.toUpperCase();
-                return systemCode === packCode;
-            });
+            // Find matching course by normalized .code property
+            const matchingCourse = allCourses.find(c =>
+                (c.code || '').replace(/\s+/g, '').toUpperCase() === packCode
+            );
 
             if (matchingCourse) {
-                const courseCode = `${matchingCourse.courseData.courseIdentity.prefix}-${matchingCourse.courseData.courseIdentity.number}`;
-                if (!selectedCourses.includes(courseCode)) {
-                    // Add to selection
-                    if (typeof CoursesModule !== 'undefined' && CoursesModule.toggleCourseSelection) {
-                        CoursesModule.toggleCourseSelection(courseCode);
-                        addedCount++;
-                    }
+                if (selectedIds.includes(matchingCourse.id)) {
+                    alreadySelected++;
+                } else {
+                    CoursesModule.toggleCourseSelection(matchingCourse.id);
+                    addedCount++;
                 }
             } else {
                 notFoundCount++;
@@ -474,7 +824,9 @@ const SkillPacksModule = {
         });
 
         // Show feedback
-        if (addedCount > 0) {
+        if (addedCount > 0 && notFoundCount > 0) {
+            SkillPacksModule.showToast(`Added ${addedCount} course${addedCount > 1 ? 's' : ''}. ${notFoundCount} not in system.`, 'success');
+        } else if (addedCount > 0) {
             SkillPacksModule.showToast(`Added ${addedCount} course${addedCount > 1 ? 's' : ''} from "${pack.skillPackTitle}"`, 'success');
         } else if (notFoundCount === pack.courses.length) {
             SkillPacksModule.showToast(`Courses from this skill pack are not in the system yet`, 'warning');
@@ -482,8 +834,8 @@ const SkillPacksModule = {
             SkillPacksModule.showToast(`All courses from this pack are already selected`, 'info');
         }
 
-        // Update the display
-        SkillPacksModule.renderSkillPacks();
+        // Update sidebar progress
+        SkillPacksModule.updateSidebar();
     },
 
     /**
@@ -517,82 +869,156 @@ const SkillPacksModule = {
         const pack = SkillPacksModule.skillPacks[packIndex];
         if (!pack) return;
 
-        const progress = SkillPacksModule.getPackProgress(pack);
-        const isLoggedIn = typeof StateGetters !== 'undefined';
-
         // Create modal if it doesn't exist
         let modal = document.getElementById('skillPackModal');
         if (!modal) {
             modal = document.createElement('div');
             modal.id = 'skillPackModal';
-            modal.className = 'modal-overlay';
+            modal.className = 'modal';
             document.body.appendChild(modal);
         }
 
-        modal.innerHTML = `
-            <div class="modal-content skill-pack-modal-content">
-                <button class="modal-close-btn" id="closeSkillPackModal">&times;</button>
-                <div class="skill-pack-modal-header">
-                    <span class="skill-pack-badge ${SkillPacksModule.getBadgeClass(pack.skillPackType)}">
-                        ${SkillPacksModule.getBadgeText(pack.skillPackType)}
+        const courseListHtml = pack.courses.map(course => {
+            const isSelected = SkillPacksModule.isCourseSelected(course.courseCode);
+            const hasPrereqs = course.prerequisites && course.prerequisites !== 'None';
+            return `
+                <div style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 10px 14px;
+                    border-radius: 20px;
+                    background: ${isSelected ? '#e3f2fd' : '#f8f9fa'};
+                    border: 2px solid ${isSelected ? 'var(--champlain-bright-blue)' : '#e8eaf0'};
+                ">
+                    <span style="font-size: 13px; font-weight: 600; color: var(--champlain-navy);">
+                        ${course.courseCode} - ${course.courseTitle}
                     </span>
-                    <h2>${pack.skillPackTitle}</h2>
-                    <p class="skill-pack-modal-program">${pack.programName}</p>
+                    <span style="font-size: 12px; font-weight: 600; color: ${isSelected ? 'var(--champlain-bright-blue)' : hasPrereqs ? '#e65100' : '#74AA50'};">
+                        ${isSelected ? 'Selected' : hasPrereqs ? 'Prereqs: ' + course.prerequisites : 'No prerequisites'}
+                    </span>
                 </div>
+            `;
+        }).join('');
 
-                <div class="skill-pack-modal-body">
-                    <div class="skill-pack-modal-description">
-                        <h3>Description</h3>
-                        <p>${pack.description}</p>
-                    </div>
+        modal.innerHTML = `
+            <div class="modal-content" style="max-width: 700px;">
+                <div class="modal-header">
+                    <h2>Skill Pack Details</h2>
+                    <button class="close-btn" id="closeSkillPackModal">&times;</button>
+                </div>
+                <div class="modal-body" id="skillPackDetailsBody" style="max-height: 70vh; overflow-y: auto;">
+                    <!-- Breadcrumb Navigation -->
+                    <nav style="margin-bottom: 16px; padding: 8px 12px; background: var(--bg-tertiary, #f8f9fa); border-radius: 8px; font-size: 13px;">
+                        <span style="color: var(--text-secondary, #666);">Dashboard</span>
+                        <span style="color: var(--text-tertiary, #999); margin: 0 8px;">›</span>
+                        <span style="color: var(--text-secondary, #666);">Skill Packs</span>
+                        <span style="color: var(--text-tertiary, #999); margin: 0 8px;">›</span>
+                        <span style="color: var(--champlain-blue); font-weight: 600;">${pack.programCode}</span>
+                    </nav>
 
-                    ${isLoggedIn ? `
-                    <div class="skill-pack-modal-progress">
-                        <h3>Your Progress</h3>
-                        <div class="progress-bar large">
-                            <div class="progress-fill" style="width: ${progress.percent}%"></div>
+                    <div style="margin-bottom: 24px;">
+                        <div style="margin-bottom: 8px;">
+                            <span class="skill-pack-badge ${SkillPacksModule.getBadgeClass(pack.skillPackType)}">
+                                ${SkillPacksModule.getBadgeText(pack.skillPackType)}
+                            </span>
                         </div>
-                        <span class="progress-text">${progress.completed} of ${progress.total} courses selected (${progress.percent}%)</span>
+                        <h3 style="color: var(--champlain-navy); margin-bottom: 4px; font-size: 26px; font-weight: bold;">
+                            ${pack.skillPackTitle}
+                        </h3>
+                        <h4 style="color: #666; margin: 0; font-size: 18px; font-weight: 600;">
+                            ${pack.programName}
+                        </h4>
                     </div>
+
+                    ${pack.description ? `
+                        <div style="margin-bottom: 20px; padding: 16px; background: #f8f9fa; border-left: 4px solid var(--champlain-navy); border-radius: 4px;">
+                            <h4 style="color: var(--champlain-navy); margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">
+                                Description
+                            </h4>
+                            <p style="color: #333; font-size: 14px; line-height: 1.6; margin: 0;">
+                                ${pack.description}
+                            </p>
+                        </div>
                     ` : ''}
 
-                    <div class="skill-pack-modal-courses">
-                        <h3>Courses in this Pack (${pack.courses.length})</h3>
-                        <div class="course-list">
-                            ${pack.courses.map(course => {
-                                const isSelected = SkillPacksModule.isCourseSelected(course.courseCode);
-                                return `
-                                <div class="course-item ${isSelected ? 'selected' : ''}">
-                                    <div class="course-item-info">
-                                        <span class="course-code">${course.courseCode}</span>
-                                        <span class="course-title">${course.courseTitle}</span>
-                                    </div>
-                                    <div class="course-item-prereqs">
-                                        ${course.prerequisites && course.prerequisites !== 'None'
-                                            ? `<small>Prerequisites: ${course.prerequisites}</small>`
-                                            : '<small>No prerequisites</small>'}
-                                    </div>
-                                    ${isSelected ? '<span class="selected-badge">Selected</span>' : ''}
-                                </div>
-                            `;
-                            }).join('')}
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+                        <div style="padding: 12px; background: #e3f2fd; border-radius: 8px;">
+                            <div style="font-size: 12px; color: #1565c0; font-weight: 600; margin-bottom: 4px;">PROGRAM CODE</div>
+                            <div style="font-size: 16px; color: #0d47a1; font-weight: bold;">${pack.programCode}</div>
+                        </div>
+                        <div style="padding: 12px; background: #e8f5e9; border-radius: 8px;">
+                            <div style="font-size: 12px; color: #2e7d32; font-weight: 600; margin-bottom: 4px;">TOTAL COURSES</div>
+                            <div style="font-size: 20px; color: #1b5e20; font-weight: bold;">${pack.courses.length}</div>
+                        </div>
+                        <div style="padding: 12px; background: #fff3e0; border-radius: 8px;">
+                            <div style="font-size: 12px; color: #e65100; font-weight: 600; margin-bottom: 4px;">CATEGORY</div>
+                            <div style="font-size: 14px; color: #bf360c; font-weight: 600;">${pack.interestCategory}</div>
+                        </div>
+                        <div style="padding: 12px; background: #f3e5f5; border-radius: 8px;">
+                            <div style="font-size: 12px; color: #7b1fa2; font-weight: 600; margin-bottom: 4px;">ACCESS TYPE</div>
+                            <div style="font-size: 14px; color: #4a148c; font-weight: 600;">${pack.skillPackType}</div>
                         </div>
                     </div>
-                </div>
 
-                <div class="skill-pack-modal-footer">
-                    <button class="btn-secondary" id="closeSkillPackModalBtn">Close</button>
-                    <button class="btn-primary quick-add-modal-btn" data-pack-index="${packIndex}">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 5v14M5 12h14"/>
-                        </svg>
-                        Add All Courses
-                    </button>
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="color: var(--champlain-navy); margin-bottom: 12px; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                            Courses in this Pack (${pack.courses.length})
+                        </h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            ${courseListHtml}
+                        </div>
+                    </div>
+
+                    <div style="background: #f5f7fa; padding: 16px; border-radius: 8px; margin-top: 20px;">
+                        <h4 style="color: var(--champlain-navy); margin-bottom: 12px; font-size: 14px;">
+                            Quick Actions
+                        </h4>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button
+                                class="quick-add-modal-btn"
+                                data-pack-index="${packIndex}"
+                                style="
+                                    padding: 10px 18px;
+                                    background: #17a2b8;
+                                    color: white;
+                                    border: none;
+                                    border-radius: 6px;
+                                    cursor: pointer;
+                                    font-size: 13px;
+                                    font-weight: 600;
+                                    transition: background 0.2s;
+                                "
+                                onmouseover="this.style.background='#138496'"
+                                onmouseout="this.style.background='#17a2b8'"
+                            >
+                                + Add All Courses
+                            </button>
+                            <button
+                                id="closeSkillPackModalBtn"
+                                style="
+                                    padding: 10px 18px;
+                                    background: #dc3545;
+                                    color: white;
+                                    border: none;
+                                    border-radius: 6px;
+                                    cursor: pointer;
+                                    font-size: 13px;
+                                    font-weight: 600;
+                                    transition: background 0.2s;
+                                "
+                                onmouseover="this.style.background='#c82333'"
+                                onmouseout="this.style.background='#dc3545'"
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         `;
 
-        modal.style.display = 'flex';
+        modal.style.display = 'block';
 
         // Event listeners
         modal.querySelector('#closeSkillPackModal').addEventListener('click', () => SkillPacksModule.closePackModal());
@@ -629,76 +1055,49 @@ const SkillPacksModule = {
     },
 
     /**
-     * Check if a course is selected
+     * Check if a course is selected by matching course codes
      */
     isCourseSelected: (courseCode) => {
         if (typeof StateGetters === 'undefined') return false;
-        const selectedCourses = StateGetters.getSelectedCourseIds ? StateGetters.getSelectedCourseIds() : [];
-        const normalizedCode = courseCode.replace(/\s+/g, '').replace(/-/g, '-').toUpperCase();
-        return selectedCourses.some(sc => {
-            const scStr = typeof sc === 'string' ? sc : String(sc || '');
-            return scStr.replace(/\s+/g, '').replace(/-/g, '-').toUpperCase() === normalizedCode;
-        });
+        const selectedCourses = StateGetters.getSelectedCourses ? StateGetters.getSelectedCourses() : [];
+        const normalizedCode = courseCode.replace(/\s+/g, '').toUpperCase();
+        return selectedCourses.some(c => (c.code || '').replace(/\s+/g, '').toUpperCase() === normalizedCode);
     },
 
     /**
-     * Render skill packs section in sidebar (main app)
+     * Render skill pack progress into the fixed sidebar container
      */
     renderSkillPacksSidebar: () => {
-        const sidebar = document.querySelector('.sidebar');
-        if (!sidebar) return;
+        const container = document.getElementById('skillPackProgressBody');
+        if (!container) return;
 
-        // Check if already added
-        if (document.getElementById('skillPacksSidebar')) return;
-
-        // Find suggested skill packs based on selected courses
         const suggestions = SkillPacksModule.getSuggestedPacks();
 
-        const sidebarSection = document.createElement('div');
-        sidebarSection.id = 'skillPacksSidebar';
-        sidebarSection.className = 'sidebar-section skill-packs-sidebar';
-        sidebarSection.innerHTML = `
-            <h3>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
-                </svg>
-                Skill Pack Progress
-            </h3>
+        if (suggestions.length === 0) {
+            container.innerHTML = '<p class="no-suggestions">Select courses to see skill pack progress</p>';
+            return;
+        }
+
+        container.innerHTML = `
             <div class="skill-packs-suggestions">
-                ${suggestions.length > 0 ? suggestions.map(({ pack, progress }) => `
-                    <div class="suggestion-card" data-pack-index="${SkillPacksModule.skillPacks.indexOf(pack)}">
+                ${suggestions.map(({ pack, progress }) => `
+                    <div class="suggestion-card" data-pack-index="${SkillPacksModule.skillPacks.indexOf(pack)}" onclick="SkillPacksModule.openPackModal(${SkillPacksModule.skillPacks.indexOf(pack)})">
                         <div class="suggestion-title">${pack.skillPackTitle}</div>
+                        <div class="suggestion-program">${pack.programName}</div>
                         <div class="suggestion-progress">
                             <div class="mini-progress-bar">
                                 <div class="progress-fill" style="width: ${progress.percent}%"></div>
                             </div>
-                            <span>${progress.completed}/${progress.total}</span>
+                            <span class="progress-label">${progress.completed}/${progress.total} courses</span>
                         </div>
                     </div>
-                `).join('') : '<p class="no-suggestions">Select courses to see skill pack progress</p>'}
+                `).join('')}
             </div>
         `;
-
-        // Find a good place to insert (after competency tracker)
-        const competencyTracker = document.getElementById('competencyTracker');
-        if (competencyTracker && competencyTracker.parentElement) {
-            competencyTracker.parentElement.insertAdjacentElement('afterend', sidebarSection);
-        } else {
-            sidebar.appendChild(sidebarSection);
-        }
-
-        // Add click handlers
-        sidebarSection.querySelectorAll('.suggestion-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const idx = parseInt(card.dataset.packIndex);
-                SkillPacksModule.openPackModal(idx);
-            });
-        });
     },
 
     /**
-     * Get skill packs that user has progress on
+     * Get all skill packs that contain at least one selected course
      */
     getSuggestedPacks: () => {
         if (typeof StateGetters === 'undefined') return [];
@@ -712,20 +1111,16 @@ const SkillPacksModule = {
             }
         });
 
-        // Sort by progress percentage (highest first)
-        suggestions.sort((a, b) => b.progress.percent - a.progress.percent);
+        // Sort by progress percentage (highest first), then by name
+        suggestions.sort((a, b) => b.progress.percent - a.progress.percent || a.pack.skillPackTitle.localeCompare(b.pack.skillPackTitle));
 
-        return suggestions.slice(0, 5); // Top 5
+        return suggestions;
     },
 
     /**
      * Update sidebar when courses change
      */
     updateSidebar: () => {
-        const existing = document.getElementById('skillPacksSidebar');
-        if (existing) {
-            existing.remove();
-        }
         SkillPacksModule.renderSkillPacksSidebar();
     }
 };

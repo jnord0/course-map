@@ -467,81 +467,135 @@
     flex: 1;
 }
 
-.comparison-grid {
+/* Row-based comparison table layout */
+.comparison-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Header row with course columns */
+.comparison-header-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    border-bottom: 2px solid var(--champlain-navy);
+    padding-bottom: 16px;
+    margin-bottom: 8px;
 }
 
-.comparison-course {
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 20px;
-    border: 2px solid #e8eaf0;
-    transition: all 0.3s ease;
-}
-
-.comparison-course:hover {
-    border-color: var(--champlain-bright-blue);
-}
-
-.comparison-course-header {
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #e8eaf0;
-}
-
-.comparison-course-code {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--champlain-navy);
-    margin-bottom: 4px;
-}
-
-.comparison-course-name {
-    font-size: 14px;
-    color: #666;
-}
-
-.comparison-section {
-    margin-bottom: 16px;
-}
-
-.comparison-section-title {
+.comparison-corner-label {
     font-size: 12px;
     font-weight: 700;
     color: var(--champlain-blue);
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 4px;
 }
 
-.comparison-competency-list {
+.comparison-col-header {
+    text-align: center;
+    padding: 8px 12px;
+}
+
+.comparison-course-code {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--champlain-navy);
+    margin-bottom: 2px;
+}
+
+.comparison-course-name {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.3;
+}
+
+.comparison-course-credits {
+    font-size: 12px;
+    color: var(--champlain-blue);
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+/* Competency rows */
+.comparison-rows {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 0;
 }
 
-.comparison-competency-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 12px;
-    background: white;
-    border-radius: 6px;
+.comparison-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    transition: background 0.15s ease;
+}
+
+.comparison-row:hover {
+    background: #f8f9fa;
+}
+
+.comparison-row-shared {
+    background: #f1f8e9;
+}
+
+.comparison-row-shared:hover {
+    background: #e8f5e9;
+}
+
+.comparison-row-label {
     font-size: 13px;
-}
-
-.comparison-competency-name {
+    font-weight: 600;
     color: #333;
-    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 12px;
+    text-align: center;
 }
 
+/* Competency wedge icon */
+.comparison-wedge {
+    flex-shrink: 0;
+}
+
+.comparison-row-cells {
+    display: grid;
+    gap: 12px;
+}
+
+/* Individual competency cell per course */
+.comparison-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+}
+
+.comparison-cell-empty {
+    justify-content: center;
+}
+
+.comparison-cell-dash {
+    color: #ccc;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Weight badge */
 .comparison-competency-weight {
     font-weight: 700;
     padding: 2px 10px;
     border-radius: 12px;
     font-size: 12px;
+    white-space: nowrap;
 }
 
 .weight-1 {
@@ -559,30 +613,59 @@
     color: #2e7d32;
 }
 
-.comparison-stats {
+/* Horizontal weight bar */
+.comparison-weight-bar-track {
+    width: 100%;
+    max-width: 120px;
+    height: 6px;
+    background: #e8eaf0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.comparison-weight-bar {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.4s ease;
+}
+
+/* Stats row at bottom */
+.comparison-stats-row {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
     margin-top: 12px;
+    padding-top: 16px;
+    border-top: 2px solid var(--champlain-navy);
+}
+
+.comparison-stat-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
 }
 
 .comparison-stat {
-    background: white;
-    padding: 10px;
+    background: #f8f9fa;
+    padding: 8px 12px;
     border-radius: 8px;
     text-align: center;
+    width: 100%;
+    max-width: 140px;
 }
 
 .comparison-stat-value {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     color: var(--champlain-navy);
 }
 
 .comparison-stat-label {
-    font-size: 11px;
+    font-size: 10px;
     color: #666;
     text-transform: uppercase;
+    letter-spacing: 0.3px;
 }
 
 .comparison-empty {

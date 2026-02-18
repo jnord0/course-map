@@ -8,6 +8,12 @@ const PrerequisiteVisualization = {
     currentMode: 'chain', // 'chain' or 'pathway'
     simulation: null,
 
+    // Node dimensions for pill-shaped nodes
+    NODE_WIDTH: 100,
+    NODE_HEIGHT: 32,
+    FOCUS_NODE_WIDTH: 110,
+    FOCUS_NODE_HEIGHT: 36,
+
     /**
      * Initialize prerequisite visualization
      */
@@ -29,14 +35,24 @@ const PrerequisiteVisualization = {
             .attr('viewBox', `0 0 ${PrerequisiteVisualization.width} ${PrerequisiteVisualization.height}`)
             .attr('preserveAspectRatio', 'xMidYMid meet')
             .style('background', '#fafbfc');
+    },
 
-        console.log('Prerequisite visualization initialized');
+    /**
+     * Open the course details modal (same as the main visualization)
+     */
+    _openCourseModal: (courseCode) => {
+        if (!courseCode) return;
+        const courses = StateGetters.getCourses();
+        const course = courses.find(c => c.code === courseCode);
+        if (course && typeof VisualizationModule !== 'undefined' && VisualizationModule.showCourseDetailsModal) {
+            VisualizationModule.showCourseDetailsModal(course);
+        } else if (typeof PrerequisitesModule !== 'undefined') {
+            PrerequisitesModule.showCourseDetails(courseCode);
+        }
     },
 
     /**
      * Render prerequisite chain for selected courses
-     * @param {Array<string>} selectedCourseCodes - Courses to visualize
-     * @param {string} mode - 'chain' or 'pathway'
      */
     render: (selectedCourseCodes = [], mode = 'chain') => {
         if (!PrerequisiteVisualization.svg) {
@@ -56,9 +72,6 @@ const PrerequisiteVisualization = {
             return;
         }
 
-        console.log('Rendering prerequisite graph:', graphData);
-
-        // Choose layout based on mode
         if (mode === 'chain') {
             PrerequisiteVisualization.renderHierarchicalLayout(graphData);
         } else {
@@ -68,77 +81,105 @@ const PrerequisiteVisualization = {
 
     /**
      * Render empty state message
-     * @param {string} message - Message to display
      */
-    renderEmptyState: (message = 'Select courses to view prerequisite chains') => {
-        PrerequisiteVisualization.svg.selectAll('*').remove();
+    renderEmptyState: (message = 'No courses selected') => {
+        const PV = PrerequisiteVisualization;
+        PV.svg.selectAll('*').remove();
 
-        PrerequisiteVisualization.svg.append('text')
-            .attr('x', PrerequisiteVisualization.width / 2)
-            .attr('y', PrerequisiteVisualization.height / 2)
-            .attr('text-anchor', 'middle')
-            .attr('fill', '#999')
-            .attr('font-size', '16px')
+        const cx = PV.width / 2;
+        const cy = PV.height / 2;
+        const g = PV.svg.append('g').attr('transform', `translate(${cx},${cy})`);
+
+        // Icon: chain of three connected nodes
+        const icon = g.append('g').attr('transform', 'translate(0,-36)');
+        [-28, 0, 28].forEach(x => {
+            icon.append('circle').attr('cx', x).attr('cy', 0).attr('r', 10)
+                .attr('fill', 'none').attr('stroke', '#c8d6e5').attr('stroke-width', 2);
+        });
+        icon.append('line').attr('x1', -18).attr('y1', 0).attr('x2', -10).attr('y2', 0)
+            .attr('stroke', '#c8d6e5').attr('stroke-width', 2).attr('marker-end', 'none');
+        icon.append('line').attr('x1', 10).attr('y1', 0).attr('x2', 18).attr('y2', 0)
+            .attr('stroke', '#c8d6e5').attr('stroke-width', 2);
+
+        g.append('text')
+            .attr('text-anchor', 'middle').attr('y', 10)
+            .attr('fill', '#8395a7').attr('font-size', '16px').attr('font-weight', '600')
             .text(message);
+
+        g.append('text')
+            .attr('text-anchor', 'middle').attr('y', 32)
+            .attr('fill', '#b2bec3').attr('font-size', '13px')
+            .text('Select courses to see prerequisite chains and dependencies');
     },
 
     /**
      * Render hierarchical (tree) layout for prerequisite chain
-     * @param {Object} graphData - { nodes, links }
      */
     renderHierarchicalLayout: (graphData) => {
-        PrerequisiteVisualization.svg.selectAll('*').remove();
+        const PV = PrerequisiteVisualization;
+        PV.svg.selectAll('*').remove();
 
-        // Build hierarchy data structure
-        const hierarchy = PrerequisiteVisualization.buildHierarchy(graphData);
-
+        const hierarchy = PV.buildHierarchy(graphData);
         if (!hierarchy) {
-            PrerequisiteVisualization.renderEmptyState('Unable to build hierarchy');
+            PV.renderEmptyState('Unable to build hierarchy');
             return;
         }
 
-        // Create tree layout
+        // Wider separation to prevent node overlap
         const treeLayout = d3.tree()
-            .size([PrerequisiteVisualization.width - 200, PrerequisiteVisualization.height - 200])
-            .separation((a, b) => (a.parent === b.parent ? 1 : 1.5));
+            .size([PV.width - 240, PV.height - 240])
+            .separation((a, b) => (a.parent === b.parent ? 1.5 : 2));
 
         const root = d3.hierarchy(hierarchy);
         treeLayout(root);
 
-        // Add group for zoom/pan
-        const g = PrerequisiteVisualization.svg.append('g')
-            .attr('transform', `translate(100, 100)`);
+        // Defs for arrow markers
+        const defs = PV.svg.append('defs');
+        defs.append('marker')
+            .attr('id', 'arrowhead')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 10)
+            .attr('refY', 0)
+            .attr('markerWidth', 8)
+            .attr('markerHeight', 8)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-4L10,0L0,4')
+            .attr('fill', '#003C5F');
 
-        // Draw links (prerequisite arrows)
-        const links = g.selectAll('.link')
+        // Drop shadow filter
+        const filter = defs.append('filter')
+            .attr('id', 'nodeShadow')
+            .attr('x', '-20%').attr('y', '-20%')
+            .attr('width', '140%').attr('height', '140%');
+        filter.append('feDropShadow')
+            .attr('dx', 0).attr('dy', 1)
+            .attr('stdDeviation', 2)
+            .attr('flood-color', 'rgba(0,0,0,0.15)');
+
+        const g = PV.svg.append('g')
+            .attr('transform', `translate(120, 120)`);
+
+        // Draw links: vertical curves that stop at pill edges
+        g.selectAll('.link')
             .data(root.links())
             .enter()
             .append('path')
             .attr('class', 'prereq-link')
-            .attr('d', d3.linkVertical()
-                .x(d => d.x)
-                .y(d => d.y))
+            .attr('d', d => {
+                const sh = d.source.data.isFocus ? PV.FOCUS_NODE_HEIGHT : PV.NODE_HEIGHT;
+                const th = d.target.data.isFocus ? PV.FOCUS_NODE_HEIGHT : PV.NODE_HEIGHT;
+                const sy = d.source.y + sh / 2;       // bottom edge of source pill
+                const ty = d.target.y - th / 2 - 6;   // top edge of target pill (with arrow gap)
+                const mid = (sy + ty) / 2;
+                return `M${d.source.x},${sy} C${d.source.x},${mid} ${d.target.x},${mid} ${d.target.x},${ty}`;
+            })
             .attr('fill', 'none')
-            .attr('stroke', '#003C5F')
-            .attr('stroke-width', 2)
-            .attr('stroke-opacity', 0.6)
+            .attr('stroke', '#90a4ae')
+            .attr('stroke-width', 1.5)
             .attr('marker-end', 'url(#arrowhead)');
 
-        // Add arrowhead marker
-        PrerequisiteVisualization.svg.append('defs')
-            .append('marker')
-            .attr('id', 'arrowhead')
-            .attr('viewBox', '0 -5 10 10')
-            .attr('refX', 20)
-            .attr('refY', 0)
-            .attr('markerWidth', 6)
-            .attr('markerHeight', 6)
-            .attr('orient', 'auto')
-            .append('path')
-            .attr('d', 'M0,-5L10,0L0,5')
-            .attr('fill', '#003C5F');
-
-        // Draw nodes (courses)
+        // Draw nodes (on top of links)
         const nodes = g.selectAll('.node')
             .data(root.descendants())
             .enter()
@@ -146,58 +187,61 @@ const PrerequisiteVisualization = {
             .attr('class', 'prereq-node')
             .attr('transform', d => `translate(${d.x}, ${d.y})`)
             .style('cursor', 'pointer')
+            .on('mouseenter', function(event, d) {
+                d3.select(this).select('rect')
+                    .attr('filter', 'url(#nodeShadow)')
+                    .transition().duration(150)
+                    .attr('y', d => -(d.data.isFocus ? PV.FOCUS_NODE_HEIGHT : PV.NODE_HEIGHT) / 2 - 1);
+            })
+            .on('mouseleave', function(event, d) {
+                d3.select(this).select('rect')
+                    .attr('filter', null)
+                    .transition().duration(150)
+                    .attr('y', d => -(d.data.isFocus ? PV.FOCUS_NODE_HEIGHT : PV.NODE_HEIGHT) / 2);
+            })
             .on('click', (event, d) => {
                 if (d.data.code) {
-                    PrerequisitesModule.showCourseDetails(d.data.code);
+                    PV._openCourseModal(d.data.code);
                 }
             });
 
-        // Add circles for nodes
-        nodes.append('circle')
-            .attr('r', d => d.data.isFocus ? 30 : 20)
+        // Pill-shaped background
+        nodes.append('rect')
+            .attr('x', d => -(d.data.isFocus ? PV.FOCUS_NODE_WIDTH : PV.NODE_WIDTH) / 2)
+            .attr('y', d => -(d.data.isFocus ? PV.FOCUS_NODE_HEIGHT : PV.NODE_HEIGHT) / 2)
+            .attr('width', d => d.data.isFocus ? PV.FOCUS_NODE_WIDTH : PV.NODE_WIDTH)
+            .attr('height', d => d.data.isFocus ? PV.FOCUS_NODE_HEIGHT : PV.NODE_HEIGHT)
+            .attr('rx', d => (d.data.isFocus ? PV.FOCUS_NODE_HEIGHT : PV.NODE_HEIGHT) / 2)
             .attr('fill', d => d.data.isFocus ? '#00A9E0' : '#236192')
-            .attr('stroke', '#fff')
-            .attr('stroke-width', 3);
+            .attr('stroke', d => d.data.isFocus ? '#0088b8' : '#1a4a70')
+            .attr('stroke-width', 1);
 
-        // Add course code labels
+        // Course code label inside pill
         nodes.append('text')
-            .attr('dy', -30)
+            .attr('dy', '0.35em')
             .attr('text-anchor', 'middle')
-            .attr('fill', '#003C5F')
-            .attr('font-size', '13px')
-            .attr('font-weight', 'bold')
+            .attr('fill', '#fff')
+            .attr('font-size', d => d.data.isFocus ? '13px' : '12px')
+            .attr('font-weight', '600')
+            .attr('pointer-events', 'none')
             .text(d => d.data.code || d.data.name);
 
-        // Add course name labels
-        nodes.append('text')
-            .attr('dy', 40)
-            .attr('text-anchor', 'middle')
-            .attr('fill', '#666')
-            .attr('font-size', '11px')
-            .text(d => {
-                const name = d.data.name || '';
-                return name.length > 30 ? name.substring(0, 30) + '...' : name;
-            });
-
-        // Add zoom behavior
+        // Zoom/pan
         const zoom = d3.zoom()
             .scaleExtent([0.5, 3])
             .on('zoom', (event) => {
                 g.attr('transform', event.transform);
             });
 
-        PrerequisiteVisualization.svg.call(zoom);
+        PV.svg.call(zoom);
     },
 
     /**
      * Build hierarchy structure from graph data
-     * @param {Object} graphData - { nodes, links }
-     * @returns {Object} - Hierarchical data structure
      */
     buildHierarchy: (graphData) => {
         const { nodes, links } = graphData;
 
-        // Find root nodes (nodes with no prerequisites)
         const nodeMap = new Map(nodes.map(n => [n.id, { ...n, children: [] }]));
         const hasIncoming = new Set();
 
@@ -208,7 +252,6 @@ const PrerequisiteVisualization = {
         const rootNodes = nodes.filter(n => !hasIncoming.has(n.id));
 
         if (rootNodes.length === 0) {
-            // No clear root, pick focus node or first node
             const focusNode = nodes.find(n => n.isFocus) || nodes[0];
             return nodeMap.get(focusNode.id);
         }
@@ -222,7 +265,6 @@ const PrerequisiteVisualization = {
             }
         });
 
-        // If multiple roots, create virtual root
         if (rootNodes.length > 1) {
             return {
                 name: 'Courses',
@@ -236,38 +278,45 @@ const PrerequisiteVisualization = {
 
     /**
      * Render force-directed layout for prerequisite network
-     * @param {Object} graphData - { nodes, links }
      */
     renderForceLayout: (graphData) => {
-        PrerequisiteVisualization.svg.selectAll('*').remove();
+        const PV = PrerequisiteVisualization;
+        PV.svg.selectAll('*').remove();
 
         const { nodes, links } = graphData;
 
-        // Create force simulation
         const simulation = d3.forceSimulation(nodes)
-            .force('link', d3.forceLink(links).id(d => d.id).distance(150))
-            .force('charge', d3.forceManyBody().strength(-400))
-            .force('center', d3.forceCenter(PrerequisiteVisualization.width / 2, PrerequisiteVisualization.height / 2))
-            .force('collision', d3.forceCollide().radius(50));
+            .force('link', d3.forceLink(links).id(d => d.id).distance(180))
+            .force('charge', d3.forceManyBody().strength(-500))
+            .force('center', d3.forceCenter(PV.width / 2, PV.height / 2))
+            .force('collision', d3.forceCollide().radius(70));
 
-        PrerequisiteVisualization.simulation = simulation;
+        PV.simulation = simulation;
 
-        // Add group for zoom/pan
-        const g = PrerequisiteVisualization.svg.append('g');
-
-        // Add arrowhead marker
-        PrerequisiteVisualization.svg.append('defs')
-            .append('marker')
+        // Defs
+        const defs = PV.svg.append('defs');
+        defs.append('marker')
             .attr('id', 'arrow')
             .attr('viewBox', '0 -5 10 10')
-            .attr('refX', 25)
+            .attr('refX', 10)
             .attr('refY', 0)
-            .attr('markerWidth', 6)
-            .attr('markerHeight', 6)
+            .attr('markerWidth', 8)
+            .attr('markerHeight', 8)
             .attr('orient', 'auto')
             .append('path')
-            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('d', 'M0,-4L10,0L0,4')
             .attr('fill', '#003C5F');
+
+        const filter = defs.append('filter')
+            .attr('id', 'forceShadow')
+            .attr('x', '-20%').attr('y', '-20%')
+            .attr('width', '140%').attr('height', '140%');
+        filter.append('feDropShadow')
+            .attr('dx', 0).attr('dy', 1)
+            .attr('stdDeviation', 2)
+            .attr('flood-color', 'rgba(0,0,0,0.15)');
+
+        const g = PV.svg.append('g');
 
         // Draw links
         const link = g.selectAll('.link')
@@ -275,12 +324,11 @@ const PrerequisiteVisualization = {
             .enter()
             .append('line')
             .attr('class', 'prereq-link')
-            .attr('stroke', '#003C5F')
-            .attr('stroke-width', 2)
-            .attr('stroke-opacity', 0.6)
+            .attr('stroke', '#90a4ae')
+            .attr('stroke-width', 1.5)
             .attr('marker-end', 'url(#arrow)');
 
-        // Draw nodes
+        // Draw nodes (on top of links)
         const node = g.selectAll('.node')
             .data(nodes)
             .enter()
@@ -288,59 +336,66 @@ const PrerequisiteVisualization = {
             .attr('class', 'prereq-node')
             .style('cursor', 'pointer')
             .call(d3.drag()
-                .on('start', PrerequisiteVisualization.dragStarted)
-                .on('drag', PrerequisiteVisualization.dragged)
-                .on('end', PrerequisiteVisualization.dragEnded))
+                .on('start', PV.dragStarted)
+                .on('drag', PV.dragged)
+                .on('end', PV.dragEnded))
+            .on('mouseenter', function() {
+                d3.select(this).select('rect').attr('filter', 'url(#forceShadow)');
+            })
+            .on('mouseleave', function() {
+                d3.select(this).select('rect').attr('filter', null);
+            })
             .on('click', (event, d) => {
-                PrerequisitesModule.showCourseDetails(d.code);
+                PV._openCourseModal(d.code);
             });
 
-        // Add circles
-        node.append('circle')
-            .attr('r', d => d.isFocus ? 30 : 20)
+        // Pill-shaped background
+        node.append('rect')
+            .attr('x', d => -(d.isFocus ? PV.FOCUS_NODE_WIDTH : PV.NODE_WIDTH) / 2)
+            .attr('y', d => -(d.isFocus ? PV.FOCUS_NODE_HEIGHT : PV.NODE_HEIGHT) / 2)
+            .attr('width', d => d.isFocus ? PV.FOCUS_NODE_WIDTH : PV.NODE_WIDTH)
+            .attr('height', d => d.isFocus ? PV.FOCUS_NODE_HEIGHT : PV.NODE_HEIGHT)
+            .attr('rx', d => (d.isFocus ? PV.FOCUS_NODE_HEIGHT : PV.NODE_HEIGHT) / 2)
             .attr('fill', d => d.isFocus ? '#00A9E0' : '#236192')
-            .attr('stroke', '#fff')
-            .attr('stroke-width', 3);
+            .attr('stroke', d => d.isFocus ? '#0088b8' : '#1a4a70')
+            .attr('stroke-width', 1);
 
-        // Add course code labels
+        // Course code inside pill
         node.append('text')
+            .attr('dy', '0.35em')
             .attr('text-anchor', 'middle')
-            .attr('dy', -30)
-            .attr('fill', '#003C5F')
-            .attr('font-size', '13px')
-            .attr('font-weight', 'bold')
+            .attr('fill', '#fff')
+            .attr('font-size', d => d.isFocus ? '13px' : '12px')
+            .attr('font-weight', '600')
+            .attr('pointer-events', 'none')
             .text(d => d.code);
 
-        // Add course name labels
-        node.append('text')
-            .attr('text-anchor', 'middle')
-            .attr('dy', 40)
-            .attr('fill', '#666')
-            .attr('font-size', '10px')
-            .text(d => {
-                const name = d.name || '';
-                return name.length > 25 ? name.substring(0, 25) + '...' : name;
-            });
-
-        // Update positions on simulation tick
+        // Shorten links so they stop at pill edges, not center
         simulation.on('tick', () => {
-            link
-                .attr('x1', d => d.source.x)
-                .attr('y1', d => d.source.y)
-                .attr('x2', d => d.target.x)
-                .attr('y2', d => d.target.y);
+            link.each(function(d) {
+                const dx = d.target.x - d.source.x;
+                const dy = d.target.y - d.source.y;
+                const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+                const sW = (d.source.isFocus ? PV.FOCUS_NODE_WIDTH : PV.NODE_WIDTH) / 2 + 4;
+                const tW = (d.target.isFocus ? PV.FOCUS_NODE_WIDTH : PV.NODE_WIDTH) / 2 + 8;
+                d3.select(this)
+                    .attr('x1', d.source.x + (dx / dist) * sW)
+                    .attr('y1', d.source.y + (dy / dist) * sW)
+                    .attr('x2', d.target.x - (dx / dist) * tW)
+                    .attr('y2', d.target.y - (dy / dist) * tW);
+            });
 
             node.attr('transform', d => `translate(${d.x}, ${d.y})`);
         });
 
-        // Add zoom behavior
+        // Zoom/pan
         const zoom = d3.zoom()
             .scaleExtent([0.3, 3])
             .on('zoom', (event) => {
                 g.attr('transform', event.transform);
             });
 
-        PrerequisiteVisualization.svg.call(zoom);
+        PV.svg.call(zoom);
     },
 
     /**
@@ -369,22 +424,20 @@ const PrerequisiteVisualization = {
 
     /**
      * Render student pathway view
-     * @param {Array<string>} completedCourses - Completed course codes
      */
     renderPathwayView: (completedCourses = []) => {
+        const PV = PrerequisiteVisualization;
         const pathway = PrerequisitesModule.getStudentPathway(completedCourses);
 
-        if (!PrerequisiteVisualization.svg) {
-            PrerequisiteVisualization.init();
+        if (!PV.svg) {
+            PV.init();
         }
 
-        PrerequisiteVisualization.svg.selectAll('*').remove();
+        PV.svg.selectAll('*').remove();
 
-        // Create three sections: Completed, Available, Locked
-        const sectionWidth = PrerequisiteVisualization.width / 3;
-        const sectionHeight = PrerequisiteVisualization.height - 100;
+        const sectionWidth = PV.width / 3;
+        const sectionHeight = PV.height - 100;
 
-        // Draw section backgrounds
         const sections = [
             { x: 0, title: 'Completed', color: '#4CAF50', courses: pathway.completed },
             { x: sectionWidth, title: 'Available', color: '#00A9E0', courses: pathway.available },
@@ -393,7 +446,7 @@ const PrerequisiteVisualization = {
 
         sections.forEach((section, index) => {
             // Section background
-            PrerequisiteVisualization.svg.append('rect')
+            PV.svg.append('rect')
                 .attr('x', section.x + 10)
                 .attr('y', 50)
                 .attr('width', sectionWidth - 20)
@@ -404,7 +457,7 @@ const PrerequisiteVisualization = {
                 .attr('rx', 10);
 
             // Section title
-            PrerequisiteVisualization.svg.append('text')
+            PV.svg.append('text')
                 .attr('x', section.x + sectionWidth / 2)
                 .attr('y', 30)
                 .attr('text-anchor', 'middle')
@@ -413,7 +466,7 @@ const PrerequisiteVisualization = {
                 .attr('font-weight', 'bold')
                 .text(`${section.title} (${section.courses.length})`);
 
-            // Course cards
+            // Normalize course data format
             const courseData = index === 0
                 ? section.courses.map(code => {
                     const course = StateGetters.getCourses().find(c => c.code === code);
@@ -423,11 +476,23 @@ const PrerequisiteVisualization = {
 
             courseData.forEach((course, i) => {
                 const y = 80 + (i * 60);
+                if (y > sectionHeight) return;
 
-                if (y > sectionHeight) return; // Don't overflow
+                const cardGroup = PV.svg.append('g')
+                    .style('cursor', 'pointer')
+                    .on('click', () => {
+                        if (course.code) {
+                            PV._openCourseModal(course.code);
+                        }
+                    })
+                    .on('mouseenter', function() {
+                        d3.select(this).select('rect').attr('stroke-width', 2);
+                    })
+                    .on('mouseleave', function() {
+                        d3.select(this).select('rect').attr('stroke-width', 1);
+                    });
 
-                // Course card background
-                PrerequisiteVisualization.svg.append('rect')
+                cardGroup.append('rect')
                     .attr('x', section.x + 20)
                     .attr('y', y)
                     .attr('width', sectionWidth - 40)
@@ -435,16 +500,9 @@ const PrerequisiteVisualization = {
                     .attr('fill', 'white')
                     .attr('stroke', section.color)
                     .attr('stroke-width', 1)
-                    .attr('rx', 6)
-                    .style('cursor', 'pointer')
-                    .on('click', () => {
-                        if (course.code) {
-                            PrerequisitesModule.showCourseDetails(course.code);
-                        }
-                    });
+                    .attr('rx', 6);
 
-                // Course code
-                PrerequisiteVisualization.svg.append('text')
+                cardGroup.append('text')
                     .attr('x', section.x + 30)
                     .attr('y', y + 20)
                     .attr('fill', '#003C5F')
@@ -452,13 +510,15 @@ const PrerequisiteVisualization = {
                     .attr('font-weight', 'bold')
                     .text(course.code);
 
-                // Course name
-                PrerequisiteVisualization.svg.append('text')
+                cardGroup.append('text')
                     .attr('x', section.x + 30)
                     .attr('y', y + 38)
                     .attr('fill', '#666')
                     .attr('font-size', '11px')
-                    .text((course.name || '').substring(0, 25) + '...');
+                    .text(() => {
+                        const name = course.name || '';
+                        return name.length > 25 ? name.substring(0, 25) + '...' : name;
+                    });
             });
         });
     }
