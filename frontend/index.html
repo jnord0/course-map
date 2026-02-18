@@ -676,6 +676,119 @@
         </div>
     </div>
 
+    <!-- Proposals Page (faculty: my proposals; admin: review proposals) -->
+    <div id="proposalsPage" class="hidden">
+        <div class="header">
+            <div class="logo-section">
+                <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D"
+                     alt="Champlain College Shield"
+                     style="height: 50px; margin-right: 20px;"
+                     onerror="this.style.display='none'">
+                <div class="logo-text">Academic Affairs</div>
+            </div>
+            <div class="user-info">
+                <button class="back-to-dashboard-btn" onclick="Dashboard.backToDashboard()">Back to Dashboard</button>
+                <button class="logout-btn" onclick="App.handleLogout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="standalone-page-content">
+            <!-- Faculty section: my submitted proposals -->
+            <div id="pgFacultySection" class="hidden">
+                <div class="standalone-page-header">
+                    <h1>Course Proposals</h1>
+                    <p>Submit new course proposals and track the status of your submissions.</p>
+                </div>
+                <div style="display: flex; justify-content: flex-end; margin-bottom: 24px;">
+                    <button class="btn" style="background: var(--champlain-green); color: white; border: none; padding: 12px 28px; font-size: 15px; border-radius: 6px; cursor: pointer; font-weight: 600;"
+                        onclick="ModalsModule.openProposalModal()">
+                        + Submit New Proposal
+                    </button>
+                </div>
+                <div id="pg-myProposalsList">
+                    <p style="text-align: center; color: #666;">Loading proposals...</p>
+                </div>
+            </div>
+
+            <!-- Admin section: pending proposals for review -->
+            <div id="pgAdminProposalsSection" class="hidden">
+                <div class="standalone-page-header">
+                    <h1>Review Course Proposals</h1>
+                    <p>Review and manage pending course proposals submitted by faculty.</p>
+                </div>
+                <div id="pg-proposalList">
+                    <p style="text-align: center; color: #666;">Loading proposals...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Management Page (admin: system management dashboard) -->
+    <div id="managementPage" class="hidden">
+        <div class="header">
+            <div class="logo-section">
+                <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D"
+                     alt="Champlain College Shield"
+                     style="height: 50px; margin-right: 20px;"
+                     onerror="this.style.display='none'">
+                <div class="logo-text">Academic Affairs</div>
+            </div>
+            <div class="user-info">
+                <button class="back-to-dashboard-btn" onclick="Dashboard.backToDashboard()">Back to Dashboard</button>
+                <button class="logout-btn" onclick="App.handleLogout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="standalone-page-content">
+            <div class="standalone-page-header">
+                <h1>System Management Dashboard</h1>
+                <p>Manage courses, competencies, and monitor system activity.</p>
+            </div>
+
+            <!-- System Statistics -->
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: var(--champlain-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 20px;">📊</span> System Overview
+                </h3>
+                <div id="pg-systemStats"></div>
+            </div>
+
+            <!-- Course Management -->
+            <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3 style="color: var(--champlain-navy); margin: 0; display: flex; align-items: center; gap: 10px;">
+                        <span style="font-size: 20px;">📚</span> Course Management
+                    </h3>
+                    <button class="btn" onclick="CoursesModule.showEditModal(null)" style="margin: 0; background: var(--champlain-bright-blue); color: white; border: none;">
+                        + Add New Course
+                    </button>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <input type="text" id="pg-manageCourseSearch"
+                        placeholder="Search courses by code or name..."
+                        style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 14px; box-sizing: border-box;">
+                </div>
+                <div id="pg-coursesList" style="max-height: 500px; overflow-y: auto;"></div>
+            </div>
+
+            <!-- Competency Management -->
+            <div style="margin-bottom: 30px; padding: 20px; background: #e8f5e9; border-radius: 8px;">
+                <h3 style="color: var(--champlain-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 20px;">🎯</span> Competency Management
+                </h3>
+                <div id="pg-competenciesList"></div>
+            </div>
+
+            <!-- Learning Objectives -->
+            <div style="padding: 20px; background: #e3f2fd; border-radius: 8px; margin-bottom: 40px;">
+                <h3 style="color: var(--champlain-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 20px;">✓</span> Learning Objectives
+                </h3>
+                <div id="pg-objectivesList"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Application -->
     <div id="mainApp" class="hidden">
         <div class="header">

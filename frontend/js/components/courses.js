@@ -215,11 +215,12 @@ const CoursesModule = {
     },
 
     /**
-     * Update courses list in manage modal
+     * Update courses list in manage modal or page
      * @param {string} searchTerm
+     * @param {string} containerId - optional override for the container element ID
      */
-    updateCoursesList: (searchTerm = '') => {
-        const listDiv = document.getElementById('coursesList');
+    updateCoursesList: (searchTerm = '', containerId = 'coursesList') => {
+        const listDiv = document.getElementById(containerId);
         const courses = StateGetters.getCourses();
 
         const filteredCourses = courses.filter(course => {
@@ -266,10 +267,11 @@ const CoursesModule = {
     },
 
     /**
-     * Update competencies list in manage modal
+     * Update competencies list in manage modal or page
+     * @param {string} containerId - optional override for the container element ID
      */
-    updateCompetenciesList: () => {
-        const listDiv = document.getElementById('competenciesList');
+    updateCompetenciesList: (containerId = 'competenciesList') => {
+        const listDiv = document.getElementById(containerId);
         const competencies = StateGetters.getCompetencies();
         const courses = StateGetters.getCourses();
 
@@ -314,10 +316,11 @@ const CoursesModule = {
     },
 
     /**
-     * Update learning objectives list in manage modal
+     * Update learning objectives list in manage modal or page
+     * @param {string} containerId - optional override for the container element ID
      */
-    updateObjectivesList: () => {
-        const listDiv = document.getElementById('objectivesList');
+    updateObjectivesList: (containerId = 'objectivesList') => {
+        const listDiv = document.getElementById(containerId);
 
         // Get unique PLOs and CLOs from courses
         const allPLOs = new Set();
@@ -359,10 +362,11 @@ const CoursesModule = {
     },
 
     /**
-     * Update system statistics
+     * Update system statistics in manage modal or page
+     * @param {string} containerId - optional override for the container element ID
      */
-    updateSystemStats: () => {
-        const statsDiv = document.getElementById('systemStats');
+    updateSystemStats: (containerId = 'systemStats') => {
+        const statsDiv = document.getElementById(containerId);
         if (!statsDiv) return;
 
         const courses = StateGetters.getCourses();
@@ -841,6 +845,12 @@ const CoursesModule = {
             CoursesModule.updateAvailableCourses();
             CoursesModule.updateSystemStats();
             CompetenciesModule.updateTracker();
+            // Also refresh management page if it is currently visible
+            const mgmtPage = document.getElementById('managementPage');
+            if (mgmtPage && !mgmtPage.classList.contains('hidden')) {
+                CoursesModule.updateCoursesList('', 'pg-coursesList');
+                CoursesModule.updateSystemStats('pg-systemStats');
+            }
             alert('Course deleted successfully!');
         }
     },
@@ -995,6 +1005,12 @@ const CoursesModule = {
         CoursesModule.updateAvailableCourses();
         CoursesModule.updateSystemStats();
         CompetenciesModule.updateTracker();
+        // Also refresh management page if it is currently visible
+        const mgmtPage = document.getElementById('managementPage');
+        if (mgmtPage && !mgmtPage.classList.contains('hidden')) {
+            CoursesModule.updateCoursesList('', 'pg-coursesList');
+            CoursesModule.updateSystemStats('pg-systemStats');
+        }
         ModalsModule.closeEditCourseModal();
         alert(AppState.editingCourseId ? 'Course updated successfully!' : 'Course added successfully!');
     }

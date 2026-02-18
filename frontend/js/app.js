@@ -43,6 +43,8 @@ const Dashboard = {
         document.getElementById('mainApp').classList.add('hidden');
         document.getElementById('competenciesPage').classList.add('hidden');
         document.getElementById('skillPacksPage').classList.add('hidden');
+        document.getElementById('proposalsPage').classList.add('hidden');
+        document.getElementById('managementPage').classList.add('hidden');
         document.getElementById('dashboardPage').classList.remove('hidden');
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -98,6 +100,8 @@ const Dashboard = {
         document.getElementById('dashboardPage').classList.add('hidden');
         document.getElementById('competenciesPage').classList.add('hidden');
         document.getElementById('skillPacksPage').classList.add('hidden');
+        document.getElementById('proposalsPage').classList.add('hidden');
+        document.getElementById('managementPage').classList.add('hidden');
         document.getElementById('mainApp').classList.remove('hidden');
 
         // Ensure main app is set up
@@ -158,29 +162,77 @@ const Dashboard = {
     },
 
     /**
-     * Open proposal-related modals from dashboard
+     * Open the proposals standalone page from dashboard
      */
     openProposals: () => {
-        Dashboard.goToMainApp('network');
-        // After main app loads, open proposal modal
-        setTimeout(() => {
-            if (Auth.isAdmin()) {
-                ProposalsModule.showReviewModal();
-            } else if (Auth.isFaculty()) {
-                ModalsModule.openProposalModal();
-            }
-        }, 400);
+        Dashboard._showProposalsPage();
     },
 
     /**
-     * Open admin management from dashboard
+     * Open the management standalone page from dashboard (admin only)
      */
     openAdmin: () => {
-        Dashboard.goToMainApp('network');
-        // After main app loads, open manage modal
-        setTimeout(() => {
-            CoursesModule.showManageModal();
-        }, 400);
+        Dashboard._showManagementPage();
+    },
+
+    /**
+     * Show the proposals standalone page and populate it based on role
+     */
+    _showProposalsPage: () => {
+        // Hide all other sections
+        document.getElementById('dashboardPage').classList.add('hidden');
+        document.getElementById('mainApp').classList.add('hidden');
+        document.getElementById('competenciesPage').classList.add('hidden');
+        document.getElementById('skillPacksPage').classList.add('hidden');
+        document.getElementById('managementPage').classList.add('hidden');
+        document.getElementById('proposalsPage').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Show the right section based on role
+        const facultySection = document.getElementById('pgFacultySection');
+        const adminSection = document.getElementById('pgAdminProposalsSection');
+
+        if (Auth.isAdmin()) {
+            facultySection.classList.add('hidden');
+            adminSection.classList.remove('hidden');
+            ProposalsModule.showReviewModal('pg-proposalList', false);
+        } else if (Auth.isFaculty()) {
+            adminSection.classList.add('hidden');
+            facultySection.classList.remove('hidden');
+            ProposalsModule.showMyProposals('pg-myProposalsList', false);
+        }
+    },
+
+    /**
+     * Show the management standalone page and populate it (admin only)
+     */
+    _showManagementPage: () => {
+        // Hide all other sections
+        document.getElementById('dashboardPage').classList.add('hidden');
+        document.getElementById('mainApp').classList.add('hidden');
+        document.getElementById('competenciesPage').classList.add('hidden');
+        document.getElementById('skillPacksPage').classList.add('hidden');
+        document.getElementById('proposalsPage').classList.add('hidden');
+        document.getElementById('managementPage').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Populate all management page sections
+        CoursesModule.updateSystemStats('pg-systemStats');
+        CoursesModule.updateCoursesList('', 'pg-coursesList');
+        CoursesModule.updateCompetenciesList('pg-competenciesList');
+        CoursesModule.updateObjectivesList('pg-objectivesList');
+
+        // Wire up the course search input on the management page
+        const searchInput = document.getElementById('pg-manageCourseSearch');
+        if (searchInput) {
+            searchInput.value = '';
+            // Remove any old listener before adding a fresh one
+            const newInput = searchInput.cloneNode(true);
+            searchInput.parentNode.replaceChild(newInput, searchInput);
+            newInput.addEventListener('input', (e) => {
+                CoursesModule.updateCoursesList(e.target.value, 'pg-coursesList');
+            });
+        }
     },
 
     /**
@@ -213,6 +265,8 @@ const Dashboard = {
         document.getElementById('mainApp').classList.add('hidden');
         document.getElementById('competenciesPage').classList.add('hidden');
         document.getElementById('skillPacksPage').classList.add('hidden');
+        document.getElementById('proposalsPage').classList.add('hidden');
+        document.getElementById('managementPage').classList.add('hidden');
         document.getElementById('dashboardPage').classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -313,6 +367,8 @@ const App = {
         document.getElementById('dashboardPage').classList.add('hidden');
         document.getElementById('competenciesPage').classList.add('hidden');
         document.getElementById('skillPacksPage').classList.add('hidden');
+        document.getElementById('proposalsPage').classList.add('hidden');
+        document.getElementById('managementPage').classList.add('hidden');
         document.getElementById('username').value = '';
         document.getElementById('password').value = '';
 
