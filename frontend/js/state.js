@@ -353,6 +353,9 @@ const AppState = {
         }
     ],
     
+    // Skill Pack Proposals
+    skillPackProposals: [],
+
     // Course being edited (for modals)
     editingCourseId: null,
 
@@ -402,6 +405,7 @@ const StateGetters = {
     getSelectedCourses: () => AppState.coursesData.filter(c => AppState.selectedCourseIds.includes(c.id)),
     getCompetencies: () => AppState.allCompetencies,
     getProposals: () => AppState.proposals,
+    getSkillPackProposals: () => AppState.skillPackProposals,
     getUsers: () => AppState.users,
     isDataLoaded: () => AppState.dataLoaded,
     getActiveFilters: () => AppState.activeFilters,
@@ -540,6 +544,38 @@ const StateSetters = {
         }
     },
     
+    addSkillPackProposal: (proposal) => {
+        proposal.id = Date.now();
+        AppState.skillPackProposals.push(proposal);
+    },
+
+    updateSkillPackProposalStatus: (id, status) => {
+        const proposal = AppState.skillPackProposals.find(p => p.id === id);
+        if (proposal) {
+            proposal.status = status;
+        }
+    },
+
+    updateSkillPackProposal: (id, proposalData) => {
+        const proposal = AppState.skillPackProposals.find(p => p.id === id);
+        if (proposal) {
+            Object.assign(proposal, proposalData);
+        }
+    },
+
+    addSkillPackProposalFeedback: (id, feedback) => {
+        const proposal = AppState.skillPackProposals.find(p => p.id === id);
+        if (proposal) {
+            if (!proposal.feedback) proposal.feedback = [];
+            proposal.feedback.push({
+                message: feedback,
+                from: AppState.currentUser,
+                date: new Date().toISOString().split('T')[0],
+                timestamp: Date.now()
+            });
+        }
+    },
+
     addProposalFeedback: (id, feedback) => {
         const proposal = AppState.proposals.find(p => p.id === id);
         if (proposal) {

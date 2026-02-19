@@ -424,6 +424,14 @@
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                     Submit Proposal
                 </button>
+                <button class="quick-action-pill dashboard-faculty-only hidden" onclick="Dashboard.openSkillPackProposals()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+                    Submit Skill Pack
+                </button>
+                <button class="quick-action-pill dashboard-admin-only hidden" onclick="Dashboard.openSkillPackProposals()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><polyline points="9 11 11 13 15 9"/></svg>
+                    Review Skill Packs
+                </button>
                 <button class="quick-action-pill dashboard-admin-only hidden" onclick="Dashboard.openAdmin()">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09"/></svg>
                     Review Proposals
@@ -469,6 +477,34 @@
                     <div class="dashboard-card-tags">
                         <span>Course Bundles</span>
                         <span>Career Paths</span>
+                    </div>
+                </div>
+
+                <!-- Skill Pack Proposals - Faculty only -->
+                <div class="dashboard-card dashboard-faculty-only hidden" data-section="skillpackproposals" onclick="Dashboard.openSkillPackProposals()">
+                    <div class="dashboard-card-icon dashboard-card-icon--skillpacks">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+                    </div>
+                    <h3>Skill Pack Proposals</h3>
+                    <p>Propose new skill packs by bundling existing courses, track your submissions, and respond to committee feedback.</p>
+                    <div class="dashboard-card-tags">
+                        <span>Submit Proposals</span>
+                        <span>Course Bundles</span>
+                        <span>Track Status</span>
+                    </div>
+                </div>
+
+                <!-- Skill Pack Review - Admin only -->
+                <div class="dashboard-card dashboard-admin-only hidden" data-section="skillpackreview" onclick="Dashboard.openSkillPackProposals()">
+                    <div class="dashboard-card-icon dashboard-card-icon--proposals">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><polyline points="9 11 11 13 15 9"/></svg>
+                    </div>
+                    <h3>Review Skill Pack Proposals</h3>
+                    <p>Review pending skill pack proposals from faculty, provide feedback, and approve or reject submissions.</p>
+                    <div class="dashboard-card-tags">
+                        <span>Review Queue</span>
+                        <span>Approve / Reject</span>
+                        <span>Feedback</span>
                     </div>
                 </div>
 
@@ -717,6 +753,53 @@
                     <p>Review and manage pending course proposals submitted by faculty.</p>
                 </div>
                 <div id="pg-proposalList">
+                    <p style="text-align: center; color: #666;">Loading proposals...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skill Pack Proposals Page -->
+    <div id="skillPackProposalsPage" class="hidden">
+        <div class="header">
+            <div class="logo-section">
+                <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D"
+                     alt="Champlain College Shield"
+                     style="height: 50px; margin-right: 20px;"
+                     onerror="this.style.display='none'">
+                <div class="logo-text">Academic Affairs</div>
+            </div>
+            <div class="user-info">
+                <button class="back-to-dashboard-btn" onclick="Dashboard.backToDashboard()">Back to Dashboard</button>
+                <button class="logout-btn" onclick="App.handleLogout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="standalone-page-content">
+            <!-- Faculty section: submit and track skill pack proposals -->
+            <div id="pgSpFacultySection" class="hidden">
+                <div class="standalone-page-header">
+                    <h1>Skill Pack Proposals</h1>
+                    <p>Propose new skill packs, track your submissions, and respond to feedback.</p>
+                </div>
+                <div style="display: flex; justify-content: flex-end; margin-bottom: 24px;">
+                    <button class="btn" style="background: var(--champlain-green); color: white; border: none; padding: 12px 28px; font-size: 15px; border-radius: 6px; cursor: pointer; font-weight: 600;"
+                        onclick="SkillPackProposalsModule.openProposalModal()">
+                        + Submit New Skill Pack Proposal
+                    </button>
+                </div>
+                <div id="pg-spMyProposalsList">
+                    <p style="text-align: center; color: #666;">Loading proposals...</p>
+                </div>
+            </div>
+
+            <!-- Admin section: review pending skill pack proposals -->
+            <div id="pgSpAdminSection" class="hidden">
+                <div class="standalone-page-header">
+                    <h1>Review Skill Pack Proposals</h1>
+                    <p>Review and manage pending skill pack proposals submitted by faculty.</p>
+                </div>
+                <div id="pg-spReviewList">
                     <p style="text-align: center; color: #666;">Loading proposals...</p>
                 </div>
             </div>
@@ -2170,6 +2253,206 @@
         </div>
     </div>
 
+    <!-- Skill Pack Proposal Submission Modal -->
+    <div id="spProposalModal" class="modal">
+        <div class="modal-content" style="max-width: 1100px; width: 95%;">
+            <div class="modal-header">
+                <h2>Submit Skill Pack Proposal</h2>
+                <button class="close-btn" onclick="SkillPackProposalsModule._closeProposalModal()">&times;</button>
+            </div>
+            <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+
+                <!-- Progress Indicator -->
+                <div style="margin-bottom: 25px; padding: 15px; background: linear-gradient(135deg, var(--champlain-navy), var(--champlain-blue)); border-radius: 8px; color: white;">
+                    <div style="font-size: 14px; margin-bottom: 8px;">Proposal Progress</div>
+                    <div style="display: flex; gap: 5px;">
+                        <div class="sp-progress-step" style="flex: 1; height: 6px; background: white; border-radius: 3px;"></div>
+                        <div class="sp-progress-step" style="flex: 1; height: 6px; background: rgba(255,255,255,0.3); border-radius: 3px;"></div>
+                        <div class="sp-progress-step" style="flex: 1; height: 6px; background: rgba(255,255,255,0.3); border-radius: 3px;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px;">
+                        <span>Overview</span>
+                        <span>Courses</span>
+                        <span>Resources</span>
+                    </div>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div style="display: flex; gap: 5px; margin-bottom: 20px; border-bottom: 2px solid var(--champlain-navy); overflow-x: auto;">
+                    <button type="button" class="sp-proposal-tab active" data-tab="overview"
+                        style="padding: 12px 20px; background: var(--champlain-navy); color: white; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap;">
+                        📋 Overview
+                    </button>
+                    <button type="button" class="sp-proposal-tab" data-tab="courses"
+                        style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap;">
+                        📚 Courses
+                    </button>
+                    <button type="button" class="sp-proposal-tab" data-tab="resources"
+                        style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap;">
+                        🔧 Resources &amp; Impact
+                    </button>
+                </div>
+
+                <form id="spProposalForm">
+
+                    <!-- Tab 1: Overview -->
+                    <div class="sp-proposal-tab-content" id="sp-tab-overview">
+                        <h3 style="color: var(--champlain-navy); margin-bottom: 20px;">📋 Overview</h3>
+
+                        <div class="form-group">
+                            <label>Skill Pack Name *</label>
+                            <input type="text" id="spSkillPackName" placeholder="e.g., Cybersecurity Essentials" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Affiliated Program</label>
+                            <input type="text" id="spAffiliatedProgram" placeholder="Degree program this skill pack is related to, or N/A">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Skill Pack Description *
+                                <span style="font-size: 12px; color: #666; font-weight: normal;"> — One sentence, student-centered, marketing audience</span>
+                            </label>
+                            <textarea id="spDescription" rows="3" required
+                                placeholder="Describe what students will do and learn within this skill pack..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Skill Pack Outcome *
+                                <span style="font-size: 12px; color: #666; font-weight: normal;"> — One sentence: what students will be able to do upon completion</span>
+                            </label>
+                            <textarea id="spOutcome" rows="2" required
+                                placeholder="Students will be able to..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Rationale *</label>
+                            <textarea id="spRationale" rows="4" required
+                                placeholder="Explain: how this skill pack opens opportunities for students; the target audience; how it enhances or complements current program offerings..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Courses -->
+                    <div class="sp-proposal-tab-content hidden" id="sp-tab-courses">
+                        <h3 style="color: var(--champlain-navy); margin-bottom: 8px;">📚 Skill Pack Courses</h3>
+                        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">
+                            Select existing courses from the system. For each course, describe how it contributes to the skill pack outcome, identify the competency it advances to Level 3, and note its disposition.
+                        </p>
+
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                                <thead>
+                                    <tr style="background: var(--champlain-navy); color: white;">
+                                        <th style="padding: 10px 8px; text-align: left; min-width: 180px;">Course</th>
+                                        <th style="padding: 10px 8px; text-align: left; min-width: 200px;">Contribution to Skill Pack LO</th>
+                                        <th style="padding: 10px 8px; text-align: left; min-width: 160px;">Competency (Level 3)</th>
+                                        <th style="padding: 10px 8px; text-align: left; min-width: 130px;">Prerequisites</th>
+                                        <th style="padding: 10px 8px; text-align: left; min-width: 150px;">Disposition</th>
+                                        <th style="padding: 10px 8px; text-align: left; min-width: 130px;">Notes</th>
+                                        <th style="padding: 10px 8px; text-align: center; width: 50px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="spCoursesTableBody">
+                                    <!-- Rows added dynamically by SkillPackProposalsModule.addCourseRow() -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div style="margin-top: 12px;">
+                            <button type="button" id="spAddCourseRow"
+                                style="padding: 10px 20px; background: var(--champlain-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
+                                + Add Course
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Resources & Impact -->
+                    <div class="sp-proposal-tab-content hidden" id="sp-tab-resources">
+                        <h3 style="color: var(--champlain-navy); margin-bottom: 20px;">🔧 Resources &amp; Impact</h3>
+
+                        <div class="form-group">
+                            <label>Technology Requirements</label>
+                            <textarea id="spTechnologyRequirements" rows="2"
+                                placeholder="Describe technology requirements in general terms. If none, enter N/A."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Library Resources</label>
+                            <textarea id="spLibraryResources" rows="2"
+                                placeholder="Identify any specific library resources needed. If none, enter N/A."></textarea>
+                        </div>
+
+                        <hr style="margin: 20px 0; border: none; border-top: 1px solid #e0e0e0;">
+                        <h4 style="color: var(--champlain-navy); margin-bottom: 16px;">Linked Proposals</h4>
+
+                        <div class="form-group">
+                            <label>New Course Proposals matched to this Skill Pack</label>
+                            <textarea id="spNewCourseProposals" rows="2"
+                                placeholder="List any new course proposals being developed for this skill pack. Indicate their status."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Course Modification Proposals matched to this Skill Pack</label>
+                            <textarea id="spCourseModifications" rows="2"
+                                placeholder="List any course modifications being proposed. Indicate their status."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Course Elimination Proposals matched to this Skill Pack</label>
+                            <textarea id="spCourseEliminations" rows="2"
+                                placeholder="List any course eliminations affiliated with this skill pack. Indicate their status."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Impact on Other Programs</label>
+                            <textarea id="spProgramImpact" rows="3"
+                                placeholder="If there are course eliminations or modifications, list all programs impacted by these changes."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div id="spProposalSuccess" class="hidden"
+                        style="background: #4caf50; color: white; padding: 15px; border-radius: 6px; margin-top: 20px; text-align: center; font-weight: 600;"></div>
+
+                </form>
+
+                <!-- Navigation Footer -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
+                    <button type="button" id="spPrevTab" style="display: none; padding: 12px 30px; background: #f0f0f0; color: #333; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
+                        ← Previous
+                    </button>
+                    <div></div>
+                    <div style="display: flex; gap: 10px;">
+                        <button type="button" id="spNextTab"
+                            style="padding: 12px 30px; background: var(--champlain-navy); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
+                            Next →
+                        </button>
+                        <button type="button" id="spSubmitProposal" class="hidden"
+                            onclick="SkillPackProposalsModule.submitProposal(event)"
+                            style="padding: 12px 40px; background: var(--champlain-green); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 16px;">
+                            Submit Proposal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skill Pack Proposal Details Modal -->
+    <div id="spDetailsModal" class="modal">
+        <div class="modal-content" style="max-width: 900px; width: 95%;">
+            <div class="modal-header">
+                <h2>Skill Pack Proposal Details</h2>
+                <button class="close-btn" onclick="SkillPackProposalsModule.closeDetailsModal()">&times;</button>
+            </div>
+            <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+                <div id="spProposalDetails">
+                    <p style="text-align: center; color: #666;">Loading...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Keyboard Shortcuts Modal -->
     <div class="shortcuts-modal" id="shortcutsModal">
         <div class="shortcuts-content">
@@ -2222,6 +2505,7 @@
     <script src="js/components/courses.js"></script>
     <script src="js/components/competencies.js"></script>
     <script src="js/components/proposals.js"></script>
+    <script src="js/components/skill-pack-proposals.js"></script>
     <script src="js/components/prerequisites.js"></script>
     <script src="js/components/scheduling.js"></script>
     <script src="js/ui/visualization.js"></script>

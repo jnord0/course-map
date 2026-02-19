@@ -102,6 +102,8 @@ const Dashboard = {
         document.getElementById('skillPacksPage').classList.add('hidden');
         document.getElementById('proposalsPage').classList.add('hidden');
         document.getElementById('managementPage').classList.add('hidden');
+        const spPage = document.getElementById('skillPackProposalsPage');
+        if (spPage) spPage.classList.add('hidden');
         document.getElementById('mainApp').classList.remove('hidden');
 
         // Ensure main app is set up
@@ -176,6 +178,13 @@ const Dashboard = {
     },
 
     /**
+     * Open the skill pack proposals page (faculty: submit; admin: review)
+     */
+    openSkillPackProposals: () => {
+        Dashboard._showSkillPackProposalsPage();
+    },
+
+    /**
      * Show the proposals standalone page and populate it based on role
      */
     _showProposalsPage: () => {
@@ -185,6 +194,8 @@ const Dashboard = {
         document.getElementById('competenciesPage').classList.add('hidden');
         document.getElementById('skillPacksPage').classList.add('hidden');
         document.getElementById('managementPage').classList.add('hidden');
+        const spPage = document.getElementById('skillPackProposalsPage');
+        if (spPage) spPage.classList.add('hidden');
         document.getElementById('proposalsPage').classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -204,6 +215,41 @@ const Dashboard = {
     },
 
     /**
+     * Show the skill pack proposals page, populating the correct role section
+     */
+    _showSkillPackProposalsPage: () => {
+        const allPages = ['dashboardPage', 'mainApp', 'competenciesPage', 'skillPacksPage',
+                          'proposalsPage', 'managementPage', 'skillPackProposalsPage'];
+        allPages.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.classList.add('hidden');
+        });
+        document.getElementById('skillPackProposalsPage').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Initialize the form once
+        if (!Dashboard._spProposalsInitialized) {
+            SkillPackProposalsModule.initializeForm();
+            Dashboard._spProposalsInitialized = true;
+        }
+
+        const facultySection = document.getElementById('pgSpFacultySection');
+        const adminSection = document.getElementById('pgSpAdminSection');
+
+        if (Auth.isAdmin()) {
+            if (facultySection) facultySection.classList.add('hidden');
+            if (adminSection) adminSection.classList.remove('hidden');
+            SkillPackProposalsModule.showReviewQueue('pg-spReviewList', false);
+        } else if (Auth.isFaculty()) {
+            if (adminSection) adminSection.classList.add('hidden');
+            if (facultySection) facultySection.classList.remove('hidden');
+            SkillPackProposalsModule.showMyProposals('pg-spMyProposalsList');
+        }
+    },
+
+    _spProposalsInitialized: false,
+
+    /**
      * Show the management standalone page and populate it (admin only)
      */
     _showManagementPage: () => {
@@ -213,6 +259,8 @@ const Dashboard = {
         document.getElementById('competenciesPage').classList.add('hidden');
         document.getElementById('skillPacksPage').classList.add('hidden');
         document.getElementById('proposalsPage').classList.add('hidden');
+        const spPage = document.getElementById('skillPackProposalsPage');
+        if (spPage) spPage.classList.add('hidden');
         document.getElementById('managementPage').classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -240,6 +288,8 @@ const Dashboard = {
      */
     showCompetencies: () => {
         document.getElementById('dashboardPage').classList.add('hidden');
+        const spPage = document.getElementById('skillPackProposalsPage');
+        if (spPage) spPage.classList.add('hidden');
         document.getElementById('competenciesPage').classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     },
@@ -249,6 +299,8 @@ const Dashboard = {
      */
     showSkillPacks: () => {
         document.getElementById('dashboardPage').classList.add('hidden');
+        const spPage = document.getElementById('skillPackProposalsPage');
+        if (spPage) spPage.classList.add('hidden');
         document.getElementById('skillPacksPage').classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -267,6 +319,8 @@ const Dashboard = {
         document.getElementById('skillPacksPage').classList.add('hidden');
         document.getElementById('proposalsPage').classList.add('hidden');
         document.getElementById('managementPage').classList.add('hidden');
+        const spPage = document.getElementById('skillPackProposalsPage');
+        if (spPage) spPage.classList.add('hidden');
         document.getElementById('dashboardPage').classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
