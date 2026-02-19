@@ -655,8 +655,13 @@ const SkillPackProposalsModule = {
 
     openProposalModal: () => {
         SkillPackProposalsModule.currentProposalId = null;
-        SkillPackProposalsModule.resetForm();
+        // Open the modal first so it's always visible, then reset the form
         SkillPackProposalsModule._openProposalModal();
+        try {
+            SkillPackProposalsModule.resetForm();
+        } catch (err) {
+            console.error('Skill pack proposal form reset error:', err);
+        }
     },
 
     _openProposalModal: () => {
