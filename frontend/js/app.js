@@ -218,36 +218,32 @@ const Dashboard = {
      * Show the skill pack proposals page, populating the correct role section
      */
     _showSkillPackProposalsPage: () => {
-        const allPages = ['dashboardPage', 'mainApp', 'competenciesPage', 'skillPacksPage',
-                          'proposalsPage', 'managementPage', 'skillPackProposalsPage'];
-        allPages.forEach(id => {
+        // Hide all pages
+        ['dashboardPage', 'mainApp', 'competenciesPage', 'skillPacksPage',
+         'proposalsPage', 'managementPage', 'skillPackProposalsPage'].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.classList.add('hidden');
         });
-        document.getElementById('skillPackProposalsPage').classList.remove('hidden');
+
+        // Show the skill pack proposals page
+        const page = document.getElementById('skillPackProposalsPage');
+        page.classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
-        // Initialize the form once
-        if (!Dashboard._spProposalsInitialized) {
-            SkillPackProposalsModule.initializeForm();
-            Dashboard._spProposalsInitialized = true;
-        }
-
+        const role = StateGetters.getCurrentRole();
         const facultySection = document.getElementById('pgSpFacultySection');
         const adminSection = document.getElementById('pgSpAdminSection');
 
-        if (Auth.isAdmin()) {
+        if (role === 'Administrator') {
             if (facultySection) facultySection.classList.add('hidden');
             if (adminSection) adminSection.classList.remove('hidden');
             SkillPackProposalsModule.showReviewQueue('pg-spReviewList', false);
-        } else if (Auth.isFaculty()) {
+        } else if (role === 'Faculty') {
             if (adminSection) adminSection.classList.add('hidden');
             if (facultySection) facultySection.classList.remove('hidden');
             SkillPackProposalsModule.showMyProposals('pg-spMyProposalsList');
         }
     },
-
-    _spProposalsInitialized: false,
 
     /**
      * Show the management standalone page and populate it (admin only)
@@ -353,6 +349,9 @@ const App = {
 
         // Setup modal click-outside functionality
         ModalsModule.setupModalListeners();
+
+        // Initialize skill pack proposals form listeners
+        SkillPackProposalsModule.initializeForm();
 
         console.log('Application initialized successfully');
     },
