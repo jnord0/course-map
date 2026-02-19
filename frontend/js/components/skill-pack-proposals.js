@@ -430,8 +430,6 @@ const SkillPackProposalsModule = {
         const modal = document.getElementById('spDetailsModal');
         if (modal) {
             modal.style.display = 'block';
-            modal.style.opacity = '1';
-            modal.style.animation = 'none';
         }
     },
 
@@ -670,26 +668,16 @@ const SkillPackProposalsModule = {
 
     _openProposalModal: () => {
         const modal = document.getElementById('spProposalModal');
-        if (!modal) return;
-        // Override the CSS animation that keeps opacity at 0
-        modal.style.display = 'block';
-        modal.style.opacity = '1';
-        modal.style.animation = 'none';
+        if (modal) modal.style.display = 'block';
     },
 
     _closeProposalModal: () => {
         const modal = document.getElementById('spProposalModal');
-        if (!modal) return;
-        modal.style.display = 'none';
-        modal.style.opacity = '';
-        modal.style.animation = '';
+        if (modal) modal.style.display = 'none';
     },
 
     closeDetailsModal: () => {
         const modal = document.getElementById('spDetailsModal');
-        if (!modal) return;
-        modal.style.display = 'none';
-        modal.style.opacity = '';
-        modal.style.animation = '';
+        if (modal) modal.style.display = 'none';
     }
 };

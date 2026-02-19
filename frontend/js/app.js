@@ -96,6 +96,9 @@ const Dashboard = {
      * @param {string} view - The view to activate (network, graphs, semester, skillpacks)
      */
     goToMainApp: (view) => {
+        // Close any open modals before switching pages
+        ModalsModule.closeAllModals();
+
         // Hide all pages, show main app
         document.getElementById('dashboardPage').classList.add('hidden');
         document.getElementById('competenciesPage').classList.add('hidden');
@@ -188,6 +191,9 @@ const Dashboard = {
      * Show the proposals standalone page and populate it based on role
      */
     _showProposalsPage: () => {
+        // Close any open modals before switching pages
+        ModalsModule.closeAllModals();
+
         // Hide all other sections
         document.getElementById('dashboardPage').classList.add('hidden');
         document.getElementById('mainApp').classList.add('hidden');
@@ -218,6 +224,9 @@ const Dashboard = {
      * Show the skill pack proposals page, populating the correct role section
      */
     _showSkillPackProposalsPage: () => {
+        // Close any open modals before switching pages
+        ModalsModule.closeAllModals();
+
         // Hide all pages
         ['dashboardPage', 'mainApp', 'competenciesPage', 'skillPacksPage',
          'proposalsPage', 'managementPage', 'skillPackProposalsPage'].forEach(id => {
@@ -249,6 +258,9 @@ const Dashboard = {
      * Show the management standalone page and populate it (admin only)
      */
     _showManagementPage: () => {
+        // Close any open modals before switching pages
+        ModalsModule.closeAllModals();
+
         // Hide all other sections
         document.getElementById('dashboardPage').classList.add('hidden');
         document.getElementById('mainApp').classList.add('hidden');
@@ -283,6 +295,7 @@ const Dashboard = {
      * Show the competencies info page
      */
     showCompetencies: () => {
+        ModalsModule.closeAllModals();
         document.getElementById('dashboardPage').classList.add('hidden');
         const spPage = document.getElementById('skillPackProposalsPage');
         if (spPage) spPage.classList.add('hidden');
@@ -294,6 +307,7 @@ const Dashboard = {
      * Show the skill packs browsing page
      */
     showSkillPacks: () => {
+        ModalsModule.closeAllModals();
         document.getElementById('dashboardPage').classList.add('hidden');
         const spPage = document.getElementById('skillPackProposalsPage');
         if (spPage) spPage.classList.add('hidden');
@@ -310,6 +324,9 @@ const Dashboard = {
      * Go back to dashboard from any sub-page
      */
     backToDashboard: () => {
+        // Close any open modals before switching pages
+        ModalsModule.closeAllModals();
+
         document.getElementById('mainApp').classList.add('hidden');
         document.getElementById('competenciesPage').classList.add('hidden');
         document.getElementById('skillPacksPage').classList.add('hidden');
