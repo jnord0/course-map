@@ -741,49 +741,41 @@
 
         <div class="standalone-page-content">
             <div class="standalone-page-header">
-                <h1>System Management Dashboard</h1>
-                <p>Manage courses, competencies, and monitor system activity.</p>
+                <h1>System Administration</h1>
+                <p>Manage courses, competencies, and monitor academic program activity.</p>
             </div>
 
             <!-- System Statistics -->
-            <div style="margin-bottom: 30px;">
-                <h3 style="color: var(--champlain-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 20px;">📊</span> System Overview
-                </h3>
+            <div class="mgmt-section">
+                <h3 class="mgmt-section-title">System Overview</h3>
                 <div id="pg-systemStats"></div>
             </div>
 
             <!-- Course Management -->
-            <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                    <h3 style="color: var(--champlain-navy); margin: 0; display: flex; align-items: center; gap: 10px;">
-                        <span style="font-size: 20px;">📚</span> Course Management
-                    </h3>
-                    <button class="btn" onclick="CoursesModule.showEditModal(null)" style="margin: 0; background: var(--champlain-bright-blue); color: white; border: none;">
-                        + Add New Course
+            <div class="mgmt-section">
+                <div class="mgmt-section-header">
+                    <h3 class="mgmt-section-title">Course Management</h3>
+                    <button class="btn btn-primary-action" onclick="CoursesModule.showEditModal(null)">
+                        Add New Course
                     </button>
                 </div>
-                <div style="margin-bottom: 15px;">
+                <div class="mgmt-search-bar">
                     <input type="text" id="pg-manageCourseSearch"
-                        placeholder="Search courses by code or name..."
-                        style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 14px; box-sizing: border-box;">
+                        placeholder="Search courses by code or title..."
+                        class="mgmt-search-input">
                 </div>
-                <div id="pg-coursesList" style="max-height: 500px; overflow-y: auto;"></div>
+                <div id="pg-coursesList" class="mgmt-list-container"></div>
             </div>
 
             <!-- Competency Management -->
-            <div style="margin-bottom: 30px; padding: 20px; background: #e8f5e9; border-radius: 8px;">
-                <h3 style="color: var(--champlain-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 20px;">🎯</span> Competency Management
-                </h3>
+            <div class="mgmt-section">
+                <h3 class="mgmt-section-title">Competency Management</h3>
                 <div id="pg-competenciesList"></div>
             </div>
 
-            <!-- Learning Objectives -->
-            <div style="padding: 20px; background: #e3f2fd; border-radius: 8px; margin-bottom: 40px;">
-                <h3 style="color: var(--champlain-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 20px;">✓</span> Learning Objectives
-                </h3>
+            <!-- Learning Outcomes -->
+            <div class="mgmt-section mgmt-section--last">
+                <h3 class="mgmt-section-title">Learning Outcomes</h3>
                 <div id="pg-objectivesList"></div>
             </div>
         </div>

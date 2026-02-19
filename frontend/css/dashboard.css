@@ -285,6 +285,74 @@
     padding: 50px 40px 80px;
 }
 
+/* Management page section panels */
+.mgmt-section {
+    background: #ffffff;
+    border: 1px solid #e2e6ea;
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+}
+
+.mgmt-section--last {
+    margin-bottom: 40px;
+}
+
+.mgmt-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.mgmt-section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--champlain-navy);
+    margin: 0 0 16px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e2e6ea;
+}
+
+.mgmt-section-header .mgmt-section-title {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.btn-primary-action {
+    margin: 0;
+    background: var(--champlain-bright-blue);
+    color: white;
+    border: none;
+    white-space: nowrap;
+}
+
+.mgmt-search-bar {
+    margin-bottom: 16px;
+}
+
+.mgmt-search-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mgmt-search-input:focus {
+    outline: none;
+    border-color: var(--champlain-bright-blue);
+    box-shadow: 0 0 0 3px rgba(0, 169, 224, 0.15);
+}
+
+.mgmt-list-container {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
 .standalone-page-header {
     text-align: center;
     margin-bottom: 60px;

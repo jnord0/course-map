@@ -257,8 +257,8 @@ const CoursesModule = {
                             ${course.description ? `<div style="margin-top: 8px; font-size: 12px; color: #666;">${course.description.substring(0, 100)}...</div>` : ''}
                         </div>
                         <div class="proposal-actions">
-                            <button class="action-btn btn-view" onclick="CoursesModule.editCourse(${course.id})">✏️ Edit</button>
-                            <button class="action-btn btn-reject" onclick="CoursesModule.deleteCourse(${course.id})">🗑️ Delete</button>
+                            <button class="action-btn btn-view" onclick="CoursesModule.editCourse(${course.id})">Edit</button>
+                            <button class="action-btn btn-reject" onclick="CoursesModule.deleteCourse(${course.id})">Delete</button>
                         </div>
                     </div>
                 `;
@@ -293,7 +293,7 @@ const CoursesModule = {
                             <div style="font-size: 12px; color: #666; margin-top: 4px;">ID: ${comp.id}</div>
                         </div>
                         <button class="small-action-btn" onclick="CoursesModule.editCompetency('${comp.id}')" title="Edit Competency">
-                            ✏️
+                            Edit
                         </button>
                     </div>
                     <div style="display: flex; gap: 15px; margin-top: 10px;">
@@ -336,27 +336,21 @@ const CoursesModule = {
 
         listDiv.innerHTML = `
             <div style="margin-bottom: 20px;">
-                <h4 style="color: var(--champlain-navy); font-size: 14px; margin-bottom: 10px;">Program Learning Objectives (PLOs)</h4>
+                <h4 style="color: var(--champlain-navy); font-size: 14px; margin-bottom: 10px;">Program Learning Outcomes (PLOs)</h4>
                 ${ploArray.length > 0 ? ploArray.map(plo => `
                     <div class="objective-item">
-                        <span>${plo.toUpperCase()}</span>
+                        <span>${plo}</span>
                     </div>
                 `).join('') : '<p style="color: #999; font-size: 13px;">No PLOs defined</p>'}
-                <button class="btn" onclick="CoursesModule.managePLOs()" style="margin-top: 10px; font-size: 13px;">
-                    Manage PLOs
-                </button>
             </div>
 
             <div>
-                <h4 style="color: var(--champlain-navy); font-size: 14px; margin-bottom: 10px;">Course Learning Objectives (CLOs)</h4>
+                <h4 style="color: var(--champlain-navy); font-size: 14px; margin-bottom: 10px;">Course Learning Outcomes (CLOs)</h4>
                 ${cloArray.length > 0 ? cloArray.map(clo => `
                     <div class="objective-item">
-                        <span>${clo.toUpperCase()}</span>
+                        <span>${clo}</span>
                     </div>
                 `).join('') : '<p style="color: #999; font-size: 13px;">No CLOs defined</p>'}
-                <button class="btn" onclick="CoursesModule.manageCLOs()" style="margin-top: 10px; font-size: 13px;">
-                    Manage CLOs
-                </button>
             </div>
         `;
     },
