@@ -69,6 +69,8 @@ const SkillPackProposalsModule = {
                 }
             });
         }
+
+        console.log('[SP Debug] initializeForm completed successfully');
     },
 
     // -------------------------------------------------------------------------
@@ -654,18 +656,46 @@ const SkillPackProposalsModule = {
     // -------------------------------------------------------------------------
 
     openProposalModal: () => {
+        console.log('[SP Debug] openProposalModal called');
         SkillPackProposalsModule.currentProposalId = null;
-        // Open the modal first so it's always visible, then reset the form
-        SkillPackProposalsModule._openProposalModal();
+
+        // Step 1: Find the modal element
+        const modal = document.getElementById('spProposalModal');
+        console.log('[SP Debug] spProposalModal element:', modal);
+        console.log('[SP Debug] modal current display:', modal ? modal.style.display : 'ELEMENT NOT FOUND');
+        console.log('[SP Debug] modal computed display:', modal ? window.getComputedStyle(modal).display : 'N/A');
+        console.log('[SP Debug] modal classes:', modal ? modal.className : 'N/A');
+
+        // Step 2: Force the modal open
+        if (modal) {
+            modal.style.display = 'block';
+            modal.style.zIndex = '9999';
+            console.log('[SP Debug] Set display=block, zIndex=9999');
+            console.log('[SP Debug] modal computed display AFTER:', window.getComputedStyle(modal).display);
+            console.log('[SP Debug] modal computed visibility AFTER:', window.getComputedStyle(modal).visibility);
+            console.log('[SP Debug] modal computed opacity AFTER:', window.getComputedStyle(modal).opacity);
+            console.log('[SP Debug] modal offsetHeight:', modal.offsetHeight);
+            console.log('[SP Debug] modal getBoundingClientRect:', JSON.stringify(modal.getBoundingClientRect()));
+        } else {
+            console.error('[SP Debug] FATAL: spProposalModal not found in DOM!');
+            alert('Error: Skill pack proposal modal not found. Check console for details.');
+            return;
+        }
+
+        // Step 3: Try resetting the form
         try {
             SkillPackProposalsModule.resetForm();
+            console.log('[SP Debug] resetForm completed successfully');
         } catch (err) {
-            console.error('Skill pack proposal form reset error:', err);
+            console.error('[SP Debug] resetForm error:', err);
         }
+
+        console.log('[SP Debug] openProposalModal complete');
     },
 
     _openProposalModal: () => {
         const modal = document.getElementById('spProposalModal');
+        console.log('[SP Debug] _openProposalModal - modal:', modal ? 'found' : 'NOT FOUND');
         if (modal) modal.style.display = 'block';
     },
 
@@ -679,3 +709,7 @@ const SkillPackProposalsModule = {
         if (modal) modal.style.display = 'none';
     }
 };
+
+// Verify module loaded and is accessible
+console.log('[SP Debug] SkillPackProposalsModule loaded:', typeof SkillPackProposalsModule);
+console.log('[SP Debug] openProposalModal is:', typeof SkillPackProposalsModule.openProposalModal);

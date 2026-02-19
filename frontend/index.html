@@ -784,8 +784,8 @@
                     <p>Propose new skill packs, track your submissions, and respond to feedback.</p>
                 </div>
                 <div style="display: flex; justify-content: flex-end; margin-bottom: 24px;">
-                    <button class="btn" style="background: var(--champlain-green); color: white; border: none; padding: 12px 28px; font-size: 15px; border-radius: 6px; cursor: pointer; font-weight: 600;"
-                        onclick="SkillPackProposalsModule.openProposalModal()">
+                    <button id="spOpenProposalBtn" class="btn" style="background: var(--champlain-green); color: white; border: none; padding: 12px 28px; font-size: 15px; border-radius: 6px; cursor: pointer; font-weight: 600;"
+                        onclick="console.log('[SP Debug] onclick fired'); try { SkillPackProposalsModule.openProposalModal(); } catch(e) { console.error('[SP Debug] onclick error:', e); alert('Error opening modal: ' + e.message); }">
                         + Submit New Skill Pack Proposal
                     </button>
                 </div>
