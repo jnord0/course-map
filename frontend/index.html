@@ -1827,8 +1827,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Affiliated Program</label>
-                            <input type="text" id="spAffiliatedProgram" placeholder="Degree program this skill pack is related to, or N/A">
+                            <label>Affiliated Programs</label>
+                            <div id="spAffiliatedProgramsList" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px;"></div>
+                            <button type="button" id="spAddAffiliatedProgram"
+                                style="padding: 6px 16px; background: var(--champlain-blue); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600;">
+                                + Add Program
+                            </button>
                         </div>
 
                         <div class="form-group">
@@ -1867,8 +1871,8 @@
                                     <tr style="background: var(--champlain-navy); color: white;">
                                         <th style="padding: 10px 8px; text-align: left; min-width: 180px;">Course</th>
                                         <th style="padding: 10px 8px; text-align: left; min-width: 200px;">Contribution to Skill Pack LO</th>
-                                        <th style="padding: 10px 8px; text-align: left; min-width: 160px;">Competency (Level 3)</th>
-                                        <th style="padding: 10px 8px; text-align: left; min-width: 130px;">Prerequisites</th>
+                                        <th style="padding: 10px 8px; text-align: left; min-width: 190px;">Competencies (Level 3)</th>
+                                        <th style="padding: 10px 8px; text-align: left; min-width: 160px;">Prerequisites</th>
                                         <th style="padding: 10px 8px; text-align: left; min-width: 150px;">Disposition</th>
                                         <th style="padding: 10px 8px; text-align: left; min-width: 130px;">Notes</th>
                                         <th style="padding: 10px 8px; text-align: center; width: 50px;"></th>

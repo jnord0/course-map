@@ -57,7 +57,7 @@ const SkillPackProposalsModule = {
             });
         }
 
-        // Delegate remove-course-row clicks inside the table body
+        // Delegate clicks inside the courses table body
         const tbody = document.getElementById('spCoursesTableBody');
         if (tbody) {
             tbody.addEventListener('click', (e) => {
@@ -65,6 +65,52 @@ const SkillPackProposalsModule = {
                     const rows = tbody.querySelectorAll('tr');
                     if (rows.length > 1) {
                         e.target.closest('tr').remove();
+                    }
+                }
+                if (e.target.classList.contains('sp-prereq-add')) {
+                    const wrap = e.target.closest('.sp-prereq-wrap');
+                    const input = wrap ? wrap.querySelector('.sp-prereq-input') : null;
+                    if (input && input.value.trim()) {
+                        SkillPackProposalsModule._addPrereqTag(
+                            wrap.querySelector('.sp-prereq-list'),
+                            input.value.trim()
+                        );
+                        input.value = '';
+                    }
+                }
+                if (e.target.classList.contains('sp-prereq-remove')) {
+                    e.target.closest('.sp-prereq-tag').remove();
+                }
+            });
+            tbody.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('sp-prereq-input')) {
+                    e.preventDefault();
+                    const wrap = e.target.closest('.sp-prereq-wrap');
+                    if (e.target.value.trim()) {
+                        SkillPackProposalsModule._addPrereqTag(
+                            wrap.querySelector('.sp-prereq-list'),
+                            e.target.value.trim()
+                        );
+                        e.target.value = '';
+                    }
+                }
+            });
+        }
+
+        // Affiliated programs dynamic list
+        const addProgramBtn = document.getElementById('spAddAffiliatedProgram');
+        if (addProgramBtn) {
+            addProgramBtn.addEventListener('click', () => {
+                SkillPackProposalsModule._addAffiliatedProgramInput();
+            });
+        }
+        const programsList = document.getElementById('spAffiliatedProgramsList');
+        if (programsList) {
+            programsList.addEventListener('click', (e) => {
+                if (e.target.classList.contains('sp-program-remove')) {
+                    const row = e.target.closest('.sp-program-row');
+                    if (row && programsList.children.length > 1) {
+                        row.remove();
                     }
                 }
             });
@@ -189,31 +235,57 @@ const SkillPackProposalsModule = {
             'Creativity', 'Ethical Reasoning', 'Quantitative Literacy'
         ];
 
+        // Backward-compat: support old single 'competency' string and new 'competencies' array
+        const selectedCompetencies = Array.isArray(data.competencies)
+            ? data.competencies
+            : (data.competency ? [data.competency] : []);
+
+        // Backward-compat: support old 'prerequisites' string and new array
+        const prereqArray = Array.isArray(data.prerequisites)
+            ? data.prerequisites
+            : (data.prerequisites ? data.prerequisites.split(',').map(s => s.trim()).filter(Boolean) : []);
+
+        const competencyChecks = competencyNames.map(c => `
+            <label style="display:flex; align-items:center; gap:4px; font-size:11px; cursor:pointer; padding:1px 0;">
+                <input type="checkbox" class="sp-course-competency-cb" value="${c}"
+                    ${selectedCompetencies.includes(c) ? 'checked' : ''}
+                    style="accent-color:var(--champlain-navy); cursor:pointer; flex-shrink:0;">
+                <span>${c}</span>
+            </label>`).join('');
+
+        const prereqTagsHtml = prereqArray.map(p =>
+            `<span class="sp-prereq-tag" data-prereq="${p}" style="display:inline-flex; align-items:center; gap:2px; background:var(--champlain-blue); color:white; padding:2px 7px 2px 8px; border-radius:12px; font-size:11px; white-space:nowrap;">${p}<button type="button" class="sp-prereq-remove" style="background:none; border:none; color:white; cursor:pointer; padding:0 0 0 2px; font-size:13px; line-height:1;">&times;</button></span>`
+        ).join('');
+
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td style="padding:8px; min-width:180px;">
+            <td style="padding:8px; min-width:180px; vertical-align:top;">
                 <select class="sp-course-select" style="width:100%; padding:6px; border:1px solid #ccc; border-radius:4px; font-size:13px;">
                     ${SkillPackProposalsModule._buildCourseOptions(data.courseCode || '')}
                 </select>
             </td>
-            <td style="padding:8px; min-width:180px;">
-                <textarea class="sp-course-contribution" rows="2"
+            <td style="padding:8px; min-width:180px; vertical-align:top;">
+                <textarea class="sp-course-contribution" rows="3"
                     placeholder="How does this course contribute to the skill pack outcome?"
                     style="width:100%; padding:6px; border:1px solid #ccc; border-radius:4px; font-size:13px; resize:vertical;">${data.contribution || ''}</textarea>
             </td>
-            <td style="padding:8px; min-width:160px;">
-                <select class="sp-course-competency"
-                    style="width:100%; padding:6px; border:1px solid #ccc; border-radius:4px; font-size:13px;">
-                    <option value="">-- None --</option>
-                    ${competencyNames.map(c => `<option value="${c}" ${data.competency === c ? 'selected' : ''}>${c}</option>`).join('')}
-                </select>
+            <td style="padding:8px; min-width:190px; vertical-align:top;">
+                <div style="display:flex; flex-direction:column; gap:2px; max-height:175px; overflow-y:auto; padding:6px; border:1px solid #ccc; border-radius:4px; background:#fafafa;">
+                    ${competencyChecks}
+                </div>
             </td>
-            <td style="padding:8px; min-width:130px;">
-                <input type="text" class="sp-course-prerequisites" value="${data.prerequisites || ''}"
-                    placeholder="e.g. CSI-140"
-                    style="width:100%; padding:6px; border:1px solid #ccc; border-radius:4px; font-size:13px;">
+            <td style="padding:8px; min-width:160px; vertical-align:top;">
+                <div class="sp-prereq-wrap">
+                    <div class="sp-prereq-list" style="display:flex; flex-wrap:wrap; gap:4px; margin-bottom:6px; min-height:18px;">${prereqTagsHtml}</div>
+                    <div style="display:flex; gap:4px;">
+                        <input type="text" class="sp-prereq-input" placeholder="e.g. CSI-140"
+                            style="flex:1; min-width:0; padding:5px 6px; border:1px solid #ccc; border-radius:4px; font-size:12px;">
+                        <button type="button" class="sp-prereq-add"
+                            style="padding:5px 8px; background:var(--champlain-blue); color:white; border:none; border-radius:4px; cursor:pointer; font-size:12px; flex-shrink:0;">+</button>
+                    </div>
+                </div>
             </td>
-            <td style="padding:8px; min-width:140px;">
+            <td style="padding:8px; min-width:140px; vertical-align:top;">
                 <select class="sp-course-disposition"
                     style="width:100%; padding:6px; border:1px solid #ccc; border-radius:4px; font-size:13px;">
                     <option value="existing" ${(data.disposition || 'existing') === 'existing' ? 'selected' : ''}>Existing – as is</option>
@@ -221,17 +293,52 @@ const SkillPackProposalsModule = {
                     <option value="new" ${data.disposition === 'new' ? 'selected' : ''}>New course</option>
                 </select>
             </td>
-            <td style="padding:8px; min-width:130px;">
+            <td style="padding:8px; min-width:130px; vertical-align:top;">
                 <input type="text" class="sp-course-notes" value="${data.notes || ''}"
                     placeholder="Any notes..."
                     style="width:100%; padding:6px; border:1px solid #ccc; border-radius:4px; font-size:13px;">
             </td>
-            <td style="padding:8px; text-align:center;">
+            <td style="padding:8px; text-align:center; vertical-align:top;">
                 <button type="button" class="sp-remove-course-row"
                     style="padding:5px 10px; background:#f44336; color:white; border:none; border-radius:4px; cursor:pointer; font-size:12px;">✕</button>
             </td>
         `;
         tbody.appendChild(tr);
+    },
+
+    /**
+     * Add a program input row to the affiliated programs list.
+     * @param {string} value - Pre-filled value for edit mode.
+     */
+    _addAffiliatedProgramInput: (value = '') => {
+        const list = document.getElementById('spAffiliatedProgramsList');
+        if (!list) return;
+        const row = document.createElement('div');
+        row.className = 'sp-program-row';
+        row.style.cssText = 'display:flex; gap:8px; align-items:center;';
+        row.innerHTML = `
+            <input type="text" class="sp-program-input" value="${value}"
+                placeholder="Degree program this skill pack is related to"
+                style="flex:1; padding:8px 12px; border:1px solid #ccc; border-radius:4px; font-size:14px;">
+            <button type="button" class="sp-program-remove"
+                style="padding:6px 12px; background:#f44336; color:white; border:none; border-radius:4px; cursor:pointer; font-size:13px; flex-shrink:0;">✕</button>
+        `;
+        list.appendChild(row);
+    },
+
+    /**
+     * Add a prerequisite tag to a prereq list container.
+     * @param {Element} container - The .sp-prereq-list element.
+     * @param {string} value - The prereq course code.
+     */
+    _addPrereqTag: (container, value) => {
+        if (!container || !value) return;
+        const span = document.createElement('span');
+        span.className = 'sp-prereq-tag';
+        span.dataset.prereq = value;
+        span.style.cssText = 'display:inline-flex; align-items:center; gap:2px; background:var(--champlain-blue); color:white; padding:2px 7px 2px 8px; border-radius:12px; font-size:11px; white-space:nowrap;';
+        span.innerHTML = `${value}<button type="button" class="sp-prereq-remove" style="background:none; border:none; color:white; cursor:pointer; padding:0 0 0 2px; font-size:13px; line-height:1;">&times;</button>`;
+        container.appendChild(span);
     },
 
     // -------------------------------------------------------------------------
@@ -266,7 +373,9 @@ const SkillPackProposalsModule = {
                     </div>
                     <div class="proposal-info">
                         Submitted: ${p.submittedDate}
-                        ${p.affiliatedProgram ? ` | Program: ${p.affiliatedProgram}` : ''}
+                        ${(p.affiliatedPrograms && p.affiliatedPrograms.length > 0)
+                            ? ` | Programs: ${p.affiliatedPrograms.join(', ')}`
+                            : (p.affiliatedProgram ? ` | Program: ${p.affiliatedProgram}` : '')}
                         ${hasFeedback ? `<span style="color:#FF9800; font-weight:bold; margin-left:10px;">💬 ${p.feedback.length} Feedback</span>` : ''}
                     </div>
                     <div class="proposal-actions">
@@ -309,7 +418,9 @@ const SkillPackProposalsModule = {
                     </div>
                     <div class="proposal-info">
                         By: ${p.submittedBy} | ${p.submittedDate}
-                        ${p.affiliatedProgram ? ` | Program: ${p.affiliatedProgram}` : ''}
+                        ${(p.affiliatedPrograms && p.affiliatedPrograms.length > 0)
+                            ? ` | Programs: ${p.affiliatedPrograms.join(', ')}`
+                            : (p.affiliatedProgram ? ` | Program: ${p.affiliatedProgram}` : '')}
                         ${hasFeedback ? `<span style="color:#FF9800; font-weight:bold; margin-left:10px;">💬 ${p.feedback.length} Feedback</span>` : ''}
                     </div>
                     <div class="proposal-actions">
@@ -345,16 +456,23 @@ const SkillPackProposalsModule = {
         // Build course rows table
         let coursesTable = '';
         if (proposal.courses && proposal.courses.length > 0) {
-            const rows = proposal.courses.map(c => `
+            const rows = proposal.courses.map(c => {
+                const comps = Array.isArray(c.competencies) && c.competencies.length > 0
+                    ? c.competencies.join(', ')
+                    : (c.competency || '–');
+                const prereqs = Array.isArray(c.prerequisites) && c.prerequisites.length > 0
+                    ? c.prerequisites.join(', ')
+                    : (typeof c.prerequisites === 'string' && c.prerequisites ? c.prerequisites : 'None');
+                return `
                 <tr>
                     <td style="padding:8px; border:1px solid #ddd;">${c.courseCode}</td>
                     <td style="padding:8px; border:1px solid #ddd;">${c.contribution || '–'}</td>
-                    <td style="padding:8px; border:1px solid #ddd;">${c.competency || '–'}</td>
-                    <td style="padding:8px; border:1px solid #ddd;">${c.prerequisites || 'None'}</td>
+                    <td style="padding:8px; border:1px solid #ddd;">${comps}</td>
+                    <td style="padding:8px; border:1px solid #ddd;">${prereqs}</td>
                     <td style="padding:8px; border:1px solid #ddd;">${c.disposition || '–'}</td>
                     <td style="padding:8px; border:1px solid #ddd;">${c.notes || '–'}</td>
                 </tr>
-            `).join('');
+            `}).join('');
             coursesTable = `
                 <table style="width:100%; border-collapse:collapse; font-size:13px; margin-top:8px;">
                     <thead>
@@ -399,7 +517,11 @@ const SkillPackProposalsModule = {
 
                 <div style="background:#f8f9fa; padding:15px; border-radius:6px; margin-bottom:15px;">
                     <h4 style="margin-top:0;">Overview</h4>
-                    <p style="margin-bottom:8px;"><strong>Affiliated Program:</strong> ${proposal.affiliatedProgram || 'N/A'}</p>
+                    <p style="margin-bottom:8px;"><strong>Affiliated Programs:</strong> ${
+                        proposal.affiliatedPrograms && proposal.affiliatedPrograms.length > 0
+                            ? proposal.affiliatedPrograms.join(', ')
+                            : (proposal.affiliatedProgram || 'N/A')
+                    }</p>
                     <p style="margin-bottom:8px;"><strong>Description:</strong> ${proposal.description}</p>
                     <p style="margin-bottom:8px;"><strong>Outcome:</strong> ${proposal.outcome}</p>
                     <p style="margin-bottom:0;"><strong>Rationale:</strong> ${proposal.rationale}</p>
@@ -514,11 +636,16 @@ const SkillPackProposalsModule = {
         rows.forEach(row => {
             const courseCode = row.querySelector('.sp-course-select')?.value || '';
             if (!courseCode) return;
+            const competencies = Array.from(row.querySelectorAll('.sp-course-competency-cb:checked'))
+                .map(cb => cb.value);
+            const prerequisites = Array.from(row.querySelectorAll('.sp-prereq-tag'))
+                .map(tag => tag.dataset.prereq)
+                .filter(Boolean);
             courses.push({
                 courseCode,
                 contribution: row.querySelector('.sp-course-contribution')?.value.trim() || '',
-                competency: row.querySelector('.sp-course-competency')?.value || '',
-                prerequisites: row.querySelector('.sp-course-prerequisites')?.value.trim() || '',
+                competencies,
+                prerequisites,
                 disposition: row.querySelector('.sp-course-disposition')?.value || 'existing',
                 notes: row.querySelector('.sp-course-notes')?.value.trim() || ''
             });
@@ -532,7 +659,8 @@ const SkillPackProposalsModule = {
 
         const proposalData = {
             skillPackName: document.getElementById('spSkillPackName')?.value.trim() || '',
-            affiliatedProgram: document.getElementById('spAffiliatedProgram')?.value.trim() || 'N/A',
+            affiliatedPrograms: Array.from(document.querySelectorAll('#spAffiliatedProgramsList .sp-program-input'))
+                .map(inp => inp.value.trim()).filter(Boolean),
             description: document.getElementById('spDescription')?.value.trim() || '',
             outcome: document.getElementById('spOutcome')?.value.trim() || '',
             rationale: document.getElementById('spRationale')?.value.trim() || '',
@@ -602,7 +730,18 @@ const SkillPackProposalsModule = {
             if (el) el.value = val || '';
         };
         setVal('spSkillPackName', proposal.skillPackName);
-        setVal('spAffiliatedProgram', proposal.affiliatedProgram);
+
+        // Rebuild affiliated programs list
+        const progList = document.getElementById('spAffiliatedProgramsList');
+        if (progList) {
+            progList.innerHTML = '';
+            const programs = proposal.affiliatedPrograms && proposal.affiliatedPrograms.length > 0
+                ? proposal.affiliatedPrograms
+                : (proposal.affiliatedProgram ? [proposal.affiliatedProgram] : []);
+            programs.forEach(p => SkillPackProposalsModule._addAffiliatedProgramInput(p));
+            if (progList.children.length === 0) SkillPackProposalsModule._addAffiliatedProgramInput();
+        }
+
         setVal('spDescription', proposal.description);
         setVal('spOutcome', proposal.outcome);
         setVal('spRationale', proposal.rationale);
@@ -644,6 +783,13 @@ const SkillPackProposalsModule = {
 
         SkillPackProposalsModule.currentTab = 0;
         SkillPackProposalsModule.switchTab('overview');
+
+        // Reset affiliated programs to one empty row
+        const progList = document.getElementById('spAffiliatedProgramsList');
+        if (progList) {
+            progList.innerHTML = '';
+            SkillPackProposalsModule._addAffiliatedProgramInput();
+        }
 
         const tbody = document.getElementById('spCoursesTableBody');
         if (tbody) {
