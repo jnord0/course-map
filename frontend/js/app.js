@@ -517,7 +517,7 @@ const App = {
             submitProposalBtn.addEventListener('click', ModalsModule.openProposalModal);
         }
         if (myProposalsBtn) {
-            myProposalsBtn.addEventListener('click', ProposalsModule.showMyProposals);
+            myProposalsBtn.addEventListener('click', () => ProposalsModule.showMyProposals());
         }
 
         // Admin buttons
@@ -525,7 +525,7 @@ const App = {
         const manageBtn = document.getElementById('manageCoursesBtn');
 
         if (reviewBtn) {
-            reviewBtn.addEventListener('click', ProposalsModule.showReviewModal);
+            reviewBtn.addEventListener('click', () => ProposalsModule.showReviewModal());
         }
         if (manageBtn) {
             manageBtn.addEventListener('click', CoursesModule.showManageModal);
