@@ -354,7 +354,60 @@ const AppState = {
     ],
     
     // Skill Pack Proposals
-    skillPackProposals: [],
+    skillPackProposals: [
+        {
+            id: 1001,
+            skillPackName: 'AI & Machine Learning Practitioner',
+            affiliatedPrograms: ['Computer Science & Innovation', 'Data Science'],
+            description: 'A curated sequence of courses preparing students to design, build, and critically evaluate AI/ML systems in real-world contexts. This skill pack bridges core CS fundamentals with applied machine learning techniques used across industry.',
+            outcome: 'Students will be able to build, evaluate, and ethically deploy machine learning models across structured and unstructured data domains.',
+            rationale: 'Industry demand for AI practitioners has tripled since 2022. This skill pack bundles existing and near-future courses into a credential-backed pathway for students targeting ML engineering or data science roles, differentiating Champlain graduates in a competitive market.',
+            courses: [
+                {
+                    courseCode: 'CSI-340',
+                    contribution: 'Provides core database and data management skills essential for working with training datasets, feature stores, and ML experiment tracking.',
+                    competencies: ['Analysis', 'Quantitative Literacy'],
+                    prerequisites: [],
+                    disposition: 'existing',
+                    notes: ''
+                },
+                {
+                    courseCode: 'CSI-360',
+                    contribution: 'Covers web application development used for building ML model APIs and data dashboards for model output visualization.',
+                    competencies: ['Collaboration', 'Communication', 'Creativity'],
+                    prerequisites: ['CSI-340'],
+                    disposition: 'existing',
+                    notes: ''
+                },
+                {
+                    courseCode: 'CSI-440',
+                    contribution: 'Applies systems thinking and requirements engineering to AI/ML project scoping, stakeholder analysis, and ethical impact assessment.',
+                    competencies: ['Inquiry', 'Communication', 'Ethical Reasoning', 'Analysis'],
+                    prerequisites: ['CSI-340'],
+                    disposition: 'modification',
+                    notes: 'Add 2-week module on ML project scoping and bias auditing framework'
+                }
+            ],
+            technologyRequirements: 'GPU-accessible computing (Google Colab Pro or campus server with CUDA). Python 3.10+, Jupyter Notebooks, scikit-learn, PyTorch, pandas.',
+            libraryResources: 'IEEE Xplore and ACM Digital Library access for current ML research. "Hands-On Machine Learning" (Géron, 3rd ed.) as shared text across courses.',
+            newCourseProposals: 'CSI-455 – Applied Deep Learning (proposed, pending curriculum committee review in Spring 2026)',
+            courseModifications: 'CSI-440 – Add module on ML project scoping and AI ethics audit framework (~2 weeks of new content)',
+            courseEliminations: 'None',
+            programImpact: 'Minor competency overlap with the existing Data Analytics concentration. Coordination with the Data Science program is recommended to align coverage and avoid duplication.',
+            submittedBy: 'faculty',
+            submittedDate: '2026-02-05',
+            status: 'pending',
+            feedback: [
+                {
+                    message: 'Strong rationale and clear industry alignment — I appreciate the specificity. Two items to resolve before I can move this forward:\n\n1. Has the CSI-440 course owner been consulted on the proposed modification? We need sign-off before it can be listed as a required modification.\n\n2. Can you clarify the relationship with the existing Data Science concentration? Specifically, will students in that program be double-counted, or should this skill pack explicitly target CS & Innovation students?',
+                    from: 'admin',
+                    date: '2026-02-10',
+                    timestamp: 1739145600000,
+                    feedbackType: 'revision'
+                }
+            ]
+        }
+    ],
 
     // Course being edited (for modals)
     editingCourseId: null,
@@ -563,12 +616,13 @@ const StateSetters = {
         }
     },
 
-    addSkillPackProposalFeedback: (id, feedback) => {
+    addSkillPackProposalFeedback: (id, feedback, feedbackType = 'general') => {
         const proposal = AppState.skillPackProposals.find(p => p.id === id);
         if (proposal) {
             if (!proposal.feedback) proposal.feedback = [];
             proposal.feedback.push({
                 message: feedback,
+                feedbackType,
                 from: AppState.currentUser,
                 date: new Date().toISOString().split('T')[0],
                 timestamp: Date.now()
@@ -576,7 +630,7 @@ const StateSetters = {
         }
     },
 
-    addProposalFeedback: (id, feedback) => {
+    addProposalFeedback: (id, feedback, feedbackType = 'general') => {
         const proposal = AppState.proposals.find(p => p.id === id);
         if (proposal) {
             if (!proposal.feedback) {
@@ -584,6 +638,7 @@ const StateSetters = {
             }
             proposal.feedback.push({
                 message: feedback,
+                feedbackType,
                 from: AppState.currentUser,
                 date: new Date().toISOString().split('T')[0],
                 timestamp: Date.now()

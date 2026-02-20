@@ -492,18 +492,45 @@ const SkillPackProposalsModule = {
             coursesTable = '<p style="color:#666;">No courses specified.</p>';
         }
 
-        // Build feedback history
+        // Build feedback history with styled type badges
+        const _spFbMeta = (fb) => {
+            const typeMap = {
+                general:  { label: 'General Comment',    bg: '#e8f4fd', color: '#1565c0', border: '#90caf9' },
+                revision: { label: 'Revision Requested', bg: '#fff8e1', color: '#e65100', border: '#ffe082' },
+                critical: { label: 'Critical Concern',   bg: '#fff3e0', color: '#bf360c', border: '#ffcc80' },
+                reject:   { label: 'Rejected',           bg: '#fdecea', color: '#b71c1c', border: '#ef9a9a' },
+            };
+            let type = fb.feedbackType || 'general';
+            let msg = fb.message || '';
+            if (!fb.feedbackType) {
+                if (msg.startsWith('[REJECTION]'))              { type = 'reject';   msg = msg.replace('[REJECTION]', '').trim(); }
+                else if (msg.startsWith('[REVISION REQUESTED]')) { type = 'revision'; msg = msg.replace('[REVISION REQUESTED]', '').trim(); }
+                else if (msg.startsWith('[CRITICAL CONCERN]'))   { type = 'critical'; msg = msg.replace('[CRITICAL CONCERN]', '').trim(); }
+            }
+            return { ...(typeMap[type] || typeMap.general), msg };
+        };
+
         let feedbackSection = '';
         if (proposal.feedback && proposal.feedback.length > 0) {
             feedbackSection = `
-                <div style="margin-top:20px; padding:15px; background:#fff3cd; border-left:4px solid #ff9800; border-radius:4px;">
-                    <h4 style="color:#856404; margin-bottom:10px; font-size:16px;">◻ Feedback History</h4>
-                    ${proposal.feedback.map(fb => `
-                        <div style="background:white; padding:12px; border-radius:4px; margin-bottom:10px; border:1px solid #ffc107;">
-                            <div style="font-size:12px; color:#666; margin-bottom:6px;"><strong>${fb.from}</strong> – ${fb.date}</div>
-                            <div style="font-size:14px; color:#333;">${fb.message}</div>
+                <div style="margin-top:24px;">
+                    <h4 style="color:var(--champlain-navy); margin-bottom:14px; font-size:15px; display:flex; align-items:center; gap:8px;">
+                        💬 Feedback History <span style="font-size:12px; font-weight:400; color:#888;">(${proposal.feedback.length} message${proposal.feedback.length > 1 ? 's' : ''})</span>
+                    </h4>
+                    ${proposal.feedback.map(fb => {
+                        const { label, bg, color, border, msg } = _spFbMeta(fb);
+                        return `
+                        <div style="background:${bg}; border:1px solid ${border}; border-left:4px solid ${color}; border-radius:6px; padding:14px 16px; margin-bottom:12px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                                <div style="display:flex; align-items:center; gap:8px;">
+                                    <span style="background:${color}; color:white; font-size:11px; font-weight:700; padding:2px 8px; border-radius:10px; white-space:nowrap;">${label}</span>
+                                    <span style="font-size:13px; font-weight:600; color:#333;">${fb.from}</span>
+                                </div>
+                                <span style="font-size:12px; color:#777;">${fb.date}</span>
+                            </div>
+                            <div style="font-size:14px; color:#333; line-height:1.6; white-space:pre-wrap;">${msg}</div>
                         </div>
-                    `).join('')}
+                    `}).join('')}
                 </div>
             `;
         }
@@ -570,35 +597,34 @@ const SkillPackProposalsModule = {
         const proposal = StateGetters.getSkillPackProposals().find(p => p.id === id);
         if (!proposal) return;
 
-        const feedback = prompt(
-            `Please provide feedback for rejection of "${proposal.skillPackName}":\n\n(This will help faculty understand why the proposal was not approved)`
-        );
-        if (feedback === null) return;
-
-        if (feedback && feedback.trim()) {
-            StateSetters.addSkillPackProposalFeedback(id, `[REJECTION] ${feedback.trim()}`);
-        }
-
-        if (confirm('Are you sure you want to reject this proposal?')) {
-            StateSetters.updateSkillPackProposalStatus(id, 'rejected');
-            SkillPackProposalsModule.showReviewQueue('pg-spReviewList', false);
-            alert('Skill pack proposal rejected with feedback.');
-        }
+        FeedbackModal.open({
+            title: 'Reject Skill Pack Proposal',
+            subtitle: `Rejecting: ${proposal.skillPackName}   |   Submitted by: ${proposal.submittedBy}`,
+            mode: 'reject',
+            onSubmit: ({ message }) => {
+                StateSetters.addSkillPackProposalFeedback(id, message, 'reject');
+                StateSetters.updateSkillPackProposalStatus(id, 'rejected');
+                SkillPackProposalsModule.showReviewQueue('pg-spReviewList', false);
+            }
+        });
     },
 
     sendFeedback: (id) => {
         const proposal = StateGetters.getSkillPackProposals().find(p => p.id === id);
         if (!proposal) return;
 
-        const feedback = prompt(
-            `Send feedback to ${proposal.submittedBy} about "${proposal.skillPackName}":\n\n(Faculty will be able to revise their proposal based on your feedback)`
-        );
-
-        if (feedback && feedback.trim()) {
-            StateSetters.addSkillPackProposalFeedback(id, feedback.trim());
-            SkillPackProposalsModule.showReviewQueue('pg-spReviewList', false);
-            alert('Feedback sent successfully!');
-        }
+        FeedbackModal.open({
+            title: 'Send Feedback',
+            subtitle: `To: ${proposal.submittedBy}   |   Skill Pack: ${proposal.skillPackName}`,
+            mode: 'feedback',
+            onSubmit: ({ message, feedbackType }) => {
+                const prefix = feedbackType === 'revision' ? '[REVISION REQUESTED] '
+                             : feedbackType === 'critical' ? '[CRITICAL CONCERN] '
+                             : '';
+                StateSetters.addSkillPackProposalFeedback(id, prefix + message, feedbackType);
+                SkillPackProposalsModule.showReviewQueue('pg-spReviewList', false);
+            }
+        });
     },
 
     // -------------------------------------------------------------------------

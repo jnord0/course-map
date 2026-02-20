@@ -370,6 +370,9 @@ const App = {
         // Initialize skill pack proposals form listeners
         SkillPackProposalsModule.initializeForm();
 
+        // Initialize shared feedback modal listeners
+        FeedbackModal._initListeners();
+
         console.log('Application initialized successfully');
     },
 
@@ -831,6 +834,126 @@ function renderLandingPreviewGraph() {
         .attr('text-anchor', 'middle').attr('fill', '#003C5F').attr('font-size', '12px')
         .attr('font-weight', '700').attr('opacity', 0.5);
 }
+
+/**
+ * FeedbackModal
+ * Shared modal for sending feedback or rejecting proposals.
+ * Used by both ProposalsModule and SkillPackProposalsModule.
+ */
+const FeedbackModal = {
+    _onSubmit: null,
+    _mode: 'feedback', // 'feedback' | 'reject'
+
+    /**
+     * Open the feedback modal.
+     * @param {object} opts
+     * @param {string} opts.title       - Modal heading
+     * @param {string} opts.subtitle    - Proposal identifier shown below heading
+     * @param {string} [opts.mode]      - 'feedback' (default) or 'reject'
+     * @param {function} opts.onSubmit  - Called with { message, feedbackType, mode }
+     */
+    open: ({ title, subtitle, mode = 'feedback', onSubmit }) => {
+        FeedbackModal._onSubmit = onSubmit;
+        FeedbackModal._mode = mode;
+
+        const titleEl = document.getElementById('feedbackModalTitle');
+        const subtitleEl = document.getElementById('feedbackModalSubtitle');
+        const messageEl = document.getElementById('feedbackModalMessage');
+        const charCountEl = document.getElementById('feedbackCharCount');
+        const rejectWarning = document.getElementById('feedbackRejectWarning');
+        const rejectConfirm = document.getElementById('feedbackRejectConfirm');
+        const submitBtn = document.getElementById('feedbackModalSubmit');
+
+        if (titleEl) titleEl.textContent = title;
+        if (subtitleEl) subtitleEl.textContent = subtitle;
+        if (messageEl) messageEl.value = '';
+        if (charCountEl) charCountEl.textContent = '0';
+
+        // Reset type selection to first option
+        const firstType = document.querySelector('input[name="feedbackType"][value="general"]');
+        if (firstType) firstType.checked = true;
+
+        if (mode === 'reject') {
+            if (rejectWarning) rejectWarning.style.display = 'block';
+            if (rejectConfirm) rejectConfirm.checked = false;
+            if (submitBtn) {
+                submitBtn.textContent = 'Reject Proposal';
+                submitBtn.style.background = '#f44336';
+            }
+        } else {
+            if (rejectWarning) rejectWarning.style.display = 'none';
+            if (submitBtn) {
+                submitBtn.textContent = 'Send Feedback';
+                submitBtn.style.background = 'var(--champlain-bright-blue)';
+            }
+        }
+
+        const modal = document.getElementById('feedbackModal');
+        if (modal) modal.style.display = 'block';
+        setTimeout(() => { if (messageEl) messageEl.focus(); }, 120);
+    },
+
+    close: () => {
+        const modal = document.getElementById('feedbackModal');
+        if (modal) modal.style.display = 'none';
+        FeedbackModal._onSubmit = null;
+    },
+
+    submit: () => {
+        const messageEl = document.getElementById('feedbackModalMessage');
+        const message = messageEl ? messageEl.value.trim() : '';
+        if (!message) {
+            if (messageEl) {
+                messageEl.style.borderColor = '#f44336';
+                messageEl.focus();
+                setTimeout(() => { messageEl.style.borderColor = ''; }, 2000);
+            }
+            return;
+        }
+
+        if (FeedbackModal._mode === 'reject') {
+            const confirmed = document.getElementById('feedbackRejectConfirm')?.checked;
+            if (!confirmed) {
+                alert('Please check the confirmation box to proceed with rejection.');
+                return;
+            }
+        }
+
+        const feedbackType = document.querySelector('input[name="feedbackType"]:checked')?.value || 'general';
+
+        if (FeedbackModal._onSubmit) {
+            FeedbackModal._onSubmit({ message, feedbackType, mode: FeedbackModal._mode });
+        }
+        FeedbackModal.close();
+    },
+
+    // Wire up textarea char counter and submit button — called once from App.init()
+    _initListeners: () => {
+        const messageEl = document.getElementById('feedbackModalMessage');
+        const charCountEl = document.getElementById('feedbackCharCount');
+        if (messageEl && charCountEl) {
+            messageEl.addEventListener('input', () => {
+                charCountEl.textContent = messageEl.value.length;
+            });
+        }
+
+        const submitBtn = document.getElementById('feedbackModalSubmit');
+        if (submitBtn) {
+            submitBtn.addEventListener('click', FeedbackModal.submit);
+        }
+
+        // Close on backdrop click
+        const modal = document.getElementById('feedbackModal');
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) FeedbackModal.close();
+            });
+        }
+    }
+};
+
+// Expose globally so HTML onclick attributes can reach it
+window.FeedbackModal = FeedbackModal;
 
 // Initialize app when DOM is ready
 async function initializeApp() {
