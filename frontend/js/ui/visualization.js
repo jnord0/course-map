@@ -1267,15 +1267,11 @@ const VisualizationModule = {
 
             row.weights.forEach(weight => {
                 const baseColor = VisualizationModule.getCompetencyColor(row.comp.id);
-                const opacity = weight === 0 ? 0 : (weight / 3) * 0.7 + 0.1;
-                const bgColor = weight === 0 ? '#fafbfc' : baseColor + Math.round(opacity * 255).toString(16).padStart(2, '0');
-                const symbol = weight === 0 ? '—' : weight === 1 ? '◉' : weight === 2 ? '◆' : '★';
-                const symbolColor = weight === 0 ? '#ccc' : '#1a1a2e';
-                const labelColor = weight === 0 ? '#ccc' : '#2d2d44';
+                const alphaHex = weight === 0 ? '' : weight === 1 ? '42' : weight === 2 ? '99' : 'ff';
+                const bgColor = weight === 0 ? '#f0f2f5' : baseColor + alphaHex;
+                const border = weight === 0 ? '#e0e4ea' : baseColor + '66';
 
-                html += `<td style="padding: 14px 12px; border: 1px solid #e8eaf0; text-align: center; background: ${bgColor}; transition: all 0.2s ease;">`;
-                html += `<span style="color: ${symbolColor}; font-weight: bold; font-size: 24px; text-shadow: 0 1px 2px rgba(0,0,0,0.15);" title="Weight: ${weight}">${symbol}</span>`;
-                html += `<div style="font-size: 11px; color: ${labelColor}; margin-top: 4px; font-weight: 700;">${weight === 0 ? 'None' : weight === 1 ? 'Address' : weight === 2 ? 'Reinforce' : 'Emphasize'}</div>`;
+                html += `<td style="padding: 14px 12px; border: 1px solid ${border}; text-align: center; background: ${bgColor}; transition: all 0.2s ease;" title="Weight: ${weight}">`;
                 html += '</td>';
             });
 
@@ -1297,26 +1293,26 @@ const VisualizationModule = {
         html += `
             <div style="margin-top: 20px; padding: 20px; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); border-radius: 12px; border: 1px solid #e8eaf0; flex-shrink: 0;">
                 <div style="font-weight: 700; margin-bottom: 12px; color: var(--champlain-navy); font-size: 15px;">Legend:</div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; font-size: 13px;">
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                        <span style="font-size: 24px; color: #ccc;">—</span>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; font-size: 13px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="display: inline-block; width: 32px; height: 32px; border-radius: 6px; background: #f0f2f5; border: 1px solid #e0e4ea; flex-shrink: 0;"></span>
                         <span><strong>None (0)</strong> - Not addressed</span>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                        <span style="font-size: 24px; color: #1a1a2e;">◉</span>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="display: inline-block; width: 32px; height: 32px; border-radius: 6px; background: #23619242; border: 1px solid #23619266; flex-shrink: 0;"></span>
                         <span><strong>Addressed (1)</strong> - Introduced</span>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                        <span style="font-size: 24px; color: #1a1a2e;">◆</span>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="display: inline-block; width: 32px; height: 32px; border-radius: 6px; background: #23619299; border: 1px solid #23619266; flex-shrink: 0;"></span>
                         <span><strong>Reinforced (2)</strong> - Practiced</span>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                        <span style="font-size: 24px; color: #1a1a2e;">★</span>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="display: inline-block; width: 32px; height: 32px; border-radius: 6px; background: #236192ff; border: 1px solid #23619266; flex-shrink: 0;"></span>
                         <span><strong>Emphasized (3)</strong> - Mastered</span>
                     </div>
                 </div>
                 <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e8eaf0; font-size: 12px; color: #6c757d;">
-                    <strong>Note:</strong> Darker cell shading indicates stronger competency emphasis. Network visualization displays only Level 3 (★) connections for clarity.
+                    <strong>Note:</strong> Each competency uses its own color. Darker shading indicates stronger emphasis. Network visualization displays only Level 3 connections for clarity.
                 </div>
             </div>
         `;

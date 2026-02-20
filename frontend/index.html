@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Champlain Academic Affairs</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23003C5F'/><text y='.9em' font-size='80' x='10'>🎓</text></svg>">
     <!-- CSS Files - Split for maintainability -->
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
@@ -424,7 +425,15 @@
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                     Submit Proposal
                 </button>
-                <button class="quick-action-pill dashboard-admin-only hidden" onclick="Dashboard.openAdmin()">
+                <button class="quick-action-pill dashboard-faculty-only hidden" onclick="Dashboard.openSkillPackProposals()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+                    Submit Skill Pack
+                </button>
+                <button class="quick-action-pill dashboard-admin-only hidden" onclick="Dashboard.openSkillPackProposals()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><polyline points="9 11 11 13 15 9"/></svg>
+                    Review Skill Packs
+                </button>
+                <button class="quick-action-pill dashboard-admin-only hidden" onclick="Dashboard.openProposals()">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09"/></svg>
                     Review Proposals
                 </button>
@@ -469,6 +478,34 @@
                     <div class="dashboard-card-tags">
                         <span>Course Bundles</span>
                         <span>Career Paths</span>
+                    </div>
+                </div>
+
+                <!-- Skill Pack Proposals - Faculty only -->
+                <div class="dashboard-card dashboard-faculty-only hidden" data-section="skillpackproposals" onclick="Dashboard.openSkillPackProposals()">
+                    <div class="dashboard-card-icon dashboard-card-icon--skillpacks">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+                    </div>
+                    <h3>Skill Pack Proposals</h3>
+                    <p>Propose new skill packs by bundling existing courses, track your submissions, and respond to committee feedback.</p>
+                    <div class="dashboard-card-tags">
+                        <span>Submit Proposals</span>
+                        <span>Course Bundles</span>
+                        <span>Track Status</span>
+                    </div>
+                </div>
+
+                <!-- Skill Pack Review - Admin only -->
+                <div class="dashboard-card dashboard-admin-only hidden" data-section="skillpackreview" onclick="Dashboard.openSkillPackProposals()">
+                    <div class="dashboard-card-icon dashboard-card-icon--proposals">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><polyline points="9 11 11 13 15 9"/></svg>
+                    </div>
+                    <h3>Review Skill Pack Proposals</h3>
+                    <p>Review pending skill pack proposals from faculty, provide feedback, and approve or reject submissions.</p>
+                    <div class="dashboard-card-tags">
+                        <span>Review Queue</span>
+                        <span>Approve / Reject</span>
+                        <span>Feedback</span>
                     </div>
                 </div>
 
@@ -676,8 +713,8 @@
         </div>
     </div>
 
-    <!-- Main Application -->
-    <div id="mainApp" class="hidden">
+    <!-- Proposals Page (faculty: my proposals; admin: review proposals) -->
+    <div id="proposalsPage" class="hidden">
         <div class="header">
             <div class="logo-section">
                 <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D"
@@ -686,475 +723,148 @@
                      onerror="this.style.display='none'">
                 <div class="logo-text">Academic Affairs</div>
             </div>
-            <div class="header-nav-toggle view-toggle" id="headerViewToggle">
-                <button class="toggle-btn active" id="networkViewBtn">Network View</button>
-                <button class="toggle-btn" id="tableViewBtn">Table View</button>
-                <button class="toggle-btn" id="prerequisiteViewBtn">Prerequisite Chain</button>
-                <button class="toggle-btn" id="pathwayViewBtn">Course Pathway</button>
-                <button class="toggle-btn" id="graphsViewBtn">Competency Graphs</button>
-                <button class="toggle-btn" id="semesterPlannerBtn">Semester Planner</button>
-            </div>
             <div class="user-info">
-                <span id="currentUser">User</span>
-                <span class="user-badge" id="currentRole">Role</span>
-                <button class="back-to-dashboard-btn" id="backToDashboardBtn">Dashboard</button>
-                <button class="logout-btn" id="logoutButton">Logout</button>
+                <button class="back-to-dashboard-btn" onclick="Dashboard.backToDashboard()">Back to Dashboard</button>
+                <button class="logout-btn" onclick="App.handleLogout()">Logout</button>
             </div>
         </div>
 
-        <div class="main-container">
-            <div class="sidebar">
-                <h2>Dashboard</h2>
-                
-                <div class="section">
-                    <h3>Course Selection</h3>
-                    <div class="sidebar-search-wrap">
-                        <input type="text"
-                               id="courseSearch"
-                               class="sidebar-search-input"
-                               placeholder="Search courses...">
-                    </div>
-
-                    <!-- Advanced Filters Button -->
-                    <div class="sidebar-filter-row">
-                        <button
-                            id="toggleFiltersBtn"
-                            class="sidebar-filter-btn"
-                            onclick="FilterModule.toggleFilterPanel()">
-                            Advanced Filters
-                        </button>
-                        <button
-                            id="clearFiltersBtn"
-                            class="sidebar-filter-btn sidebar-filter-btn--secondary"
-                            onclick="FilterModule.clearFilters(); FilterModule.applyFiltersAndUpdate();">
-                            Clear
-                        </button>
-                    </div>
-
-                    <!-- Filter Results Summary -->
-                    <div class="sidebar-filter-summary">
-                        <div id="filterResultsCount" class="sidebar-filter-summary__count">All courses</div>
-                        <div id="filterSummary" class="sidebar-filter-summary__detail">No filters active</div>
-                    </div>
-
-                    <!-- Advanced Filter Panel (collapsible) -->
-                    <div id="filterPanel" class="sidebar-filter-panel">
-                        <h4>Advanced Filters</h4>
-
-                        <!-- Department Filter -->
-                        <div class="sidebar-filter-group">
-                            <label class="sidebar-filter-group__label">Department</label>
-                            <div id="filterDepartments" class="sidebar-filter-group__options"></div>
-                        </div>
-
-                        <!-- Credit Hours Filter -->
-                        <div class="sidebar-filter-group">
-                            <label class="sidebar-filter-group__label">Credit Hours</label>
-                            <div id="filterCredits" class="sidebar-filter-group__options"></div>
-                        </div>
-
-                        <!-- Semester Offered Filter -->
-                        <div class="sidebar-filter-group">
-                            <label class="sidebar-filter-group__label">Semester Offered</label>
-                            <div id="filterSemesters" class="sidebar-filter-group__options">
-                                <label class="filter-checkbox">
-                                    <input type="checkbox" value="FALL" onchange="FilterModule.updateFilters()">
-                                    <span>Fall</span>
-                                </label>
-                                <label class="filter-checkbox">
-                                    <input type="checkbox" value="SPRING" onchange="FilterModule.updateFilters()">
-                                    <span>Spring</span>
-                                </label>
-                                <label class="filter-checkbox">
-                                    <input type="checkbox" value="BOTH" onchange="FilterModule.updateFilters()">
-                                    <span>Both</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Competency Filter -->
-                        <div class="sidebar-filter-group">
-                            <label class="sidebar-filter-group__label">Competencies (must have ALL selected)</label>
-                            <div id="filterCompetencies" class="sidebar-filter-group__options sidebar-filter-group__options--column"></div>
-                        </div>
-
-                        <!-- Competency Weight Filter -->
-                        <div class="sidebar-filter-group">
-                            <label class="sidebar-filter-group__label">Competency Weight</label>
-                            <div id="filterWeights" class="sidebar-filter-group__options">
-                                <label class="filter-checkbox">
-                                    <input type="checkbox" value="1" onchange="FilterModule.updateFilters()">
-                                    <span>Addressed (1)</span>
-                                </label>
-                                <label class="filter-checkbox">
-                                    <input type="checkbox" value="2" onchange="FilterModule.updateFilters()">
-                                    <span>Reinforced (2)</span>
-                                </label>
-                                <label class="filter-checkbox">
-                                    <input type="checkbox" value="3" onchange="FilterModule.updateFilters()">
-                                    <span>Emphasized (3)</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Course Type Filter -->
-                        <div class="sidebar-filter-group">
-                            <label class="sidebar-filter-group__label">Course Type</label>
-                            <div id="filterCourseType" class="sidebar-filter-group__options">
-                                <label class="filter-checkbox">
-                                    <input type="checkbox" value="Major" onchange="FilterModule.updateFilters()">
-                                    <span>Major</span>
-                                </label>
-                                <label class="filter-checkbox">
-                                    <input type="checkbox" value="GenEd" onchange="FilterModule.updateFilters()">
-                                    <span>General Education</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Filter Preset Actions -->
-                        <div class="sidebar-filter-presets">
-                            <button
-                                class="sidebar-preset-btn sidebar-preset-btn--save"
-                                onclick="FilterModule.showSavePresetDialog()">
-                                Save Filter Preset
-                            </button>
-                            <button
-                                class="sidebar-preset-btn sidebar-preset-btn--load"
-                                onclick="FilterModule.showLoadPresetDialog()">
-                                Load Preset
-                            </button>
-                        </div>
-                    </div>
-
-                    <div id="availableCourses" class="sidebar-course-list"></div>
-                    <div class="sidebar-selected-section">
-                        <h4>Selected Courses</h4>
-                        <div id="selectedCourses"></div>
-
-                        <!-- Similar Courses Feature -->
-                        <div id="similarCoursesSection" class="sidebar-similar-courses">
-                            <div class="collapsible-toggle collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');">
-                                <span class="collapsible-toggle-label">Similar Courses</span>
-                                <span class="collapsible-toggle-arrow"></span>
-                            </div>
-                            <div id="similarCoursesList" class="collapsible-body collapsed sidebar-similar-courses__list"></div>
-                        </div>
-
-                        <!-- Compare Courses Button -->
-                        <div class="sidebar-compare-section">
-                            <button class="comparison-btn" id="compareCoursesBtn" onclick="ComparisonTool.openModal()" disabled>
-                                Compare Selected Courses
-                            </button>
-                            <p id="compareHint" class="sidebar-compare-hint">
-                                Select 2-3 courses to compare
-                            </p>
-                        </div>
-                    </div>
+        <div class="standalone-page-content">
+            <!-- Faculty section: my submitted proposals -->
+            <div id="pgFacultySection" class="hidden">
+                <div class="standalone-page-header">
+                    <h1>Course Proposals</h1>
+                    <p>Submit new course proposals and track the status of your submissions.</p>
                 </div>
-
-                <div class="section">
-                    <div class="collapsible-toggle collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');">
-                        <span class="collapsible-toggle-label">Competency Tracker</span>
-                        <span class="collapsible-toggle-arrow"></span>
-                    </div>
-                    <div id="competencyTracker" class="collapsible-body collapsed"></div>
-                </div>
-
-                <div class="section">
-                    <div class="collapsible-toggle collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');">
-                        <span class="collapsible-toggle-label">Competency Status</span>
-                        <span class="collapsible-toggle-arrow"></span>
-                    </div>
-                    <div id="competencyStatus" class="collapsible-body collapsed"></div>
-                </div>
-
-                <div class="section" id="skillPackProgressSection">
-                    <div class="collapsible-toggle collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');">
-                        <span class="collapsible-toggle-label">Skill Pack Progress</span>
-                        <span class="collapsible-toggle-arrow"></span>
-                    </div>
-                    <div id="skillPackProgressBody" class="collapsible-body collapsed"></div>
-                </div>
-
-                <!-- Recently Viewed Courses -->
-                <div id="recentlyViewedCourses" class="recently-viewed" style="display: none;">
-                    <h4>🕒 Recently Viewed</h4>
-                    <div class="recent-courses-list"></div>
-                </div>
-
-                <div id="adminSection" class="section hidden">
-                    <h3>Administration</h3>
-                    <button class="btn" id="reviewProposalsBtn">
-                        <span>Review Course Proposals</span>
-                        <span id="pendingBadge" class="badge hidden">0</span>
-                    </button>
-                    <button class="btn" id="manageCoursesBtn">
-                        <span>Manage Courses & Programs</span>
+                <div style="display: flex; justify-content: flex-end; margin-bottom: 24px;">
+                    <button class="btn" style="background: var(--champlain-green); color: white; border: none; padding: 12px 28px; font-size: 15px; border-radius: 6px; cursor: pointer; font-weight: 600;"
+                        onclick="ModalsModule.openProposalModal()">
+                        + Submit New Proposal
                     </button>
                 </div>
-
-                <div id="facultySection" class="section hidden">
-                    <h3>Faculty Tools</h3>
-                    <button class="btn" id="submitProposalBtn">
-                        <span>Submit Course Proposal</span>
-                    </button>
-                    <button class="btn" id="myProposalsBtn">
-                        <span>My Proposals</span>
-                    </button>
+                <div id="pg-myProposalsList">
+                    <p style="text-align: center; color: #666;">Loading proposals...</p>
                 </div>
-
-
             </div>
 
-            <div class="viz-container">
-                <div class="viz-header">
-                    <div class="viz-header-row">
-                        <div>
-                            <h1 id="vizTitle">Competency Visualization</h1>
-                            <p id="vizDescription">Interactive network showing relationships between courses and college competencies</p>
-                        </div>
-                        <!-- Export Dropdown -->
-                        <div class="export-dropdown" id="exportDropdown">
-                            <button class="export-btn" onclick="ExportTool.toggleMenu()">
-                                Export <span style="font-size: 10px;">▼</span>
-                            </button>
-                            <div class="export-menu" id="exportMenu">
-                                <div class="export-menu-item" onclick="ExportTool.exportPNG()">
-                                    <span class="icon">🖼️</span>
-                                    <div>
-                                        <div class="label">Export as PNG</div>
-                                        <div class="desc">High-quality image</div>
-                                    </div>
-                                </div>
-                                <div class="export-menu-item" onclick="ExportTool.exportPDF()">
-                                    <span class="icon">📄</span>
-                                    <div>
-                                        <div class="label">Export as PDF</div>
-                                        <div class="desc">Print-ready document</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Mobile-only view toggle (mirrors header nav) -->
-                    <div class="view-toggle view-toggle-mobile" id="mobileViewToggle">
-                        <button class="toggle-btn active" data-view="network">Network</button>
-                        <button class="toggle-btn" data-view="table">Table</button>
-                        <button class="toggle-btn" data-view="prerequisite">Prerequisites</button>
-                        <button class="toggle-btn" data-view="pathway">Pathway</button>
-                        <button class="toggle-btn" data-view="graphs">Graphs</button>
-                        <button class="toggle-btn" data-view="semester">Planner</button>
-                    </div>
+            <!-- Admin section: pending proposals for review -->
+            <div id="pgAdminProposalsSection" class="hidden">
+                <div class="standalone-page-header">
+                    <h1>Review Course Proposals</h1>
+                    <p>Review and manage pending course proposals submitted by faculty.</p>
                 </div>
-                <div class="graph-wrapper">
-                    <!-- Network View -->
-                    <div id="networkView">
-                        <svg id="networkGraph" style="width: 100%; min-height: 600px;"></svg>
-                    </div>
-
-                    <!-- Table View -->
-                    <div id="tableView" class="hidden">
-                        <div id="competencyTable"></div>
-                    </div>
-
-                    <!-- Prerequisite Chain View -->
-                    <div id="prerequisiteView" class="hidden">
-                        <div id="prerequisiteGraphContainer" style="width: 100%; min-height: 600px;">
-                            <svg id="prerequisiteGraph" style="width: 100%; min-height: 600px;"></svg>
-                        </div>
-                    </div>
-
-                    <!-- Course Pathway View -->
-                    <div id="pathwayView" class="hidden">
-                        <h3 style="color: var(--champlain-navy); margin-bottom: 15px;">Student Course Pathway</h3>
-                            <div style="margin-bottom: 20px;">
-                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Search Completed Courses:</label>
-                                <div style="position: relative; margin-bottom: 15px;">
-                                    <input type="text"
-                                           id="completedCoursesSearch"
-                                           placeholder="Search and select completed courses..."
-                                           style="width: 100%; padding: 10px 40px 10px 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 14px;"
-                                           autocomplete="off">
-                                    <div id="completedCoursesDropdown" class="hidden" style="position: absolute; top: 100%; left: 0; right: 0; background: white; border: 2px solid #00A9E0; border-radius: 6px; max-height: 300px; overflow-y: auto; z-index: 1000; margin-top: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></div>
-                                </div>
-                                <div id="completedCoursesSelected" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;"></div>
-                            </div>
-                            <div id="pathwayGraphContainer" style="display: flex; gap: 20px; width: 100%; min-height: 500px;">
-                                <!-- Three columns for Completed, Available, Locked -->
-                                <div style="flex: 1; min-width: 250px;">
-                                    <h4 style="color: #4CAF50; margin-bottom: 10px; font-size: 18px; font-weight: bold;">
-                                        Completed <span id="completedCount" style="font-size: 14px;">(0)</span>
-                                    </h4>
-                                    <div id="completedCoursesBox" class="pathway-box" style="background: #f5f7fa; border: 2px solid #4CAF50; border-radius: 10px; padding: 15px; height: 500px; overflow-y: auto;"></div>
-                                </div>
-                                <div style="flex: 1; min-width: 250px;">
-                                    <h4 style="color: #00A9E0; margin-bottom: 10px; font-size: 18px; font-weight: bold;">
-                                        Available <span id="availableCount" style="font-size: 14px;">(0)</span>
-                                    </h4>
-                                    <div id="availableCoursesBox" class="pathway-box" style="background: #f5f7fa; border: 2px solid #00A9E0; border-radius: 10px; padding: 15px; height: 500px; overflow-y: auto;"></div>
-                                </div>
-                                <div style="flex: 1; min-width: 250px;">
-                                    <h4 style="color: #999; margin-bottom: 10px; font-size: 18px; font-weight: bold;">
-                                        Locked <span id="lockedCount" style="font-size: 14px;">(0)</span>
-                                    </h4>
-                                    <div id="lockedCoursesBox" class="pathway-box" style="background: #f5f7fa; border: 2px solid #999; border-radius: 10px; padding: 15px; height: 500px; overflow-y: auto;"></div>
-                                </div>
-                            </div>
-                            <!-- End Course Pathway Panel -->
-                    </div>
-
-                    <!-- Competency Graphs View -->
-                    <div id="graphsView" class="hidden">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
-                                <h3 style="color: var(--champlain-navy); margin: 0;">Competency Weight Analysis</h3>
-                                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                                    <div id="graphTypeToggle" style="display: flex; gap: 10px; background: #f5f7fa; padding: 8px; border-radius: 8px; flex-wrap: wrap;">
-                                        <button class="graph-type-btn active" data-graph="bar" style="padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; background: var(--champlain-bright-blue); color: white; font-weight: 600; transition: all 0.3s;">
-                                            📊 Bar Chart
-                                        </button>
-                                        <button class="graph-type-btn" data-graph="pie" style="padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; background: white; color: var(--champlain-navy); font-weight: 600; transition: all 0.3s;">
-                                            🥧 Pie Chart
-                                        </button>
-                                        <button class="graph-type-btn" data-graph="radar" style="padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; background: white; color: var(--champlain-navy); font-weight: 600; transition: all 0.3s;">
-                                            🎯 Radar Chart
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="graphsInfoBox" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid var(--champlain-bright-blue); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                                <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 8px;">📈 Understanding Competency Weights</div>
-                                <div style="font-size: 13px; color: #1565c0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
-                                    <div><strong>Level 0:</strong> Not addressed</div>
-                                    <div><strong>Level 1:</strong> Addressed in course</div>
-                                    <div><strong>Level 2:</strong> Reinforced through practice</div>
-                                    <div><strong>Level 3:</strong> Emphasized as focus</div>
-                                </div>
-                            </div>
-
-                            <!-- Graph Container -->
-                            <div id="graphsContainer" style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); min-height: 600px;">
-                                <!-- Bar Chart -->
-                                <div id="barChartContainer" class="graph-chart-container">
-                                    <svg id="barChart" style="width: 100%; height: 600px;"></svg>
-                                </div>
-
-                                <!-- Pie Chart -->
-                                <div id="pieChartContainer" class="graph-chart-container hidden">
-                                    <svg id="pieChart" style="width: 100%; height: 600px;"></svg>
-                                </div>
-
-                                <!-- Radar Chart -->
-                                <div id="radarChartContainer" class="graph-chart-container hidden">
-                                    <svg id="radarChart" style="width: 100%; height: 600px;"></svg>
-                                </div>
-                            </div>
-
-                        <!-- Selected Courses Summary -->
-                        <div id="graphsCourseSummary" style="margin-top: 20px; background: #f5f7fa; border-radius: 8px; padding: 15px;">
-                            <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 10px;">Selected Courses (0)</div>
-                            <div id="graphsCourseList" style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px;"></div>
-                        </div>
-                    </div>
-
-                    <!-- Semester Planner View -->
-                    <div id="semesterPlannerView" class="hidden">
-                        <!-- Semester Tabs -->
-                        <div id="semesterTabs" style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid var(--champlain-navy); padding-bottom: 10px; overflow-x: auto;"></div>
-
-                            <!-- Current Semester View -->
-                            <div id="currentSemesterView">
-                                <!-- Schedule Summary -->
-                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
-                                    <div class="stat-card" style="background: linear-gradient(135deg, var(--champlain-blue), var(--champlain-navy)); color: white; padding: 15px; border-radius: 8px;">
-                                        <div style="font-size: 24px; font-weight: bold;" id="totalCoursesCount">0</div>
-                                        <div style="font-size: 13px;">Total Courses</div>
-                                    </div>
-                                    <div class="stat-card" style="background: linear-gradient(135deg, var(--champlain-green), #45a049); color: white; padding: 15px; border-radius: 8px;">
-                                        <div style="font-size: 24px; font-weight: bold;" id="totalCreditsCount">0</div>
-                                        <div style="font-size: 13px;">Total Credits</div>
-                                    </div>
-                                    <div class="stat-card" style="background: linear-gradient(135deg, var(--champlain-bright-blue), var(--champlain-teal)); color: white; padding: 15px; border-radius: 8px;">
-                                        <div style="font-size: 24px; font-weight: bold;" id="conflictsCount">0</div>
-                                        <div style="font-size: 13px;">Conflicts</div>
-                                    </div>
-                                </div>
-
-                                <!-- Two Column Layout -->
-                                <div style="display: grid; grid-template-columns: 350px 1fr; gap: 20px;">
-                                    <!-- Left: Available Courses -->
-                                    <div>
-                                        <h3 style="color: var(--champlain-navy); margin-bottom: 15px;">Available Courses</h3>
-                                        <input type="text" id="schedulerCourseSearch" placeholder="Search courses..." style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; margin-bottom: 15px;">
-                                        <div id="availableCoursesForSchedule" style="max-height: 600px; overflow-y: auto; background: #f8f9fa; border-radius: 8px; padding: 10px;"></div>
-                                    </div>
-
-                                    <!-- Right: Planned Courses View -->
-                                    <div>
-                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                                            <h3 style="color: var(--champlain-navy); margin: 0;">Planned Courses</h3>
-                                            <div style="display: flex; gap: 10px;">
-                                                <button id="exportScheduleBtn" style="padding: 8px 16px; background: var(--champlain-green); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">
-                                                    📄 Export
-                                                </button>
-                                                <button id="clearScheduleBtn" style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">
-                                                    🗑️ Clear
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <!-- Scheduled Courses List -->
-                                        <div>
-                                            <div id="scheduledCoursesList"></div>
-                                        </div>
-
-                                        <!-- Conflicts Display -->
-                                        <div id="conflictsDisplay" style="margin-top: 20px;"></div>
-                                    </div>
-                                </div>
-
-                                <!-- Timeline & Competency Analysis Section -->
-                                <div style="margin-top: 30px; border-top: 2px solid #e0e0e0; padding-top: 30px;">
-                                    <h3 style="color: var(--champlain-navy); margin-bottom: 20px;">📈 Competency Progression Timeline</h3>
-
-                                    <!-- Overall Competency Summary -->
-                                    <div id="overallCompetencySummary" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 12px; padding: 20px; margin-bottom: 20px; border-left: 4px solid var(--champlain-green);">
-                                        <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 15px; font-size: 16px;">Overall Competency Achievement</div>
-                                        <div id="overallCompetencyGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px;"></div>
-                                    </div>
-
-                                    <!-- Timeline Chart -->
-                                    <div style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 20px;">
-                                        <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid var(--champlain-bright-blue); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                                            <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 8px;">Semester-by-Semester Progression</div>
-                                            <div style="font-size: 13px; color: #1565c0;">
-                                                This chart shows how competencies build up across your planned semesters. Lines represent cumulative totals of all competency weights from each course.
-                                            </div>
-                                            <div style="margin-top: 10px; display: flex; align-items: center; gap: 10px;">
-                                                <button id="playProgressionBtn" style="padding: 8px 16px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;">
-                                                    ▶ Play Progression
-                                                </button>
-                                                <button id="stopProgressionBtn" class="hidden" style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;">
-                                                    ⏹ Stop
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <svg id="semesterTimelineChart" style="width: 100%; height: 500px;"></svg>
-                                    </div>
-
-                                    <!-- Per-Semester Competency Breakdown -->
-                                <div id="perSemesterBreakdown" style="background: #f5f7fa; border-radius: 12px; padding: 20px;">
-                                    <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 15px; font-size: 16px;">Competency Totals by Semester</div>
-                                    <div id="semesterCompetencyBreakdown" style="display: flex; flex-direction: column; gap: 15px;"></div>
-                                </div>
-                            </div>
-                    </div>
-
+                <div id="pg-proposalList">
+                    <p style="text-align: center; color: #666;">Loading proposals...</p>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Skill Pack Proposals Page -->
+    <div id="skillPackProposalsPage" class="hidden">
+        <div class="header">
+            <div class="logo-section">
+                <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D"
+                     alt="Champlain College Shield"
+                     style="height: 50px; margin-right: 20px;"
+                     onerror="this.style.display='none'">
+                <div class="logo-text">Academic Affairs</div>
+            </div>
+            <div class="user-info">
+                <button class="back-to-dashboard-btn" onclick="Dashboard.backToDashboard()">Back to Dashboard</button>
+                <button class="logout-btn" onclick="App.handleLogout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="standalone-page-content">
+            <!-- Faculty section: submit and track skill pack proposals -->
+            <div id="pgSpFacultySection" class="hidden">
+                <div class="standalone-page-header">
+                    <h1>Skill Pack Proposals</h1>
+                    <p>Propose new skill packs, track your submissions, and respond to feedback.</p>
+                </div>
+                <div style="display: flex; justify-content: flex-end; margin-bottom: 24px;">
+                    <button class="btn" style="background: var(--champlain-green); color: white; border: none; padding: 12px 28px; font-size: 15px; border-radius: 6px; cursor: pointer; font-weight: 600;"
+                        onclick="SkillPackProposalsModule.openProposalModal()">
+                        + Submit New Skill Pack Proposal
+                    </button>
+                </div>
+                <div id="pg-spMyProposalsList">
+                    <p style="text-align: center; color: #666;">Loading proposals...</p>
+                </div>
+            </div>
+
+            <!-- Admin section: review pending skill pack proposals -->
+            <div id="pgSpAdminSection" class="hidden">
+                <div class="standalone-page-header">
+                    <h1>Review Skill Pack Proposals</h1>
+                    <p>Review and manage pending skill pack proposals submitted by faculty.</p>
+                </div>
+                <div id="pg-spReviewList">
+                    <p style="text-align: center; color: #666;">Loading proposals...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Management Page (admin: system management dashboard) -->
+    <div id="managementPage" class="hidden">
+        <div class="header">
+            <div class="logo-section">
+                <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D"
+                     alt="Champlain College Shield"
+                     style="height: 50px; margin-right: 20px;"
+                     onerror="this.style.display='none'">
+                <div class="logo-text">Academic Affairs</div>
+            </div>
+            <div class="user-info">
+                <button class="back-to-dashboard-btn" onclick="Dashboard.backToDashboard()">Back to Dashboard</button>
+                <button class="logout-btn" onclick="App.handleLogout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="standalone-page-content">
+            <div class="standalone-page-header">
+                <h1>System Administration</h1>
+                <p>Manage courses, competencies, and monitor academic program activity.</p>
+            </div>
+
+            <!-- System Statistics -->
+            <div class="mgmt-section">
+                <h3 class="mgmt-section-title">System Overview</h3>
+                <div id="pg-systemStats"></div>
+            </div>
+
+            <!-- Course Management -->
+            <div class="mgmt-section">
+                <div class="mgmt-section-header">
+                    <h3 class="mgmt-section-title">Course Management</h3>
+                    <button class="btn btn-primary-action" onclick="CoursesModule.showEditModal(null)">
+                        Add New Course
+                    </button>
+                </div>
+                <div class="mgmt-search-bar">
+                    <input type="text" id="pg-manageCourseSearch"
+                        placeholder="Search courses by code or title..."
+                        class="mgmt-search-input">
+                </div>
+                <div id="pg-coursesList" class="mgmt-list-container"></div>
+            </div>
+
+            <!-- Competency Management -->
+            <div class="mgmt-section">
+                <h3 class="mgmt-section-title">Competency Management</h3>
+                <div id="pg-competenciesList"></div>
+            </div>
+
+            <!-- Learning Outcomes -->
+            <div class="mgmt-section mgmt-section--last">
+                <h3 class="mgmt-section-title">Learning Outcomes</h3>
+                <div id="pg-objectivesList"></div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Modals -->
     
@@ -1958,96 +1668,6 @@
                 <button class="close-btn" id="closeSemesterPlannerBtn">&times;</button>
             </div>
             <div class="modal-body">
-                <!-- Semester Tabs -->
-                <div id="semesterTabs" style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid var(--champlain-navy); padding-bottom: 10px; overflow-x: auto;"></div>
-
-                <!-- Current Semester View -->
-                <div id="currentSemesterView">
-                    <!-- Schedule Summary -->
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
-                        <div class="stat-card" style="background: linear-gradient(135deg, var(--champlain-blue), var(--champlain-navy)); color: white; padding: 15px; border-radius: 8px;">
-                            <div style="font-size: 24px; font-weight: bold;" id="totalCoursesCount">0</div>
-                            <div style="font-size: 13px;">Total Courses</div>
-                        </div>
-                        <div class="stat-card" style="background: linear-gradient(135deg, var(--champlain-green), #45a049); color: white; padding: 15px; border-radius: 8px;">
-                            <div style="font-size: 24px; font-weight: bold;" id="totalCreditsCount">0</div>
-                            <div style="font-size: 13px;">Total Credits</div>
-                        </div>
-                        <div class="stat-card" style="background: linear-gradient(135deg, var(--champlain-bright-blue), var(--champlain-teal)); color: white; padding: 15px; border-radius: 8px;">
-                            <div style="font-size: 24px; font-weight: bold;" id="conflictsCount">0</div>
-                            <div style="font-size: 13px;">Conflicts</div>
-                        </div>
-                    </div>
-
-                    <!-- Two Column Layout -->
-                    <div style="display: grid; grid-template-columns: 350px 1fr; gap: 20px;">
-                        <!-- Left: Available Courses -->
-                        <div>
-                            <h3 style="color: var(--champlain-navy); margin-bottom: 15px;">Available Courses</h3>
-                            <input type="text" id="schedulerCourseSearch" placeholder="Search courses..." style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; margin-bottom: 15px;">
-                            <div id="availableCoursesForSchedule" style="max-height: 600px; overflow-y: auto; background: #f8f9fa; border-radius: 8px; padding: 10px;"></div>
-                        </div>
-
-                        <!-- Right: Planned Courses View -->
-                        <div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                                <h3 style="color: var(--champlain-navy); margin: 0;">Planned Courses</h3>
-                                <div style="display: flex; gap: 10px;">
-                                    <button id="exportScheduleBtn" style="padding: 8px 16px; background: var(--champlain-green); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">
-                                        📄 Export
-                                    </button>
-                                    <button id="clearScheduleBtn" style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">
-                                        🗑️ Clear
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Scheduled Courses List -->
-                            <div>
-                                <div id="scheduledCoursesList"></div>
-                            </div>
-
-                            <!-- Conflicts Display -->
-                            <div id="conflictsDisplay" style="margin-top: 20px;"></div>
-                        </div>
-                    </div>
-
-                    <!-- Timeline & Competency Analysis Section -->
-                    <div style="margin-top: 30px; border-top: 2px solid #e0e0e0; padding-top: 30px;">
-                        <h3 style="color: var(--champlain-navy); margin-bottom: 20px;">📈 Competency Progression Timeline</h3>
-
-                        <!-- Overall Competency Summary -->
-                        <div id="overallCompetencySummary" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 12px; padding: 20px; margin-bottom: 20px; border-left: 4px solid var(--champlain-green);">
-                            <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 15px; font-size: 16px;">Overall Competency Achievement</div>
-                            <div id="overallCompetencyGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px;"></div>
-                        </div>
-
-                        <!-- Timeline Chart -->
-                        <div style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 20px;">
-                            <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid var(--champlain-bright-blue); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                                <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 8px;">Semester-by-Semester Progression</div>
-                                <div style="font-size: 13px; color: #1565c0;">
-                                    This chart shows how competencies build up across your planned semesters. Lines represent cumulative totals of all competency weights from each course.
-                                </div>
-                                <div style="margin-top: 10px; display: flex; align-items: center; gap: 10px;">
-                                    <button id="playProgressionBtn" style="padding: 8px 16px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;">
-                                        ▶ Play Progression
-                                    </button>
-                                    <button id="stopProgressionBtn" class="hidden" style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;">
-                                        ⏹ Stop
-                                    </button>
-                                </div>
-                            </div>
-                            <svg id="semesterTimelineChart" style="width: 100%; height: 500px;"></svg>
-                        </div>
-
-                        <!-- Per-Semester Competency Breakdown -->
-                        <div id="perSemesterBreakdown" style="background: #f5f7fa; border-radius: 12px; padding: 20px;">
-                            <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 15px; font-size: 16px;">Competency Totals by Semester</div>
-                            <div id="semesterCompetencyBreakdown" style="display: flex; flex-direction: column; gap: 15px;"></div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -2061,6 +1681,210 @@
             </div>
             <div class="comparison-body" id="comparisonBody">
                 <!-- Comparison content will be dynamically generated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Skill Pack Proposal Submission Modal -->
+    <div id="spProposalModal" class="modal">
+        <div class="modal-content" style="max-width: 1100px; width: 95%;">
+            <div class="modal-header">
+                <h2>Submit Skill Pack Proposal</h2>
+                <button class="close-btn" onclick="SkillPackProposalsModule._closeProposalModal()">&times;</button>
+            </div>
+            <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+
+                <!-- Progress Indicator -->
+                <div style="margin-bottom: 25px; padding: 15px; background: linear-gradient(135deg, var(--champlain-navy), var(--champlain-blue)); border-radius: 8px; color: white;">
+                    <div style="font-size: 14px; margin-bottom: 8px;">Proposal Progress</div>
+                    <div style="display: flex; gap: 5px;">
+                        <div class="sp-progress-step" style="flex: 1; height: 6px; background: white; border-radius: 3px;"></div>
+                        <div class="sp-progress-step" style="flex: 1; height: 6px; background: rgba(255,255,255,0.3); border-radius: 3px;"></div>
+                        <div class="sp-progress-step" style="flex: 1; height: 6px; background: rgba(255,255,255,0.3); border-radius: 3px;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px;">
+                        <span>Overview</span>
+                        <span>Courses</span>
+                        <span>Resources</span>
+                    </div>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div style="display: flex; gap: 5px; margin-bottom: 20px; border-bottom: 2px solid var(--champlain-navy); overflow-x: auto;">
+                    <button type="button" class="sp-proposal-tab active" data-tab="overview"
+                        style="padding: 12px 20px; background: var(--champlain-navy); color: white; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap;">
+                        📋 Overview
+                    </button>
+                    <button type="button" class="sp-proposal-tab" data-tab="courses"
+                        style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap;">
+                        📚 Courses
+                    </button>
+                    <button type="button" class="sp-proposal-tab" data-tab="resources"
+                        style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap;">
+                        🔧 Resources &amp; Impact
+                    </button>
+                </div>
+
+                <form id="spProposalForm">
+
+                    <!-- Tab 1: Overview -->
+                    <div class="sp-proposal-tab-content" id="sp-tab-overview">
+                        <h3 style="color: var(--champlain-navy); margin-bottom: 20px;">📋 Overview</h3>
+
+                        <div class="form-group">
+                            <label>Skill Pack Name *</label>
+                            <input type="text" id="spSkillPackName" placeholder="e.g., Cybersecurity Essentials" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Affiliated Programs</label>
+                            <div id="spAffiliatedProgramsList" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px;"></div>
+                            <button type="button" id="spAddAffiliatedProgram"
+                                style="padding: 6px 16px; background: var(--champlain-blue); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600;">
+                                + Add Program
+                            </button>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Skill Pack Description *
+                                <span style="font-size: 12px; color: #666; font-weight: normal;"> — One sentence, student-centered, marketing audience</span>
+                            </label>
+                            <textarea id="spDescription" rows="3" required
+                                placeholder="Describe what students will do and learn within this skill pack..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Skill Pack Outcome *
+                                <span style="font-size: 12px; color: #666; font-weight: normal;"> — One sentence: what students will be able to do upon completion</span>
+                            </label>
+                            <textarea id="spOutcome" rows="2" required
+                                placeholder="Students will be able to..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Rationale *</label>
+                            <textarea id="spRationale" rows="4" required
+                                placeholder="Explain: how this skill pack opens opportunities for students; the target audience; how it enhances or complements current program offerings..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Courses -->
+                    <div class="sp-proposal-tab-content hidden" id="sp-tab-courses">
+                        <h3 style="color: var(--champlain-navy); margin-bottom: 8px;">📚 Skill Pack Courses</h3>
+                        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">
+                            Select existing courses from the system. For each course, describe how it contributes to the skill pack outcome, identify the competency it advances to Level 3, and note its disposition.
+                        </p>
+
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                                <thead>
+                                    <tr style="background: var(--champlain-navy); color: white;">
+                                        <th style="padding: 10px 8px; text-align: left; min-width: 180px;">Course</th>
+                                        <th style="padding: 10px 8px; text-align: left; min-width: 200px;">Contribution to Skill Pack LO</th>
+                                        <th style="padding: 10px 8px; text-align: left; min-width: 190px;">Competencies (Level 3)</th>
+                                        <th style="padding: 10px 8px; text-align: left; min-width: 160px;">Prerequisites</th>
+                                        <th style="padding: 10px 8px; text-align: left; min-width: 150px;">Disposition</th>
+                                        <th style="padding: 10px 8px; text-align: left; min-width: 130px;">Notes</th>
+                                        <th style="padding: 10px 8px; text-align: center; width: 50px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="spCoursesTableBody">
+                                    <!-- Rows added dynamically by SkillPackProposalsModule.addCourseRow() -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div style="margin-top: 12px;">
+                            <button type="button" id="spAddCourseRow"
+                                style="padding: 10px 20px; background: var(--champlain-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
+                                + Add Course
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Resources & Impact -->
+                    <div class="sp-proposal-tab-content hidden" id="sp-tab-resources">
+                        <h3 style="color: var(--champlain-navy); margin-bottom: 20px;">🔧 Resources &amp; Impact</h3>
+
+                        <div class="form-group">
+                            <label>Technology Requirements</label>
+                            <textarea id="spTechnologyRequirements" rows="2"
+                                placeholder="Describe technology requirements in general terms. If none, enter N/A."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Library Resources</label>
+                            <textarea id="spLibraryResources" rows="2"
+                                placeholder="Identify any specific library resources needed. If none, enter N/A."></textarea>
+                        </div>
+
+                        <hr style="margin: 20px 0; border: none; border-top: 1px solid #e0e0e0;">
+                        <h4 style="color: var(--champlain-navy); margin-bottom: 16px;">Linked Proposals</h4>
+
+                        <div class="form-group">
+                            <label>New Course Proposals matched to this Skill Pack</label>
+                            <textarea id="spNewCourseProposals" rows="2"
+                                placeholder="List any new course proposals being developed for this skill pack. Indicate their status."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Course Modification Proposals matched to this Skill Pack</label>
+                            <textarea id="spCourseModifications" rows="2"
+                                placeholder="List any course modifications being proposed. Indicate their status."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Course Elimination Proposals matched to this Skill Pack</label>
+                            <textarea id="spCourseEliminations" rows="2"
+                                placeholder="List any course eliminations affiliated with this skill pack. Indicate their status."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Impact on Other Programs</label>
+                            <textarea id="spProgramImpact" rows="3"
+                                placeholder="If there are course eliminations or modifications, list all programs impacted by these changes."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div id="spProposalSuccess" class="hidden"
+                        style="background: #4caf50; color: white; padding: 15px; border-radius: 6px; margin-top: 20px; text-align: center; font-weight: 600;"></div>
+
+                </form>
+
+                <!-- Navigation Footer -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
+                    <button type="button" id="spPrevTab" style="display: none; padding: 12px 30px; background: #f0f0f0; color: #333; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
+                        ← Previous
+                    </button>
+                    <div></div>
+                    <div style="display: flex; gap: 10px;">
+                        <button type="button" id="spNextTab"
+                            style="padding: 12px 30px; background: var(--champlain-navy); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
+                            Next →
+                        </button>
+                        <button type="button" id="spSubmitProposal" class="hidden"
+                            onclick="SkillPackProposalsModule.submitProposal(event)"
+                            style="padding: 12px 40px; background: var(--champlain-green); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 16px;">
+                            Submit Proposal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skill Pack Proposal Details Modal -->
+    <div id="spDetailsModal" class="modal">
+        <div class="modal-content" style="max-width: 900px; width: 95%;">
+            <div class="modal-header">
+                <h2>Skill Pack Proposal Details</h2>
+                <button class="close-btn" onclick="SkillPackProposalsModule.closeDetailsModal()">&times;</button>
+            </div>
+            <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+                <div id="spProposalDetails">
+                    <p style="text-align: center; color: #666;">Loading...</p>
+                </div>
             </div>
         </div>
     </div>
@@ -2110,6 +1934,477 @@
         <span>Press</span> <kbd>?</kbd> <span>for shortcuts</span>
     </div>
 
+
+    <!-- Main Application -->
+    <div id="mainApp" class="hidden">
+        <div class="header">
+            <div class="logo-section">
+                <img src="https://s3.amazonaws.com/imagerelay-assets/client/1263/assets/169951329/Shield-Multi_full.jpg?AWSAccessKeyId=AKIA5VVCWS7LSY3GYMKS&Expires=2066868752&Signature=arSfEsaWDe%2Ffs5tcMpm3Jqz0cJM%3D"
+                     alt="Champlain College Shield"
+                     style="height: 50px; margin-right: 20px;"
+                     onerror="this.style.display='none'">
+                <div class="logo-text">Academic Affairs</div>
+            </div>
+            <div class="header-nav-toggle view-toggle" id="headerViewToggle">
+                <button class="toggle-btn active" id="networkViewBtn">Network View</button>
+                <button class="toggle-btn" id="tableViewBtn">Table View</button>
+                <button class="toggle-btn" id="prerequisiteViewBtn">Prerequisite Chain</button>
+                <button class="toggle-btn" id="pathwayViewBtn">Course Pathway</button>
+                <button class="toggle-btn" id="graphsViewBtn">Competency Graphs</button>
+                <button class="toggle-btn" id="semesterPlannerBtn">Semester Planner</button>
+            </div>
+            <div class="user-info">
+                <span id="currentUser">User</span>
+                <span class="user-badge" id="currentRole">Role</span>
+                <button class="back-to-dashboard-btn" id="backToDashboardBtn">Dashboard</button>
+                <button class="logout-btn" id="logoutButton">Logout</button>
+            </div>
+        </div>
+
+        <div class="main-container">
+            <div class="sidebar">
+                <h2>Dashboard</h2>
+                
+                <div class="section">
+                    <h3>Course Selection</h3>
+                    <div class="sidebar-search-wrap">
+                        <input type="text"
+                               id="courseSearch"
+                               class="sidebar-search-input"
+                               placeholder="Search courses...">
+                    </div>
+
+                    <!-- Advanced Filters Button -->
+                    <div class="sidebar-filter-row">
+                        <button
+                            id="toggleFiltersBtn"
+                            class="sidebar-filter-btn"
+                            onclick="FilterModule.toggleFilterPanel()">
+                            Advanced Filters
+                        </button>
+                        <button
+                            id="clearFiltersBtn"
+                            class="sidebar-filter-btn sidebar-filter-btn--secondary"
+                            onclick="FilterModule.clearFilters(); FilterModule.applyFiltersAndUpdate();">
+                            Clear
+                        </button>
+                    </div>
+
+                    <!-- Filter Results Summary -->
+                    <div class="sidebar-filter-summary">
+                        <div id="filterResultsCount" class="sidebar-filter-summary__count">All courses</div>
+                        <div id="filterSummary" class="sidebar-filter-summary__detail">No filters active</div>
+                    </div>
+
+                    <!-- Advanced Filter Panel (collapsible) -->
+                    <div id="filterPanel" class="sidebar-filter-panel">
+                        <h4>Advanced Filters</h4>
+
+                        <!-- Department Filter -->
+                        <div class="sidebar-filter-group">
+                            <label class="sidebar-filter-group__label">Department</label>
+                            <div id="filterDepartments" class="sidebar-filter-group__options"></div>
+                        </div>
+
+                        <!-- Credit Hours Filter -->
+                        <div class="sidebar-filter-group">
+                            <label class="sidebar-filter-group__label">Credit Hours</label>
+                            <div id="filterCredits" class="sidebar-filter-group__options"></div>
+                        </div>
+
+                        <!-- Semester Offered Filter -->
+                        <div class="sidebar-filter-group">
+                            <label class="sidebar-filter-group__label">Semester Offered</label>
+                            <div id="filterSemesters" class="sidebar-filter-group__options">
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="FALL" onchange="FilterModule.updateFilters()">
+                                    <span>Fall</span>
+                                </label>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="SPRING" onchange="FilterModule.updateFilters()">
+                                    <span>Spring</span>
+                                </label>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="BOTH" onchange="FilterModule.updateFilters()">
+                                    <span>Both</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Competency Filter -->
+                        <div class="sidebar-filter-group">
+                            <label class="sidebar-filter-group__label">Competencies (must have ALL selected)</label>
+                            <div id="filterCompetencies" class="sidebar-filter-group__options sidebar-filter-group__options--column"></div>
+                        </div>
+
+                        <!-- Competency Weight Filter -->
+                        <div class="sidebar-filter-group">
+                            <label class="sidebar-filter-group__label">Competency Weight</label>
+                            <div id="filterWeights" class="sidebar-filter-group__options">
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="1" onchange="FilterModule.updateFilters()">
+                                    <span>Addressed (1)</span>
+                                </label>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="2" onchange="FilterModule.updateFilters()">
+                                    <span>Reinforced (2)</span>
+                                </label>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="3" onchange="FilterModule.updateFilters()">
+                                    <span>Emphasized (3)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Course Type Filter -->
+                        <div class="sidebar-filter-group">
+                            <label class="sidebar-filter-group__label">Course Type</label>
+                            <div id="filterCourseType" class="sidebar-filter-group__options">
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="Major" onchange="FilterModule.updateFilters()">
+                                    <span>Major</span>
+                                </label>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" value="GenEd" onchange="FilterModule.updateFilters()">
+                                    <span>General Education</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Filter Preset Actions -->
+                        <div class="sidebar-filter-presets">
+                            <button
+                                class="sidebar-preset-btn sidebar-preset-btn--save"
+                                onclick="FilterModule.showSavePresetDialog()">
+                                Save Filter Preset
+                            </button>
+                            <button
+                                class="sidebar-preset-btn sidebar-preset-btn--load"
+                                onclick="FilterModule.showLoadPresetDialog()">
+                                Load Preset
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="availableCourses" class="sidebar-course-list"></div>
+                    <div class="sidebar-selected-section">
+                        <h4>Selected Courses</h4>
+                        <div id="selectedCourses"></div>
+
+                        <!-- Similar Courses Feature -->
+                        <div id="similarCoursesSection" class="sidebar-similar-courses">
+                            <div class="collapsible-toggle collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');">
+                                <span class="collapsible-toggle-label">Similar Courses</span>
+                                <span class="collapsible-toggle-arrow"></span>
+                            </div>
+                            <div id="similarCoursesList" class="collapsible-body collapsed sidebar-similar-courses__list"></div>
+                        </div>
+
+                        <!-- Compare Courses Button -->
+                        <div class="sidebar-compare-section">
+                            <button class="comparison-btn" id="compareCoursesBtn" onclick="ComparisonTool.openModal()" disabled>
+                                Compare Selected Courses
+                            </button>
+                            <p id="compareHint" class="sidebar-compare-hint">
+                                Select 2-3 courses to compare
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="collapsible-toggle collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');">
+                        <span class="collapsible-toggle-label">Competency Tracker</span>
+                        <span class="collapsible-toggle-arrow"></span>
+                    </div>
+                    <div id="competencyTracker" class="collapsible-body collapsed"></div>
+                </div>
+
+                <div class="section">
+                    <div class="collapsible-toggle collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');">
+                        <span class="collapsible-toggle-label">Competency Status</span>
+                        <span class="collapsible-toggle-arrow"></span>
+                    </div>
+                    <div id="competencyStatus" class="collapsible-body collapsed"></div>
+                </div>
+
+                <div class="section" id="skillPackProgressSection">
+                    <div class="collapsible-toggle collapsed" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('collapsed');">
+                        <span class="collapsible-toggle-label">Skill Pack Progress</span>
+                        <span class="collapsible-toggle-arrow"></span>
+                    </div>
+                    <div id="skillPackProgressBody" class="collapsible-body collapsed"></div>
+                </div>
+
+                <!-- Recently Viewed Courses -->
+                <div id="recentlyViewedCourses" class="recently-viewed" style="display: none;">
+                    <h4>🕒 Recently Viewed</h4>
+                    <div class="recent-courses-list"></div>
+                </div>
+
+                <div id="adminSection" class="section hidden">
+                    <h3>Administration</h3>
+                    <button class="btn" id="reviewProposalsBtn">
+                        <span>Review Course Proposals</span>
+                        <span id="pendingBadge" class="badge hidden">0</span>
+                    </button>
+                    <button class="btn" id="manageCoursesBtn">
+                        <span>Manage Courses & Programs</span>
+                    </button>
+                </div>
+
+                <div id="facultySection" class="section hidden">
+                    <h3>Faculty Tools</h3>
+                    <button class="btn" id="submitProposalBtn">
+                        <span>Submit Course Proposal</span>
+                    </button>
+                    <button class="btn" id="myProposalsBtn">
+                        <span>My Proposals</span>
+                    </button>
+                </div>
+
+
+            </div>
+
+            <div class="viz-container">
+                <div class="viz-header">
+                    <div class="viz-header-row">
+                        <div>
+                            <h1 id="vizTitle">Competency Visualization</h1>
+                            <p id="vizDescription">Interactive network showing relationships between courses and college competencies</p>
+                        </div>
+                        <!-- Export Dropdown -->
+                        <div class="export-dropdown" id="exportDropdown">
+                            <button class="export-btn" onclick="ExportTool.toggleMenu()">
+                                Export <span style="font-size: 10px;">▼</span>
+                            </button>
+                            <div class="export-menu" id="exportMenu">
+                                <div class="export-menu-item" onclick="ExportTool.exportPNG()">
+                                    <span class="icon">🖼️</span>
+                                    <div>
+                                        <div class="label">Export as PNG</div>
+                                        <div class="desc">High-quality image</div>
+                                    </div>
+                                </div>
+                                <div class="export-menu-item" onclick="ExportTool.exportPDF()">
+                                    <span class="icon">📄</span>
+                                    <div>
+                                        <div class="label">Export as PDF</div>
+                                        <div class="desc">Print-ready document</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobile-only view toggle (mirrors header nav) -->
+                    <div class="view-toggle view-toggle-mobile" id="mobileViewToggle">
+                        <button class="toggle-btn active" data-view="network">Network</button>
+                        <button class="toggle-btn" data-view="table">Table</button>
+                        <button class="toggle-btn" data-view="prerequisite">Prerequisites</button>
+                        <button class="toggle-btn" data-view="pathway">Pathway</button>
+                        <button class="toggle-btn" data-view="graphs">Graphs</button>
+                        <button class="toggle-btn" data-view="semester">Planner</button>
+                    </div>
+                </div>
+                <div class="graph-wrapper">
+                    <!-- Network View -->
+                    <div id="networkView">
+                        <svg id="networkGraph" style="width: 100%; min-height: 600px;"></svg>
+                    </div>
+
+                    <!-- Table View -->
+                    <div id="tableView" class="hidden">
+                        <div id="competencyTable"></div>
+                    </div>
+
+                    <!-- Prerequisite Chain View -->
+                    <div id="prerequisiteView" class="hidden">
+                        <div id="prerequisiteGraphContainer" style="width: 100%; min-height: 600px;">
+                            <svg id="prerequisiteGraph" style="width: 100%; min-height: 600px;"></svg>
+                        </div>
+                    </div>
+
+                    <!-- Course Pathway View -->
+                    <div id="pathwayView" class="hidden">
+                        <h3 style="color: var(--champlain-navy); margin-bottom: 15px;">Student Course Pathway</h3>
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Search Completed Courses:</label>
+                                <div style="position: relative; margin-bottom: 15px;">
+                                    <input type="text"
+                                           id="completedCoursesSearch"
+                                           placeholder="Search and select completed courses..."
+                                           style="width: 100%; padding: 10px 40px 10px 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 14px;"
+                                           autocomplete="off">
+                                    <div id="completedCoursesDropdown" class="hidden" style="position: absolute; top: 100%; left: 0; right: 0; background: white; border: 2px solid #00A9E0; border-radius: 6px; max-height: 300px; overflow-y: auto; z-index: 1000; margin-top: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></div>
+                                </div>
+                                <div id="completedCoursesSelected" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;"></div>
+                            </div>
+                            <div id="pathwayGraphContainer" style="display: flex; gap: 20px; width: 100%; min-height: 500px;">
+                                <!-- Three columns for Completed, Available, Locked -->
+                                <div style="flex: 1; min-width: 250px;">
+                                    <h4 style="color: #4CAF50; margin-bottom: 10px; font-size: 18px; font-weight: bold;">
+                                        Completed <span id="completedCount" style="font-size: 14px;">(0)</span>
+                                    </h4>
+                                    <div id="completedCoursesBox" class="pathway-box" style="background: #f5f7fa; border: 2px solid #4CAF50; border-radius: 10px; padding: 15px; height: 500px; overflow-y: auto;"></div>
+                                </div>
+                                <div style="flex: 1; min-width: 250px;">
+                                    <h4 style="color: #00A9E0; margin-bottom: 10px; font-size: 18px; font-weight: bold;">
+                                        Available <span id="availableCount" style="font-size: 14px;">(0)</span>
+                                    </h4>
+                                    <div id="availableCoursesBox" class="pathway-box" style="background: #f5f7fa; border: 2px solid #00A9E0; border-radius: 10px; padding: 15px; height: 500px; overflow-y: auto;"></div>
+                                </div>
+                                <div style="flex: 1; min-width: 250px;">
+                                    <h4 style="color: #999; margin-bottom: 10px; font-size: 18px; font-weight: bold;">
+                                        Locked <span id="lockedCount" style="font-size: 14px;">(0)</span>
+                                    </h4>
+                                    <div id="lockedCoursesBox" class="pathway-box" style="background: #f5f7fa; border: 2px solid #999; border-radius: 10px; padding: 15px; height: 500px; overflow-y: auto;"></div>
+                                </div>
+                            </div>
+                            <!-- End Course Pathway Panel -->
+                    </div>
+
+                    <!-- Competency Graphs View -->
+                    <div id="graphsView" class="hidden">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                                <h3 style="color: var(--champlain-navy); margin: 0;">Competency Weight Analysis</h3>
+                                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                                    <div id="graphTypeToggle" style="display: flex; gap: 10px; background: #f5f7fa; padding: 8px; border-radius: 8px; flex-wrap: wrap;">
+                                        <button class="graph-type-btn active" data-graph="bar" style="padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; background: var(--champlain-bright-blue); color: white; font-weight: 600; transition: all 0.3s;">
+                                            📊 Bar Chart
+                                        </button>
+                                        <button class="graph-type-btn" data-graph="pie" style="padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; background: white; color: var(--champlain-navy); font-weight: 600; transition: all 0.3s;">
+                                            🥧 Pie Chart
+                                        </button>
+                                        <button class="graph-type-btn" data-graph="radar" style="padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; background: white; color: var(--champlain-navy); font-weight: 600; transition: all 0.3s;">
+                                            🎯 Radar Chart
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="graphsInfoBox" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid var(--champlain-bright-blue); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                                <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 8px;">📈 Understanding Competency Weights</div>
+                                <div style="font-size: 13px; color: #1565c0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                                    <div><strong>Level 0:</strong> Not addressed</div>
+                                    <div><strong>Level 1:</strong> Addressed in course</div>
+                                    <div><strong>Level 2:</strong> Reinforced through practice</div>
+                                    <div><strong>Level 3:</strong> Emphasized as focus</div>
+                                </div>
+                            </div>
+
+                            <!-- Graph Container -->
+                            <div id="graphsContainer" style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); min-height: 600px;">
+                                <!-- Bar Chart -->
+                                <div id="barChartContainer" class="graph-chart-container">
+                                    <svg id="barChart" style="width: 100%; height: 600px;"></svg>
+                                </div>
+
+                                <!-- Pie Chart -->
+                                <div id="pieChartContainer" class="graph-chart-container hidden">
+                                    <svg id="pieChart" style="width: 100%; height: 600px;"></svg>
+                                </div>
+
+                                <!-- Radar Chart -->
+                                <div id="radarChartContainer" class="graph-chart-container hidden">
+                                    <svg id="radarChart" style="width: 100%; height: 600px;"></svg>
+                                </div>
+                            </div>
+
+                        <!-- Selected Courses Summary -->
+                        <div id="graphsCourseSummary" style="margin-top: 20px; background: #f5f7fa; border-radius: 8px; padding: 15px;">
+                            <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 10px;">Selected Courses (0)</div>
+                            <div id="graphsCourseList" style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Semester Planner View -->
+                    <div id="semesterPlannerView" class="hidden">
+                        <!-- Semester Tabs -->
+                        <div id="semesterTabs" style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid var(--champlain-navy); padding-bottom: 10px; overflow-x: auto;"></div>
+
+                            <!-- Current Semester View -->
+                            <div id="currentSemesterView">
+                                <!-- Schedule Summary -->
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                                    <div class="stat-card" style="background: linear-gradient(135deg, var(--champlain-blue), var(--champlain-navy)); color: white; padding: 15px; border-radius: 8px;">
+                                        <div style="font-size: 24px; font-weight: bold;" id="totalCoursesCount">0</div>
+                                        <div style="font-size: 13px;">Total Courses</div>
+                                    </div>
+                                    <div class="stat-card" style="background: linear-gradient(135deg, var(--champlain-green), #45a049); color: white; padding: 15px; border-radius: 8px;">
+                                        <div style="font-size: 24px; font-weight: bold;" id="totalCreditsCount">0</div>
+                                        <div style="font-size: 13px;">Total Credits</div>
+                                    </div>
+                                    <div class="stat-card" style="background: linear-gradient(135deg, var(--champlain-bright-blue), var(--champlain-teal)); color: white; padding: 15px; border-radius: 8px;">
+                                        <div style="font-size: 24px; font-weight: bold;" id="conflictsCount">0</div>
+                                        <div style="font-size: 13px;">Conflicts</div>
+                                    </div>
+                                </div>
+
+                                <!-- Two Column Layout -->
+                                <div style="display: grid; grid-template-columns: 350px 1fr; gap: 20px;">
+                                    <!-- Left: Available Courses -->
+                                    <div>
+                                        <h3 style="color: var(--champlain-navy); margin-bottom: 15px;">Available Courses</h3>
+                                        <input type="text" id="schedulerCourseSearch" placeholder="Search courses..." style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; margin-bottom: 15px;">
+                                        <div id="availableCoursesForSchedule" style="max-height: 600px; overflow-y: auto; background: #f8f9fa; border-radius: 8px; padding: 10px;"></div>
+                                    </div>
+
+                                    <!-- Right: Planned Courses View -->
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                            <h3 style="color: var(--champlain-navy); margin: 0;">Planned Courses</h3>
+                                            <div style="display: flex; gap: 10px;">
+                                                <button id="exportScheduleBtn" style="padding: 8px 16px; background: var(--champlain-green); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">
+                                                    📄 Export
+                                                </button>
+                                                <button id="clearScheduleBtn" style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">
+                                                    🗑️ Clear
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <!-- Scheduled Courses List -->
+                                        <div>
+                                            <div id="scheduledCoursesList"></div>
+                                        </div>
+
+                                        <!-- Conflicts Display -->
+                                        <div id="conflictsDisplay" style="margin-top: 20px;"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Timeline & Competency Analysis Section -->
+                                <div style="margin-top: 30px; border-top: 2px solid #e0e0e0; padding-top: 30px;">
+                                    <h3 style="color: var(--champlain-navy); margin-bottom: 20px;">📈 Competency Progression Timeline</h3>
+
+
+                                    <!-- Timeline Chart -->
+                                    <div style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 20px;">
+                                        <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid var(--champlain-bright-blue); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                                            <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 8px;">Semester-by-Semester Progression</div>
+                                            <div style="font-size: 13px; color: #1565c0;">
+                                                This chart shows how competencies build up across your planned semesters. Lines represent cumulative totals of all competency weights from each course.
+                                            </div>
+                                            <div style="margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+                                                <button id="playProgressionBtn" style="padding: 8px 16px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;">
+                                                    ▶ Play Progression
+                                                </button>
+                                                <button id="stopProgressionBtn" class="hidden" style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;">
+                                                    ⏹ Stop
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <svg id="semesterTimelineChart" style="width: 100%; height: 500px;"></svg>
+                                    </div>
+
+                            </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript Files -->
     <script src="js/state.js"></script>
     <script src="js/auth.js"></script>
@@ -2117,6 +2412,7 @@
     <script src="js/components/courses.js"></script>
     <script src="js/components/competencies.js"></script>
     <script src="js/components/proposals.js"></script>
+    <script src="js/components/skill-pack-proposals.js"></script>
     <script src="js/components/prerequisites.js"></script>
     <script src="js/components/scheduling.js"></script>
     <script src="js/ui/visualization.js"></script>

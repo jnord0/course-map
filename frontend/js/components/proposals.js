@@ -209,9 +209,9 @@ const ProposalsModule = {
     /**
      * Show my proposals modal
      */
-    showMyProposals: () => {
+    showMyProposals: (containerId = 'myProposalsList', showModal = true) => {
         const myProposals = StateGetters.getProposals().filter(p => p.submittedBy === StateGetters.getCurrentUser());
-        const listDiv = document.getElementById('myProposalsList');
+        const listDiv = document.getElementById(containerId);
 
         if (myProposals.length === 0) {
             listDiv.innerHTML = '<p style="text-align: center; color: #666;">No proposals submitted yet.</p>';
@@ -239,15 +239,19 @@ const ProposalsModule = {
             }).join('');
         }
 
-        document.getElementById('myProposalsModal').style.display = 'block';
+        if (showModal) {
+            document.getElementById('myProposalsModal').style.display = 'block';
+        }
     },
 
     /**
      * Show proposal review modal (admin only)
+     * @param {string} containerId - optional override for the list container element ID
+     * @param {boolean} showModal - whether to show the modal overlay (default true)
      */
-    showReviewModal: () => {
+    showReviewModal: (containerId = 'proposalList', showModal = true) => {
         const pendingProposals = StateGetters.getProposals().filter(p => p.status === 'pending');
-        const listDiv = document.getElementById('proposalList');
+        const listDiv = document.getElementById(containerId);
 
         if (pendingProposals.length === 0) {
             listDiv.innerHTML = '<p style="text-align: center; color: #666;">No pending proposals.</p>';
@@ -275,7 +279,9 @@ const ProposalsModule = {
             }).join('');
         }
 
-        document.getElementById('reviewModal').style.display = 'block';
+        if (showModal) {
+            document.getElementById('reviewModal').style.display = 'block';
+        }
     },
 
     /**
@@ -412,6 +418,11 @@ const ProposalsModule = {
         if (feedback && feedback.trim() !== '') {
             StateSetters.addProposalFeedback(id, feedback.trim());
             ProposalsModule.showReviewModal();
+            // Also refresh proposals page list if it is currently visible
+            const proposalsPage = document.getElementById('proposalsPage');
+            if (proposalsPage && !proposalsPage.classList.contains('hidden')) {
+                ProposalsModule.showReviewModal('pg-proposalList', false);
+            }
             alert('Feedback sent successfully! Faculty member will be notified.');
         }
     },
@@ -436,6 +447,11 @@ const ProposalsModule = {
             StateSetters.updateProposalStatus(id, 'rejected');
             ProposalsModule.updatePendingBadge();
             ProposalsModule.showReviewModal();
+            // Also refresh proposals page list if it is currently visible
+            const proposalsPage = document.getElementById('proposalsPage');
+            if (proposalsPage && !proposalsPage.classList.contains('hidden')) {
+                ProposalsModule.showReviewModal('pg-proposalList', false);
+            }
             alert('Proposal rejected with feedback.');
         }
     },
@@ -653,6 +669,11 @@ Export ID: ${proposal.id}-${Date.now()}
             StateSetters.updateProposalStatus(id, 'approved');
             ProposalsModule.updatePendingBadge();
             ProposalsModule.showReviewModal();
+            // Also refresh proposals page list if it is currently visible
+            const proposalsPage = document.getElementById('proposalsPage');
+            if (proposalsPage && !proposalsPage.classList.contains('hidden')) {
+                ProposalsModule.showReviewModal('pg-proposalList', false);
+            }
             alert('Proposal approved!');
         }
     },
@@ -755,6 +776,11 @@ Export ID: ${proposal.id}-${Date.now()}
                 ProposalsModule.currentProposalId = null;
                 document.getElementById('submitProposal').textContent = 'Submit Proposal';
                 ProposalsModule.resetForm();
+                // Refresh proposals page list if visible
+                const proposalsPage = document.getElementById('proposalsPage');
+                if (proposalsPage && !proposalsPage.classList.contains('hidden')) {
+                    ProposalsModule.showMyProposals('pg-myProposalsList', false);
+                }
             }, 2000);
         } else {
             // Create new proposal
@@ -776,6 +802,11 @@ Export ID: ${proposal.id}-${Date.now()}
                 ModalsModule.closeProposalModal();
                 successMsg.classList.add('hidden');
                 ProposalsModule.resetForm();
+                // Refresh proposals page list if visible
+                const proposalsPage = document.getElementById('proposalsPage');
+                if (proposalsPage && !proposalsPage.classList.contains('hidden')) {
+                    ProposalsModule.showMyProposals('pg-myProposalsList', false);
+                }
             }, 2000);
         }
     },

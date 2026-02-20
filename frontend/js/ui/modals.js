@@ -63,6 +63,21 @@ const ModalsModule = {
     },
     
     /**
+     * Close all open modals. Called during page navigation to prevent
+     * modals from persisting across page transitions.
+     */
+    closeAllModals: () => {
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.style.display = 'none';
+        });
+        // Also close comparison and shortcuts modals
+        const comparison = document.getElementById('comparisonModal');
+        if (comparison) comparison.style.display = 'none';
+        const shortcuts = document.getElementById('shortcutsModal');
+        if (shortcuts) shortcuts.style.display = 'none';
+    },
+
+    /**
      * Setup modal click-outside-to-close functionality
      */
     setupModalListeners: () => {

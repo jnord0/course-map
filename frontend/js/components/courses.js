@@ -215,11 +215,12 @@ const CoursesModule = {
     },
 
     /**
-     * Update courses list in manage modal
+     * Update courses list in manage modal or page
      * @param {string} searchTerm
+     * @param {string} containerId - optional override for the container element ID
      */
-    updateCoursesList: (searchTerm = '') => {
-        const listDiv = document.getElementById('coursesList');
+    updateCoursesList: (searchTerm = '', containerId = 'coursesList') => {
+        const listDiv = document.getElementById(containerId);
         const courses = StateGetters.getCourses();
 
         const filteredCourses = courses.filter(course => {
@@ -256,8 +257,8 @@ const CoursesModule = {
                             ${course.description ? `<div style="margin-top: 8px; font-size: 12px; color: #666;">${course.description.substring(0, 100)}...</div>` : ''}
                         </div>
                         <div class="proposal-actions">
-                            <button class="action-btn btn-view" onclick="CoursesModule.editCourse(${course.id})">✏️ Edit</button>
-                            <button class="action-btn btn-reject" onclick="CoursesModule.deleteCourse(${course.id})">🗑️ Delete</button>
+                            <button class="action-btn btn-view" onclick="CoursesModule.editCourse(${course.id})">Edit</button>
+                            <button class="action-btn btn-reject" onclick="CoursesModule.deleteCourse(${course.id})">Delete</button>
                         </div>
                     </div>
                 `;
@@ -266,10 +267,11 @@ const CoursesModule = {
     },
 
     /**
-     * Update competencies list in manage modal
+     * Update competencies list in manage modal or page
+     * @param {string} containerId - optional override for the container element ID
      */
-    updateCompetenciesList: () => {
-        const listDiv = document.getElementById('competenciesList');
+    updateCompetenciesList: (containerId = 'competenciesList') => {
+        const listDiv = document.getElementById(containerId);
         const competencies = StateGetters.getCompetencies();
         const courses = StateGetters.getCourses();
 
@@ -291,7 +293,7 @@ const CoursesModule = {
                             <div style="font-size: 12px; color: #666; margin-top: 4px;">ID: ${comp.id}</div>
                         </div>
                         <button class="small-action-btn" onclick="CoursesModule.editCompetency('${comp.id}')" title="Edit Competency">
-                            ✏️
+                            Edit
                         </button>
                     </div>
                     <div style="display: flex; gap: 15px; margin-top: 10px;">
@@ -314,10 +316,11 @@ const CoursesModule = {
     },
 
     /**
-     * Update learning objectives list in manage modal
+     * Update learning objectives list in manage modal or page
+     * @param {string} containerId - optional override for the container element ID
      */
-    updateObjectivesList: () => {
-        const listDiv = document.getElementById('objectivesList');
+    updateObjectivesList: (containerId = 'objectivesList') => {
+        const listDiv = document.getElementById(containerId);
 
         // Get unique PLOs and CLOs from courses
         const allPLOs = new Set();
@@ -333,36 +336,31 @@ const CoursesModule = {
 
         listDiv.innerHTML = `
             <div style="margin-bottom: 20px;">
-                <h4 style="color: var(--champlain-navy); font-size: 14px; margin-bottom: 10px;">Program Learning Objectives (PLOs)</h4>
+                <h4 style="color: var(--champlain-navy); font-size: 14px; margin-bottom: 10px;">Program Learning Outcomes (PLOs)</h4>
                 ${ploArray.length > 0 ? ploArray.map(plo => `
                     <div class="objective-item">
-                        <span>${plo.toUpperCase()}</span>
+                        <span>${plo}</span>
                     </div>
                 `).join('') : '<p style="color: #999; font-size: 13px;">No PLOs defined</p>'}
-                <button class="btn" onclick="CoursesModule.managePLOs()" style="margin-top: 10px; font-size: 13px;">
-                    Manage PLOs
-                </button>
             </div>
 
             <div>
-                <h4 style="color: var(--champlain-navy); font-size: 14px; margin-bottom: 10px;">Course Learning Objectives (CLOs)</h4>
+                <h4 style="color: var(--champlain-navy); font-size: 14px; margin-bottom: 10px;">Course Learning Outcomes (CLOs)</h4>
                 ${cloArray.length > 0 ? cloArray.map(clo => `
                     <div class="objective-item">
-                        <span>${clo.toUpperCase()}</span>
+                        <span>${clo}</span>
                     </div>
                 `).join('') : '<p style="color: #999; font-size: 13px;">No CLOs defined</p>'}
-                <button class="btn" onclick="CoursesModule.manageCLOs()" style="margin-top: 10px; font-size: 13px;">
-                    Manage CLOs
-                </button>
             </div>
         `;
     },
 
     /**
-     * Update system statistics
+     * Update system statistics in manage modal or page
+     * @param {string} containerId - optional override for the container element ID
      */
-    updateSystemStats: () => {
-        const statsDiv = document.getElementById('systemStats');
+    updateSystemStats: (containerId = 'systemStats') => {
+        const statsDiv = document.getElementById(containerId);
         if (!statsDiv) return;
 
         const courses = StateGetters.getCourses();
@@ -841,6 +839,12 @@ const CoursesModule = {
             CoursesModule.updateAvailableCourses();
             CoursesModule.updateSystemStats();
             CompetenciesModule.updateTracker();
+            // Also refresh management page if it is currently visible
+            const mgmtPage = document.getElementById('managementPage');
+            if (mgmtPage && !mgmtPage.classList.contains('hidden')) {
+                CoursesModule.updateCoursesList('', 'pg-coursesList');
+                CoursesModule.updateSystemStats('pg-systemStats');
+            }
             alert('Course deleted successfully!');
         }
     },
@@ -995,6 +999,12 @@ const CoursesModule = {
         CoursesModule.updateAvailableCourses();
         CoursesModule.updateSystemStats();
         CompetenciesModule.updateTracker();
+        // Also refresh management page if it is currently visible
+        const mgmtPage = document.getElementById('managementPage');
+        if (mgmtPage && !mgmtPage.classList.contains('hidden')) {
+            CoursesModule.updateCoursesList('', 'pg-coursesList');
+            CoursesModule.updateSystemStats('pg-systemStats');
+        }
         ModalsModule.closeEditCourseModal();
         alert(AppState.editingCourseId ? 'Course updated successfully!' : 'Course added successfully!');
     }
