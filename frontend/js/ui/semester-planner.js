@@ -397,20 +397,12 @@ const SemesterPlannerUI = {
 
         if (semesterData.length === 0) {
             // No courses scheduled, show empty state
-            document.getElementById('overallCompetencyGrid').innerHTML = '<p style="text-align: center; color: #666; grid-column: 1/-1;">No courses scheduled yet. Add courses to see competency analysis.</p>';
-            document.getElementById('semesterTimelineChart').innerHTML = '';
-            document.getElementById('semesterCompetencyBreakdown').innerHTML = '<p style="text-align: center; color: #666;">No data available</p>';
+            d3.select('#semesterTimelineChart').selectAll('*').remove();
             return;
         }
 
-        // Calculate overall competency achievement
-        SemesterPlannerUI.renderOverallCompetencies(semesterData, allCompetencies);
-
         // Render timeline chart
         SemesterPlannerUI.renderSemesterTimeline(semesterData, allCompetencies);
-
-        // Render per-semester breakdown
-        SemesterPlannerUI.renderPerSemesterBreakdown(semesterData, allCompetencies);
     },
 
     /**
@@ -550,8 +542,8 @@ const SemesterPlannerUI = {
         const xAxis = g.append('g')
             .attr('transform', `translate(0,${plotHeight})`)
             .call(d3.axisBottom(xScale)
-                .ticks(timelineData.length)
-                .tickFormat((d, i) => timelineData[i] ? timelineData[i].semesterName : ''));
+                .tickValues(timelineData.map((_, i) => i))
+                .tickFormat(d => timelineData[d] ? timelineData[d].semesterName : ''));
 
         xAxis.selectAll('text')
             .style('text-anchor', 'end')
