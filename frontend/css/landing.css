@@ -2423,3 +2423,489 @@
         min-width: auto;
     }
 }
+
+/* ============================================
+   SKILL PACK COURSE OVERLAP CHECKER
+   Pre-proposal tool for faculty to check course
+   overlap against existing skill packs.
+   ============================================ */
+
+.sp-overlap-checker-panel {
+    background: #fff;
+    border: 1.5px solid #d0dce8;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,60,95,0.06);
+}
+
+.sp-overlap-checker-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 22px;
+    background: linear-gradient(90deg, #f0f5fa 0%, #e8f0f8 100%);
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--champlain-navy, #003C5F);
+    text-align: left;
+    transition: background 0.2s;
+}
+
+.sp-overlap-checker-header:hover {
+    background: linear-gradient(90deg, #e4eef8 0%, #d8e8f4 100%);
+}
+
+.sp-overlap-checker-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sp-overlap-checker-badge {
+    background: var(--champlain-bright-blue, #00A9E0);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.sp-overlap-checker-toggle-hint {
+    font-size: 13px;
+    font-weight: 400;
+    color: #5a7a96;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sp-overlap-checker-body {
+    padding: 22px 24px;
+    border-top: 1px solid #d8e5f0;
+}
+
+.sp-overlap-checker-description {
+    color: #4a6275;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 18px;
+}
+
+/* Course input row */
+.sp-overlap-input-row {
+    margin-bottom: 14px;
+}
+
+.sp-overlap-input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.sp-overlap-course-input {
+    flex: 1;
+    min-width: 220px;
+    padding: 9px 14px;
+    border: 1.5px solid #b8cfe0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #1a2e3d;
+    background: #f8fbfd;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.sp-overlap-course-input:focus {
+    border-color: var(--champlain-bright-blue, #00A9E0);
+    background: #fff;
+}
+
+.sp-overlap-add-btn {
+    padding: 9px 18px;
+    background: var(--champlain-navy, #003C5F);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.sp-overlap-add-btn:hover {
+    background: var(--champlain-blue, #236192);
+}
+
+/* Selected course chips */
+.sp-overlap-selected-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #5a7a96;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+}
+
+.sp-overlap-selected-courses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 38px;
+    margin-bottom: 16px;
+    padding: 6px 10px;
+    background: #f4f8fc;
+    border: 1px dashed #b8cfe0;
+    border-radius: 6px;
+    align-items: center;
+}
+
+.sp-overlap-empty-hint {
+    color: #9ab0c2;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.sp-overlap-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--champlain-navy, #003C5F);
+    color: #fff;
+    border-radius: 16px;
+    padding: 4px 12px 4px 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.sp-overlap-chip-code {
+    letter-spacing: 0.02em;
+}
+
+.sp-overlap-chip-remove {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.75);
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.15s;
+}
+
+.sp-overlap-chip-remove:hover {
+    color: #fff;
+}
+
+/* Check button row */
+.sp-overlap-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.sp-overlap-check-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: var(--champlain-bright-blue, #00A9E0);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, opacity 0.2s;
+}
+
+.sp-overlap-check-btn:hover:not(:disabled) {
+    background: #0093c4;
+}
+
+.sp-overlap-check-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.sp-overlap-actions-hint {
+    font-size: 13px;
+    color: #7a94a8;
+}
+
+/* Results area */
+.sp-overlap-results {
+    border-top: 1px solid #d8e5f0;
+    padding-top: 20px;
+}
+
+.sp-overlap-results:empty {
+    border-top: none;
+    padding-top: 0;
+}
+
+.sp-overlap-results-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sp-overlap-summary-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #eef6eb;
+    border: 1px solid #c3dbb8;
+    border-radius: 7px;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #2a5a1e;
+    font-weight: 500;
+}
+
+.sp-overlap-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--champlain-navy, #003C5F);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sp-overlap-section-title--spaced {
+    margin-top: 8px;
+}
+
+.sp-overlap-count-badge {
+    background: var(--champlain-bright-blue, #00A9E0);
+    color: #fff;
+    border-radius: 12px;
+    padding: 1px 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+/* Per-course membership rows */
+.sp-overlap-course-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sp-overlap-course-row {
+    background: #f8fbfd;
+    border: 1px solid #d0dce8;
+    border-radius: 7px;
+    padding: 12px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.sp-overlap-course-info {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex: 1 1 180px;
+}
+
+.sp-overlap-course-code {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--champlain-navy, #003C5F);
+}
+
+.sp-overlap-course-name {
+    font-size: 13px;
+    color: #4a6275;
+}
+
+.sp-overlap-badge {
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 12px;
+    padding: 3px 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.sp-overlap-badge-none {
+    background: #eef6eb;
+    color: #2a5a1e;
+}
+
+.sp-overlap-badge-one {
+    background: #fff3e0;
+    color: #8a4a00;
+}
+
+.sp-overlap-badge-many {
+    background: #fdecea;
+    color: #8a1a0a;
+}
+
+.sp-overlap-sp-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.sp-overlap-sp-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #2a4a6a;
+}
+
+.sp-overlap-sp-program {
+    font-size: 12px;
+    color: #7a94a8;
+}
+
+.sp-overlap-sp-none {
+    font-size: 13px;
+    color: #6a9460;
+    font-style: italic;
+}
+
+/* Skillpack overlap table */
+.sp-overlap-table-wrapper {
+    overflow-x: auto;
+    border-radius: 7px;
+    border: 1px solid #d0dce8;
+}
+
+.sp-overlap-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.sp-overlap-table thead th {
+    background: var(--champlain-navy, #003C5F);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 10px 14px;
+    text-align: left;
+}
+
+.sp-overlap-table tbody tr {
+    border-bottom: 1px solid #e0ecf4;
+    transition: background 0.1s;
+}
+
+.sp-overlap-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.sp-overlap-table tbody tr:hover {
+    background: #f4f8fc;
+}
+
+.sp-overlap-table td {
+    padding: 10px 14px;
+    vertical-align: top;
+}
+
+.sp-overlap-sp-col-title strong {
+    font-weight: 600;
+    color: #1a2e3d;
+}
+
+.sp-overlap-sp-meta {
+    font-size: 12px;
+    color: #7a94a8;
+    margin-top: 2px;
+}
+
+.sp-overlap-sp-col-type {
+    font-size: 12px;
+    color: #4a6275;
+    white-space: nowrap;
+}
+
+.sp-overlap-match-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 3px 10px;
+    white-space: nowrap;
+}
+
+.sp-overlap-match-label.sp-overlap-exact {
+    background: #fdecea;
+    color: #8a1a0a;
+}
+
+.sp-overlap-match-label.sp-overlap-superset {
+    background: #fff3e0;
+    color: #8a4a00;
+}
+
+.sp-overlap-match-label.sp-overlap-partial {
+    background: #fff8e1;
+    color: #6a5000;
+}
+
+.sp-overlap-shared-codes {
+    font-size: 12px;
+    color: #4a6275;
+    font-family: monospace;
+    letter-spacing: 0.02em;
+}
+
+/* No-overlap positive state */
+.sp-overlap-no-match {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #eef6eb;
+    border: 1px solid #c3dbb8;
+    border-radius: 7px;
+    padding: 14px 18px;
+    color: #2a5a1e;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .sp-overlap-input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .sp-overlap-add-btn {
+        width: 100%;
+        text-align: center;
+    }
+    .sp-overlap-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .sp-overlap-checker-toggle-hint {
+        display: none;
+    }
+    .sp-overlap-table {
+        font-size: 12px;
+    }
+}
