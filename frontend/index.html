@@ -19,6 +19,13 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        /* Lucide icon sizing utilities */
+        i[data-lucide] { display: inline-block; vertical-align: middle; }
+        .icon-sm { width: 16px; height: 16px; }
+        .icon-md { width: 20px; height: 20px; }
+    </style>
 </head>
 <body>
     <!-- Landing Page -->
@@ -965,16 +972,16 @@
                 <!-- Tab Navigation -->
                 <div style="display: flex; gap: 5px; margin-bottom: 20px; border-bottom: 2px solid var(--champlain-navy); overflow-x: auto;">
                     <button type="button" class="proposal-tab active" data-tab="identity" style="padding: 12px 20px; background: var(--champlain-navy); color: white; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.3s;">
-                        📋 Course Identity
+                        <i data-lucide="clipboard-list" class="icon-sm"></i> Course Identity
                     </button>
                     <button type="button" class="proposal-tab" data-tab="outcomes" style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.3s;">
-                        🎯 Learning Outcomes
+                        <i data-lucide="target" class="icon-sm"></i> Learning Outcomes
                     </button>
                     <button type="button" class="proposal-tab" data-tab="content" style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.3s;">
-                        📚 Course Content
+                        <i data-lucide="book-open" class="icon-sm"></i> Course Content
                     </button>
                     <button type="button" class="proposal-tab" data-tab="resources" style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.3s;">
-                        🔧 Resources
+                        <i data-lucide="wrench" class="icon-sm"></i> Resources
                     </button>
                 </div>
 
@@ -982,7 +989,7 @@
                     <!-- Tab 1: Course Identity -->
                     <div class="proposal-tab-content" id="tab-identity">
                         <h3 style="color: var(--champlain-navy); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                            <span style="font-size: 24px;">📋</span> Course Identity
+                            <i data-lucide="clipboard-list" class="icon-md"></i> Course Identity
                         </h3>
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
@@ -1062,7 +1069,7 @@
                     <!-- Tab 2: Learning Outcomes -->
                     <div class="proposal-tab-content hidden" id="tab-outcomes">
                         <h3 style="color: var(--champlain-navy); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                            <span style="font-size: 24px;">🎯</span> Learning Outcomes
+                            <i data-lucide="target" class="icon-md"></i> Learning Outcomes
                         </h3>
 
                         <!-- Course Learning Outcomes -->
@@ -1071,7 +1078,7 @@
                             <div id="closContainer">
                                 <div class="clo-item" style="display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start;">
                                     <input type="text" class="clo-input" placeholder="CLO description" style="flex: 1; padding: 10px; border: 2px solid #2196F3; border-radius: 4px;">
-                                    <button type="button" class="remove-clo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                                    <button type="button" class="remove-clo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; display:flex; align-items:center;"><i data-lucide="x" class="icon-sm"></i></button>
                                 </div>
                             </div>
                             <button type="button" id="addCLO" style="padding: 10px 20px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">+ Add CLO</button>
@@ -1083,7 +1090,7 @@
                             <div id="plosContainer">
                                 <div class="plo-item" style="display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start;">
                                     <input type="text" class="plo-input" placeholder="PLO description" style="flex: 1; padding: 10px; border: 2px solid #9C27B0; border-radius: 4px;">
-                                    <button type="button" class="remove-plo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                                    <button type="button" class="remove-plo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; display:flex; align-items:center;"><i data-lucide="x" class="icon-sm"></i></button>
                                 </div>
                             </div>
                             <button type="button" id="addPLO" style="padding: 10px 20px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">+ Add PLO</button>
@@ -1193,7 +1200,7 @@
                     <!-- Tab 3: Course Content -->
                     <div class="proposal-tab-content hidden" id="tab-content">
                         <h3 style="color: var(--champlain-navy); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                            <span style="font-size: 24px;">📚</span> Course Content & Assessment
+                            <i data-lucide="book-open" class="icon-md"></i> Course Content & Assessment
                         </h3>
 
                         <div class="form-group">
@@ -1207,7 +1214,7 @@
                                 <div class="assessment-item" style="background: white; padding: 15px; border-radius: 6px; margin-bottom: 12px; border-left: 4px solid var(--champlain-green);">
                                     <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                                         <input type="text" class="assessment-name" placeholder="Assessment name" style="flex: 1; padding: 10px; border: 2px solid #ddd; border-radius: 4px;">
-                                        <button type="button" class="remove-assessment" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                                        <button type="button" class="remove-assessment" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; display:flex; align-items:center;"><i data-lucide="x" class="icon-sm"></i></button>
                                     </div>
                                     <textarea class="assessment-desc" placeholder="Description and how it links to learning outcomes..." rows="2" style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
                                 </div>
@@ -1224,7 +1231,7 @@
                     <!-- Tab 4: Resources -->
                     <div class="proposal-tab-content hidden" id="tab-resources">
                         <h3 style="color: var(--champlain-navy); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                            <span style="font-size: 24px;">🔧</span> Resources & Planning
+                            <i data-lucide="wrench" class="icon-md"></i> Resources & Planning
                         </h3>
 
                         <div class="form-group">
@@ -1262,8 +1269,8 @@
 
                     <!-- Navigation Buttons -->
                     <div style="display: flex; justify-content: space-between; margin-top: 30px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
-                        <button type="button" id="prevTab" class="btn" style="padding: 12px 30px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">← Previous</button>
-                        <button type="button" id="nextTab" class="btn" style="padding: 12px 30px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Next →</button>
+                        <button type="button" id="prevTab" class="btn" style="padding: 12px 30px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; display:flex; align-items:center; gap:6px;"><i data-lucide="chevron-left" class="icon-sm"></i> Previous</button>
+                        <button type="button" id="nextTab" class="btn" style="padding: 12px 30px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; display:flex; align-items:center; gap:6px;">Next <i data-lucide="chevron-right" class="icon-sm"></i></button>
                         <button type="submit" id="submitProposal" class="submit-btn hidden" style="padding: 12px 40px; background: var(--champlain-green); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 16px;">Submit Proposal</button>
                     </div>
 
@@ -1324,7 +1331,7 @@
                             gap: 8px;
                         "
                     >
-                        <span style="font-size: 18px;">📄</span> Export Proposal Document
+                        <i data-lucide="file-text" class="icon-sm"></i> Export Proposal Document
                     </button>
                 </div>
             </div>
@@ -1342,7 +1349,7 @@
                 <!-- System Statistics -->
                 <div style="margin-bottom: 30px;">
                     <h3 style="color: var(--champlain-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                        <span style="font-size: 20px;">📊</span> System Overview
+                        <i data-lucide="bar-chart-2" class="icon-md"></i> System Overview
                     </h3>
                     <div id="systemStats"></div>
                 </div>
@@ -1351,7 +1358,7 @@
                 <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                         <h3 style="color: var(--champlain-navy); margin: 0; display: flex; align-items: center; gap: 10px;">
-                            <span style="font-size: 20px;">📚</span> Course Management
+                            <i data-lucide="book-open" class="icon-md"></i> Course Management
                         </h3>
                         <button class="btn" id="addCourseBtn" style="margin: 0; background: var(--champlain-bright-blue); color: white; border: none;">
                             + Add New Course
@@ -1420,19 +1427,19 @@
                 <!-- Tab Navigation -->
                 <div style="display: flex; gap: 5px; margin-bottom: 20px; border-bottom: 2px solid var(--champlain-navy); overflow-x: auto;">
                     <button type="button" class="edit-tab active" data-tab="identity" style="padding: 12px 20px; background: var(--champlain-navy); color: white; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.3s;">
-                        📋 Course Identity
+                        <i data-lucide="clipboard-list" class="icon-sm"></i> Course Identity
                     </button>
                     <button type="button" class="edit-tab" data-tab="outcomes" style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.3s;">
-                        🎯 Learning Outcomes
+                        <i data-lucide="target" class="icon-sm"></i> Learning Outcomes
                     </button>
                     <button type="button" class="edit-tab" data-tab="content" style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.3s;">
-                        📚 Course Content
+                        <i data-lucide="book-open" class="icon-sm"></i> Course Content
                     </button>
                     <button type="button" class="edit-tab" data-tab="resources" style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.3s;">
-                        🔧 Resources
+                        <i data-lucide="wrench" class="icon-sm"></i> Resources
                     </button>
                     <button type="button" class="edit-tab" data-tab="metadata" style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.3s;">
-                        📊 Metadata
+                        <i data-lucide="database" class="icon-sm"></i> Metadata
                     </button>
                 </div>
 
@@ -1440,7 +1447,7 @@
                     <!-- Tab 1: Course Identity -->
                     <div class="edit-tab-content" id="edit-tab-identity">
                         <h3 style="color: var(--champlain-navy); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                            <span style="font-size: 24px;">📋</span> Course Identity
+                            <i data-lucide="clipboard-list" class="icon-md"></i> Course Identity
                         </h3>
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
@@ -1672,7 +1679,7 @@
                     <!-- Tab 5: Metadata -->
                     <div class="edit-tab-content hidden" id="edit-tab-metadata">
                         <h3 style="color: var(--champlain-navy); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                            <span style="font-size: 24px;">📊</span> Course Metadata
+                            <i data-lucide="database" class="icon-md"></i> Course Metadata
                         </h3>
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
@@ -1718,9 +1725,9 @@
 
                     <!-- Navigation Buttons -->
                     <div style="display: flex; justify-content: space-between; margin-top: 30px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
-                        <button type="button" id="editPrevTab" class="btn" style="padding: 12px 30px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">← Previous</button>
-                        <button type="button" id="editNextTab" class="btn" style="padding: 12px 30px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Next →</button>
-                        <button type="submit" id="saveEditCourse" class="submit-btn hidden" style="padding: 12px 40px; background: var(--champlain-green); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 16px;">💾 Save Course</button>
+                        <button type="button" id="editPrevTab" class="btn" style="padding: 12px 30px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; display:flex; align-items:center; gap:6px;"><i data-lucide="chevron-left" class="icon-sm"></i> Previous</button>
+                        <button type="button" id="editNextTab" class="btn" style="padding: 12px 30px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; display:flex; align-items:center; gap:6px;">Next <i data-lucide="chevron-right" class="icon-sm"></i></button>
+                        <button type="submit" id="saveEditCourse" class="submit-btn hidden" style="padding: 12px 40px; background: var(--champlain-green); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 16px; display:flex; align-items:center; gap:6px;"><i data-lucide="save" class="icon-sm"></i> Save Course</button>
                     </div>
                 </form>
             </div>
@@ -1731,7 +1738,7 @@
     <div id="semesterPlannerModal" class="modal">
         <div class="modal-content" style="max-width: 1400px; width: 95%;">
             <div class="modal-header">
-                <h2>📅 Semester Course Planner</h2>
+                <h2><i data-lucide="calendar" class="icon-md"></i> Semester Course Planner</h2>
                 <button class="close-btn" id="closeSemesterPlannerBtn">&times;</button>
             </div>
             <div class="modal-body">
@@ -1780,15 +1787,15 @@
                 <div style="display: flex; gap: 5px; margin-bottom: 20px; border-bottom: 2px solid var(--champlain-navy); overflow-x: auto;">
                     <button type="button" class="sp-proposal-tab active" data-tab="overview"
                         style="padding: 12px 20px; background: var(--champlain-navy); color: white; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap;">
-                        📋 Overview
+                        <i data-lucide="layout-list" class="icon-sm"></i> Overview
                     </button>
                     <button type="button" class="sp-proposal-tab" data-tab="courses"
                         style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap;">
-                        📚 Courses
+                        <i data-lucide="book-open" class="icon-sm"></i> Courses
                     </button>
                     <button type="button" class="sp-proposal-tab" data-tab="resources"
                         style="padding: 12px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 6px 6px 0 0; cursor: pointer; font-weight: 600; white-space: nowrap;">
-                        🔧 Resources &amp; Impact
+                        <i data-lucide="wrench" class="icon-sm"></i> Resources &amp; Impact
                     </button>
                 </div>
 
@@ -1796,7 +1803,7 @@
 
                     <!-- Tab 1: Overview -->
                     <div class="sp-proposal-tab-content" id="sp-tab-overview">
-                        <h3 style="color: var(--champlain-navy); margin-bottom: 20px;">📋 Overview</h3>
+                        <h3 style="color: var(--champlain-navy); margin-bottom: 20px;"><i data-lucide="layout-list" class="icon-md"></i> Overview</h3>
 
                         <div class="form-group">
                             <label>Skill Pack Name *</label>
@@ -2247,14 +2254,14 @@
                             </button>
                             <div class="export-menu" id="exportMenu">
                                 <div class="export-menu-item" onclick="ExportTool.exportPNG()">
-                                    <span class="icon">🖼️</span>
+                                    <span class="icon"><i data-lucide="image" class="icon-sm"></i></span>
                                     <div>
                                         <div class="label">Export as PNG</div>
                                         <div class="desc">High-quality image</div>
                                     </div>
                                 </div>
                                 <div class="export-menu-item" onclick="ExportTool.exportPDF()">
-                                    <span class="icon">📄</span>
+                                    <span class="icon"><i data-lucide="file-text" class="icon-sm"></i></span>
                                     <div>
                                         <div class="label">Export as PDF</div>
                                         <div class="desc">Print-ready document</div>
@@ -2337,20 +2344,20 @@
                                 <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
                                     <div id="graphTypeToggle" style="display: flex; gap: 10px; background: #f5f7fa; padding: 8px; border-radius: 8px; flex-wrap: wrap;">
                                         <button class="graph-type-btn active" data-graph="bar" style="padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; background: var(--champlain-bright-blue); color: white; font-weight: 600; transition: all 0.3s;">
-                                            📊 Bar Chart
+                                            <i data-lucide="bar-chart-2" class="icon-sm"></i> Bar Chart
                                         </button>
                                         <button class="graph-type-btn" data-graph="pie" style="padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; background: white; color: var(--champlain-navy); font-weight: 600; transition: all 0.3s;">
-                                            🥧 Pie Chart
+                                            <i data-lucide="pie-chart" class="icon-sm"></i> Pie Chart
                                         </button>
                                         <button class="graph-type-btn" data-graph="radar" style="padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; background: white; color: var(--champlain-navy); font-weight: 600; transition: all 0.3s;">
-                                            🎯 Radar Chart
+                                            <i data-lucide="activity" class="icon-sm"></i> Radar Chart
                                         </button>
                                     </div>
                                 </div>
                             </div>
 
                             <div id="graphsInfoBox" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid var(--champlain-bright-blue); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                                <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 8px;">📈 Understanding Competency Weights</div>
+                                <div style="font-weight: 600; color: var(--champlain-navy); margin-bottom: 8px;"><i data-lucide="trending-up" class="icon-sm"></i> Understanding Competency Weights</div>
                                 <div style="font-size: 13px; color: #1565c0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
                                     <div><strong>Level 0:</strong> Not addressed</div>
                                     <div><strong>Level 1:</strong> Addressed in course</div>
@@ -2421,11 +2428,11 @@
                                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                                             <h3 style="color: var(--champlain-navy); margin: 0;">Planned Courses</h3>
                                             <div style="display: flex; gap: 10px;">
-                                                <button id="exportScheduleBtn" style="padding: 8px 16px; background: var(--champlain-green); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">
-                                                    📄 Export
+                                                <button id="exportScheduleBtn" style="padding: 8px 16px; background: var(--champlain-green); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; display:flex; align-items:center; gap:5px;">
+                                                    <i data-lucide="file-text" class="icon-sm"></i> Export
                                                 </button>
-                                                <button id="clearScheduleBtn" style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">
-                                                    🗑️ Clear
+                                                <button id="clearScheduleBtn" style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; display:flex; align-items:center; gap:5px;">
+                                                    <i data-lucide="trash-2" class="icon-sm"></i> Clear
                                                 </button>
                                             </div>
                                         </div>
@@ -2442,7 +2449,7 @@
 
                                 <!-- Timeline & Competency Analysis Section -->
                                 <div style="margin-top: 30px; border-top: 2px solid #e0e0e0; padding-top: 30px;">
-                                    <h3 style="color: var(--champlain-navy); margin-bottom: 20px;">📈 Competency Progression Timeline</h3>
+                                    <h3 style="color: var(--champlain-navy); margin-bottom: 20px;"><i data-lucide="trending-up" class="icon-md"></i> Competency Progression Timeline</h3>
 
 
                                     <!-- Timeline Chart -->
@@ -2473,6 +2480,7 @@
     </div>
 
     <!-- JavaScript Files -->
+    <script src="js/ui/icons.js"></script>
     <script src="js/state.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/components/filters.js"></script>

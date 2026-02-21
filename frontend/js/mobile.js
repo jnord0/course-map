@@ -121,7 +121,7 @@ window.MobileModule = {
         this.sidebarOpen = true;
 
         if (toggleBtn) {
-            toggleBtn.innerHTML = '✕';
+            toggleBtn.innerHTML = icon('x', { size: 16 });
             toggleBtn.setAttribute('aria-label', 'Close Menu');
         }
 

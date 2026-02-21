@@ -663,7 +663,7 @@ const CoursesModule = {
                 <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                     <input type="text" class="edit-clo-id" placeholder="CLO ID (e.g., CLO1)" style="width: 120px; padding: 10px; border: 2px solid #2196F3; border-radius: 4px;">
                     <input type="text" class="edit-clo-desc" placeholder="CLO description" style="flex: 1; padding: 10px; border: 2px solid #2196F3; border-radius: 4px;">
-                    <button type="button" class="remove-edit-clo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                    <button type="button" class="remove-edit-clo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; display:flex; align-items:center;">${icon('x', { size: 14 })}</button>
                 </div>
                 <input type="text" class="edit-clo-plos" placeholder="Linked PLO IDs (comma-separated, e.g., PLO1,PLO2)" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px;">
             </div>
@@ -679,7 +679,7 @@ const CoursesModule = {
                 <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                     <input type="text" class="edit-plo-id" placeholder="PLO ID (e.g., PLO1)" style="width: 120px; padding: 10px; border: 2px solid #9C27B0; border-radius: 4px;">
                     <input type="text" class="edit-plo-desc" placeholder="PLO description" style="flex: 1; padding: 10px; border: 2px solid #9C27B0; border-radius: 4px;">
-                    <button type="button" class="remove-edit-plo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                    <button type="button" class="remove-edit-plo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; display:flex; align-items:center;">${icon('x', { size: 14 })}</button>
                 </div>
                 <input type="text" class="edit-plo-comps" placeholder="Linked competency codes (comma-separated, e.g., INQ,ANL)" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px;">
             </div>
@@ -694,7 +694,7 @@ const CoursesModule = {
             <div class="edit-assessment-item" style="background: white; padding: 15px; border-radius: 6px; margin-bottom: 12px; border-left: 4px solid var(--champlain-green);">
                 <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                     <input type="text" class="edit-assessment-name" placeholder="Assessment name" style="flex: 1; padding: 10px; border: 2px solid #ddd; border-radius: 4px;">
-                    <button type="button" class="remove-edit-assessment" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                    <button type="button" class="remove-edit-assessment" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; display:flex; align-items:center;">${icon('x', { size: 14 })}</button>
                 </div>
                 <textarea class="edit-assessment-desc" placeholder="Description..." rows="2" style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; resize: vertical; margin-bottom: 8px;"></textarea>
                 <input type="text" class="edit-assessment-clos" placeholder="Linked CLO IDs (comma-separated, e.g., CLO1,CLO2)" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px;">
@@ -716,7 +716,7 @@ const CoursesModule = {
                     <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                         <input type="text" class="edit-clo-id" placeholder="CLO ID" value="${clo.id || ''}" style="width: 120px; padding: 10px; border: 2px solid #2196F3; border-radius: 4px;">
                         <input type="text" class="edit-clo-desc" placeholder="CLO description" value="${clo.description || ''}" style="flex: 1; padding: 10px; border: 2px solid #2196F3; border-radius: 4px;">
-                        <button type="button" class="remove-edit-clo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                        <button type="button" class="remove-edit-clo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; display:flex; align-items:center;">${icon('x', { size: 14 })}</button>
                     </div>
                     <input type="text" class="edit-clo-plos" placeholder="Linked PLO IDs" value="${(clo.linkedPLOs || []).join(', ')}" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px;">
                 </div>
@@ -738,7 +738,7 @@ const CoursesModule = {
                     <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                         <input type="text" class="edit-plo-id" placeholder="PLO ID" value="${plo.id || ''}" style="width: 120px; padding: 10px; border: 2px solid #9C27B0; border-radius: 4px;">
                         <input type="text" class="edit-plo-desc" placeholder="PLO description" value="${plo.description || ''}" style="flex: 1; padding: 10px; border: 2px solid #9C27B0; border-radius: 4px;">
-                        <button type="button" class="remove-edit-plo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                        <button type="button" class="remove-edit-plo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; display:flex; align-items:center;">${icon('x', { size: 14 })}</button>
                     </div>
                     <input type="text" class="edit-plo-comps" placeholder="Linked competencies" value="${(plo.competencies || []).join(', ')}" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px;">
                 </div>
@@ -759,7 +759,7 @@ const CoursesModule = {
                 <div class="edit-assessment-item" style="background: white; padding: 15px; border-radius: 6px; margin-bottom: 12px; border-left: 4px solid var(--champlain-green);">
                     <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                         <input type="text" class="edit-assessment-name" placeholder="Assessment name" value="${assessment.name || ''}" style="flex: 1; padding: 10px; border: 2px solid #ddd; border-radius: 4px;">
-                        <button type="button" class="remove-edit-assessment" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                        <button type="button" class="remove-edit-assessment" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; display:flex; align-items:center;">${icon('x', { size: 14 })}</button>
                     </div>
                     <textarea class="edit-assessment-desc" placeholder="Description..." rows="2" style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; resize: vertical; margin-bottom: 8px;">${assessment.description || ''}</textarea>
                     <input type="text" class="edit-assessment-clos" placeholder="Linked CLO IDs" value="${(assessment.linkedCLOs || []).join(', ')}" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px;">

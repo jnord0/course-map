@@ -168,7 +168,7 @@ const ProposalsModule = {
         newItem.style.cssText = 'display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start;';
         newItem.innerHTML = `
             <input type="text" class="clo-input" placeholder="CLO description" style="flex: 1; padding: 10px; border: 2px solid #2196F3; border-radius: 4px;">
-            <button type="button" class="remove-clo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+            <button type="button" class="remove-clo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; display:flex; align-items:center;">${icon('x', { size: 14 })}</button>
         `;
         container.appendChild(newItem);
     },
@@ -183,7 +183,7 @@ const ProposalsModule = {
         newItem.style.cssText = 'display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start;';
         newItem.innerHTML = `
             <input type="text" class="plo-input" placeholder="PLO description" style="flex: 1; padding: 10px; border: 2px solid #9C27B0; border-radius: 4px;">
-            <button type="button" class="remove-plo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+            <button type="button" class="remove-plo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; display:flex; align-items:center;">${icon('x', { size: 14 })}</button>
         `;
         container.appendChild(newItem);
     },
@@ -199,7 +199,7 @@ const ProposalsModule = {
         newItem.innerHTML = `
             <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                 <input type="text" class="assessment-name" placeholder="Assessment name" style="flex: 1; padding: 10px; border: 2px solid #ddd; border-radius: 4px;">
-                <button type="button" class="remove-assessment" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                <button type="button" class="remove-assessment" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; display:flex; align-items:center;">${icon('x', { size: 14 })}</button>
             </div>
             <textarea class="assessment-desc" placeholder="Description and how it links to learning outcomes..." rows="2" style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
         `;
@@ -490,7 +490,7 @@ const ProposalsModule = {
                 item.style.cssText = 'display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start;';
                 item.innerHTML = `
                     <input type="text" class="clo-input" value="${clo}" style="flex: 1; padding: 10px; border: 2px solid #2196F3; border-radius: 4px;">
-                    <button type="button" class="remove-clo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                    <button type="button" class="remove-clo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; display:flex; align-items:center;">${icon('x', { size: 14 })}</button>
                 `;
                 closContainer.appendChild(item);
             });
@@ -508,7 +508,7 @@ const ProposalsModule = {
                 item.style.cssText = 'display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start;';
                 item.innerHTML = `
                     <input type="text" class="plo-input" value="${plo}" style="flex: 1; padding: 10px; border: 2px solid #9C27B0; border-radius: 4px;">
-                    <button type="button" class="remove-plo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                    <button type="button" class="remove-plo" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; display:flex; align-items:center;">${icon('x', { size: 14 })}</button>
                 `;
                 plosContainer.appendChild(item);
             });
@@ -567,7 +567,7 @@ const ProposalsModule = {
                 item.innerHTML = `
                     <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                         <input type="text" class="assessment-name" value="${assessment.name}" style="flex: 1; padding: 10px; border: 2px solid #ddd; border-radius: 4px;">
-                        <button type="button" class="remove-assessment" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+                        <button type="button" class="remove-assessment" style="padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; display:flex; align-items:center;">${icon('x', { size: 14 })}</button>
                     </div>
                     <textarea class="assessment-desc" rows="2" style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; resize: vertical;">${assessment.description}</textarea>
                 `;

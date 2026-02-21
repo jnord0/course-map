@@ -834,6 +834,8 @@ function renderLandingPreviewGraph() {
 
 // Initialize app when DOM is ready
 async function initializeApp() {
+    // Render Lucide icons in static HTML (data-lucide attributes)
+    if (window.lucide) lucide.createIcons();
     LandingAnimations.init();
     UXEnhancements.init();
     renderLandingPreviewGraph();
