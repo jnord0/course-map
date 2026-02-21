@@ -783,6 +783,73 @@
                     <h1>Skill Pack Proposals</h1>
                     <p>Propose new skill packs, track your submissions, and respond to feedback.</p>
                 </div>
+                <!-- Course Overlap Checker (pre-proposal tool) -->
+                <div class="sp-overlap-checker-panel" id="spOverlapCheckerPanel">
+                    <button class="sp-overlap-checker-header" onclick="SkillPackOverlapChecker.toggle()">
+                        <span class="sp-overlap-checker-header-left">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                            </svg>
+                            <span>Course Overlap Checker</span>
+                            <span class="sp-overlap-checker-badge">Pre-Proposal Tool</span>
+                        </span>
+                        <span class="sp-overlap-checker-toggle-hint">
+                            Test your course selection before submitting
+                            <span id="spOverlapCheckerToggleIcon">▼</span>
+                        </span>
+                    </button>
+
+                    <div class="sp-overlap-checker-body hidden" id="spOverlapCheckerBody">
+                        <p class="sp-overlap-checker-description">
+                            Pick the courses you are considering for your new skill pack.
+                            This tool will show how many existing skill packs already include each course,
+                            and whether any existing skill pack has the same or similar course composition.
+                        </p>
+
+                        <!-- Course input row -->
+                        <div class="sp-overlap-input-row">
+                            <div class="sp-overlap-input-group">
+                                <input
+                                    type="text"
+                                    id="spOverlapCourseInput"
+                                    list="spOverlapCourseOptions"
+                                    class="sp-overlap-course-input"
+                                    placeholder="Type a course code, e.g. CSI-440"
+                                    onkeydown="if(event.key==='Enter'){event.preventDefault();SkillPackOverlapChecker.addCourseFromInput();}"
+                                >
+                                <datalist id="spOverlapCourseOptions"></datalist>
+                                <button class="sp-overlap-add-btn"
+                                        onclick="SkillPackOverlapChecker.addCourseFromInput()">
+                                    + Add Course
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Selected course chips -->
+                        <div class="sp-overlap-selected-label">Selected courses:</div>
+                        <div class="sp-overlap-selected-courses" id="spOverlapSelectedCourses">
+                            <span class="sp-overlap-empty-hint">No courses added yet.</span>
+                        </div>
+
+                        <!-- Check button -->
+                        <div class="sp-overlap-actions">
+                            <button class="sp-overlap-check-btn" id="spOverlapCheckBtn"
+                                    onclick="SkillPackOverlapChecker.checkOverlap()" disabled>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                                </svg>
+                                Check Overlap
+                            </button>
+                            <span class="sp-overlap-actions-hint">
+                                See if any existing skill packs share these courses
+                            </span>
+                        </div>
+
+                        <!-- Results area -->
+                        <div class="sp-overlap-results" id="spOverlapResults"></div>
+                    </div>
+                </div>
+
                 <div style="display: flex; justify-content: flex-end; margin-bottom: 24px;">
                     <button class="btn" style="background: var(--champlain-green); color: white; border: none; padding: 12px 28px; font-size: 15px; border-radius: 6px; cursor: pointer; font-weight: 600;"
                         onclick="SkillPackProposalsModule.openProposalModal()">
@@ -2421,6 +2488,7 @@
     <script src="js/ui/modals.js"></script>
     <script src="js/ui/graphs.js"></script>
     <script src="js/ui/comparison-export.js"></script>
+    <script src="js/ui/skillpack-overlap-checker.js"></script>
     <script src="js/ui/ux-enhancements.js"></script>
     <script src="js/skill-packs.js"></script>
     <script src="js/mobile.js"></script>

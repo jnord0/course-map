@@ -71,6 +71,22 @@ const SchedulingModule = {
             return { success: false, error: 'Invalid semester' };
         }
 
+        // Check if course is already scheduled in any semester
+        const allSchedules = StateGetters.getUserSchedules();
+        for (const [existingSemesterId, existingSchedule] of Object.entries(allSchedules)) {
+            if (existingSchedule.courses && existingSchedule.courses.some(c => c.courseId === courseId)) {
+                const existingSemester = SchedulingModule.getAvailableSemesters().find(s => s.id === existingSemesterId);
+                const existingSemesterName = existingSemester ? existingSemester.name : existingSemesterId;
+                const isSameSemester = existingSemesterId === semesterId;
+                return {
+                    success: false,
+                    error: isSameSemester
+                        ? `${course.code} is already in your ${existingSemesterName} schedule`
+                        : `${course.code} is already scheduled in ${existingSemesterName}`
+                };
+            }
+        }
+
         const semesterOffered = course.semesterOffered || 'BOTH';
         const isOffered = semesterOffered === 'BOTH' ||
                          semesterOffered === semester.term ||

@@ -118,11 +118,17 @@ const SemesterPlannerUI = {
         const courses = StateGetters.getCourses();
         const semester = SchedulingModule.getAvailableSemesters().find(s => s.id === semesterId);
         const schedule = SchedulingModule.getSemesterSchedule(semesterId);
-        const scheduledIds = schedule.courses.map(c => c.courseId);
+
+        // Collect course IDs scheduled across ALL semesters, not just the current one
+        const allSchedules = StateGetters.getUserSchedules();
+        const allScheduledIds = new Set();
+        Object.values(allSchedules).forEach(s => {
+            if (s.courses) s.courses.forEach(c => allScheduledIds.add(c.courseId));
+        });
 
         // Filter courses by semester offered
         const availableCourses = courses.filter(course => {
-            if (scheduledIds.includes(course.id)) return false;
+            if (allScheduledIds.has(course.id)) return false;
 
             const semesterOffered = course.semesterOffered || 'BOTH';
             return semesterOffered === 'BOTH' ||
