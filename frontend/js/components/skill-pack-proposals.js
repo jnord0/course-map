@@ -300,7 +300,7 @@ const SkillPackProposalsModule = {
             </td>
             <td style="padding:8px; text-align:center; vertical-align:top;">
                 <button type="button" class="sp-remove-course-row"
-                    style="padding:5px 10px; background:#f44336; color:white; border:none; border-radius:4px; cursor:pointer; font-size:12px; display:flex; align-items:center;">${icon('x', { size: 13 })}</button>
+                    style="padding:5px 10px; background:#f44336; color:white; border:none; border-radius:4px; cursor:pointer; font-size:12px;">✕</button>
             </td>
         `;
         tbody.appendChild(tr);
@@ -321,7 +321,7 @@ const SkillPackProposalsModule = {
                 placeholder="Degree program this skill pack is related to"
                 style="flex:1; padding:8px 12px; border:1px solid #ccc; border-radius:4px; font-size:14px;">
             <button type="button" class="sp-program-remove"
-                style="padding:6px 12px; background:#f44336; color:white; border:none; border-radius:4px; cursor:pointer; font-size:13px; flex-shrink:0; display:flex; align-items:center;">${icon('x', { size: 14 })}</button>
+                style="padding:6px 12px; background:#f44336; color:white; border:none; border-radius:4px; cursor:pointer; font-size:13px; flex-shrink:0;">✕</button>
         `;
         list.appendChild(row);
     },

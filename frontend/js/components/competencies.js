@@ -65,7 +65,7 @@ const CompetenciesModule = {
         if (missingCompetencies.length > 0) {
             trackerHTML += `
                 <div class="missing-alert">
-                    <div class="missing-alert-title">${icon('triangle-alert', { size: 14 })} Competencies Not Emphasized (Level 3)</div>
+                    <div class="missing-alert-title">⚠ Competencies Not Emphasized (Level 3)</div>
                     <ul class="missing-list">
             `;
 
@@ -88,7 +88,7 @@ const CompetenciesModule = {
         } else if (selectedCourses.length > 0) {
             trackerHTML += `
                 <div style="background: #e8f5e9; border: 1px solid #4caf50; border-radius: 6px; padding: 15px; margin-top: 15px; text-align: center;">
-                    <div style="color: #2e7d32; font-weight: bold; font-size: 14px;">${icon('check', { size: 14 })} All Competencies Emphasized!</div>
+                    <div style="color: #2e7d32; font-weight: bold; font-size: 14px;">✓ All Competencies Emphasized!</div>
                     <p style="margin-top: 5px; font-size: 12px; color: #2e7d32;">Your selected courses emphasize all college competencies at Level 3.</p>
                 </div>
             `;
