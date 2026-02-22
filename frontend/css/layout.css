@@ -247,7 +247,7 @@
 }
 
 .badge {
-    background: #d32f2f;
+    background: var(--champlain-red);
     color: white;
     padding: 4px 10px;
     border-radius: 12px;
