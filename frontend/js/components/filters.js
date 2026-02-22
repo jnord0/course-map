@@ -448,7 +448,7 @@ const FilterModule = {
                             ${semesterBadge}
                         </div>
                         <div class="course-search-name">${course.name}</div>
-                        <div class="course-search-comps">≡ ${compNames}</div>
+                        <div class="course-search-comps">${compNames}</div>
                     </div>
                 `;
             }).join('');
