@@ -156,7 +156,7 @@ const SemesterPlannerUI = {
                             ${course.creditHours || 3} cr
                         </div>
                     </div>
-                    ${course.prerequisites ? `<div style="margin-top: 8px; font-size: 11px; color: #666;">📋 Prereq: ${course.prerequisites}</div>` : ''}
+                    ${course.prerequisites ? `<div style="margin-top: 8px; font-size: 11px; color: #666;">☐ Prereq: ${course.prerequisites}</div>` : ''}
                     <button style="width: 100%; margin-top: 8px; padding: 6px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer;">
                         + Add to Schedule
                     </button>
@@ -220,7 +220,7 @@ const SemesterPlannerUI = {
 
         if (errorConflicts.length > 0) {
             html += '<div style="background: #ffebee; border-left: 4px solid #d32f2f; padding: 15px; border-radius: 6px; margin-bottom: 10px;">';
-            html += '<h4 style="margin: 0 0 10px 0; color: #d32f2f; font-size: 14px;">⚠️ Errors</h4>';
+            html += '<h4 style="margin: 0 0 10px 0; color: #d32f2f; font-size: 14px;">⚠ Errors</h4>';
             errorConflicts.forEach(conflict => {
                 html += `<div style="margin-bottom: 8px; font-size: 13px; color: #c62828;">${conflict.message}</div>`;
             });
@@ -229,7 +229,7 @@ const SemesterPlannerUI = {
 
         if (warningConflicts.length > 0) {
             html += '<div style="background: #fff3e0; border-left: 4px solid #ff9800; padding: 15px; border-radius: 6px; margin-bottom: 10px;">';
-            html += '<h4 style="margin: 0 0 10px 0; color: #f57c00; font-size: 14px;">⚠️ Warnings</h4>';
+            html += '<h4 style="margin: 0 0 10px 0; color: #f57c00; font-size: 14px;">⚠ Warnings</h4>';
             warningConflicts.forEach(conflict => {
                 html += `<div style="margin-bottom: 8px; font-size: 13px; color: #e65100;">${conflict.message}</div>`;
             });
@@ -238,7 +238,7 @@ const SemesterPlannerUI = {
 
         if (infoConflicts.length > 0) {
             html += '<div style="background: #e3f2fd; border-left: 4px solid #2196f3; padding: 15px; border-radius: 6px;">';
-            html += '<h4 style="margin: 0 0 10px 0; color: #1976d2; font-size: 14px;">ℹ️ Information</h4>';
+            html += '<h4 style="margin: 0 0 10px 0; color: #1976d2; font-size: 14px;">ⓘ Information</h4>';
             infoConflicts.forEach(conflict => {
                 html += `<div style="margin-bottom: 8px; font-size: 13px; color: #1565c0;">${conflict.message}</div>`;
             });

@@ -376,12 +376,12 @@ const SkillPackProposalsModule = {
                         ${(p.affiliatedPrograms && p.affiliatedPrograms.length > 0)
                             ? ` | Programs: ${p.affiliatedPrograms.join(', ')}`
                             : (p.affiliatedProgram ? ` | Program: ${p.affiliatedProgram}` : '')}
-                        ${hasFeedback ? `<span style="color:#FF9800; font-weight:bold; margin-left:10px;">💬 ${p.feedback.length} Feedback</span>` : ''}
+                        ${hasFeedback ? `<span style="color:#FF9800; font-weight:bold; margin-left:10px;">◻ ${p.feedback.length} Feedback</span>` : ''}
                     </div>
                     <div class="proposal-actions">
                         <button class="action-btn btn-view" onclick="SkillPackProposalsModule.viewDetails(${p.id})">View Details</button>
                         ${p.status === 'pending' ? `
-                            <button class="action-btn" style="background:var(--champlain-blue);" onclick="SkillPackProposalsModule.editProposal(${p.id})">✏️ Edit</button>
+                            <button class="action-btn" style="background:var(--champlain-blue);" onclick="SkillPackProposalsModule.editProposal(${p.id})">✎ Edit</button>
                         ` : ''}
                     </div>
                 </div>
@@ -421,11 +421,11 @@ const SkillPackProposalsModule = {
                         ${(p.affiliatedPrograms && p.affiliatedPrograms.length > 0)
                             ? ` | Programs: ${p.affiliatedPrograms.join(', ')}`
                             : (p.affiliatedProgram ? ` | Program: ${p.affiliatedProgram}` : '')}
-                        ${hasFeedback ? `<span style="color:#FF9800; font-weight:bold; margin-left:10px;">💬 ${p.feedback.length} Feedback</span>` : ''}
+                        ${hasFeedback ? `<span style="color:#FF9800; font-weight:bold; margin-left:10px;">◻ ${p.feedback.length} Feedback</span>` : ''}
                     </div>
                     <div class="proposal-actions">
                         <button class="action-btn btn-view" onclick="SkillPackProposalsModule.viewDetails(${p.id})">View</button>
-                        <button class="action-btn" style="background:#FF9800;" onclick="SkillPackProposalsModule.sendFeedback(${p.id})">💬 Feedback</button>
+                        <button class="action-btn" style="background:#FF9800;" onclick="SkillPackProposalsModule.sendFeedback(${p.id})">◻ Feedback</button>
                         <button class="action-btn btn-approve" onclick="SkillPackProposalsModule.approve(${p.id})">Approve</button>
                         <button class="action-btn btn-reject" onclick="SkillPackProposalsModule.rejectWithFeedback(${p.id})">Reject</button>
                     </div>
@@ -497,7 +497,7 @@ const SkillPackProposalsModule = {
         if (proposal.feedback && proposal.feedback.length > 0) {
             feedbackSection = `
                 <div style="margin-top:20px; padding:15px; background:#fff3cd; border-left:4px solid #ff9800; border-radius:4px;">
-                    <h4 style="color:#856404; margin-bottom:10px; font-size:16px;">💬 Feedback History</h4>
+                    <h4 style="color:#856404; margin-bottom:10px; font-size:16px;">◻ Feedback History</h4>
                     ${proposal.feedback.map(fb => `
                         <div style="background:white; padding:12px; border-radius:4px; margin-bottom:10px; border:1px solid #ffc107;">
                             <div style="font-size:12px; color:#666; margin-bottom:6px;"><strong>${fb.from}</strong> – ${fb.date}</div>

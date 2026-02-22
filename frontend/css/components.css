@@ -301,7 +301,7 @@
 
 .course-search-item.selected {
     border-color: var(--champlain-bright-blue);
-    background: linear-gradient(135deg, #e3f2fd 0%, #f0f9ff 100%);
+    background: linear-gradient(135deg, var(--champlain-lightest-blue) 0%, #f0faff 100%);
     box-shadow: 0 4px 12px rgba(0, 169, 224, 0.2);
 }
 
@@ -329,7 +329,7 @@
     align-items: center;
     padding: 12px 14px;
     margin: 8px 0;
-    background: linear-gradient(135deg, #e3f2fd 0%, #f0f9ff 100%);
+    background: linear-gradient(135deg, var(--champlain-lightest-blue) 0%, #f0faff 100%);
     border: 2px solid var(--champlain-bright-blue);
     border-radius: 10px;
     font-size: 13px;
@@ -344,7 +344,7 @@
 }
 
 .remove-course-btn {
-    background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+    background: linear-gradient(135deg, var(--champlain-red) 0%, #a33028 100%);
     color: white;
     border: none;
     padding: 8px 16px;
@@ -353,12 +353,12 @@
     font-size: 11px;
     font-weight: 700;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 6px rgba(244, 67, 54, 0.3);
+    box-shadow: 0 2px 6px rgba(190, 58, 52, 0.3);
 }
 
 .remove-course-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+    box-shadow: 0 4px 12px rgba(190, 58, 52, 0.4);
 }
 
 /* Advanced Filter Styles */

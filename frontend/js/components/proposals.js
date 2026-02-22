@@ -226,12 +226,12 @@ const ProposalsModule = {
                         </div>
                         <div class="proposal-info">
                             Submitted: ${p.submittedDate}
-                            ${hasFeedback ? `<span style="color: #FF9800; font-weight: bold; margin-left: 10px;">💬 ${p.feedback.length} Feedback</span>` : ''}
+                            ${hasFeedback ? `<span style="color: #FF9800; font-weight: bold; margin-left: 10px;">◻ ${p.feedback.length} Feedback</span>` : ''}
                         </div>
                         <div class="proposal-actions">
                             <button class="action-btn btn-view" onclick="ProposalsModule.viewDetails(${p.id})">View Details</button>
                             ${p.status === 'pending' ? `
-                                <button class="action-btn" style="background: var(--champlain-blue);" onclick="ProposalsModule.editProposal(${p.id})">✏️ Edit</button>
+                                <button class="action-btn" style="background: var(--champlain-blue);" onclick="ProposalsModule.editProposal(${p.id})">✎ Edit</button>
                             ` : ''}
                         </div>
                     </div>
@@ -266,11 +266,11 @@ const ProposalsModule = {
                         </div>
                         <div class="proposal-info">
                             By: ${p.submittedBy} | ${p.submittedDate}
-                            ${hasFeedback ? `<span style="color: #FF9800; font-weight: bold; margin-left: 10px;">💬 ${p.feedback.length} Feedback</span>` : ''}
+                            ${hasFeedback ? `<span style="color: #FF9800; font-weight: bold; margin-left: 10px;">◻ ${p.feedback.length} Feedback</span>` : ''}
                         </div>
                         <div class="proposal-actions">
                             <button class="action-btn btn-view" onclick="ProposalsModule.viewDetails(${p.id})">View</button>
-                            <button class="action-btn" style="background: #FF9800;" onclick="ProposalsModule.sendFeedback(${p.id})">💬 Feedback</button>
+                            <button class="action-btn" style="background: #FF9800;" onclick="ProposalsModule.sendFeedback(${p.id})">◻ Feedback</button>
                             <button class="action-btn btn-approve" onclick="ProposalsModule.approve(${p.id})">Approve</button>
                             <button class="action-btn btn-reject" onclick="ProposalsModule.rejectWithFeedback(${p.id})">Reject</button>
                         </div>
@@ -313,7 +313,7 @@ const ProposalsModule = {
         if (proposal.feedback && proposal.feedback.length > 0) {
             feedbackSection = `
                 <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-left: 4px solid #ff9800; border-radius: 4px;">
-                    <h4 style="color: #856404; margin-bottom: 10px; font-size: 16px;">💬 Feedback History</h4>
+                    <h4 style="color: #856404; margin-bottom: 10px; font-size: 16px;">◻ Feedback History</h4>
                     ${proposal.feedback.map(fb => `
                         <div style="background: white; padding: 12px; border-radius: 4px; margin-bottom: 10px; border: 1px solid #ffc107;">
                             <div style="font-size: 12px; color: #666; margin-bottom: 6px;">

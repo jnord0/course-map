@@ -62,8 +62,8 @@
 
 /* Color-coded top borders per stat */
 .dash-stat:nth-child(1) { border-top-color: var(--champlain-bright-blue); }
-.dash-stat:nth-child(2) { border-top-color: #F7931E; }
-.dash-stat:nth-child(3) { border-top-color: #7B4FD0; }
+.dash-stat:nth-child(2) { border-top-color: var(--champlain-gold); }
+.dash-stat:nth-child(3) { border-top-color: var(--champlain-teal); }
 .dash-stat:nth-child(4) { border-top-color: var(--champlain-green); }
 
 .dash-stat:hover {
@@ -125,7 +125,7 @@
 .quick-action-pill:hover {
     border-color: var(--champlain-bright-blue);
     color: var(--champlain-bright-blue);
-    background: linear-gradient(135deg, #f0f9ff 0%, #e3f2fd 100%);
+    background: linear-gradient(135deg, #f0faff 0%, var(--champlain-lightest-blue) 100%);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 169, 224, 0.15);
 }
@@ -187,23 +187,23 @@
 }
 
 .dashboard-card-icon--viz {
-    background: linear-gradient(135deg, #003C5F, #236192);
+    background: linear-gradient(135deg, var(--champlain-navy), var(--champlain-blue));
 }
 
 .dashboard-card-icon--competency {
-    background: linear-gradient(135deg, #F7931E, #FF9800);
+    background: linear-gradient(135deg, var(--champlain-gold), #e8b040);
 }
 
 .dashboard-card-icon--skillpacks {
-    background: linear-gradient(135deg, #74AA50, #5CB85C);
+    background: linear-gradient(135deg, var(--champlain-green), var(--champlain-dark-green));
 }
 
 .dashboard-card-icon--proposals {
-    background: linear-gradient(135deg, #7B4FD0, #9C27B0);
+    background: linear-gradient(135deg, var(--champlain-blue), var(--champlain-navy));
 }
 
 .dashboard-card-icon--admin {
-    background: linear-gradient(135deg, #d32f2f, #c62828);
+    background: linear-gradient(135deg, var(--champlain-red), #a33028);
 }
 
 .dashboard-card h3 {
@@ -227,7 +227,7 @@
 }
 
 .dashboard-card-tags span {
-    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    background: linear-gradient(135deg, var(--champlain-lightest-blue) 0%, var(--champlain-light-blue) 100%);
     color: var(--champlain-navy);
     padding: 6px 14px;
     border-radius: 20px;

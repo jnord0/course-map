@@ -1105,7 +1105,7 @@ const GraphsModule = {
         GraphsModule.currentPlayIndex = 0;
 
         const playBtn = document.getElementById('playProgressionBtn');
-        playBtn.textContent = '⏸️ Pause';
+        playBtn.textContent = '‖ Pause';
         playBtn.style.background = 'var(--champlain-navy)';
 
         // Highlight courses progressively
@@ -1144,7 +1144,7 @@ const GraphsModule = {
         }
 
         const playBtn = document.getElementById('playProgressionBtn');
-        playBtn.textContent = '▶️ Play Progression';
+        playBtn.textContent = '▶ Play Progression';
         playBtn.style.background = 'var(--champlain-green)';
 
         // Reset all course items

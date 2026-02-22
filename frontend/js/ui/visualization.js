@@ -99,7 +99,7 @@ const VisualizationModule = {
     const views = [
         { id: 'bipartite', label: 'Bipartite', icon: '⟷' },
         { id: 'radial', label: 'Radial', icon: '⭕' },
-        { id: 'chord', label: 'Chord', icon: '🎵' }
+        { id: 'chord', label: 'Chord', icon: '♪' }
     ];
     
     views.forEach((view, index) => {
@@ -1243,7 +1243,7 @@ const VisualizationModule = {
                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(40, 167, 69, 0.4)'"
                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(40, 167, 69, 0.3)'"
                 >
-                    <span style="font-size: 16px;">📊</span> Export to CSV
+                    <span style="font-size: 16px;">▦</span> Export to CSV
                 </button>
             </div>
         `;
@@ -1463,7 +1463,7 @@ const VisualizationModule = {
             ${course.description ? `
                 <div style="margin-bottom: 20px; padding: 16px; background: #f8f9fa; border-left: 4px solid var(--champlain-navy); border-radius: 4px;">
                     <h4 style="color: var(--champlain-navy); margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">
-                        📝 Course Description
+                        ✎ Course Description
                     </h4>
                     <p style="color: #333; font-size: 14px; line-height: 1.6; margin: 0;">
                         ${course.description}
@@ -1489,7 +1489,7 @@ const VisualizationModule = {
             
             <div style="margin-bottom: 20px;">
                 <h4 style="color: var(--champlain-navy); margin-bottom: 12px; font-size: 16px; display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 20px;">📚</span> College Competencies
+                    <span style="font-size: 20px;">≡</span> College Competencies
                 </h4>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
                     ${compEntries.map(([compId, weight]) => {
@@ -1521,7 +1521,7 @@ const VisualizationModule = {
             ${course.justification ? `
                 <div style="margin-bottom: 20px; padding: 16px; background: #e3f2fd; border-left: 4px solid #2196F3; border-radius: 4px;">
                     <h4 style="color: #1565c0; margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">
-                        💡 Course Justification
+                        ✦ Course Justification
                     </h4>
                     <p style="color: #0d47a1; font-size: 14px; line-height: 1.6; margin: 0;">
                         ${course.justification}
@@ -1532,7 +1532,7 @@ const VisualizationModule = {
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
                 <div>
                     <h4 style="color: var(--champlain-navy); margin-bottom: 10px; font-size: 15px; display: flex; align-items: center; gap: 6px;">
-                        <span style="font-size: 16px;">🎯</span> Program Learning Objectives
+                        <span style="font-size: 16px;">◎</span> Program Learning Objectives
                     </h4>
                     <div style="background: #f5f5f5; padding: 12px; border-radius: 6px;">
                         <p style="color: #666; font-size: 13px; margin: 0; font-family: monospace;">
@@ -1583,7 +1583,7 @@ const VisualizationModule = {
                         onmouseover="this.style.background='#138496'"
                         onmouseout="this.style.background='#17a2b8'"
                     >
-                        📄 Export Proposal
+                        ▤ Export Proposal
                     </button>
                     <button 
                         onclick="CoursesModule.removeCourseSelection(${course.id}); document.getElementById('courseDetailsModal').style.display='none';"
@@ -1620,7 +1620,7 @@ const VisualizationModule = {
                             onmouseover="this.style.background='#00509e'"
                             onmouseout="this.style.background='var(--champlain-navy)'"
                         >
-                            ✏️ Edit Course
+                            ✎ Edit Course
                         </button>
                     ` : ''}
                 </div>
