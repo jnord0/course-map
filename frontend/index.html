@@ -1956,6 +1956,75 @@
         </div>
     </div>
 
+    <!-- Shared Feedback Modal (used by both course proposals and skill pack proposals) -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content" style="max-width: 620px; width: 95%;">
+            <div class="modal-header">
+                <h2 id="feedbackModalTitle">Send Feedback</h2>
+                <button class="close-btn" onclick="FeedbackModal.close()">✕</button>
+            </div>
+            <div class="modal-body" style="padding: 24px;">
+                <p id="feedbackModalSubtitle" style="color: #555; margin: 0 0 20px; font-size: 14px; line-height: 1.5;"></p>
+
+                <!-- Feedback type selector -->
+                <div style="margin-bottom: 20px;">
+                    <label style="font-weight: 600; display: block; margin-bottom: 10px; color: var(--champlain-navy); font-size: 14px;">Feedback Type</label>
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                        <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px; padding: 8px 14px; border: 2px solid #ddd; border-radius: 20px; transition: all 0.15s;" id="fbTypeGeneral">
+                            <input type="radio" name="feedbackType" value="general" checked style="accent-color: var(--champlain-navy); cursor: pointer;">
+                            General Comment
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px; padding: 8px 14px; border: 2px solid #ddd; border-radius: 20px; transition: all 0.15s;" id="fbTypeRevision">
+                            <input type="radio" name="feedbackType" value="revision" style="accent-color: var(--champlain-navy); cursor: pointer;">
+                            Revision Requested
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px; padding: 8px 14px; border: 2px solid #ddd; border-radius: 20px; transition: all 0.15s;" id="fbTypeCritical">
+                            <input type="radio" name="feedbackType" value="critical" style="accent-color: #f44336; cursor: pointer;">
+                            Critical Concern
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Message textarea -->
+                <div style="margin-bottom: 20px;">
+                    <label style="font-weight: 600; display: block; margin-bottom: 8px; color: var(--champlain-navy); font-size: 14px;">
+                        Message <span style="color: #f44336;">*</span>
+                    </label>
+                    <textarea id="feedbackModalMessage" rows="6" maxlength="1000"
+                        placeholder="Write your feedback here. Be specific about what needs to change and why."
+                        style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; resize: vertical; box-sizing: border-box; font-family: inherit; line-height: 1.5; transition: border-color 0.15s;"></textarea>
+                    <div style="text-align: right; font-size: 12px; color: #888; margin-top: 4px;">
+                        <span id="feedbackCharCount">0</span> / 1000 characters
+                    </div>
+                </div>
+
+                <!-- Rejection warning + confirm (only shown in reject mode) -->
+                <div id="feedbackRejectWarning" style="display: none; background: #fdecea; border: 1px solid #f44336; border-radius: 6px; padding: 16px; margin-bottom: 20px;">
+                    <p style="margin: 0 0 6px; font-weight: 700; color: #c62828; font-size: 14px;">This action is permanent</p>
+                    <p style="margin: 0 0 14px; font-size: 13px; color: #555; line-height: 1.5;">
+                        The submitter will be notified and the proposal will be marked as <strong>Rejected</strong>. This cannot be undone.
+                    </p>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 14px; color: #333;">
+                        <input type="checkbox" id="feedbackRejectConfirm" style="accent-color: #f44336; width: 16px; height: 16px; cursor: pointer;">
+                        I confirm I want to permanently reject this proposal
+                    </label>
+                </div>
+
+                <!-- Action buttons -->
+                <div style="display: flex; justify-content: flex-end; gap: 12px; padding-top: 4px;">
+                    <button onclick="FeedbackModal.close()"
+                        style="padding: 10px 22px; background: #f0f0f0; color: #444; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500;">
+                        Cancel
+                    </button>
+                    <button id="feedbackModalSubmit"
+                        style="padding: 10px 26px; background: var(--champlain-bright-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; transition: background 0.15s;">
+                        Send Feedback
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Keyboard Shortcuts Modal -->
     <div class="shortcuts-modal" id="shortcutsModal">
         <div class="shortcuts-content">
