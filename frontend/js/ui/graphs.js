@@ -2,6 +2,7 @@
 
 const GraphsModule = {
     currentGraphType: 'bar',
+    barMode: 'course', // 'course' = each course gets a color | 'competency' = bars use competency colors with dividers
     colors: ['#003C5F', '#236192', '#00A9E0', '#3DC4B2', '#74AA50', '#8BC34A', '#FFC107', '#FF9800', '#FF5722', '#E91E63'],
     isPlaying: false,
     playInterval: null,
@@ -12,9 +13,32 @@ const GraphsModule = {
      */
     init: () => {
         GraphsModule.setupGraphTypeToggle();
+        GraphsModule.setupBarModeToggle();
         GraphsModule.setupPlayButton();
         GraphsModule.setupCourseHoverHighlighting();
         GraphsModule.renderCurrentGraph();
+    },
+
+    /**
+     * Setup the Course / Competency toggle for the bar chart
+     */
+    setupBarModeToggle: () => {
+        document.getElementById('barChartContainer').addEventListener('click', e => {
+            const btn = e.target.closest('.bar-mode-btn');
+            if (!btn) return;
+
+            const mode = btn.getAttribute('data-mode');
+            if (mode === GraphsModule.barMode) return;
+            GraphsModule.barMode = mode;
+
+            document.querySelectorAll('.bar-mode-btn').forEach(b => {
+                const isActive = b.getAttribute('data-mode') === mode;
+                b.style.background = isActive ? 'var(--champlain-bright-blue)' : 'white';
+                b.style.color = isActive ? 'white' : 'var(--champlain-navy)';
+            });
+
+            GraphsModule.renderCurrentGraph();
+        });
     },
 
     /**
@@ -183,36 +207,82 @@ const GraphsModule = {
     },
 
     /**
-     * Render Bar Chart
+     * Render Stacked Bar Chart
+     * Mode 'course': each course gets its own color per segment, legend on right
+     * Mode 'competency': bars use each competency's own color, white lines divide courses
      */
     renderBarChart: (data) => {
         const svg = d3.select('#barChart');
         svg.selectAll('*').remove();
 
-        const margin = { top: 40, right: 40, bottom: 120, left: 80 };
-        const width = 900 - margin.left - margin.right;
-        const height = 600 - margin.top - margin.bottom;
+        const selectedCourses = StateGetters.getSelectedCourses();
+        const allCompetencies = StateGetters.getCompetencies();
+        const isCourseMode = GraphsModule.barMode === 'course';
+
+        const margin = { top: 50, right: isCourseMode ? 170 : 40, bottom: 120, left: 80 };
+        const totalWidth = 900;
+        const totalHeight = 600;
+        const width = totalWidth - margin.left - margin.right;
+        const height = totalHeight - margin.top - margin.bottom;
+
+        if (selectedCourses.length === 0) {
+            svg.append('text')
+                .attr('x', totalWidth / 2)
+                .attr('y', totalHeight / 2)
+                .attr('text-anchor', 'middle')
+                .style('font-size', '16px')
+                .style('fill', '#666')
+                .text('No courses selected. Select courses to view competency distribution.');
+            return;
+        }
 
         const g = svg.append('g')
             .attr('transform', `translate(${margin.left},${margin.top})`);
 
-        // Sort data by total weight descending
-        const sortedData = data.sort((a, b) => b.totalWeight - a.totalWeight);
+        // Course color palette (used in course mode)
+        const courseColorPalette = [
+            '#003C5F', '#E52019', '#7B4FD0', '#F7931E', '#5CB85C',
+            '#00B5AD', '#D640A8', '#3C8DAD', '#A61C3C', '#74AA50', '#FFDD00', '#F799C0'
+        ];
+        const courses = [...selectedCourses].sort((a, b) => a.code.localeCompare(b.code));
+        const courseKeys = courses.map(c => c.code);
+        const courseColorMap = {};
+        courses.forEach((c, i) => {
+            courseColorMap[c.code] = courseColorPalette[i % courseColorPalette.length];
+        });
 
-        // X scale
+        // Competency color map (used in competency mode)
+        const compColorMap = {};
+        allCompetencies.forEach(c => { compColorMap[c.id] = c.color || '#999'; });
+
+        // Build one entry per competency with per-course weight values
+        const stackData = data.map(comp => {
+            const entry = { compId: comp.id, competency: comp.name, totalWeight: comp.totalWeight };
+            courses.forEach(course => {
+                entry[course.code] = (course.competencies && course.competencies[comp.id] > 0)
+                    ? course.competencies[comp.id] : 0;
+            });
+            return entry;
+        }).sort((a, b) => b.totalWeight - a.totalWeight);
+
+        // Attach course key to each stacked point for tooltip access
+        const stack = d3.stack().keys(courseKeys);
+        const series = stack(stackData);
+        series.forEach(s => s.forEach(point => { point.courseKey = s.key; }));
+
+        // Scales
         const x = d3.scaleBand()
-            .domain(sortedData.map(d => d.name))
+            .domain(stackData.map(d => d.competency))
             .range([0, width])
             .padding(0.2);
 
-        // Y scale
-        const maxWeight = d3.max(sortedData, d => d.totalWeight) || 10;
+        const maxTotal = d3.max(stackData, d => d.totalWeight) || 3;
         const y = d3.scaleLinear()
-            .domain([0, maxWeight])
+            .domain([0, maxTotal])
             .nice()
             .range([height, 0]);
 
-        // Add X axis
+        // Axes
         g.append('g')
             .attr('transform', `translate(0,${height})`)
             .call(d3.axisBottom(x))
@@ -223,15 +293,13 @@ const GraphsModule = {
             .style('font-weight', '600')
             .style('fill', '#003C5F');
 
-        // Add Y axis
         g.append('g')
-            .call(d3.axisLeft(y).ticks(10))
+            .call(d3.axisLeft(y).ticks(Math.min(Math.ceil(maxTotal), 10)))
             .selectAll('text')
             .style('font-size', '12px')
             .style('font-weight', '600')
             .style('fill', '#003C5F');
 
-        // Y axis label
         g.append('text')
             .attr('transform', 'rotate(-90)')
             .attr('y', -60)
@@ -242,12 +310,15 @@ const GraphsModule = {
             .style('fill', '#003C5F')
             .text('Total Competency Weight');
 
-        // Create tooltip
+        // Remove any leftover tooltips from previous renders
+        d3.selectAll('.graph-tooltip').remove();
+
+        // Tooltip
         const tooltip = d3.select('body').append('div')
             .attr('class', 'graph-tooltip')
             .style('position', 'absolute')
             .style('visibility', 'hidden')
-            .style('background', 'rgba(0, 0, 0, 0.85)')
+            .style('background', 'rgba(0,0,0,0.85)')
             .style('color', 'white')
             .style('padding', '10px 15px')
             .style('border-radius', '6px')
@@ -256,72 +327,120 @@ const GraphsModule = {
             .style('z-index', '10000')
             .style('box-shadow', '0 4px 12px rgba(0,0,0,0.3)');
 
-        // Add bars
-        g.selectAll('.bar')
-            .data(sortedData)
+        const weightLabel = w => w === 1 ? 'Addressed' : w === 2 ? 'Reinforced' : w === 3 ? 'Emphasized' : '';
+
+        // Stacked bar layers — one group per course
+        const layers = g.selectAll('.layer')
+            .data(series)
+            .enter()
+            .append('g')
+            .attr('class', d => `layer bar-layer-${d.key.replace(/[^a-zA-Z0-9]/g, '_')}`);
+
+        layers.selectAll('rect')
+            .data(d => d)
             .enter()
             .append('rect')
-            .attr('class', 'bar')
-            .attr('x', d => x(d.name))
-            .attr('y', height)
+            .attr('class', 'bar-segment')
+            .attr('data-course', d => d.courseKey)
+            .attr('x', d => x(d.data.competency))
             .attr('width', x.bandwidth())
+            .attr('y', d => y(d[0]))
             .attr('height', 0)
-            .attr('fill', d => d.color)
-            .attr('rx', 4)
-            .style('cursor', 'pointer')
+            // Always set fill explicitly on each rect (not via SVG group inheritance)
+            .attr('fill', d => isCourseMode ? courseColorMap[d.courseKey] : compColorMap[d.data.compId])
+            .attr('stroke', 'white')
+            .attr('stroke-width', d => (d[1] - d[0]) > 0 ? (isCourseMode ? 1.5 : 2) : 0)
+            .style('cursor', d => (d[1] - d[0]) > 0 ? 'pointer' : 'default')
             .on('mouseover', function(event, d) {
-                d3.select(this)
-                    .transition()
-                    .duration(200)
-                    .attr('opacity', 0.7);
-
+                const segH = d[1] - d[0];
+                if (segH === 0) return;
+                d3.select(this).attr('opacity', 0.75);
+                const swatchColor = isCourseMode
+                    ? courseColorMap[d.courseKey]
+                    : compColorMap[d.data.compId];
                 tooltip.style('visibility', 'visible')
                     .html(`
-                        <div style="font-weight: bold; margin-bottom: 5px;">${d.name}</div>
-                        <div>Total Weight: <strong>${d.totalWeight.toFixed(1)}</strong></div>
-                        <div>Avg Weight: <strong>${d.averageWeight.toFixed(2)}</strong></div>
-                        <div>Max Weight: <strong>${d.maxWeight}</strong></div>
-                        <div>Courses: <strong>${d.courseCount}</strong></div>
+                        <div style="font-weight:bold;margin-bottom:6px;">${d.data.competency}</div>
+                        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                            <span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:${swatchColor};flex-shrink:0;"></span>
+                            <strong>${d.courseKey}</strong>
+                        </div>
+                        <div>Level: <strong>${segH} — ${weightLabel(segH)}</strong></div>
+                        <div style="margin-top:4px;color:#bbb;font-size:11px;">Bar total: ${d.data.totalWeight}</div>
                     `);
             })
             .on('mousemove', function(event) {
-                tooltip
-                    .style('top', (event.pageY - 10) + 'px')
-                    .style('left', (event.pageX + 10) + 'px');
+                tooltip.style('top', (event.pageY - 10) + 'px').style('left', (event.pageX + 10) + 'px');
             })
             .on('mouseout', function() {
-                d3.select(this)
-                    .transition()
-                    .duration(200)
-                    .attr('opacity', 1);
-
+                d3.select(this).attr('opacity', 1);
                 tooltip.style('visibility', 'hidden');
             })
             .transition()
             .duration(800)
-            .attr('y', d => y(d.totalWeight))
-            .attr('height', d => height - y(d.totalWeight));
+            .attr('y', d => y(d[1]))
+            .attr('height', d => Math.max(0, y(d[0]) - y(d[1])));
 
-        // Add value labels on bars
-        g.selectAll('.label')
-            .data(sortedData)
+        // Total weight labels above each bar
+        g.selectAll('.total-label')
+            .data(stackData)
             .enter()
             .append('text')
-            .attr('class', 'label')
-            .attr('x', d => x(d.name) + x.bandwidth() / 2)
-            .attr('y', d => y(d.totalWeight) - 5)
+            .attr('class', 'total-label')
+            .attr('x', d => x(d.competency) + x.bandwidth() / 2)
+            .attr('y', d => d.totalWeight > 0 ? y(d.totalWeight) - 5 : y(0))
             .attr('text-anchor', 'middle')
-            .style('font-size', '12px')
+            .style('font-size', '11px')
             .style('font-weight', 'bold')
             .style('fill', '#003C5F')
             .style('opacity', 0)
-            .text(d => d.totalWeight > 0 ? d.totalWeight.toFixed(1) : '')
+            .text(d => d.totalWeight > 0 ? d.totalWeight : '')
             .transition()
             .delay(800)
             .duration(400)
             .style('opacity', 1);
 
-        // Add title
+        if (isCourseMode) {
+            // Course legend on right side
+            const legend = svg.append('g')
+                .attr('transform', `translate(${margin.left + width + 20}, ${margin.top})`);
+
+            legend.append('text')
+                .attr('y', -10)
+                .style('font-size', '12px')
+                .style('font-weight', 'bold')
+                .style('fill', '#003C5F')
+                .text('Courses');
+
+            courses.forEach((course, i) => {
+                const item = legend.append('g')
+                    .attr('transform', `translate(0, ${i * 22})`);
+
+                item.append('rect')
+                    .attr('width', 14)
+                    .attr('height', 14)
+                    .attr('rx', 2)
+                    .attr('fill', courseColorMap[course.code]);
+
+                item.append('text')
+                    .attr('x', 20)
+                    .attr('y', 11)
+                    .style('font-size', '11px')
+                    .style('fill', '#003C5F')
+                    .text(course.code);
+            });
+        } else {
+            // Competency mode: add a hint below the chart
+            svg.append('text')
+                .attr('x', margin.left + width / 2)
+                .attr('y', totalHeight - 8)
+                .attr('text-anchor', 'middle')
+                .style('font-size', '12px')
+                .style('fill', '#888')
+                .text('Lines show individual course contributions — hover a segment for details');
+        }
+
+        // Chart title
         svg.append('text')
             .attr('x', margin.left + width / 2)
             .attr('y', margin.top / 2)
@@ -373,6 +492,9 @@ const GraphsModule = {
         const arcHover = d3.arc()
             .innerRadius(0)
             .outerRadius(radius + 10);
+
+        // Remove any leftover tooltips from previous renders
+        d3.selectAll('.graph-tooltip').remove();
 
         // Create tooltip
         const tooltip = d3.select('body').append('div')
@@ -587,6 +709,9 @@ const GraphsModule = {
                 .style('fill', '#003C5F')
                 .text(d.name);
         });
+
+        // Remove any leftover tooltips from previous renders
+        d3.selectAll('.graph-tooltip').remove();
 
         // Create tooltip
         const tooltip = d3.select('body').append('div')
@@ -874,6 +999,9 @@ const GraphsModule = {
             .style('fill', '#003C5F')
             .text('Competency Level (Max)');
 
+        // Remove any leftover tooltips from previous renders
+        d3.selectAll('.graph-tooltip').remove();
+
         // Create tooltip
         const tooltip = d3.select('body').append('div')
             .attr('class', 'graph-tooltip')
@@ -1015,13 +1143,12 @@ const GraphsModule = {
 
             // Highlight relevant elements based on current graph type
             if (GraphsModule.currentGraphType === 'bar') {
-                d3.selectAll('#barChart .bar')
+                const courseCode = courseItem.dataset.courseCode;
+                d3.selectAll('#barChart .bar-segment')
                     .transition()
                     .duration(200)
                     .attr('opacity', function() {
-                        const compName = d3.select(this).datum().name;
-                        const compId = StateGetters.getCompetencies().find(c => c.name === compName)?.id;
-                        return competencies.includes(compId) ? 1 : 0.2;
+                        return d3.select(this).attr('data-course') === courseCode ? 1 : 0.2;
                     });
             } else if (GraphsModule.currentGraphType === 'timeline') {
                 d3.selectAll('.timeline-line')
@@ -1051,7 +1178,7 @@ const GraphsModule = {
 
             // Reset highlighting
             if (GraphsModule.currentGraphType === 'bar') {
-                d3.selectAll('#barChart .bar')
+                d3.selectAll('#barChart .bar-segment')
                     .transition()
                     .duration(200)
                     .attr('opacity', 1);

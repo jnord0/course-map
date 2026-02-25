@@ -89,20 +89,22 @@ const DataAdapter = {
         const legacyMapping = {};
         const conversionMap = {
             'Inquiry': 'INQ',
-            'Integration': 'INT', 
+            'Integration': 'INT',
             'GlobalCulturalAwareness': 'GCU',
             'Analysis': 'ANL',
             'DiversityEquityInclusion': 'DEI',
             'Communication': 'COM',
             'Collaboration': 'COL',
             'Creativity': 'CRE',
-            'EthicalReasoning': 'ETH',
+            'ScientificLiteracy': 'SCI',
+            'InformationLiteracy': 'INL',
+            'TechnologyLiteracy': 'TEC',
             'QuantitativeLiteracy': 'QNT'
         };
-        
+
         Object.entries(newMapping).forEach(([newId, weight]) => {
             // Check if it's already in the new format (INQ, INT, etc)
-            if (['INQ', 'INT', 'GCU', 'ANL', 'DEI', 'COM', 'COL', 'CRE', 'ETH', 'QNT'].includes(newId)) {
+            if (['INQ', 'INT', 'GCU', 'ANL', 'DEI', 'COM', 'COL', 'CRE', 'SCI', 'INL', 'TEC', 'QNT'].includes(newId)) {
                 if (weight > 0) {
                     legacyMapping[newId] = weight;
                 }
@@ -134,19 +136,23 @@ const DataAdapter = {
             'GCU': 'GlobalCulturalAwareness',
             'ANL': 'Analysis',
             'DEI': 'DiversityEquityInclusion',
+            'SCI': 'ScientificLiteracy',
+            'INL': 'InformationLiteracy',
+            'TEC': 'TechnologyLiteracy',
+            'QNT': 'QuantitativeLiteracy',
             // Old legacy IDs
             'thinking': 'Inquiry',
             'learning': 'Integration',
             'global': 'GlobalCulturalAwareness',
-            'information': 'Analysis',
+            'information': 'InformationLiteracy',
             'ethics': 'DiversityEquityInclusion',
-            'communication': 'Integration',
-            'collaboration': 'Integration'
+            'communication': 'Communication',
+            'collaboration': 'Collaboration'
         };
-        
+
         Object.entries(legacyMapping).forEach(([legacyId, weight]) => {
             // Check if it's already in the new long format
-            if (['Inquiry', 'Integration', 'GlobalCulturalAwareness', 'Analysis', 'DiversityEquityInclusion'].includes(legacyId)) {
+            if (['Inquiry', 'Integration', 'GlobalCulturalAwareness', 'Analysis', 'DiversityEquityInclusion', 'ScientificLiteracy', 'InformationLiteracy', 'TechnologyLiteracy', 'Communication', 'Collaboration', 'Creativity', 'QuantitativeLiteracy'].includes(legacyId)) {
                 if (weight > 0) {
                     newMapping[legacyId] = Math.max(newMapping[legacyId] || 0, weight);
                 }
@@ -382,7 +388,7 @@ const AppState = {
                 {
                     courseCode: 'CSI-440',
                     contribution: 'Applies systems thinking and requirements engineering to AI/ML project scoping, stakeholder analysis, and ethical impact assessment.',
-                    competencies: ['Inquiry', 'Communication', 'Ethical Reasoning', 'Analysis'],
+                    competencies: ['Inquiry', 'Communication', 'Analysis'],
                     prerequisites: ['CSI-340'],
                     disposition: 'modification',
                     notes: 'Add 2-week module on ML project scoping and bias auditing framework'
@@ -834,16 +840,18 @@ const DataLoader = {
 
             // Use competencies from JSON if available, otherwise use standard 10 Champlain competencies
             const competencies = data.competencies || [
-                { id: 'INQ', name: 'Inquiry', color: '#003C5F' },
-                { id: 'INT', name: 'Integration', color: '#236192' },
-                { id: 'GCU', name: 'Global/Cultural Awareness', color: '#00A9E0' },
-                { id: 'ANL', name: 'Analysis', color: '#3DC4B2' },
-                { id: 'DEI', name: 'Diversity/Equity/Inclusion', color: '#74AA50' },
-                { id: 'COM', name: 'Communication', color: '#FF9800' },
-                { id: 'COL', name: 'Collaboration', color: '#E91E63' },
-                { id: 'CRE', name: 'Creativity', color: '#9C27B0' },
-                { id: 'ETH', name: 'Ethical Reasoning', color: '#607D8B' },
-                { id: 'QNT', name: 'Quantitative Literacy', color: '#795548' }
+                { id: 'ANL', name: 'Analysis', color: '#E52019' },
+                { id: 'COL', name: 'Collaboration', color: '#F7931E' },
+                { id: 'COM', name: 'Communication', color: '#FFDD00' },
+                { id: 'CRE', name: 'Creativity', color: '#C4D82D' },
+                { id: 'DEI', name: 'Diversity, Equity & Inclusion', color: '#5CB85C' },
+                { id: 'GCU', name: 'Global/Cultural Awareness', color: '#7CC9B5' },
+                { id: 'INL', name: 'Information Literacy', color: '#00B5AD' },
+                { id: 'INQ', name: 'Inquiry', color: '#3C8DAD' },
+                { id: 'INT', name: 'Integration', color: '#7B4FD0' },
+                { id: 'QNT', name: 'Quantitative Literacy', color: '#D640A8' },
+                { id: 'SCI', name: 'Scientific Literacy', color: '#F799C0' },
+                { id: 'TEC', name: 'Technology Literacy', color: '#A61C3C' }
             ];
 
             StateSetters.setCompetencies(competencies);
@@ -873,11 +881,18 @@ const DataLoader = {
                 }
             ]);
             StateSetters.setCompetencies([
-                { id: 'thinking', name: 'Inquiry' },
-                { id: 'learning', name: 'Integration' },
-                { id: 'global', name: 'Global/Cultural Awareness' },
-                { id: 'information', name: 'Analysis' },
-                { id: 'ethics', name: 'Diversity, Equity & Inclusion' }
+                { id: 'ANL', name: 'Analysis', color: '#E52019' },
+                { id: 'COL', name: 'Collaboration', color: '#F7931E' },
+                { id: 'COM', name: 'Communication', color: '#FFDD00' },
+                { id: 'CRE', name: 'Creativity', color: '#C4D82D' },
+                { id: 'DEI', name: 'Diversity, Equity & Inclusion', color: '#5CB85C' },
+                { id: 'GCU', name: 'Global/Cultural Awareness', color: '#7CC9B5' },
+                { id: 'INL', name: 'Information Literacy', color: '#00B5AD' },
+                { id: 'INQ', name: 'Inquiry', color: '#3C8DAD' },
+                { id: 'INT', name: 'Integration', color: '#7B4FD0' },
+                { id: 'QNT', name: 'Quantitative Literacy', color: '#D640A8' },
+                { id: 'SCI', name: 'Scientific Literacy', color: '#F799C0' },
+                { id: 'TEC', name: 'Technology Literacy', color: '#A61C3C' }
             ]);
             StateSetters.setDataLoaded(true);
 

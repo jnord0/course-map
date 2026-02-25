@@ -230,9 +230,10 @@ const SkillPackProposalsModule = {
         if (!tbody) return;
 
         const competencyNames = [
-            'Inquiry', 'Integration', 'Global/Cultural Awareness', 'Analysis',
-            'Diversity/Equity/Inclusion', 'Communication', 'Collaboration',
-            'Creativity', 'Ethical Reasoning', 'Quantitative Literacy'
+            'Analysis', 'Collaboration', 'Communication', 'Creativity',
+            'Diversity, Equity & Inclusion', 'Global/Cultural Awareness',
+            'Information Literacy', 'Inquiry', 'Integration',
+            'Quantitative Literacy', 'Scientific Literacy', 'Technology Literacy'
         ];
 
         // Backward-compat: support old single 'competency' string and new 'competencies' array
