@@ -261,7 +261,6 @@
             "Analysis": 3,
             "DiversityEquityInclusion": 1,
             "QuantitativeLiteracy": 2,
-            "EthicalReasoning": 2,
             "Creativity": 1
           }
         },
@@ -573,7 +572,6 @@
             "Analysis": 3,
             "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "EthicalReasoning": 3,
             "Collaboration": 1
           }
         },
@@ -717,7 +715,6 @@
           "competencyMapping": {
             "Communication": 3,
             "Collaboration": 3,
-            "EthicalReasoning": 3,
             "GlobalCulturalAwareness": 2,
             "DiversityEquityInclusion": 2,
             "Inquiry": 2,
@@ -2098,7 +2095,7 @@
               "id": "PLO6",
               "description": "Practice ethical decision-making in technology",
               "competencies": [
-                "ETH",
+                "DEI",
                 "DEI"
               ]
             }
@@ -2112,7 +2109,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -2230,13 +2226,12 @@
               "id": "PLO2",
               "description": "Practice ethical technology use",
               "competencies": [
-                "ETH"
+                "DEI"
               ]
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "EthicalReasoning": 2
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -2359,7 +2354,7 @@
               "competencies": [
                 "GCU",
                 "DEI",
-                "ETH"
+                "DEI"
               ]
             },
             {
@@ -2394,7 +2389,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 3
           }
         },
@@ -2541,7 +2535,7 @@
               "id": "PLO3",
               "description": "Practice ethical AI development",
               "competencies": [
-                "ETH",
+                "DEI",
                 "DEI",
                 "GCU"
               ]
@@ -2562,7 +2556,6 @@
             "Analysis": 3,
             "DiversityEquityInclusion": 3,
             "Creativity": 3,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 3
           }
         },
@@ -2938,7 +2931,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -2952,7 +2945,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -3073,7 +3065,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -3087,7 +3079,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -3208,7 +3199,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -3222,7 +3213,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -3350,7 +3340,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -3364,7 +3354,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -3485,7 +3474,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -3499,7 +3488,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -3633,7 +3621,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -3647,7 +3635,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -3774,7 +3761,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -3788,7 +3775,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -3922,7 +3908,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -3936,7 +3922,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -4057,7 +4042,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -4071,7 +4056,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -4205,7 +4189,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -4219,7 +4203,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -4347,7 +4330,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -4361,7 +4344,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -4488,7 +4470,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -4502,7 +4484,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -4630,7 +4611,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -4644,7 +4625,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -4771,7 +4751,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -4785,7 +4765,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -4913,7 +4892,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -4927,7 +4906,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -5055,7 +5033,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -5069,7 +5047,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -5190,7 +5167,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -5204,7 +5181,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -5325,7 +5301,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -5339,7 +5315,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -5460,7 +5435,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -5474,7 +5449,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -5608,7 +5582,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -5622,7 +5596,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -5750,7 +5723,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -5764,7 +5737,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -5885,7 +5857,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -5899,7 +5871,6 @@
             "Communication": 2,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -6027,7 +5998,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -6041,7 +6012,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -6169,7 +6139,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -6183,7 +6153,6 @@
             "Communication": 2,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -6311,7 +6280,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -6325,7 +6294,6 @@
             "Communication": 2,
             "Collaboration": 1,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -6453,7 +6421,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -6467,7 +6435,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -6595,7 +6562,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -6609,7 +6576,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -6730,7 +6696,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -6744,7 +6710,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -6865,7 +6830,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -6879,7 +6844,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -7013,7 +6977,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -7027,7 +6991,6 @@
             "Communication": 3,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -7148,7 +7111,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -7162,7 +7125,6 @@
             "Communication": 3,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -7290,7 +7252,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -7304,7 +7266,6 @@
             "Communication": 3,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -7432,7 +7393,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -7446,7 +7407,6 @@
             "Communication": 3,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -7567,7 +7527,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -7581,7 +7541,6 @@
             "Communication": 3,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -7702,7 +7661,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -7716,7 +7675,6 @@
             "Communication": 3,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -7843,7 +7801,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -7857,7 +7815,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -7978,7 +7935,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -7992,7 +7949,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -8120,7 +8076,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -8134,7 +8090,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -8262,7 +8217,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -8276,7 +8231,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -8404,7 +8358,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -8418,7 +8372,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -8546,7 +8499,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -8560,7 +8513,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -8681,7 +8633,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -8695,7 +8647,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -8816,7 +8767,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -8830,7 +8781,6 @@
             "Communication": 2,
             "Collaboration": 1,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 1
           }
         },
@@ -8958,7 +8908,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -8972,7 +8922,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -9093,7 +9042,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -9107,7 +9056,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -9228,7 +9176,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -9242,7 +9190,6 @@
             "Communication": 2,
             "Collaboration": 1,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 1
           }
         },
@@ -9370,7 +9317,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -9384,7 +9331,6 @@
             "Communication": 2,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 1
           }
         },
@@ -9505,7 +9451,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -9519,7 +9465,6 @@
             "Communication": 2,
             "Collaboration": 1,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 1
           }
         },
@@ -9640,7 +9585,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -9654,7 +9599,6 @@
             "Communication": 2,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 1
           }
         },
@@ -9782,7 +9726,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -9796,7 +9740,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 1
           }
         },
@@ -9924,7 +9867,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -9938,7 +9881,6 @@
             "Communication": 2,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -10066,7 +10008,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -10080,7 +10022,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 1
           }
         },
@@ -10208,7 +10149,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -10222,7 +10163,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -10356,7 +10296,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -10370,7 +10310,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -10498,7 +10437,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -10512,7 +10451,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -10640,7 +10578,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -10654,7 +10592,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 3
           }
         },
@@ -10775,7 +10712,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -10789,7 +10726,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -10917,7 +10853,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -10931,7 +10867,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -11059,7 +10994,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -11073,7 +11008,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -11194,7 +11128,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -11208,7 +11142,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -11336,7 +11269,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -11350,7 +11283,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -11478,7 +11410,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -11492,7 +11424,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -11613,7 +11544,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -11627,7 +11558,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -11759,7 +11689,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -11773,7 +11703,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 3
           }
         },
@@ -11901,7 +11830,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -11915,7 +11844,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 3
           }
         },
@@ -12043,7 +11971,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -12057,7 +11985,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -12185,7 +12112,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -12199,7 +12126,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -12326,7 +12252,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -12340,7 +12266,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -12461,7 +12386,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -12475,7 +12400,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -12603,7 +12527,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -12617,7 +12541,6 @@
             "Communication": 2,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -12738,7 +12661,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -12752,7 +12675,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -12880,7 +12802,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -12894,7 +12816,6 @@
             "Communication": 2,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -13022,7 +12943,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -13036,7 +12957,6 @@
             "Communication": 3,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -13164,7 +13084,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -13178,7 +13098,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -13299,7 +13218,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -13313,7 +13232,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -13441,7 +13359,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -13455,7 +13373,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -13583,7 +13500,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -13597,7 +13514,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -13718,7 +13634,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -13732,7 +13648,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -13853,7 +13768,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -13867,7 +13782,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -13988,7 +13902,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -14002,7 +13916,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -14123,7 +14036,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -14137,7 +14050,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -14258,7 +14170,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -14272,7 +14184,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -14400,7 +14311,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -14414,7 +14325,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -14535,7 +14445,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -14549,7 +14459,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -14683,7 +14592,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -14697,7 +14606,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -14818,7 +14726,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -14832,7 +14740,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -14960,7 +14867,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -14974,7 +14881,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -15102,7 +15008,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -15116,7 +15022,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -15237,7 +15142,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -15251,7 +15156,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -15378,7 +15282,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -15392,7 +15296,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -15520,7 +15423,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -15534,7 +15437,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -15662,7 +15564,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -15676,7 +15578,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -15810,7 +15711,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -15824,7 +15725,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -15945,7 +15845,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -15959,7 +15859,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -16086,7 +15985,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -16100,7 +15999,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -16228,7 +16126,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -16242,7 +16140,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -16376,7 +16273,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -16390,7 +16287,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -16524,7 +16420,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -16538,7 +16434,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -16672,7 +16567,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -16686,7 +16581,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -16813,7 +16707,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -16827,7 +16721,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -16954,7 +16847,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -16968,7 +16861,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -17102,7 +16994,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -17116,7 +17008,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -17250,7 +17141,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -17264,7 +17155,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -17398,7 +17288,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -17412,7 +17302,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -17546,7 +17435,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -17560,7 +17449,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -17687,7 +17575,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -17701,7 +17589,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -17833,7 +17720,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -17847,7 +17734,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -17974,7 +17860,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -17988,7 +17874,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -18116,7 +18001,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -18130,7 +18015,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -18251,7 +18135,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -18265,7 +18149,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -18386,7 +18269,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -18400,7 +18283,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -18528,7 +18410,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -18542,7 +18424,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -18663,7 +18544,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -18677,7 +18558,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -18804,7 +18684,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -18818,7 +18698,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -18945,7 +18824,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -18959,7 +18838,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -19087,7 +18965,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -19101,7 +18979,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -19229,7 +19106,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -19243,7 +19120,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -19371,7 +19247,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -19385,7 +19261,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -19513,7 +19388,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -19527,7 +19402,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -19648,7 +19522,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -19662,7 +19536,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -19790,7 +19663,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -19804,7 +19677,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -19932,7 +19804,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -19946,7 +19818,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -20067,7 +19938,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -20081,7 +19952,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -20209,7 +20079,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -20223,7 +20093,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -20344,7 +20213,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -20358,7 +20227,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -20486,7 +20354,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -20500,7 +20368,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -20621,7 +20488,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -20635,7 +20502,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -20756,7 +20622,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -20770,7 +20636,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -20891,7 +20756,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -20905,7 +20770,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -21026,7 +20890,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -21040,7 +20904,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -21168,7 +21031,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -21182,7 +21045,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -21310,7 +21172,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -21324,7 +21186,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -21452,7 +21313,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -21466,7 +21327,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -21594,7 +21454,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -21608,7 +21468,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -21729,7 +21588,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -21743,7 +21602,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -21882,7 +21740,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -21896,7 +21754,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -22035,7 +21892,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -22049,7 +21906,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -22188,7 +22044,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -22202,7 +22058,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -22336,7 +22191,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -22350,7 +22205,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -22477,7 +22331,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -22491,7 +22345,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -22612,7 +22465,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -22626,7 +22479,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -22754,7 +22606,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -22768,7 +22620,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -22895,7 +22746,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -22909,7 +22760,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -23036,7 +22886,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -23050,7 +22900,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -23177,7 +23026,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -23191,7 +23040,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -23318,7 +23166,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -23332,7 +23180,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -23466,7 +23313,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -23480,7 +23327,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -23612,7 +23458,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -23626,7 +23472,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -23760,7 +23605,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -23774,7 +23619,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -23901,7 +23745,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -23915,7 +23759,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -24036,7 +23879,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -24050,7 +23893,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -24177,7 +24019,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -24191,7 +24033,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -24318,7 +24159,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -24332,7 +24173,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -24453,7 +24293,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -24467,7 +24307,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -24595,7 +24434,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -24609,7 +24448,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -24730,7 +24568,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -24744,7 +24582,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -24865,7 +24702,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -24879,7 +24716,6 @@
             "Communication": 3,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -25007,7 +24843,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -25021,7 +24857,6 @@
             "Communication": 3,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -25155,7 +24990,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -25169,7 +25004,6 @@
             "Communication": 3,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -25290,7 +25124,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -25304,7 +25138,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -25425,7 +25258,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -25439,7 +25272,6 @@
             "Communication": 3,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -25567,7 +25399,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -25581,7 +25413,6 @@
             "Communication": 3,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -25709,7 +25540,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -25723,7 +25554,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -25851,7 +25681,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -25865,7 +25695,6 @@
             "Communication": 3,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -25993,7 +25822,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -26007,7 +25836,6 @@
             "Communication": 3,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -26128,7 +25956,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -26142,7 +25970,6 @@
             "Communication": 3,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -26270,7 +26097,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -26284,7 +26111,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -26412,7 +26238,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -26426,7 +26252,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -26547,7 +26372,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -26561,7 +26386,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -26682,7 +26506,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -26696,7 +26520,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -26817,7 +26640,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -26831,7 +26654,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -26959,7 +26781,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -26973,7 +26795,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -27100,7 +26921,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -27114,7 +26935,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 3
           }
         },
@@ -27248,7 +27068,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -27262,7 +27082,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -27396,7 +27215,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -27410,7 +27229,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 3
           }
         },
@@ -27542,7 +27360,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -27556,7 +27374,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 3
           }
         },
@@ -27688,7 +27505,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -27702,7 +27519,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 3
           }
         },
@@ -27829,7 +27645,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -27843,7 +27659,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 3
           }
         },
@@ -27977,7 +27792,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -27991,7 +27806,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 3
           }
         },
@@ -28125,7 +27939,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -28139,7 +27953,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 3
           }
         },
@@ -28271,7 +28084,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -28285,7 +28098,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 3
           }
         },
@@ -28419,7 +28231,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -28433,7 +28245,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 3
           }
         },
@@ -28560,7 +28371,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -28574,7 +28385,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 3
           }
         },
@@ -28695,7 +28505,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -28709,7 +28519,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -28843,7 +28652,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -28857,7 +28666,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -28985,7 +28793,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -28999,7 +28807,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -29127,7 +28934,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -29141,7 +28948,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 1
           }
         },
@@ -29268,7 +29074,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -29282,7 +29088,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -29409,7 +29214,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -29423,7 +29228,6 @@
             "Communication": 2,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 1
           }
         },
@@ -29550,7 +29354,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -29564,7 +29368,6 @@
             "Communication": 2,
             "Collaboration": 1,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 1
           }
         },
@@ -29692,7 +29495,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -29706,7 +29509,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -29827,7 +29629,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -29841,7 +29643,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 1
           }
         },
@@ -29975,7 +29776,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -29989,7 +29790,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 1
           }
         },
@@ -30110,7 +29910,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -30124,7 +29924,6 @@
             "Communication": 2,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 1
           }
         },
@@ -30252,7 +30051,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -30266,7 +30065,6 @@
             "Communication": 2,
             "Collaboration": 1,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 1
           }
         },
@@ -30394,7 +30192,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -30408,7 +30206,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -30535,7 +30332,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -30549,7 +30346,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 1
           }
         },
@@ -30677,7 +30473,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -30691,7 +30487,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 3
           }
         },
@@ -30812,7 +30607,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -30826,7 +30621,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -30947,7 +30741,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -30961,7 +30755,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -31095,7 +30888,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -31109,7 +30902,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -31243,7 +31035,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -31257,7 +31049,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -31391,7 +31182,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -31405,7 +31196,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -31539,7 +31329,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -31553,7 +31343,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -31692,7 +31481,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -31706,7 +31495,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -31840,7 +31628,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -31854,7 +31642,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -31975,7 +31762,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -31989,7 +31776,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -32117,7 +31903,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -32131,7 +31917,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -32259,7 +32044,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -32273,7 +32058,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -32394,7 +32178,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -32408,7 +32192,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -32535,7 +32318,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -32549,7 +32332,6 @@
             "Communication": 2,
             "Collaboration": 3,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -32677,7 +32459,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -32691,7 +32473,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -32812,7 +32593,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -32826,7 +32607,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -32947,7 +32727,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -32961,7 +32741,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -33082,7 +32861,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -33096,7 +32875,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -33224,7 +33002,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -33238,7 +33016,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -33359,7 +33136,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -33373,7 +33150,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -33501,7 +33277,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -33515,7 +33291,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -33643,7 +33418,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -33657,7 +33432,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -33785,7 +33559,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -33799,7 +33573,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -33927,7 +33700,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -33941,7 +33714,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -34062,7 +33834,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -34076,7 +33848,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -34197,7 +33968,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -34211,7 +33982,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -34332,7 +34102,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -34346,7 +34116,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -34474,7 +34243,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -34488,7 +34257,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -34616,7 +34384,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -34630,7 +34398,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -34751,7 +34518,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -34765,7 +34532,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -34893,7 +34659,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -34907,7 +34673,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -35035,7 +34800,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -35049,7 +34814,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 2,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -35177,7 +34941,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -35191,7 +34955,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -35319,7 +35082,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -35333,7 +35096,6 @@
             "Communication": 3,
             "Collaboration": 3,
             "Creativity": 1,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -35461,7 +35223,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -35475,7 +35237,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -35602,7 +35363,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -35616,7 +35377,6 @@
             "Communication": 1,
             "Collaboration": 1,
             "Creativity": 2,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -35750,7 +35510,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -35764,7 +35524,6 @@
             "Communication": 1,
             "Collaboration": 2,
             "Creativity": 1,
-            "EthicalReasoning": 3,
             "QuantitativeLiteracy": 2
           }
         },
@@ -35892,7 +35651,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -35906,7 +35665,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -36034,7 +35792,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -36048,7 +35806,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -36176,7 +35933,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -36190,7 +35947,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -36311,7 +36067,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -36325,7 +36081,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -36453,7 +36208,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -36467,7 +36222,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -36595,7 +36349,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -36609,7 +36363,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -36748,7 +36501,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -36762,7 +36515,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 1
           }
         },
@@ -36890,7 +36642,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -36904,7 +36656,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -37025,7 +36776,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -37039,7 +36790,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -37167,7 +36917,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -37181,7 +36931,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -37309,7 +37058,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -37323,7 +37072,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -37451,7 +37199,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -37465,7 +37213,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -37586,7 +37333,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -37600,7 +37347,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 2
           }
         },
@@ -37721,7 +37467,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -37735,7 +37481,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 1,
             "QuantitativeLiteracy": 2
           }
         },
@@ -37863,7 +37608,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -37877,7 +37622,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },
@@ -38005,7 +37749,7 @@
               "id": "PLO3",
               "description": "Demonstrate ethical reasoning in professional practice",
               "competencies": [
-                "ETH",
+                "DEI",
                 "GCU"
               ]
             }
@@ -38019,7 +37763,6 @@
             "Communication": 2,
             "Collaboration": 2,
             "Creativity": 3,
-            "EthicalReasoning": 2,
             "QuantitativeLiteracy": 1
           }
         },

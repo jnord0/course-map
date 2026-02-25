@@ -554,8 +554,12 @@ const ProposalsModule = {
             'Communication': 'comp_communication',
             'Collaboration': 'comp_collaboration',
             'Creativity': 'comp_creativity',
-            'EthicalReasoning': 'comp_ethical',
-            'Ethical Reasoning': 'comp_ethical',
+            'ScientificLiteracy': 'comp_scientific',
+            'Scientific Literacy': 'comp_scientific',
+            'InformationLiteracy': 'comp_information',
+            'Information Literacy': 'comp_information',
+            'TechnologyLiteracy': 'comp_technology',
+            'Technology Literacy': 'comp_technology',
             'QuantitativeLiteracy': 'comp_quantitative',
             'Quantitative Literacy': 'comp_quantitative'
         };
@@ -722,7 +726,9 @@ Export ID: ${proposal.id}-${Date.now()}
             'comp_communication': 'Communication',
             'comp_collaboration': 'Collaboration',
             'comp_creativity': 'Creativity',
-            'comp_ethical': 'EthicalReasoning',
+            'comp_scientific': 'ScientificLiteracy',
+            'comp_information': 'InformationLiteracy',
+            'comp_technology': 'TechnologyLiteracy',
             'comp_quantitative': 'QuantitativeLiteracy'
         };
 

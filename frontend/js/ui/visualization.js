@@ -194,7 +194,7 @@ const VisualizationModule = {
     
     getCompetencyColor: (compId) => {
         const colors = {
-            // 12 Core Competencies - Official Champlain Colors (from wedge icons)
+            // 12 College Competencies - Official Champlain Colors (from wedge icons)
             'ANL': '#E52019',  // Analysis - Red
             'COL': '#F7931E',  // Collaboration - Orange
             'COM': '#FFDD00',  // Communication - Yellow
@@ -215,7 +215,7 @@ const VisualizationModule = {
             'global': '#7CC9B5',
             'ethics': '#5CB85C',
             'information': '#00B5AD',
-            'ETH': '#5CB85C'  // Ethical Reasoning (legacy, mapped to DEI color)
+            'ETH': '#5CB85C'  // Legacy: Ethical Reasoning (maps to DEI color for old data)
         };
         return colors[compId] || '#999';
     },
