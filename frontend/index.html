@@ -2450,6 +2450,11 @@
                             <div id="graphsContainer" style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); min-height: 600px;">
                                 <!-- Bar Chart -->
                                 <div id="barChartContainer" class="graph-chart-container">
+                                    <div style="display: flex; gap: 8px; margin-bottom: 12px; justify-content: flex-end; align-items: center;">
+                                        <span style="font-size: 12px; color: #666;">Color by:</span>
+                                        <button class="bar-mode-btn active" data-mode="course" style="padding: 5px 12px; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; background: var(--champlain-bright-blue); color: white; font-size: 12px; font-weight: 600; transition: all 0.2s;">Course</button>
+                                        <button class="bar-mode-btn" data-mode="competency" style="padding: 5px 12px; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; background: white; color: var(--champlain-navy); font-size: 12px; font-weight: 600; transition: all 0.2s;">Competency</button>
+                                    </div>
                                     <svg id="barChart" style="width: 100%; height: 600px;"></svg>
                                 </div>
 
