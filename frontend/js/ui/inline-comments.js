@@ -126,7 +126,7 @@ const InlineCommentsUI = {
      */
     enable: (containerEl, proposalId, isSkillPack) => {
         if (!containerEl) return;
-        if (!AuthManager || !AuthManager.hasRole || !AuthManager.hasRole('Administrator')) return;
+        if (!Auth || !Auth.hasRole || !Auth.hasRole('Administrator')) return;
 
         InlineCommentsUI.disable(); // clean up any previous binding
 

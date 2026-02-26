@@ -424,7 +424,7 @@ const ProposalsModule = {
         `;
 
         // Wrap content with inline-comments sidebar
-        const isAdmin = AuthManager && AuthManager.hasRole && AuthManager.hasRole('Administrator');
+        const isAdmin = Auth && Auth.hasRole && Auth.hasRole('Administrator');
         const inlineComments = proposal.inlineComments || [];
         document.getElementById('proposalDetails').innerHTML =
             InlineCommentsUI.wrapWithSidebar(contentHtml, inlineComments, id, false, isAdmin);

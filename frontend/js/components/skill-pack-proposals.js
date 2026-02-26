@@ -716,7 +716,7 @@ const SkillPackProposalsModule = {
         `;
 
         // Wrap content with inline-comments sidebar
-        const isAdmin = AuthManager && AuthManager.hasRole && AuthManager.hasRole('Administrator');
+        const isAdmin = Auth && Auth.hasRole && Auth.hasRole('Administrator');
         const inlineComments = proposal.inlineComments || [];
         detailsEl.innerHTML = InlineCommentsUI.wrapWithSidebar(contentHtml, inlineComments, id, true, isAdmin);
 
