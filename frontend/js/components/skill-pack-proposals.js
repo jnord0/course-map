@@ -60,6 +60,16 @@ const SkillPackProposalsModule = {
         // Delegate clicks inside the courses table body
         const tbody = document.getElementById('spCoursesTableBody');
         if (tbody) {
+            // Auto-fill competencies and prerequisites when a course is selected
+            tbody.addEventListener('change', (e) => {
+                if (e.target.classList.contains('sp-course-select')) {
+                    const tr = e.target.closest('tr');
+                    if (tr) {
+                        SkillPackProposalsModule._autoFillCourseRow(tr, e.target.value);
+                    }
+                }
+            });
+
             tbody.addEventListener('click', (e) => {
                 if (e.target.classList.contains('sp-remove-course-row')) {
                     const rows = tbody.querySelectorAll('tr');
@@ -325,6 +335,70 @@ const SkillPackProposalsModule = {
                 style="padding:6px 12px; background:#f44336; color:white; border:none; border-radius:4px; cursor:pointer; font-size:13px; flex-shrink:0;">✕</button>
         `;
         list.appendChild(row);
+    },
+
+    /**
+     * Auto-fill competency checkboxes and prerequisite tags in a course row
+     * based on the selected course's existing data from state.
+     * @param {Element} tr - The table row element.
+     * @param {string} courseCode - The course code to look up (e.g. "CSI-440").
+     */
+    _autoFillCourseRow: (tr, courseCode) => {
+        if (!courseCode) return;
+
+        const courses = StateGetters.getCourses ? StateGetters.getCourses() : [];
+        const course = courses.find(c => c.code === courseCode);
+        if (!course) return;
+
+        // Map both short-code and long-form competency keys to checkbox display names
+        const compToDisplayName = {
+            'INQ': 'Inquiry',        'INT': 'Integration',
+            'GCU': 'Global/Cultural Awareness', 'ANL': 'Analysis',
+            'DEI': 'Diversity, Equity & Inclusion', 'COM': 'Communication',
+            'COL': 'Collaboration',  'CRE': 'Creativity',
+            'SCI': 'Scientific Literacy', 'INL': 'Information Literacy',
+            'TEC': 'Technology Literacy', 'QNT': 'Quantitative Literacy',
+            'Inquiry': 'Inquiry', 'Integration': 'Integration',
+            'GlobalCulturalAwareness': 'Global/Cultural Awareness',
+            'Analysis': 'Analysis', 'DiversityEquityInclusion': 'Diversity, Equity & Inclusion',
+            'Communication': 'Communication', 'Collaboration': 'Collaboration',
+            'Creativity': 'Creativity', 'ScientificLiteracy': 'Scientific Literacy',
+            'InformationLiteracy': 'Information Literacy',
+            'TechnologyLiteracy': 'Technology Literacy',
+            'QuantitativeLiteracy': 'Quantitative Literacy'
+        };
+
+        // Build set of display names for competencies this course covers
+        const toCheck = new Set();
+        if (course.competencies) {
+            Object.entries(course.competencies).forEach(([key, weight]) => {
+                if (weight > 0) {
+                    const name = compToDisplayName[key];
+                    if (name) toCheck.add(name);
+                }
+            });
+        }
+
+        // Check/uncheck competency boxes to match course data
+        tr.querySelectorAll('.sp-course-competency-cb').forEach(cb => {
+            cb.checked = toCheck.has(cb.value);
+        });
+
+        // Auto-fill prerequisites from course data
+        const prereqList = tr.querySelector('.sp-prereq-list');
+        if (prereqList) {
+            prereqList.innerHTML = '';
+            if (course.prerequisites) {
+                // prerequisites is stored as a comma-separated string, e.g. "CSI-340, CSI-240"
+                course.prerequisites.split(',').map(p => p.trim()).filter(Boolean).forEach(p => {
+                    SkillPackProposalsModule._addPrereqTag(prereqList, p);
+                });
+            } else if (course.prerequisiteList && course.prerequisiteList.length > 0) {
+                course.prerequisiteList.forEach(p => {
+                    SkillPackProposalsModule._addPrereqTag(prereqList, `${p.coursePrefix}-${p.courseNumber}`);
+                });
+            }
+        }
     },
 
     /**
