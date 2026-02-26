@@ -676,7 +676,8 @@ const SkillPackProposalsModule = {
         const detailsEl = document.getElementById('spProposalDetails');
         if (!detailsEl) return;
 
-        detailsEl.innerHTML = `
+        // Build main content HTML string
+        const contentHtml = `
             <div style="margin-bottom:20px;">
                 <h3 style="color:var(--champlain-navy); margin-bottom:15px;">${proposal.skillPackName}</h3>
 
@@ -714,10 +715,18 @@ const SkillPackProposalsModule = {
             </div>
         `;
 
+        // Wrap content with inline-comments sidebar
+        const isAdmin = AuthManager && AuthManager.hasRole && AuthManager.hasRole('Administrator');
+        const inlineComments = proposal.inlineComments || [];
+        detailsEl.innerHTML = InlineCommentsUI.wrapWithSidebar(contentHtml, inlineComments, id, true, isAdmin);
+
         const modal = document.getElementById('spDetailsModal');
-        if (modal) {
-            modal.style.display = 'block';
-        }
+        if (modal) modal.style.display = 'block';
+
+        // Enable text-selection commenting for admins
+        InlineCommentsUI.init();
+        const mainContent = document.getElementById('ic-main-content');
+        if (mainContent) InlineCommentsUI.enable(mainContent, id, true);
     },
 
     // -------------------------------------------------------------------------
