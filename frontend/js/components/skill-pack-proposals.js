@@ -221,7 +221,10 @@ const SkillPackProposalsModule = {
      */
     _buildCourseOptions: (selectedCode = '') => {
         const courses = StateGetters.getCourses ? StateGetters.getCourses() : [];
-        const options = ['<option value="">-- Select a course --</option>'];
+        const options = [
+            '<option value="">-- Select a course --</option>',
+            `<option value="__new__" ${selectedCode === '__new__' ? 'selected' : ''}>➕ New Course (TBD)</option>`
+        ];
         courses.forEach(c => {
             const code = c.code || '';
             const title = c.name || c.title || '';
@@ -231,6 +234,52 @@ const SkillPackProposalsModule = {
         return options.join('');
     },
 
+    // Cell HTML helpers (shared by addCourseRow and _autoFillCourseRow for mode switching)
+
+    _competencyCellInnerHTML: (selectedCompetencies = []) => {
+        const names = [
+            'Analysis', 'Collaboration', 'Communication', 'Creativity',
+            'Diversity, Equity & Inclusion', 'Global/Cultural Awareness',
+            'Information Literacy', 'Inquiry', 'Integration',
+            'Quantitative Literacy', 'Scientific Literacy', 'Technology Literacy'
+        ];
+        const checks = names.map(c => `
+            <label style="display:flex; align-items:center; gap:4px; font-size:11px; cursor:pointer; padding:1px 0;">
+                <input type="checkbox" class="sp-course-competency-cb" value="${c}"
+                    ${selectedCompetencies.includes(c) ? 'checked' : ''}
+                    style="accent-color:var(--champlain-navy); cursor:pointer; flex-shrink:0;">
+                <span>${c}</span>
+            </label>`).join('');
+        return `<div style="display:flex; flex-direction:column; gap:2px; max-height:175px; overflow-y:auto; padding:6px; border:1px solid #ccc; border-radius:4px; background:#fafafa;">${checks}</div>`;
+    },
+
+    _prereqCellInnerHTML: (prereqArray = []) => {
+        const tags = prereqArray.map(p =>
+            `<span class="sp-prereq-tag" data-prereq="${p}" style="display:inline-flex; align-items:center; gap:2px; background:var(--champlain-blue); color:white; padding:2px 7px 2px 8px; border-radius:12px; font-size:11px; white-space:nowrap;">${p}<button type="button" class="sp-prereq-remove" style="background:none; border:none; color:white; cursor:pointer; padding:0 0 0 2px; font-size:13px; line-height:1;">&times;</button></span>`
+        ).join('');
+        return `<div class="sp-prereq-wrap">
+            <div class="sp-prereq-list" style="display:flex; flex-wrap:wrap; gap:4px; margin-bottom:6px; min-height:18px;">${tags}</div>
+            <div style="display:flex; gap:4px;">
+                <input type="text" class="sp-prereq-input" placeholder="e.g. CSI-140"
+                    style="flex:1; min-width:0; padding:5px 6px; border:1px solid #ccc; border-radius:4px; font-size:12px;">
+                <button type="button" class="sp-prereq-add"
+                    style="padding:5px 8px; background:var(--champlain-blue); color:white; border:none; border-radius:4px; cursor:pointer; font-size:12px; flex-shrink:0;">+</button>
+            </div>
+        </div>`;
+    },
+
+    _newCourseNameCellInnerHTML: (name = '') =>
+        `<label style="font-size:11px; font-weight:600; color:var(--champlain-navy); display:block; margin-bottom:4px;">Placeholder Name</label>
+        <input type="text" class="sp-new-course-name" value="${name}"
+            placeholder="e.g. Advanced Data Science"
+            style="width:100%; padding:6px; border:1px solid #90caf9; border-radius:4px; font-size:13px; box-sizing:border-box;">`,
+
+    _newCourseDescCellInnerHTML: (desc = '') =>
+        `<label style="font-size:11px; font-weight:600; color:var(--champlain-navy); display:block; margin-bottom:4px;">Why is this course needed?</label>
+        <textarea class="sp-new-course-description" rows="4"
+            placeholder="Describe the need for this new course and what it would cover..."
+            style="width:100%; padding:6px; border:1px solid #90caf9; border-radius:4px; font-size:13px; resize:vertical; box-sizing:border-box;">${desc}</textarea>`,
+
     /**
      * Append a new course row to the courses table.
      * @param {object} data - Optional pre-fill data for edit mode.
@@ -239,12 +288,7 @@ const SkillPackProposalsModule = {
         const tbody = document.getElementById('spCoursesTableBody');
         if (!tbody) return;
 
-        const competencyNames = [
-            'Analysis', 'Collaboration', 'Communication', 'Creativity',
-            'Diversity, Equity & Inclusion', 'Global/Cultural Awareness',
-            'Information Literacy', 'Inquiry', 'Integration',
-            'Quantitative Literacy', 'Scientific Literacy', 'Technology Literacy'
-        ];
+        const isNewCourse = data.courseCode === '__new__';
 
         // Backward-compat: support old single 'competency' string and new 'competencies' array
         const selectedCompetencies = Array.isArray(data.competencies)
@@ -256,23 +300,22 @@ const SkillPackProposalsModule = {
             ? data.prerequisites
             : (data.prerequisites ? data.prerequisites.split(',').map(s => s.trim()).filter(Boolean) : []);
 
-        const competencyChecks = competencyNames.map(c => `
-            <label style="display:flex; align-items:center; gap:4px; font-size:11px; cursor:pointer; padding:1px 0;">
-                <input type="checkbox" class="sp-course-competency-cb" value="${c}"
-                    ${selectedCompetencies.includes(c) ? 'checked' : ''}
-                    style="accent-color:var(--champlain-navy); cursor:pointer; flex-shrink:0;">
-                <span>${c}</span>
-            </label>`).join('');
+        const SP = SkillPackProposalsModule;
+        const compOrNameCell = isNewCourse
+            ? SP._newCourseNameCellInnerHTML(data.placeholderName || '')
+            : SP._competencyCellInnerHTML(selectedCompetencies);
+        const prereqOrDescCell = isNewCourse
+            ? SP._newCourseDescCellInnerHTML(data.newCourseDescription || '')
+            : SP._prereqCellInnerHTML(prereqArray);
 
-        const prereqTagsHtml = prereqArray.map(p =>
-            `<span class="sp-prereq-tag" data-prereq="${p}" style="display:inline-flex; align-items:center; gap:2px; background:var(--champlain-blue); color:white; padding:2px 7px 2px 8px; border-radius:12px; font-size:11px; white-space:nowrap;">${p}<button type="button" class="sp-prereq-remove" style="background:none; border:none; color:white; cursor:pointer; padding:0 0 0 2px; font-size:13px; line-height:1;">&times;</button></span>`
-        ).join('');
+        // Auto-select "New course" disposition when adding a TBD row
+        const disposition = isNewCourse ? 'new' : (data.disposition || 'existing');
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td style="padding:8px; min-width:180px; vertical-align:top;">
                 <select class="sp-course-select" style="width:100%; padding:6px; border:1px solid #ccc; border-radius:4px; font-size:13px;">
-                    ${SkillPackProposalsModule._buildCourseOptions(data.courseCode || '')}
+                    ${SP._buildCourseOptions(data.courseCode || '')}
                 </select>
             </td>
             <td style="padding:8px; min-width:180px; vertical-align:top;">
@@ -280,28 +323,14 @@ const SkillPackProposalsModule = {
                     placeholder="How does this course contribute to the skill pack outcome?"
                     style="width:100%; padding:6px; border:1px solid #ccc; border-radius:4px; font-size:13px; resize:vertical;">${data.contribution || ''}</textarea>
             </td>
-            <td style="padding:8px; min-width:190px; vertical-align:top;">
-                <div style="display:flex; flex-direction:column; gap:2px; max-height:175px; overflow-y:auto; padding:6px; border:1px solid #ccc; border-radius:4px; background:#fafafa;">
-                    ${competencyChecks}
-                </div>
-            </td>
-            <td style="padding:8px; min-width:160px; vertical-align:top;">
-                <div class="sp-prereq-wrap">
-                    <div class="sp-prereq-list" style="display:flex; flex-wrap:wrap; gap:4px; margin-bottom:6px; min-height:18px;">${prereqTagsHtml}</div>
-                    <div style="display:flex; gap:4px;">
-                        <input type="text" class="sp-prereq-input" placeholder="e.g. CSI-140"
-                            style="flex:1; min-width:0; padding:5px 6px; border:1px solid #ccc; border-radius:4px; font-size:12px;">
-                        <button type="button" class="sp-prereq-add"
-                            style="padding:5px 8px; background:var(--champlain-blue); color:white; border:none; border-radius:4px; cursor:pointer; font-size:12px; flex-shrink:0;">+</button>
-                    </div>
-                </div>
-            </td>
+            <td style="padding:8px; min-width:190px; vertical-align:top;">${compOrNameCell}</td>
+            <td style="padding:8px; min-width:160px; vertical-align:top;">${prereqOrDescCell}</td>
             <td style="padding:8px; min-width:140px; vertical-align:top;">
                 <select class="sp-course-disposition"
                     style="width:100%; padding:6px; border:1px solid #ccc; border-radius:4px; font-size:13px;">
-                    <option value="existing" ${(data.disposition || 'existing') === 'existing' ? 'selected' : ''}>Existing – as is</option>
-                    <option value="modification" ${data.disposition === 'modification' ? 'selected' : ''}>Modification needed</option>
-                    <option value="new" ${data.disposition === 'new' ? 'selected' : ''}>New course</option>
+                    <option value="existing" ${disposition === 'existing' ? 'selected' : ''}>Existing – as is</option>
+                    <option value="modification" ${disposition === 'modification' ? 'selected' : ''}>Modification needed</option>
+                    <option value="new" ${disposition === 'new' ? 'selected' : ''}>New course</option>
                 </select>
             </td>
             <td style="padding:8px; min-width:130px; vertical-align:top;">
@@ -338,14 +367,41 @@ const SkillPackProposalsModule = {
     },
 
     /**
-     * Auto-fill competency checkboxes and prerequisite tags in a course row
-     * based on the selected course's existing data from state.
+     * Auto-fill (or switch mode for) a course row when its dropdown changes.
+     * - If __new__ is selected: swap cells to placeholder-name + description mode.
+     * - If a real course is selected from __new__ mode: restore competency + prereq cells, then fill.
+     * - If a real course is selected normally: fill competencies and prerequisites.
      * @param {Element} tr - The table row element.
-     * @param {string} courseCode - The course code to look up (e.g. "CSI-440").
+     * @param {string} courseCode - Selected course code or '__new__'.
      */
     _autoFillCourseRow: (tr, courseCode) => {
+        const SP = SkillPackProposalsModule;
+        const cells = tr.querySelectorAll('td');
+        const compCell = cells[2];
+        const prereqCell = cells[3];
+        const dispositionSelect = tr.querySelector('.sp-course-disposition');
+        const isCurrentlyNewMode = !!compCell.querySelector('.sp-new-course-name');
+
         if (!courseCode) return;
 
+        if (courseCode === '__new__') {
+            // Switch to new-course mode (placeholder name + description)
+            compCell.innerHTML = SP._newCourseNameCellInnerHTML('');
+            prereqCell.innerHTML = SP._newCourseDescCellInnerHTML('');
+            if (dispositionSelect) dispositionSelect.value = 'new';
+            return;
+        }
+
+        // Switching to a real course — restore competency/prereq cells if in new-course mode
+        if (isCurrentlyNewMode) {
+            compCell.innerHTML = SP._competencyCellInnerHTML([]);
+            prereqCell.innerHTML = SP._prereqCellInnerHTML([]);
+            if (dispositionSelect && dispositionSelect.value === 'new') {
+                dispositionSelect.value = 'existing';
+            }
+        }
+
+        // Look up the course and auto-fill
         const courses = StateGetters.getCourses ? StateGetters.getCourses() : [];
         const course = courses.find(c => c.code === courseCode);
         if (!course) return;
@@ -389,13 +445,12 @@ const SkillPackProposalsModule = {
         if (prereqList) {
             prereqList.innerHTML = '';
             if (course.prerequisites) {
-                // prerequisites is stored as a comma-separated string, e.g. "CSI-340, CSI-240"
                 course.prerequisites.split(',').map(p => p.trim()).filter(Boolean).forEach(p => {
-                    SkillPackProposalsModule._addPrereqTag(prereqList, p);
+                    SP._addPrereqTag(prereqList, p);
                 });
             } else if (course.prerequisiteList && course.prerequisiteList.length > 0) {
                 course.prerequisiteList.forEach(p => {
-                    SkillPackProposalsModule._addPrereqTag(prereqList, `${p.coursePrefix}-${p.courseNumber}`);
+                    SP._addPrereqTag(prereqList, `${p.coursePrefix}-${p.courseNumber}`);
                 });
             }
         }
@@ -532,17 +587,25 @@ const SkillPackProposalsModule = {
         let coursesTable = '';
         if (proposal.courses && proposal.courses.length > 0) {
             const rows = proposal.courses.map(c => {
-                const comps = Array.isArray(c.competencies) && c.competencies.length > 0
-                    ? c.competencies.join(', ')
-                    : (c.competency || '–');
-                const prereqs = Array.isArray(c.prerequisites) && c.prerequisites.length > 0
-                    ? c.prerequisites.join(', ')
-                    : (typeof c.prerequisites === 'string' && c.prerequisites ? c.prerequisites : 'None');
+                const isNew = c.courseCode === '__new__';
+                const courseDisplay = isNew
+                    ? `<span style="color:#e65100; font-style:italic;">NEW: ${c.placeholderName || 'TBD'}</span>`
+                    : c.courseCode;
+                const compsOrDesc = isNew
+                    ? `<em style="color:#666; font-size:12px;">${c.newCourseDescription || '–'}</em>`
+                    : (Array.isArray(c.competencies) && c.competencies.length > 0
+                        ? c.competencies.join(', ')
+                        : (c.competency || '–'));
+                const prereqs = isNew
+                    ? '<span style="color:#aaa;">N/A</span>'
+                    : (Array.isArray(c.prerequisites) && c.prerequisites.length > 0
+                        ? c.prerequisites.join(', ')
+                        : (typeof c.prerequisites === 'string' && c.prerequisites ? c.prerequisites : 'None'));
                 return `
-                <tr>
-                    <td style="padding:8px; border:1px solid #ddd;">${c.courseCode}</td>
+                <tr${isNew ? ' style="background:#fff8e1;"' : ''}>
+                    <td style="padding:8px; border:1px solid #ddd;">${courseDisplay}</td>
                     <td style="padding:8px; border:1px solid #ddd;">${c.contribution || '–'}</td>
-                    <td style="padding:8px; border:1px solid #ddd;">${comps}</td>
+                    <td style="padding:8px; border:1px solid #ddd;">${compsOrDesc}</td>
                     <td style="padding:8px; border:1px solid #ddd;">${prereqs}</td>
                     <td style="padding:8px; border:1px solid #ddd;">${c.disposition || '–'}</td>
                     <td style="padding:8px; border:1px solid #ddd;">${c.notes || '–'}</td>
@@ -554,7 +617,7 @@ const SkillPackProposalsModule = {
                         <tr style="background:#f0f0f0;">
                             <th style="padding:8px; border:1px solid #ddd; text-align:left;">Course</th>
                             <th style="padding:8px; border:1px solid #ddd; text-align:left;">Contribution to LO</th>
-                            <th style="padding:8px; border:1px solid #ddd; text-align:left;">Competency (L3)</th>
+                            <th style="padding:8px; border:1px solid #ddd; text-align:left;">Competencies / Description</th>
                             <th style="padding:8px; border:1px solid #ddd; text-align:left;">Prerequisites</th>
                             <th style="padding:8px; border:1px solid #ddd; text-align:left;">Disposition</th>
                             <th style="padding:8px; border:1px solid #ddd; text-align:left;">Notes</th>
@@ -737,6 +800,22 @@ const SkillPackProposalsModule = {
         rows.forEach(row => {
             const courseCode = row.querySelector('.sp-course-select')?.value || '';
             if (!courseCode) return;
+
+            if (courseCode === '__new__') {
+                // New (TBD) course — save placeholder name and description instead of competencies/prereqs
+                courses.push({
+                    courseCode: '__new__',
+                    placeholderName: row.querySelector('.sp-new-course-name')?.value.trim() || '',
+                    newCourseDescription: row.querySelector('.sp-new-course-description')?.value.trim() || '',
+                    contribution: row.querySelector('.sp-course-contribution')?.value.trim() || '',
+                    competencies: [],
+                    prerequisites: [],
+                    disposition: 'new',
+                    notes: row.querySelector('.sp-course-notes')?.value.trim() || ''
+                });
+                return;
+            }
+
             const competencies = Array.from(row.querySelectorAll('.sp-course-competency-cb:checked'))
                 .map(cb => cb.value);
             const prerequisites = Array.from(row.querySelectorAll('.sp-prereq-tag'))
