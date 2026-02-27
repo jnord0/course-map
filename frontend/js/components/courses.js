@@ -1055,10 +1055,51 @@ const CoursesModule = {
         });
 
         // ── Skill packs containing this course ────────────────────────────────
+        // Normalize codes to handle spacing variants like "ANM - 175" vs "ANM-175"
+        const normalizeCode = c => (c || '').replace(/\s+/g, '').toUpperCase();
+        const targetCode = normalizeCode(course.code);
+
+        // Proposals (pending / approved / rejected) from AppState
         const allSPs = StateGetters.getSkillPackProposals ? StateGetters.getSkillPackProposals() : [];
-        const containingPacks = allSPs.filter(sp =>
-            sp.courses && sp.courses.some(c => c.courseCode === course.code)
-        );
+        const proposalPacks = allSPs
+            .filter(sp => sp.courses && sp.courses.some(c => normalizeCode(c.courseCode) === targetCode))
+            .map(sp => {
+                const entry = sp.courses.find(c => normalizeCode(c.courseCode) === targetCode);
+                return {
+                    name:         sp.skillPackName,
+                    programs:     sp.affiliatedPrograms || (sp.affiliatedProgram ? [sp.affiliatedProgram] : []),
+                    status:       sp.status || 'pending',
+                    source:       'proposal',
+                    disposition:  entry ? (entry.disposition || 'existing') : 'existing',
+                    notes:        entry ? (entry.notes || '') : '',
+                    contribution: entry ? (entry.contribution || '') : '',
+                    submittedDate: sp.submittedDate || ''
+                };
+            });
+
+        // Finalized skill packs loaded from skill_packs.json via SkillPacksModule
+        const finalizedSPs = (typeof SkillPacksModule !== 'undefined' && SkillPacksModule.skillPacks)
+            ? SkillPacksModule.skillPacks : [];
+        const catalogPacks = finalizedSPs
+            .filter(sp => sp.courses && sp.courses.some(c => normalizeCode(c.courseCode) === targetCode))
+            .map(sp => {
+                const entry = sp.courses.find(c => normalizeCode(c.courseCode) === targetCode);
+                return {
+                    name:         sp.skillPackTitle,
+                    programs:     sp.programName ? [sp.programName] : [],
+                    status:       'active',
+                    source:       'catalog',
+                    disposition:  'existing',
+                    notes:        '',
+                    contribution: entry ? (entry.courseTitle || '') : '',
+                    submittedDate: '',
+                    category:     sp.interestCategory || '',
+                    programCode:  sp.programCode || ''
+                };
+            });
+
+        // Finalized packs first, then proposals
+        const containingPacks = [...catalogPacks, ...proposalPacks];
 
         // ── Render ────────────────────────────────────────────────────────────
         const modal = document.getElementById('courseImpactReportModal');
@@ -1184,32 +1225,54 @@ const CoursesModule = {
         }
 
         // ── Skill packs section ───────────────────────────────────────────────
-        const dispColor  = { existing:'#555', modification:'#e65100', new:'#2e7d32', elimination:'#b71c1c' };
-        const statusColor = { pending:'#e65100', approved:'#2e7d32', rejected:'#b71c1c' };
+        // skillPacks is a unified array — each item already has .name, .programs,
+        // .status, .source, .disposition, .notes, .contribution, .submittedDate
+        const dispColor   = { existing:'#555', modification:'#e65100', new:'#2e7d32', elimination:'#b71c1c' };
+        const statusColor = { pending:'#e65100', approved:'#2e7d32', rejected:'#b71c1c', active:'#2e7d32' };
 
         let spsHtml;
         if (skillPacks.length === 0) {
             spsHtml = '<p style="color:#888;font-size:13px;">This course is not included in any skill pack.</p>';
         } else {
-            spsHtml = skillPacks.map(sp => {
-                const entry       = sp.courses.find(c => c.courseCode === course.code);
-                const disposition = entry ? (entry.disposition || 'existing') : 'existing';
-                const spStatusBg  = statusColor[sp.status] || '#888';
-                const programs    = (sp.affiliatedPrograms || []).join(', ') || sp.affiliatedProgram || '—';
+            // Group: catalog (finalized) first, then proposals
+            const catalogItems   = skillPacks.filter(sp => sp.source === 'catalog');
+            const proposalItems  = skillPacks.filter(sp => sp.source === 'proposal');
+
+            const renderPack = sp => {
+                const spStatusBg   = statusColor[sp.status] || '#888';
+                const sourceBadge  = sp.source === 'catalog'
+                    ? `<span style="background:#5c35a0;color:white;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;">CATALOG</span>`
+                    : `<span style="background:#1565c0;color:white;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;">PROPOSAL</span>`;
+                const programs = sp.programs && sp.programs.length > 0 ? sp.programs.join(', ') : '—';
+                const meta = sp.source === 'catalog'
+                    ? `${sp.category ? sp.category + ' · ' : ''}${sp.programCode || ''}`
+                    : `Submitted: ${sp.submittedDate || '—'}`;
                 return `
                     <div style="background:#f8f9fa;border:1px solid #e0e0e0;border-left:3px solid var(--champlain-navy);border-radius:6px;padding:12px 14px;margin-bottom:8px;">
                         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-                            <div style="font-weight:700;color:var(--champlain-navy);font-size:14px;">${sp.skillPackName}</div>
-                            <span style="background:${spStatusBg};color:white;font-size:10px;font-weight:700;padding:2px 9px;border-radius:10px;white-space:nowrap;">${sp.status.toUpperCase()}</span>
+                            <div style="font-weight:700;color:var(--champlain-navy);font-size:14px;">${sp.name}</div>
+                            <div style="display:flex;gap:5px;align-items:center;">
+                                ${sourceBadge}
+                                <span style="background:${spStatusBg};color:white;font-size:10px;font-weight:700;padding:2px 9px;border-radius:10px;white-space:nowrap;">${sp.status.toUpperCase()}</span>
+                            </div>
                         </div>
-                        <div style="font-size:12px;margin-bottom:3px;">
-                            <strong style="color:${dispColor[disposition] || '#555'};">Disposition: ${disposition.charAt(0).toUpperCase() + disposition.slice(1)}</strong>
-                            ${entry && entry.notes ? ` — ${entry.notes}` : ''}
-                        </div>
-                        ${entry && entry.contribution ? `<div style="font-size:12px;color:#666;font-style:italic;margin-bottom:3px;">Role: ${entry.contribution}</div>` : ''}
-                        <div style="font-size:11px;color:#aaa;">Programs: ${programs} · Submitted: ${sp.submittedDate || '—'}</div>
+                        ${sp.source === 'proposal' ? `
+                            <div style="font-size:12px;margin-bottom:3px;">
+                                <strong style="color:${dispColor[sp.disposition] || '#555'};">Disposition: ${sp.disposition.charAt(0).toUpperCase() + sp.disposition.slice(1)}</strong>
+                                ${sp.notes ? ` — ${sp.notes}` : ''}
+                            </div>` : ''}
+                        ${sp.contribution ? `<div style="font-size:12px;color:#666;font-style:italic;margin-bottom:3px;">${sp.source === 'catalog' ? 'Course: ' : 'Role: '}${sp.contribution}</div>` : ''}
+                        <div style="font-size:11px;color:#aaa;">Programs: ${programs}${meta ? ' · ' + meta : ''}</div>
                     </div>`;
-            }).join('');
+            };
+
+            const catalogHtml  = catalogItems.length  > 0
+                ? `<div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;">Active skill packs (${catalogItems.length})</div>${catalogItems.map(renderPack).join('')}`
+                : '';
+            const proposalHtml = proposalItems.length > 0
+                ? `<div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.4px;margin:${catalogItems.length > 0 ? '14px' : '0'} 0 8px;">Proposals (${proposalItems.length})</div>${proposalItems.map(renderPack).join('')}`
+                : '';
+            spsHtml = catalogHtml + proposalHtml;
         }
 
         // ── Assemble full report ──────────────────────────────────────────────
