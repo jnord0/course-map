@@ -1020,9 +1020,16 @@ const CoursesModule = {
      * skill pack that includes it.
      * @param {number} id
      */
-    courseImpactReport: (id) => {
+    courseImpactReport: async (id) => {
         const course = StateGetters.getCourses().find(c => c.id === id);
         if (!course) return;
+
+        // Ensure catalog skill packs are loaded — SkillPacksModule.init() skips
+        // loadSkillPacks() when the landing-page DOM element is absent, so the
+        // array stays empty unless we explicitly load it here first.
+        if (typeof SkillPacksModule !== 'undefined' && SkillPacksModule.skillPacks.length === 0) {
+            await SkillPacksModule.loadSkillPacks();
+        }
 
         const allCourses = StateGetters.getCourses();
 
