@@ -1055,17 +1055,23 @@ const CoursesModule = {
         });
 
         // ── Skill packs containing this course ────────────────────────────────
-        // Normalize codes by stripping ALL non-alphanumeric characters so that
-        // "ANM - 175", "ANM 220", and "ANM-175" all reduce to the same key.
+        // Strip ALL non-alphanumeric characters: handles "ANM - 175", "ANM 220", "ANM-175".
         const normalizeCode = c => (c || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
         const targetCode = normalizeCode(course.code);
+
+        // Some skill_packs.json entries use compound codes like "CSI-140 or IXD-215"
+        // or "SEC-440/FOR-440". Split on / and ' or ' then check each part.
+        const spCodeMatches = rawCode => {
+            const parts = (rawCode || '').split(/\s*\/\s*|\s+or\s+/i);
+            return parts.some(p => normalizeCode(p) === targetCode);
+        };
 
         // Proposals (pending / approved / rejected) from AppState
         const allSPs = StateGetters.getSkillPackProposals ? StateGetters.getSkillPackProposals() : [];
         const proposalPacks = allSPs
-            .filter(sp => sp.courses && sp.courses.some(c => normalizeCode(c.courseCode) === targetCode))
+            .filter(sp => sp.courses && sp.courses.some(c => spCodeMatches(c.courseCode)))
             .map(sp => {
-                const entry = sp.courses.find(c => normalizeCode(c.courseCode) === targetCode);
+                const entry = sp.courses.find(c => spCodeMatches(c.courseCode));
                 return {
                     name:         sp.skillPackName,
                     programs:     sp.affiliatedPrograms || (sp.affiliatedProgram ? [sp.affiliatedProgram] : []),
@@ -1082,9 +1088,9 @@ const CoursesModule = {
         const finalizedSPs = (typeof SkillPacksModule !== 'undefined' && SkillPacksModule.skillPacks)
             ? SkillPacksModule.skillPacks : [];
         const catalogPacks = finalizedSPs
-            .filter(sp => sp.courses && sp.courses.some(c => normalizeCode(c.courseCode) === targetCode))
+            .filter(sp => sp.courses && sp.courses.some(c => spCodeMatches(c.courseCode)))
             .map(sp => {
-                const entry = sp.courses.find(c => normalizeCode(c.courseCode) === targetCode);
+                const entry = sp.courses.find(c => spCodeMatches(c.courseCode));
                 return {
                     name:         sp.skillPackTitle,
                     programs:     sp.programName ? [sp.programName] : [],
