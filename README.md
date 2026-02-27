@@ -2,8 +2,6 @@
 
 A web-based course and competency management platform for Champlain College academic planning and curriculum visualization.
 
-![Champlain College](https://champlain-college-prod-web.s3.us-east-1.amazonaws.com/logos/Champlain_College_Logo_2018.png)
-
 ## Overview
 
 The **Champlain Academic Affairs System** is a single-page application (SPA) that enables students, faculty, and administrators to visualize course relationships, track competency development, plan semester schedules, manage skill packs, and submit course proposals. Built with vanilla JavaScript and D3.js — no backend or build tools required.
@@ -94,23 +92,6 @@ course-map/
         ├── courses.json               # Course and competency data
         └── skill_packs.json           # Skill pack catalog
 ```
-
-## Competencies
-
-The system tracks Champlain College's 10 core competencies:
-
-1. Inquiry
-2. Integration
-3. Global/Cultural Awareness
-4. Analysis
-5. Diversity/Equity/Inclusion
-6. Communication
-7. Collaboration
-8. Creativity
-9. Ethical Reasoning
-10. Quantitative Literacy
-
-**Weight levels:** `1` = Addressed · `2` = Reinforced · `3` = Emphasized
 
 ## Technology Stack
 
