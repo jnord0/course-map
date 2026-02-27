@@ -1055,8 +1055,9 @@ const CoursesModule = {
         });
 
         // ── Skill packs containing this course ────────────────────────────────
-        // Normalize codes to handle spacing variants like "ANM - 175" vs "ANM-175"
-        const normalizeCode = c => (c || '').replace(/\s+/g, '').toUpperCase();
+        // Normalize codes by stripping ALL non-alphanumeric characters so that
+        // "ANM - 175", "ANM 220", and "ANM-175" all reduce to the same key.
+        const normalizeCode = c => (c || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
         const targetCode = normalizeCode(course.code);
 
         // Proposals (pending / approved / rejected) from AppState
