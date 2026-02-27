@@ -570,6 +570,220 @@ const SkillPackProposalsModule = {
     },
 
     // -------------------------------------------------------------------------
+    // Impact Analysis (auto-generated from proposal data)
+    // -------------------------------------------------------------------------
+
+    /**
+     * Build the "Resources & Impact" section HTML entirely from proposal data.
+     * Derives course changes, competency coverage, prerequisite scope, and a
+     * generated program-impact narrative instead of just echoing free-text fields.
+     * @param {Object} proposal
+     * @returns {string} HTML string
+     */
+    _buildImpactSection: (proposal) => {
+        const courses = proposal.courses || [];
+
+        // ── 1. Group courses by disposition ──────────────────────────────────
+        const byDisposition = { new: [], modification: [], elimination: [], existing: [] };
+        courses.forEach(c => {
+            const d = (c.disposition || 'existing').toLowerCase();
+            if (byDisposition[d]) byDisposition[d].push(c);
+            else byDisposition.existing.push(c);
+        });
+
+        const dispositionStyle = {
+            new:          { label: 'New',           bg: '#e8f5e9', color: '#2e7d32', border: '#a5d6a7' },
+            modification: { label: 'Modification',  bg: '#fff8e1', color: '#e65100', border: '#ffe082' },
+            elimination:  { label: 'Elimination',   bg: '#fdecea', color: '#b71c1c', border: '#ef9a9a' },
+            existing:     { label: 'Existing',      bg: '#f5f5f5', color: '#555',    border: '#e0e0e0' },
+        };
+
+        const renderChangeGroup = (key, list) => {
+            if (list.length === 0) return '';
+            const { label, bg, color, border } = dispositionStyle[key];
+            const items = list.map(c => {
+                const code = c.courseCode === '__new__'
+                    ? `<em>${c.placeholderName || 'Unnamed'}</em> (planned)`
+                    : `<strong>${c.courseCode}</strong>`;
+                const note = c.notes ? `<span style="color:#666; font-size:12px;"> — ${c.notes}</span>` : '';
+                const desc = (c.courseCode === '__new__' && c.newCourseDescription)
+                    ? `<div style="font-size:12px; color:#666; margin-top:3px;">${c.newCourseDescription}</div>`
+                    : '';
+                return `<li style="margin-bottom:6px;">${code}${note}${desc}</li>`;
+            }).join('');
+            return `
+                <div style="background:${bg}; border:1px solid ${border}; border-left:3px solid ${color}; border-radius:5px; padding:10px 14px; margin-bottom:10px;">
+                    <div style="font-size:11px; font-weight:700; color:${color}; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">
+                        ${label} (${list.length})
+                    </div>
+                    <ul style="margin:0; padding-left:18px; font-size:13px;">${items}</ul>
+                </div>
+            `;
+        };
+
+        const changeSection = [
+            renderChangeGroup('new', byDisposition.new),
+            renderChangeGroup('modification', byDisposition.modification),
+            renderChangeGroup('elimination', byDisposition.elimination),
+            renderChangeGroup('existing', byDisposition.existing),
+        ].join('');
+
+        // ── 2. Competency coverage ────────────────────────────────────────────
+        const ALL_COMPETENCIES = [
+            'Inquiry', 'Integration', 'Global/Cultural Awareness', 'Analysis',
+            'Diversity, Equity & Inclusion', 'Communication', 'Collaboration',
+            'Creativity', 'Scientific Literacy', 'Information Literacy',
+            'Technology Literacy', 'Quantitative Literacy'
+        ];
+        // Count how many courses cover each competency
+        const compCounts = {};
+        ALL_COMPETENCIES.forEach(c => { compCounts[c] = 0; });
+        courses.forEach(c => {
+            const comps = Array.isArray(c.competencies) ? c.competencies : [];
+            comps.forEach(comp => {
+                // Normalise variant names that may appear in older data
+                const normalized = ALL_COMPETENCIES.find(
+                    a => a.toLowerCase() === comp.toLowerCase() ||
+                         a.replace(/[^a-z]/gi,'').toLowerCase() === comp.replace(/[^a-z]/gi,'').toLowerCase()
+                ) || comp;
+                if (compCounts[normalized] !== undefined) compCounts[normalized]++;
+            });
+        });
+
+        const covered   = ALL_COMPETENCIES.filter(c => compCounts[c] > 0);
+        const uncovered = ALL_COMPETENCIES.filter(c => compCounts[c] === 0);
+
+        const compPills = ALL_COMPETENCIES.map(c => {
+            const count = compCounts[c];
+            const isCovered = count > 0;
+            const bg     = isCovered ? 'var(--champlain-navy)' : '#eee';
+            const fg     = isCovered ? 'white'                 : '#aaa';
+            const badge  = isCovered
+                ? `<span style="background:rgba(255,255,255,0.25); border-radius:8px; padding:0 5px; font-size:10px; margin-left:4px;">${count}</span>`
+                : '';
+            return `<span style="display:inline-flex; align-items:center; background:${bg}; color:${fg}; padding:4px 10px; border-radius:14px; font-size:11px; font-weight:600; margin:3px; white-space:nowrap;">${c}${badge}</span>`;
+        }).join('');
+
+        const coveragePercent = Math.round((covered.length / ALL_COMPETENCIES.length) * 100);
+        const barColor = coveragePercent >= 75 ? 'var(--champlain-green)'
+                       : coveragePercent >= 50 ? 'var(--champlain-bright-blue)'
+                       : '#ff9800';
+
+        const competencySection = `
+            <div style="margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:13px; font-weight:600; color:#444;">Coverage: ${covered.length} / ${ALL_COMPETENCIES.length} competencies (${coveragePercent}%)</span>
+            </div>
+            <div style="background:#eee; border-radius:4px; height:6px; margin-bottom:12px; overflow:hidden;">
+                <div style="width:${coveragePercent}%; background:${barColor}; height:100%; border-radius:4px; transition:width 0.4s;"></div>
+            </div>
+            <div style="line-height:1.8;">${compPills}</div>
+            ${uncovered.length > 0
+                ? `<p style="margin:10px 0 0; font-size:12px; color:#888;">Not addressed: ${uncovered.join(', ')}</p>`
+                : '<p style="margin:10px 0 0; font-size:12px; color:var(--champlain-green); font-weight:600;">✓ All competencies addressed</p>'
+            }
+        `;
+
+        // ── 3. Prerequisite scope ─────────────────────────────────────────────
+        const packCodes = new Set(courses.map(c => c.courseCode).filter(Boolean));
+        const externalPrereqs = new Set();
+        const withPrereqs = [];
+        courses.forEach(c => {
+            const prereqs = Array.isArray(c.prerequisites) ? c.prerequisites : [];
+            if (prereqs.length > 0) {
+                const external = prereqs.filter(p => !packCodes.has(p));
+                if (external.length > 0) external.forEach(p => externalPrereqs.add(p));
+                withPrereqs.push({ code: c.courseCode, prereqs, external });
+            }
+        });
+
+        let prereqSection = '<p style="font-size:13px; color:#666;">No prerequisite requirements within this skill pack.</p>';
+        if (withPrereqs.length > 0) {
+            const rows = withPrereqs.map(({ code, prereqs, external }) => {
+                const tags = prereqs.map(p => {
+                    const isInternal = packCodes.has(p);
+                    const bg = isInternal ? 'var(--champlain-blue)' : '#ff9800';
+                    return `<span style="background:${bg}; color:white; padding:2px 8px; border-radius:10px; font-size:11px; white-space:nowrap;">${p}</span>`;
+                }).join(' ');
+                return `<div style="margin-bottom:6px; font-size:13px;"><strong>${code}</strong> requires: ${tags}</div>`;
+            }).join('');
+            const legend = `
+                <div style="font-size:11px; color:#888; margin-bottom:8px; display:flex; gap:10px; flex-wrap:wrap;">
+                    <span><span style="background:var(--champlain-blue); color:white; padding:1px 6px; border-radius:8px; font-size:10px;">code</span> within this skill pack</span>
+                    <span><span style="background:#ff9800; color:white; padding:1px 6px; border-radius:8px; font-size:10px;">code</span> external prerequisite</span>
+                </div>
+            `;
+            const externalNote = externalPrereqs.size > 0
+                ? `<p style="font-size:12px; color:#e65100; margin-top:8px;">⚠ Students will need prior completion of: ${[...externalPrereqs].join(', ')}</p>`
+                : `<p style="font-size:12px; color:var(--champlain-green); margin-top:8px;">✓ All prerequisites are fulfilled within this skill pack.</p>`;
+            prereqSection = legend + rows + externalNote;
+        }
+
+        // ── 4. Generated impact narrative ─────────────────────────────────────
+        const programs = (proposal.affiliatedPrograms && proposal.affiliatedPrograms.length > 0)
+            ? proposal.affiliatedPrograms
+            : (proposal.affiliatedProgram ? [proposal.affiliatedProgram] : []);
+
+        const narrativeParts = [];
+        if (programs.length > 0) {
+            narrativeParts.push(`This skill pack directly affects <strong>${programs.join(' and ')}</strong>.`);
+        }
+        if (byDisposition.new.length > 0) {
+            const names = byDisposition.new.map(c =>
+                c.courseCode === '__new__' ? (c.placeholderName || 'a new course') : c.courseCode
+            ).join(', ');
+            narrativeParts.push(`It introduces ${byDisposition.new.length} new course${byDisposition.new.length > 1 ? 's' : ''} (${names}), which will require curriculum committee approval and resource allocation.`);
+        }
+        if (byDisposition.modification.length > 0) {
+            const names = byDisposition.modification.map(c => c.courseCode).join(', ');
+            narrativeParts.push(`${byDisposition.modification.length} existing course${byDisposition.modification.length > 1 ? 's' : ''} (${names}) will require modifications — course owner coordination is needed.`);
+        }
+        if (byDisposition.elimination.length > 0) {
+            const names = byDisposition.elimination.map(c => c.courseCode).join(', ');
+            narrativeParts.push(`${byDisposition.elimination.length} course${byDisposition.elimination.length > 1 ? 's' : ''} (${names}) would be eliminated, potentially affecting students currently enrolled.`);
+        }
+        if (uncovered.length <= 3 && uncovered.length > 0) {
+            narrativeParts.push(`Competency coverage is strong (${coveragePercent}%), with ${uncovered.join(' and ')} not yet addressed — consider whether additional content could close these gaps.`);
+        } else if (covered.length === ALL_COMPETENCIES.length) {
+            narrativeParts.push(`The skill pack achieves full competency coverage across all ${ALL_COMPETENCIES.length} institutional competencies.`);
+        }
+        if (externalPrereqs.size > 0) {
+            narrativeParts.push(`Students entering this skill pack must have prior knowledge of ${[...externalPrereqs].join(', ')}, which may limit accessibility.`);
+        }
+
+        const generatedNarrative = narrativeParts.length > 0
+            ? `<div style="font-size:13px; line-height:1.7; color:#444;">${narrativeParts.map(p => `<p style="margin:0 0 8px;">${p}</p>`).join('')}</div>`
+            : '<p style="font-size:13px; color:#666;">Insufficient data to generate an impact narrative.</p>';
+
+        const submittedNarrative = proposal.programImpact
+            ? `<div style="margin-top:12px; padding:10px 14px; background:#f8f9fa; border-left:3px solid #ccc; border-radius:0 4px 4px 0; font-size:13px; color:#555; font-style:italic;">${proposal.programImpact}</div>`
+            : '';
+
+        // ── 5. Resources (still shown from submitted data) ────────────────────
+        const resourceRows = [
+            ['Technology', proposal.technologyRequirements],
+            ['Library Resources', proposal.libraryResources],
+        ].filter(([, v]) => v).map(([label, val]) =>
+            `<p style="margin-bottom:8px;"><strong>${label}:</strong> ${val}</p>`
+        ).join('') || '<p style="color:#666; font-size:13px;">No resource requirements specified.</p>';
+
+        // ── Assemble ──────────────────────────────────────────────────────────
+        const section = (title, content, color = '#fff3e0', icon = '') => `
+            <div style="background:${color}; border-radius:6px; padding:14px 16px; margin-bottom:14px;">
+                <h5 style="margin:0 0 10px; font-size:13px; color:var(--champlain-navy); text-transform:uppercase; letter-spacing:0.5px;">${icon} ${title}</h5>
+                ${content}
+            </div>
+        `;
+
+        return `
+            ${section('Course Changes', changeSection || '<p style="color:#666; font-size:13px;">No courses listed.</p>', '#f8f9fa', '📋')}
+            ${section('Competency Coverage', competencySection, '#e8f5e9', '🎯')}
+            ${section('Prerequisite Scope', prereqSection, '#e3f2fd', '🔗')}
+            ${section('Program Impact', generatedNarrative + submittedNarrative, '#fff3e0', '📊')}
+            ${section('Resources', resourceRows, '#fafafa', '📦')}
+        `;
+    },
+
+    // -------------------------------------------------------------------------
     // View Details
     // -------------------------------------------------------------------------
 
@@ -698,14 +912,9 @@ const SkillPackProposalsModule = {
                     ${coursesTable}
                 </div>
 
-                <div style="background:#fff3e0; padding:15px; border-radius:6px; margin-bottom:15px;">
-                    <h4 style="margin-top:0;">Resources &amp; Impact</h4>
-                    <p style="margin-bottom:8px;"><strong>Technology Requirements:</strong> ${proposal.technologyRequirements || 'N/A'}</p>
-                    <p style="margin-bottom:8px;"><strong>Library Resources:</strong> ${proposal.libraryResources || 'N/A'}</p>
-                    <p style="margin-bottom:8px;"><strong>New Course Proposals:</strong> ${proposal.newCourseProposals || 'None'}</p>
-                    <p style="margin-bottom:8px;"><strong>Course Modifications:</strong> ${proposal.courseModifications || 'None'}</p>
-                    <p style="margin-bottom:8px;"><strong>Course Eliminations:</strong> ${proposal.courseEliminations || 'None'}</p>
-                    <p style="margin-bottom:0;"><strong>Impact on Other Programs:</strong> ${proposal.programImpact || 'None'}</p>
+                <div style="margin-bottom:15px;">
+                    <h4 style="color:var(--champlain-navy); margin-bottom:12px;">Resources &amp; Impact</h4>
+                    ${SkillPackProposalsModule._buildImpactSection(proposal)}
                 </div>
 
                 <p style="font-size:13px; color:#666; margin-top:20px;">
