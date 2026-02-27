@@ -651,6 +651,52 @@ const StateSetters = {
             });
         }
     },
+
+    addProposalInlineComment: (id, { quote, comment }) => {
+        const proposal = AppState.proposals.find(p => p.id === id);
+        if (proposal) {
+            if (!proposal.inlineComments) proposal.inlineComments = [];
+            proposal.inlineComments.push({
+                id: `ic-${Date.now()}`,
+                quote,
+                comment,
+                from: AppState.currentUser,
+                date: new Date().toISOString().split('T')[0],
+                resolved: false
+            });
+        }
+    },
+
+    addSkillPackInlineComment: (id, { quote, comment }) => {
+        const proposal = AppState.skillPackProposals.find(p => p.id === id);
+        if (proposal) {
+            if (!proposal.inlineComments) proposal.inlineComments = [];
+            proposal.inlineComments.push({
+                id: `ic-${Date.now()}`,
+                quote,
+                comment,
+                from: AppState.currentUser,
+                date: new Date().toISOString().split('T')[0],
+                resolved: false
+            });
+        }
+    },
+
+    resolveProposalInlineComment: (proposalId, commentId) => {
+        const proposal = AppState.proposals.find(p => p.id === proposalId);
+        if (proposal && proposal.inlineComments) {
+            const ic = proposal.inlineComments.find(c => c.id === commentId);
+            if (ic) ic.resolved = true;
+        }
+    },
+
+    resolveSkillPackInlineComment: (proposalId, commentId) => {
+        const proposal = AppState.skillPackProposals.find(p => p.id === proposalId);
+        if (proposal && proposal.inlineComments) {
+            const ic = proposal.inlineComments.find(c => c.id === commentId);
+            if (ic) ic.resolved = true;
+        }
+    },
     
     setEditingCourse: (id) => {
         AppState.editingCourseId = id;

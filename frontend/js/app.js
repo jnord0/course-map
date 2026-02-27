@@ -959,6 +959,7 @@ window.FeedbackModal = FeedbackModal;
 async function initializeApp() {
     LandingAnimations.init();
     UXEnhancements.init();
+    InlineCommentsUI.init();
     renderLandingPreviewGraph();
     if (typeof SkillPacksModule !== 'undefined') {
         await SkillPacksModule.init();

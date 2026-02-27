@@ -259,6 +259,7 @@ const CoursesModule = {
                         <div class="proposal-actions">
                             <button class="action-btn btn-view" onclick="CoursesModule.editCourse(${course.id})">Edit</button>
                             <button class="action-btn btn-reject" onclick="CoursesModule.deleteCourse(${course.id})">Delete</button>
+                            <button class="action-btn" style="background:#5c35a0;" onclick="CoursesModule.courseImpactReport(${course.id})">Report</button>
                         </div>
                     </div>
                 `;
@@ -1007,5 +1008,336 @@ const CoursesModule = {
         }
         ModalsModule.closeEditCourseModal();
         alert(AppState.editingCourseId ? 'Course updated successfully!' : 'Course added successfully!');
+    },
+
+    // -------------------------------------------------------------------------
+    // Course Impact Report
+    // -------------------------------------------------------------------------
+
+    /**
+     * Build and display an impact report modal for a course.
+     * Shows its prerequisite chain, all courses that depend on it, and every
+     * skill pack that includes it.
+     * @param {number} id
+     */
+    courseImpactReport: async (id) => {
+        const course = StateGetters.getCourses().find(c => c.id === id);
+        if (!course) return;
+
+        // Ensure catalog skill packs are loaded — SkillPacksModule.init() skips
+        // loadSkillPacks() when the landing-page DOM element is absent, so the
+        // array stays empty unless we explicitly load it here first.
+        if (typeof SkillPacksModule !== 'undefined' && SkillPacksModule.skillPacks.length === 0) {
+            await SkillPacksModule.loadSkillPacks();
+        }
+
+        const allCourses = StateGetters.getCourses();
+
+        // ── Direct prerequisites (parse the comma-separated string) ───────────
+        const directPrereqCodes = (course.prerequisites || '')
+            .split(',').map(p => p.trim()).filter(Boolean);
+
+        // ── Full prerequisite chain via BFS ───────────────────────────────────
+        const chainMap = {};
+        const queue = directPrereqCodes.map(code => ({ code, level: 1 }));
+        while (queue.length > 0) {
+            const { code, level } = queue.shift();
+            if (chainMap[code]) continue;
+            const found = allCourses.find(c => c.code === code) || null;
+            chainMap[code] = { code, course: found, level };
+            if (found && found.prerequisites) {
+                found.prerequisites.split(',').map(p => p.trim()).filter(Boolean).forEach(p => {
+                    if (!chainMap[p]) queue.push({ code: p, level: level + 1 });
+                });
+            }
+        }
+        const chain = Object.values(chainMap).sort((a, b) => a.level - b.level);
+        const directPrereqs    = chain.filter(x => x.level === 1);
+        const transitivePrereqs = chain.filter(x => x.level > 1);
+
+        // ── Courses that directly require this course ─────────────────────────
+        const dependents = allCourses.filter(c => {
+            if (!c.prerequisites || c.id === id) return false;
+            return c.prerequisites.split(',').map(p => p.trim()).includes(course.code);
+        });
+
+        // ── Skill packs containing this course ────────────────────────────────
+        // Strip ALL non-alphanumeric characters: handles "ANM - 175", "ANM 220", "ANM-175".
+        const normalizeCode = c => (c || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
+        const targetCode = normalizeCode(course.code);
+
+        // Some skill_packs.json entries use compound codes like "CSI-140 or IXD-215"
+        // or "SEC-440/FOR-440". Split on / and ' or ' then check each part.
+        const spCodeMatches = rawCode => {
+            const parts = (rawCode || '').split(/\s*\/\s*|\s+or\s+/i);
+            return parts.some(p => normalizeCode(p) === targetCode);
+        };
+
+        // Proposals (pending / approved / rejected) from AppState
+        const allSPs = StateGetters.getSkillPackProposals ? StateGetters.getSkillPackProposals() : [];
+        const proposalPacks = allSPs
+            .filter(sp => sp.courses && sp.courses.some(c => spCodeMatches(c.courseCode)))
+            .map(sp => {
+                const entry = sp.courses.find(c => spCodeMatches(c.courseCode));
+                return {
+                    name:         sp.skillPackName,
+                    programs:     sp.affiliatedPrograms || (sp.affiliatedProgram ? [sp.affiliatedProgram] : []),
+                    status:       sp.status || 'pending',
+                    source:       'proposal',
+                    disposition:  entry ? (entry.disposition || 'existing') : 'existing',
+                    notes:        entry ? (entry.notes || '') : '',
+                    contribution: entry ? (entry.contribution || '') : '',
+                    submittedDate: sp.submittedDate || ''
+                };
+            });
+
+        // Finalized skill packs loaded from skill_packs.json via SkillPacksModule
+        const finalizedSPs = (typeof SkillPacksModule !== 'undefined' && SkillPacksModule.skillPacks)
+            ? SkillPacksModule.skillPacks : [];
+        const catalogPacks = finalizedSPs
+            .filter(sp => sp.courses && sp.courses.some(c => spCodeMatches(c.courseCode)))
+            .map(sp => {
+                const entry = sp.courses.find(c => spCodeMatches(c.courseCode));
+                return {
+                    name:         sp.skillPackTitle,
+                    programs:     sp.programName ? [sp.programName] : [],
+                    status:       'active',
+                    source:       'catalog',
+                    disposition:  'existing',
+                    notes:        '',
+                    contribution: entry ? (entry.courseTitle || '') : '',
+                    submittedDate: '',
+                    category:     sp.interestCategory || '',
+                    programCode:  sp.programCode || ''
+                };
+            });
+
+        // Finalized packs first, then proposals
+        const containingPacks = [...catalogPacks, ...proposalPacks];
+
+        // ── Render ────────────────────────────────────────────────────────────
+        const modal = document.getElementById('courseImpactReportModal');
+        const content = document.getElementById('courseImpactReportContent');
+        if (!modal || !content) return;
+
+        content.innerHTML = CoursesModule._buildImpactReportHTML(
+            course, directPrereqs, transitivePrereqs, dependents, containingPacks
+        );
+        modal.style.display = 'flex';
+    },
+
+    /**
+     * Print the currently displayed impact report via the browser print dialog.
+     * Injects a temporary <style> that hides everything except the report body
+     * so it prints cleanly as a standalone document.
+     */
+    printImpactReport: () => {
+        const body = document.getElementById('courseImpactReportPrintBody');
+        const header = body ? body.previousElementSibling : null;
+        if (!body) return;
+
+        const printContent = (header ? header.outerHTML : '') + body.outerHTML;
+        const printWindow = window.open('', '_blank', 'width=900,height=700');
+        printWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Course Impact Report</title>
+                <style>
+                    * { box-sizing: border-box; margin: 0; padding: 0; }
+                    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #333; background: white; padding: 20px; }
+                    @media print {
+                        @page { margin: 1.5cm; }
+                        body { padding: 0; }
+                        button { display: none !important; }
+                    }
+                </style>
+            </head>
+            <body>${printContent}</body>
+            </html>
+        `);
+        printWindow.document.close();
+        printWindow.focus();
+        setTimeout(() => { printWindow.print(); }, 400);
+    },
+
+    /**
+     * Generate the inner HTML for the course impact report.
+     */
+    _buildImpactReportHTML: (course, directPrereqs, transitivePrereqs, dependents, skillPacks) => {
+        const COMP_NAMES = {
+            'INQ': 'Inquiry',        'INT': 'Integration',
+            'GCU': 'Global/Cultural Awareness', 'ANL': 'Analysis',
+            'DEI': 'Diversity, Equity & Inclusion', 'COM': 'Communication',
+            'COL': 'Collaboration',  'CRE': 'Creativity',
+            'SCI': 'Scientific Literacy',     'INL': 'Information Literacy',
+            'TEC': 'Technology Literacy',     'QNT': 'Quantitative Literacy'
+        };
+
+        // Competency badges (colour-coded by weight)
+        const compBadges = Object.entries(course.competencies || {})
+            .filter(([, w]) => w > 0)
+            .map(([id, w]) => {
+                const name  = COMP_NAMES[id] || id;
+                const label = w === 3 ? 'Emphasized' : w === 2 ? 'Reinforced' : 'Addressed';
+                const bg    = w === 3 ? 'var(--champlain-navy)' : w === 2 ? 'var(--champlain-blue)' : 'var(--champlain-bright-blue)';
+                return `<span style="display:inline-flex;align-items:center;gap:4px;background:${bg};color:white;padding:3px 10px;border-radius:12px;font-size:11px;margin:2px;white-space:nowrap;">${name}<em style="opacity:0.75;font-size:10px;">${label}</em></span>`;
+            }).join('');
+
+        // Compact course card for prerequisite / dependent lists
+        const miniCard = ({ code, course: c }) => {
+            if (!c) return `<div style="display:inline-block;padding:5px 10px;border:1px dashed #ccc;border-radius:6px;font-size:12px;color:#aaa;margin-bottom:6px;">${code} (not in catalog)</div>`;
+            const compCount = Object.values(c.competencies || {}).filter(w => w > 0).length;
+            return `
+                <div style="background:#f8f9fa;border:1px solid #e0e0e0;border-left:3px solid var(--champlain-navy);border-radius:6px;padding:9px 12px;margin-bottom:8px;">
+                    <div style="font-weight:700;color:var(--champlain-navy);font-size:13px;">${c.code}</div>
+                    <div style="color:#444;font-size:13px;margin:1px 0 3px;">${c.name}</div>
+                    <div style="font-size:11px;color:#999;">${c.creditHours || '?'} cr · ${compCount} competenc${compCount === 1 ? 'y' : 'ies'}${c.semesterOffered ? ' · ' + c.semesterOffered : ''}</div>
+                </div>`;
+        };
+
+        // Section heading helper
+        const sectionHead = (icon, title, count) => {
+            const badge = count !== null && count !== undefined
+                ? `<span style="background:var(--champlain-navy);color:white;border-radius:10px;padding:1px 8px;font-size:11px;font-weight:700;margin-left:6px;">${count}</span>`
+                : '';
+            return `<h4 style="color:var(--champlain-navy);margin:0 0 12px;font-size:15px;display:flex;align-items:center;gap:6px;padding-bottom:8px;border-bottom:2px solid var(--champlain-navy);">${icon} ${title}${badge}</h4>`;
+        };
+
+        // ── Prerequisite chain section ────────────────────────────────────────
+        let prereqHtml;
+        const totalChain = directPrereqs.length + transitivePrereqs.length;
+        if (directPrereqs.length === 0) {
+            prereqHtml = '<p style="color:#888;font-size:13px;">No prerequisites — this is an entry-level course.</p>';
+        } else {
+            prereqHtml = `
+                <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;">Direct (${directPrereqs.length})</div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:12px;">
+                    ${directPrereqs.map(x => miniCard(x)).join('')}
+                </div>
+                ${transitivePrereqs.length > 0 ? `
+                    <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;">Also required upstream (${transitivePrereqs.length})</div>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:10px;">
+                        ${transitivePrereqs.map(x => miniCard(x)).join('')}
+                    </div>
+                ` : ''}
+                <p style="font-size:12px;color:#666;margin:4px 0 0;">Students must complete <strong>${totalChain}</strong> course${totalChain !== 1 ? 's' : ''} before enrolling.</p>
+            `;
+        }
+
+        // ── Dependents section ────────────────────────────────────────────────
+        let depsHtml;
+        if (dependents.length === 0) {
+            depsHtml = '<p style="color:#888;font-size:13px;">No courses currently list this as a prerequisite.</p>';
+        } else {
+            depsHtml = `
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:10px;">
+                    ${dependents.map(c => miniCard({ code: c.code, course: c })).join('')}
+                </div>
+                <p style="font-size:12px;color:#e65100;font-weight:600;margin:0;">⚠ Removing or substantially changing this course will directly impact ${dependents.length} downstream course${dependents.length !== 1 ? 's' : ''}.</p>
+            `;
+        }
+
+        // ── Skill packs section ───────────────────────────────────────────────
+        // skillPacks is a unified array — each item already has .name, .programs,
+        // .status, .source, .disposition, .notes, .contribution, .submittedDate
+        const dispColor   = { existing:'#555', modification:'#e65100', new:'#2e7d32', elimination:'#b71c1c' };
+        const statusColor = { pending:'#e65100', approved:'#2e7d32', rejected:'#b71c1c', active:'#2e7d32' };
+
+        let spsHtml;
+        if (skillPacks.length === 0) {
+            spsHtml = '<p style="color:#888;font-size:13px;">This course is not included in any skill pack.</p>';
+        } else {
+            // Group: catalog (finalized) first, then proposals
+            const catalogItems   = skillPacks.filter(sp => sp.source === 'catalog');
+            const proposalItems  = skillPacks.filter(sp => sp.source === 'proposal');
+
+            const renderPack = sp => {
+                const spStatusBg   = statusColor[sp.status] || '#888';
+                const sourceBadge  = sp.source === 'catalog'
+                    ? `<span style="background:#5c35a0;color:white;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;">CATALOG</span>`
+                    : `<span style="background:#1565c0;color:white;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;">PROPOSAL</span>`;
+                const programs = sp.programs && sp.programs.length > 0 ? sp.programs.join(', ') : '—';
+                const meta = sp.source === 'catalog'
+                    ? `${sp.category ? sp.category + ' · ' : ''}${sp.programCode || ''}`
+                    : `Submitted: ${sp.submittedDate || '—'}`;
+                return `
+                    <div style="background:#f8f9fa;border:1px solid #e0e0e0;border-left:3px solid var(--champlain-navy);border-radius:6px;padding:12px 14px;margin-bottom:8px;">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+                            <div style="font-weight:700;color:var(--champlain-navy);font-size:14px;">${sp.name}</div>
+                            <div style="display:flex;gap:5px;align-items:center;">
+                                ${sourceBadge}
+                                <span style="background:${spStatusBg};color:white;font-size:10px;font-weight:700;padding:2px 9px;border-radius:10px;white-space:nowrap;">${sp.status.toUpperCase()}</span>
+                            </div>
+                        </div>
+                        ${sp.source === 'proposal' ? `
+                            <div style="font-size:12px;margin-bottom:3px;">
+                                <strong style="color:${dispColor[sp.disposition] || '#555'};">Disposition: ${sp.disposition.charAt(0).toUpperCase() + sp.disposition.slice(1)}</strong>
+                                ${sp.notes ? ` — ${sp.notes}` : ''}
+                            </div>` : ''}
+                        ${sp.contribution ? `<div style="font-size:12px;color:#666;font-style:italic;margin-bottom:3px;">${sp.source === 'catalog' ? 'Course: ' : 'Role: '}${sp.contribution}</div>` : ''}
+                        <div style="font-size:11px;color:#aaa;">Programs: ${programs}${meta ? ' · ' + meta : ''}</div>
+                    </div>`;
+            };
+
+            const catalogHtml  = catalogItems.length  > 0
+                ? `<div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;">Active skill packs (${catalogItems.length})</div>${catalogItems.map(renderPack).join('')}`
+                : '';
+            const proposalHtml = proposalItems.length > 0
+                ? `<div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.4px;margin:${catalogItems.length > 0 ? '14px' : '0'} 0 8px;">Proposals (${proposalItems.length})</div>${proposalItems.map(renderPack).join('')}`
+                : '';
+            spsHtml = catalogHtml + proposalHtml;
+        }
+
+        // ── Assemble full report ──────────────────────────────────────────────
+        const generatedDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        const statusBg = course.status === 'active'    ? 'rgba(116,170,80,0.9)'
+                       : course.status === 'archived'  ? 'rgba(100,100,100,0.9)'
+                       : 'rgba(255,152,0,0.9)';
+
+        return `
+            <!-- Report header (printed too) -->
+            <div style="background:linear-gradient(135deg,var(--champlain-navy),var(--champlain-blue));color:white;padding:22px 26px;border-radius:8px 8px 0 0;">
+                <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.8px;opacity:0.7;margin-bottom:6px;">Course Impact Report</div>
+                <h2 style="margin:0 0 8px;font-size:22px;line-height:1.2;">${course.code}: ${course.name}</h2>
+                <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:13px;opacity:0.9;">
+                    ${course.creditHours ? `<span>${course.creditHours} cr</span>` : ''}
+                    ${course.courseType  ? `<span>· ${course.courseType}</span>` : ''}
+                    ${course.semesterOffered ? `<span>· ${course.semesterOffered}</span>` : ''}
+                    <span style="background:${statusBg};padding:2px 10px;border-radius:10px;font-size:11px;font-weight:700;text-transform:uppercase;">${course.status || 'unknown'}</span>
+                </div>
+                <div style="font-size:11px;opacity:0.55;margin-top:8px;">Generated ${generatedDate}</div>
+            </div>
+
+            <!-- Report body -->
+            <div id="courseImpactReportPrintBody" style="padding:24px;background:white;border-radius:0 0 8px 8px;">
+
+                <!-- Overview -->
+                <div style="margin-bottom:26px;">
+                    ${sectionHead('📋', 'Course Overview', null)}
+                    ${course.description ? `<p style="font-size:14px;color:#444;line-height:1.6;margin-bottom:12px;">${course.description}</p>` : ''}
+                    ${compBadges || '<p style="color:#aaa;font-size:13px;">No competencies mapped.</p>'}
+                </div>
+
+                <!-- Prerequisite Chain -->
+                <div style="margin-bottom:26px;">
+                    ${sectionHead('⬆', 'Prerequisite Chain', totalChain)}
+                    ${prereqHtml}
+                </div>
+
+                <!-- Dependent Courses -->
+                <div style="margin-bottom:26px;">
+                    ${sectionHead('⬇', 'Dependent Courses', dependents.length)}
+                    ${depsHtml}
+                </div>
+
+                <!-- Skill Packs -->
+                <div>
+                    ${sectionHead('🎒', 'Contained In Skill Packs', skillPacks.length)}
+                    ${spsHtml}
+                </div>
+
+            </div>
+        `;
     }
 };

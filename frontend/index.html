@@ -1745,6 +1745,23 @@
         </div>
     </div>
 
+    <!-- Course Impact Report Modal -->
+    <div id="courseImpactReportModal" class="modal" style="display:none; align-items:center; justify-content:center;">
+        <div class="modal-content" style="max-width:860px; width:95%; max-height:92vh; display:flex; flex-direction:column;">
+            <div class="modal-header">
+                <h2>Course Impact Report</h2>
+                <button class="close-btn" onclick="document.getElementById('courseImpactReportModal').style.display='none'">&times;</button>
+            </div>
+            <div class="modal-body" style="flex:1; overflow-y:auto; padding:0;">
+                <div id="courseImpactReportContent"></div>
+            </div>
+            <div style="padding:14px 20px; border-top:1px solid #eee; display:flex; justify-content:flex-end; gap:8px; background:#fafafa; border-radius:0 0 8px 8px;">
+                <button class="action-btn btn-view" onclick="CoursesModule.printImpactReport()">🖨 Print / Export PDF</button>
+                <button class="action-btn" onclick="document.getElementById('courseImpactReportModal').style.display='none'">Close</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Semester Planner Modal -->
     <div id="semesterPlannerModal" class="modal">
         <div class="modal-content" style="max-width: 1400px; width: 95%;">
@@ -2581,6 +2598,7 @@
     <script src="js/ui/graphs.js"></script>
     <script src="js/ui/comparison-export.js"></script>
     <script src="js/ui/skillpack-overlap-checker.js"></script>
+    <script src="js/ui/inline-comments.js"></script>
     <script src="js/ui/ux-enhancements.js"></script>
     <script src="js/skill-packs.js"></script>
     <script src="js/mobile.js"></script>

@@ -375,7 +375,8 @@ const ProposalsModule = {
             assessmentsDisplay = '<p>Not specified</p>';
         }
 
-        document.getElementById('proposalDetails').innerHTML = `
+        // Build main content HTML string
+        const contentHtml = `
             <div style="margin-bottom: 20px;">
                 <h3 style="color: var(--champlain-navy); margin-bottom: 15px;">${proposal.courseCode}: ${proposal.courseTitle}</h3>
 
@@ -422,7 +423,18 @@ const ProposalsModule = {
             </div>
         `;
 
+        // Wrap content with inline-comments sidebar
+        const isAdmin = Auth && Auth.hasRole && Auth.hasRole('Administrator');
+        const inlineComments = proposal.inlineComments || [];
+        document.getElementById('proposalDetails').innerHTML =
+            InlineCommentsUI.wrapWithSidebar(contentHtml, inlineComments, id, false, isAdmin);
+
         document.getElementById('detailsModal').style.display = 'block';
+
+        // Enable text-selection commenting for admins
+        InlineCommentsUI.init();
+        const mainContent = document.getElementById('ic-main-content');
+        if (mainContent) InlineCommentsUI.enable(mainContent, id, false);
 
         // Setup export button handler
         const exportBtn = document.getElementById('exportProposalBtn');
