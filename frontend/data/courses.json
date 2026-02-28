@@ -99,14 +99,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
             "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 3,
-            "Collaboration": 2,
-            "Creativity": 1
+            "TechnologyLiteracy": 3,
+            "Inquiry": 2,
+            "QuantitativeLiteracy": 2,
+            "Communication": 1,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -255,13 +253,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
             "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "QuantitativeLiteracy": 2,
-            "Creativity": 1
+            "InformationLiteracy": 3,
+            "TechnologyLiteracy": 2,
+            "Inquiry": 2,
+            "Collaboration": 1,
+            "QuantitativeLiteracy": 1
           }
         },
         "topicalOutline": {
@@ -409,14 +406,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
-            "Integration": 3,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3
+            "TechnologyLiteracy": 3,
+            "Analysis": 3,
+            "Integration": 2,
+            "Creativity": 2,
+            "Inquiry": 1,
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -566,13 +561,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 3,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 1
+            "ScientificLiteracy": 2,
+            "QuantitativeLiteracy": 2,
+            "Inquiry": 2,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -713,12 +706,11 @@
             }
           ],
           "competencyMapping": {
-            "Communication": 3,
             "Collaboration": 3,
-            "GlobalCulturalAwareness": 2,
-            "DiversityEquityInclusion": 2,
-            "Inquiry": 2,
-            "Analysis": 2
+            "Communication": 3,
+            "Analysis": 2,
+            "Integration": 1,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -870,12 +862,11 @@
             }
           ],
           "competencyMapping": {
-            "Creativity": 3,
-            "Collaboration": 3,
-            "Integration": 3,
-            "Inquiry": 2,
+            "TechnologyLiteracy": 3,
+            "Creativity": 2,
             "Analysis": 2,
-            "Communication": 2
+            "Collaboration": 2,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -1024,10 +1015,10 @@
           ],
           "competencyMapping": {
             "QuantitativeLiteracy": 3,
-            "Analysis": 3,
             "Inquiry": 3,
-            "Integration": 2,
-            "Communication": 2
+            "Analysis": 2,
+            "TechnologyLiteracy": 1,
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -1167,12 +1158,11 @@
             }
           ],
           "competencyMapping": {
-            "Creativity": 3,
             "Communication": 3,
+            "Creativity": 2,
+            "TechnologyLiteracy": 2,
             "Collaboration": 2,
-            "Analysis": 2,
-            "Integration": 2,
-            "Inquiry": 1
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -1312,11 +1302,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
             "Analysis": 3,
+            "TechnologyLiteracy": 3,
+            "Inquiry": 2,
             "QuantitativeLiteracy": 2,
-            "Communication": 2,
-            "Creativity": 2
+            "Communication": 1,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -1456,12 +1447,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
             "Analysis": 3,
-            "Integration": 2,
-            "QuantitativeLiteracy": 2,
-            "Communication": 1,
-            "Creativity": 2
+            "InformationLiteracy": 3,
+            "TechnologyLiteracy": 2,
+            "Inquiry": 2,
+            "Collaboration": 1,
+            "QuantitativeLiteracy": 1
           }
         },
         "topicalOutline": {
@@ -1607,12 +1598,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "TechnologyLiteracy": 3,
+            "Analysis": 3,
             "Integration": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
-            "Creativity": 3,
-            "Communication": 2
+            "Creativity": 2,
+            "Inquiry": 1,
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -1758,12 +1749,11 @@
             }
           ],
           "competencyMapping": {
-            "Creativity": 3,
-            "Inquiry": 2,
+            "Analysis": 3,
+            "TechnologyLiteracy": 2,
+            "Creativity": 2,
             "Integration": 2,
-            "Analysis": 2,
-            "Communication": 1,
-            "Collaboration": 1
+            "QuantitativeLiteracy": 1
           }
         },
         "topicalOutline": {
@@ -1908,7 +1898,7 @@
             "QuantitativeLiteracy": 3,
             "Analysis": 3,
             "Inquiry": 2,
-            "Integration": 2,
+            "Integration": 1,
             "Communication": 1
           }
         },
@@ -2101,15 +2091,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
-            "Integration": 3,
-            "GlobalCulturalAwareness": 2,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "InformationLiteracy": 3,
+            "TechnologyLiteracy": 2,
+            "Inquiry": 2,
+            "Collaboration": 1,
+            "QuantitativeLiteracy": 1
           }
         },
         "topicalOutline": {
@@ -2231,7 +2218,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1
+            "TechnologyLiteracy": 3,
+            "Analysis": 3,
+            "Integration": 2,
+            "Creativity": 2,
+            "Inquiry": 1,
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -2381,15 +2373,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
             "Integration": 3,
-            "GlobalCulturalAwareness": 3,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 3
+            "GlobalCulturalAwareness": 2,
+            "DiversityEquityInclusion": 2,
+            "Communication": 2,
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -2550,13 +2538,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
-            "Integration": 3,
-            "GlobalCulturalAwareness": 2,
             "Analysis": 3,
-            "DiversityEquityInclusion": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 3
+            "TechnologyLiteracy": 3,
+            "Inquiry": 2,
+            "QuantitativeLiteracy": 2,
+            "Communication": 1,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -2663,8 +2650,12 @@
             }
           ],
           "competencyMapping": {
-            "Analysis": 2,
-            "Inquiry": 1
+            "Analysis": 3,
+            "InformationLiteracy": 3,
+            "TechnologyLiteracy": 2,
+            "Inquiry": 2,
+            "Collaboration": 1,
+            "QuantitativeLiteracy": 1
           }
         },
         "topicalOutline": {
@@ -2793,13 +2784,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
-            "Integration": 3,
+            "TechnologyLiteracy": 3,
             "Analysis": 3,
+            "Integration": 2,
             "Creativity": 2,
-            "QuantitativeLiteracy": 2,
-            "Communication": 2,
-            "Collaboration": 2
+            "Inquiry": 1,
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -2937,15 +2927,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "TechnologyLiteracy": 2,
+            "Collaboration": 2,
+            "Communication": 2,
+            "DiversityEquityInclusion": 1
           }
         },
         "topicalOutline": {
@@ -3071,15 +3057,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Communication": 3,
+            "Integration": 2,
+            "TechnologyLiteracy": 2,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -3205,15 +3187,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Collaboration": 2,
+            "Communication": 2,
+            "TechnologyLiteracy": 1,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -3346,15 +3324,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
+            "Creativity": 3,
+            "Integration": 3,
             "Communication": 2,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -3480,15 +3454,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "TechnologyLiteracy": 2,
+            "Collaboration": 2,
+            "Communication": 2,
+            "DiversityEquityInclusion": 1
           }
         },
         "topicalOutline": {
@@ -3627,15 +3597,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Communication": 3,
+            "Integration": 2,
+            "TechnologyLiteracy": 2,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -3767,15 +3733,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 3,
             "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Collaboration": 2,
+            "Communication": 2,
+            "TechnologyLiteracy": 1,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -3914,15 +3876,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 3,
             "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 3,
+            "Communication": 2,
+            "Collaboration": 2,
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -4048,15 +4006,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "TechnologyLiteracy": 2,
+            "Collaboration": 2,
+            "Communication": 2,
+            "DiversityEquityInclusion": 1
           }
         },
         "topicalOutline": {
@@ -4195,15 +4149,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Communication": 3,
+            "Integration": 2,
+            "TechnologyLiteracy": 2,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -4336,15 +4286,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Collaboration": 2,
+            "Communication": 2,
+            "TechnologyLiteracy": 1,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -4476,15 +4422,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
+            "Creativity": 3,
+            "Integration": 3,
             "Communication": 2,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -4617,15 +4559,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "TechnologyLiteracy": 2,
+            "Collaboration": 2,
+            "Communication": 2,
+            "DiversityEquityInclusion": 1
           }
         },
         "topicalOutline": {
@@ -4757,15 +4695,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 3,
             "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Communication": 3,
+            "Integration": 2,
+            "TechnologyLiteracy": 2,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -4898,15 +4832,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Collaboration": 2,
+            "Communication": 2,
+            "TechnologyLiteracy": 1,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -5039,15 +4969,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
+            "Creativity": 3,
+            "Integration": 3,
             "Communication": 2,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -5173,15 +5099,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "TechnologyLiteracy": 2,
+            "Collaboration": 2,
+            "Communication": 2,
+            "DiversityEquityInclusion": 1
           }
         },
         "topicalOutline": {
@@ -5307,15 +5229,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Communication": 3,
+            "Integration": 2,
+            "TechnologyLiteracy": 2,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -5441,15 +5359,10 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Communication": 2,
+            "Integration": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -5588,15 +5501,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "DiversityEquityInclusion": 2,
+            "GlobalCulturalAwareness": 2,
+            "Communication": 1,
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -5729,15 +5638,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Collaboration": 2,
+            "Communication": 2,
+            "Integration": 1,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -5863,15 +5768,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
+            "ScientificLiteracy": 3,
             "GlobalCulturalAwareness": 3,
-            "Analysis": 3,
+            "Inquiry": 2,
             "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -6004,15 +5905,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
             "GlobalCulturalAwareness": 3,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "DiversityEquityInclusion": 3,
+            "Inquiry": 2,
+            "ScientificLiteracy": 2,
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -6145,15 +6042,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 3,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "ScientificLiteracy": 3,
+            "Inquiry": 3,
+            "Analysis": 2,
+            "QuantitativeLiteracy": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -6286,15 +6179,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
+            "DiversityEquityInclusion": 3,
             "GlobalCulturalAwareness": 3,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
+            "Collaboration": 2,
             "Communication": 2,
-            "Collaboration": 1,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "ScientificLiteracy": 1
           }
         },
         "topicalOutline": {
@@ -6427,15 +6316,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
+            "ScientificLiteracy": 3,
             "GlobalCulturalAwareness": 3,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 2,
+            "DiversityEquityInclusion": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -6568,15 +6453,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
             "GlobalCulturalAwareness": 3,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "DiversityEquityInclusion": 3,
+            "Inquiry": 2,
+            "ScientificLiteracy": 2,
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -6702,15 +6583,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 3,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "ScientificLiteracy": 3,
+            "Inquiry": 3,
+            "Analysis": 2,
+            "QuantitativeLiteracy": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -6836,15 +6713,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
+            "DiversityEquityInclusion": 3,
             "GlobalCulturalAwareness": 3,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
             "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "Communication": 2,
+            "ScientificLiteracy": 1
           }
         },
         "topicalOutline": {
@@ -6983,15 +6856,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
             "Communication": 3,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Creativity": 3,
+            "TechnologyLiteracy": 2,
+            "Collaboration": 1,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -7117,15 +6986,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 3,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "QuantitativeLiteracy": 3,
+            "Communication": 2,
+            "Collaboration": 1,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -7258,15 +7123,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 3,
+            "GlobalCulturalAwareness": 3,
+            "Communication": 2,
             "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Analysis": 2,
+            "DiversityEquityInclusion": 1
           }
         },
         "topicalOutline": {
@@ -7399,15 +7260,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
             "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "Integration": 2,
+            "QuantitativeLiteracy": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -7533,15 +7390,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
+            "Collaboration": 3,
             "Communication": 3,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Analysis": 2,
+            "Integration": 1,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -7667,15 +7520,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 3,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "QuantitativeLiteracy": 3,
+            "Communication": 2,
+            "Collaboration": 1,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -7807,15 +7656,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
+            "Collaboration": 3,
+            "Creativity": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "TechnologyLiteracy": 2,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -7941,15 +7786,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Communication": 3,
+            "Inquiry": 2,
+            "Collaboration": 1,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -8082,15 +7923,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Communication": 2,
+            "GlobalCulturalAwareness": 2,
+            "Integration": 1,
+            "DiversityEquityInclusion": 1
           }
         },
         "topicalOutline": {
@@ -8223,15 +8060,10 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Collaboration": 2,
+            "Communication": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -8364,15 +8196,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 2,
+            "DiversityEquityInclusion": 2,
+            "Communication": 1,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -8505,15 +8333,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Communication": 3,
+            "Inquiry": 2,
+            "Collaboration": 1,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -8639,15 +8463,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
             "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Communication": 2,
+            "GlobalCulturalAwareness": 2,
+            "Integration": 1,
+            "DiversityEquityInclusion": 1
           }
         },
         "topicalOutline": {
@@ -8773,15 +8593,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
+            "DiversityEquityInclusion": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 1,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 2,
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -8914,15 +8730,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
+            "Inquiry": 3,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "DiversityEquityInclusion": 1,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -9048,15 +8860,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
             "GlobalCulturalAwareness": 3,
-            "Analysis": 3,
             "DiversityEquityInclusion": 2,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -9182,15 +8990,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 1,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "DiversityEquityInclusion": 2,
+            "GlobalCulturalAwareness": 1,
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -9323,15 +9127,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
+            "DiversityEquityInclusion": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 2,
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -9457,15 +9257,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
+            "Inquiry": 3,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 1,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "DiversityEquityInclusion": 1,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -9591,15 +9387,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
+            "GlobalCulturalAwareness": 3,
             "DiversityEquityInclusion": 2,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -9732,15 +9524,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "DiversityEquityInclusion": 2,
+            "GlobalCulturalAwareness": 1,
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -9873,15 +9661,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 3,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
+            "DiversityEquityInclusion": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 2,
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -10014,15 +9798,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
+            "GlobalCulturalAwareness": 2,
             "Integration": 1,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -10155,15 +9935,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 3,
+            "Analysis": 3,
+            "TechnologyLiteracy": 2,
+            "QuantitativeLiteracy": 2,
+            "Collaboration": 1,
+            "InformationLiteracy": 1
           }
         },
         "topicalOutline": {
@@ -10302,15 +10079,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
+            "TechnologyLiteracy": 3,
+            "Inquiry": 2,
+            "QuantitativeLiteracy": 2,
             "Communication": 1,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -10443,15 +10217,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
             "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 1,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "InformationLiteracy": 3,
+            "TechnologyLiteracy": 2,
+            "Inquiry": 2,
+            "Collaboration": 1,
+            "QuantitativeLiteracy": 1
           }
         },
         "topicalOutline": {
@@ -10584,15 +10355,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
+            "TechnologyLiteracy": 3,
             "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 3
+            "Integration": 2,
+            "Creativity": 2,
+            "Inquiry": 1,
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -10719,14 +10487,11 @@
           ],
           "competencyMapping": {
             "Inquiry": 3,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "TechnologyLiteracy": 2,
+            "QuantitativeLiteracy": 2,
+            "Collaboration": 1,
+            "InformationLiteracy": 1
           }
         },
         "topicalOutline": {
@@ -10859,15 +10624,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "TechnologyLiteracy": 3,
+            "Inquiry": 2,
+            "QuantitativeLiteracy": 2,
+            "Communication": 1,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -11000,15 +10762,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "InformationLiteracy": 3,
+            "TechnologyLiteracy": 2,
+            "Inquiry": 2,
+            "Collaboration": 1,
+            "QuantitativeLiteracy": 1
           }
         },
         "topicalOutline": {
@@ -11134,15 +10893,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
+            "TechnologyLiteracy": 3,
             "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
+            "Integration": 2,
             "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 1,
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -11276,14 +11032,11 @@
           ],
           "competencyMapping": {
             "Inquiry": 3,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
             "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "TechnologyLiteracy": 2,
+            "QuantitativeLiteracy": 2,
+            "Collaboration": 1,
+            "InformationLiteracy": 1
           }
         },
         "topicalOutline": {
@@ -11416,15 +11169,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
             "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "TechnologyLiteracy": 3,
+            "Inquiry": 2,
+            "QuantitativeLiteracy": 2,
+            "Communication": 1,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -11550,15 +11300,12 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "InformationLiteracy": 3,
+            "TechnologyLiteracy": 2,
+            "Inquiry": 2,
+            "Collaboration": 1,
+            "QuantitativeLiteracy": 1
           }
         },
         "topicalOutline": {
@@ -11695,15 +11442,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 3
+            "QuantitativeLiteracy": 3,
+            "InformationLiteracy": 3,
+            "Analysis": 2,
+            "TechnologyLiteracy": 2,
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -11836,15 +11579,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "TechnologyLiteracy": 3,
+            "QuantitativeLiteracy": 2,
+            "Analysis": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 3
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -11977,15 +11716,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 3,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
+            "QuantitativeLiteracy": 3,
             "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "TechnologyLiteracy": 2,
+            "InformationLiteracy": 2,
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -12118,15 +11853,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 1,
+            "Inquiry": 3,
+            "Integration": 2,
             "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "DiversityEquityInclusion": 2,
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -12258,15 +11989,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "Integration": 3,
+            "Communication": 2,
+            "Creativity": 2,
+            "Collaboration": 2,
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -12392,15 +12119,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Integration": 2,
+            "Communication": 2,
+            "DiversityEquityInclusion": 1
           }
         },
         "topicalOutline": {
@@ -12533,15 +12256,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 3,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
+            "TechnologyLiteracy": 3,
+            "GlobalCulturalAwareness": 2,
             "Communication": 2,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "DiversityEquityInclusion": 2,
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -12667,15 +12386,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 3,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Communication": 3,
+            "TechnologyLiteracy": 2,
+            "GlobalCulturalAwareness": 2,
+            "Analysis": 2,
+            "DiversityEquityInclusion": 1
           }
         },
         "topicalOutline": {
@@ -12808,15 +12523,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "DiversityEquityInclusion": 3,
+            "TechnologyLiteracy": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 3,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
             "Communication": 2,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -12949,15 +12660,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 3,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Integration": 2,
+            "QuantitativeLiteracy": 2,
+            "Collaboration": 1,
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -13090,15 +12797,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 3,
             "Communication": 3,
             "Collaboration": 3,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "DiversityEquityInclusion": 2,
+            "Inquiry": 2,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -13224,15 +12927,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
             "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Collaboration": 2,
+            "Communication": 2,
+            "Integration": 2,
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -13365,15 +13064,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 3,
+            "Communication": 2,
+            "Collaboration": 2,
+            "DiversityEquityInclusion": 2,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -13506,15 +13201,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Integration": 3,
+            "DiversityEquityInclusion": 2,
+            "Communication": 2,
+            "Collaboration": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -13640,15 +13331,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 3,
             "Communication": 3,
             "Collaboration": 3,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "DiversityEquityInclusion": 2,
+            "Inquiry": 2,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -13774,15 +13461,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
             "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Collaboration": 2,
+            "Communication": 2,
+            "Integration": 2,
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -13908,15 +13591,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 3,
+            "Communication": 2,
+            "Collaboration": 2,
+            "DiversityEquityInclusion": 2,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -14042,15 +13721,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Integration": 3,
+            "DiversityEquityInclusion": 2,
+            "Communication": 2,
+            "Collaboration": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -14176,15 +13851,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 3,
             "Communication": 3,
             "Collaboration": 3,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "DiversityEquityInclusion": 2,
+            "Inquiry": 2,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -14317,15 +13988,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
             "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Collaboration": 2,
+            "Communication": 2,
+            "Integration": 2,
+            "Inquiry": 1
           }
         },
         "topicalOutline": {
@@ -14451,15 +14118,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 3,
+            "Communication": 2,
+            "Collaboration": 2,
+            "DiversityEquityInclusion": 2,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -14598,15 +14261,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -14732,15 +14391,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -14873,15 +14528,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -15014,15 +14665,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -15148,15 +14795,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -15288,15 +14931,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -15429,15 +15068,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -15570,15 +15205,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -15717,15 +15348,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -15851,15 +15478,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -15991,15 +15614,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -16132,15 +15751,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -16279,15 +15894,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -16426,15 +16037,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
+            "Inquiry": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -16573,15 +16180,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Communication": 3,
+            "Collaboration": 2,
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -16713,15 +16316,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Communication": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -16853,15 +16452,11 @@
             }
           ],
           "competencyMapping": {
+            "Integration": 3,
+            "Communication": 2,
             "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 2,
             "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -17000,15 +16595,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
+            "Communication": 2,
             "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -17147,15 +16738,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -17294,15 +16881,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 2,
+            "Integration": 2,
+            "Communication": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -17441,15 +17024,11 @@
             }
           ],
           "competencyMapping": {
+            "Integration": 3,
+            "Communication": 2,
             "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 1,
-            "Collaboration": 2,
             "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -17581,15 +17160,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -17726,15 +17301,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Communication": 3,
+            "Collaboration": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -17866,15 +17437,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -18007,15 +17574,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -18141,15 +17704,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -18275,15 +17834,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Communication": 3,
+            "Collaboration": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -18416,15 +17971,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -18550,15 +18101,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -18690,15 +18237,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -18830,15 +18373,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Communication": 3,
+            "Collaboration": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -18971,15 +18510,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -19112,15 +18647,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -19253,15 +18784,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -19394,15 +18921,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Communication": 3,
+            "Collaboration": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -19528,15 +19051,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -19669,15 +19188,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -19810,15 +19325,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -19944,15 +19455,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -20085,15 +19592,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -20219,15 +19722,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -20360,15 +19859,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 1,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -20494,15 +19989,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -20628,15 +20119,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -20762,15 +20249,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -20896,15 +20379,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 1,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -21037,15 +20516,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -21178,15 +20653,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -21319,15 +20790,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -21460,15 +20927,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -21594,15 +21057,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Communication": 3,
+            "Collaboration": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -21746,15 +21205,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -21898,15 +21353,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -22050,15 +21501,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -22197,15 +21644,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Communication": 3,
+            "Collaboration": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -22337,15 +21780,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -22471,15 +21910,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -22612,15 +22047,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -22752,15 +22183,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Communication": 3,
+            "Collaboration": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -22892,15 +22319,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -23032,15 +22455,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -23173,14 +22592,10 @@
           ],
           "competencyMapping": {
             "Inquiry": 3,
+            "Analysis": 2,
+            "Communication": 2,
             "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 1,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -23319,15 +22734,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Communication": 3,
+            "Collaboration": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -23464,15 +22875,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -23611,15 +23018,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -23751,15 +23154,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -23885,15 +23284,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -24025,15 +23420,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -24165,15 +23556,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -24299,15 +23686,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
+            "Inquiry": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -24440,15 +23823,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -24574,15 +23953,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -24708,15 +24083,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 3,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "Integration": 3,
+            "Communication": 2,
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -24849,15 +24220,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 3,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 3,
+            "Analysis": 2,
+            "Communication": 2,
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -24996,15 +24363,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
+            "DiversityEquityInclusion": 3,
             "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 3,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Communication": 2,
+            "Inquiry": 2,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -25130,15 +24493,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -25264,15 +24623,11 @@
             }
           ],
           "competencyMapping": {
+            "Integration": 3,
+            "Communication": 2,
             "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 3,
-            "Collaboration": 2,
             "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -25405,15 +24760,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 3,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 3,
+            "Analysis": 2,
+            "Communication": 2,
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -25546,15 +24897,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Communication": 3,
+            "Collaboration": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -25687,15 +25034,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 3,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Communication": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -25828,15 +25171,11 @@
             }
           ],
           "competencyMapping": {
+            "Integration": 3,
+            "Communication": 2,
             "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 3,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -25962,15 +25301,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 3,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 3,
+            "Analysis": 2,
+            "Communication": 2,
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -26103,15 +25438,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Communication": 3,
+            "Collaboration": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -26244,15 +25575,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -26378,15 +25705,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -26512,15 +25835,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -26646,15 +25965,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -26787,15 +26102,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -26927,15 +26238,11 @@
             }
           ],
           "competencyMapping": {
+            "Integration": 3,
+            "Communication": 2,
             "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 3
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -27074,15 +26381,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -27221,15 +26524,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 3
+            "Communication": 3,
+            "Collaboration": 2,
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -27366,15 +26665,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 3
+            "Communication": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -27511,15 +26806,11 @@
             }
           ],
           "competencyMapping": {
+            "Integration": 3,
+            "Communication": 2,
             "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 3
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -27651,15 +26942,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
+            "Communication": 2,
             "Integration": 1,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 3
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -27798,15 +27085,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 3
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -27945,15 +27228,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 3
+            "Inquiry": 2,
+            "Integration": 2,
+            "Communication": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -28090,15 +27369,11 @@
             }
           ],
           "competencyMapping": {
+            "Integration": 3,
+            "Communication": 2,
             "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 3
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -28237,15 +27512,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 3
+            "Inquiry": 3,
+            "Analysis": 2,
+            "Communication": 2,
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -28377,15 +27648,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 3
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -28511,15 +27778,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Communication": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -28658,15 +27921,11 @@
             }
           ],
           "competencyMapping": {
+            "Integration": 3,
+            "Communication": 2,
             "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 1,
-            "Collaboration": 2,
             "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -28799,15 +28058,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
+            "GlobalCulturalAwareness": 3,
+            "Inquiry": 2,
+            "Analysis": 2,
             "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -28940,15 +28195,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -29080,15 +28331,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
+            "Inquiry": 2,
+            "Integration": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -29220,15 +28467,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -29360,15 +28603,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 1,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -29501,15 +28740,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -29635,15 +28870,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
+            "Inquiry": 2,
+            "Integration": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -29782,15 +29013,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
+            "Inquiry": 2,
             "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -29916,15 +29143,11 @@
             }
           ],
           "competencyMapping": {
+            "GlobalCulturalAwareness": 3,
             "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
+            "Analysis": 2,
             "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -30057,15 +29280,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
+            "DiversityEquityInclusion": 3,
+            "GlobalCulturalAwareness": 2,
             "Communication": 2,
-            "Collaboration": 1,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Integration": 1
           }
         },
         "topicalOutline": {
@@ -30198,15 +29417,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 3,
+            "Analysis": 2,
+            "GlobalCulturalAwareness": 2,
+            "Integration": 1,
+            "Communication": 1
           }
         },
         "topicalOutline": {
@@ -30338,15 +29553,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -30479,15 +29690,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
+            "Communication": 2,
             "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 3
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -30613,15 +29820,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 3,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -30747,15 +29950,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Communication": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -30894,15 +30093,11 @@
             }
           ],
           "competencyMapping": {
+            "Integration": 3,
+            "Communication": 2,
             "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 1,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -31041,15 +30236,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
+            "Communication": 2,
             "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 1,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -31188,15 +30379,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 1,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Communication": 3,
+            "Collaboration": 2,
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -31335,15 +30522,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 1,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Communication": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -31487,15 +30670,11 @@
             }
           ],
           "competencyMapping": {
+            "Integration": 3,
+            "Communication": 2,
             "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 2,
             "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -31634,15 +30813,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
+            "Communication": 2,
             "Integration": 1,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 2,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -31768,15 +30943,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Communication": 3,
+            "Collaboration": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -31909,15 +31080,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -32050,15 +31217,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -32184,15 +31347,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -32324,15 +31483,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Communication": 3,
+            "Collaboration": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
-            "Collaboration": 3,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -32465,15 +31620,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -32599,15 +31750,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -32733,15 +31880,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -32867,15 +32010,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -33008,15 +32147,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -33142,15 +32277,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -33283,15 +32414,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -33424,15 +32551,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -33565,15 +32688,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "Integration": 2,
+            "Communication": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -33706,15 +32825,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
+            "Integration": 3,
+            "Communication": 2,
+            "Inquiry": 2,
             "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -33840,15 +32955,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "Communication": 2,
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -33974,15 +33085,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 3,
             "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "Collaboration": 2,
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -34108,15 +33215,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Integration": 2,
+            "Communication": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -34249,15 +33352,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
+            "Integration": 3,
+            "Communication": 2,
+            "Inquiry": 2,
             "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -34390,15 +33489,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "Communication": 2,
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -34524,15 +33619,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 3,
             "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "Collaboration": 2,
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -34665,15 +33756,11 @@
             }
           ],
           "competencyMapping": {
+            "Analysis": 3,
             "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Communication": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -34806,15 +33893,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
+            "Integration": 3,
+            "Communication": 2,
+            "Inquiry": 2,
             "Creativity": 2,
-            "QuantitativeLiteracy": 1
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -34947,15 +34030,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 3,
-            "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 1
+            "Communication": 2,
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -35088,15 +34167,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 3,
             "Communication": 3,
-            "Collaboration": 3,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Collaboration": 2,
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -35229,15 +34304,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
             "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Inquiry": 2,
+            "Integration": 2,
+            "Communication": 2,
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -35369,15 +34440,11 @@
             }
           ],
           "competencyMapping": {
+            "Integration": 3,
+            "Communication": 2,
             "Inquiry": 2,
-            "Integration": 1,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 1,
             "Creativity": 2,
-            "QuantitativeLiteracy": 2
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -35516,15 +34583,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 2,
+            "Inquiry": 3,
+            "Analysis": 2,
+            "Communication": 2,
             "Integration": 1,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 3,
-            "DiversityEquityInclusion": 2,
-            "Communication": 1,
-            "Collaboration": 2,
-            "Creativity": 1,
-            "QuantitativeLiteracy": 2
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -35657,15 +34720,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -35798,15 +34857,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -35939,15 +34994,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -36073,15 +35124,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
+            "Inquiry": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -36214,15 +35261,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -36355,15 +35398,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -36507,15 +35546,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -36648,15 +35683,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
+            "Inquiry": 3,
+            "Analysis": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -36782,15 +35813,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 2,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -36923,15 +35950,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -37064,15 +36087,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -37205,15 +36224,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -37339,15 +36354,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
-            "Analysis": 1,
-            "DiversityEquityInclusion": 1,
-            "Communication": 2,
+            "Communication": 3,
             "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "Integration": 2,
+            "Inquiry": 1,
+            "Creativity": 1
           }
         },
         "topicalOutline": {
@@ -37473,15 +36484,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
+            "Analysis": 3,
+            "Inquiry": 2,
             "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 2
+            "GlobalCulturalAwareness": 1
           }
         },
         "topicalOutline": {
@@ -37614,15 +36621,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 1,
-            "Analysis": 2,
-            "DiversityEquityInclusion": 1,
+            "Integration": 3,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Inquiry": 2,
+            "Creativity": 2,
+            "Analysis": 1
           }
         },
         "topicalOutline": {
@@ -37755,15 +36758,11 @@
             }
           ],
           "competencyMapping": {
-            "Inquiry": 1,
-            "Integration": 2,
-            "GlobalCulturalAwareness": 2,
+            "Inquiry": 3,
             "Analysis": 2,
-            "DiversityEquityInclusion": 2,
             "Communication": 2,
-            "Collaboration": 2,
-            "Creativity": 3,
-            "QuantitativeLiteracy": 1
+            "Integration": 1,
+            "Collaboration": 1
           }
         },
         "topicalOutline": {
@@ -37803,6 +36802,68 @@
           }
         }
       }
+    }
+  ],
+  "competencies": [
+    {
+      "id": "ANL",
+      "name": "Analysis",
+      "color": "#E52019"
+    },
+    {
+      "id": "COL",
+      "name": "Collaboration",
+      "color": "#F7931E"
+    },
+    {
+      "id": "COM",
+      "name": "Communication",
+      "color": "#FFDD00"
+    },
+    {
+      "id": "CRE",
+      "name": "Creativity",
+      "color": "#C4D82D"
+    },
+    {
+      "id": "DEI",
+      "name": "Diversity, Equity & Inclusion",
+      "color": "#5CB85C"
+    },
+    {
+      "id": "GCU",
+      "name": "Global/Cultural Awareness",
+      "color": "#7CC9B5"
+    },
+    {
+      "id": "INL",
+      "name": "Information Literacy",
+      "color": "#00B5AD"
+    },
+    {
+      "id": "INQ",
+      "name": "Inquiry",
+      "color": "#3C8DAD"
+    },
+    {
+      "id": "INT",
+      "name": "Integration",
+      "color": "#7B4FD0"
+    },
+    {
+      "id": "QNT",
+      "name": "Quantitative Literacy",
+      "color": "#D640A8"
+    },
+    {
+      "id": "SCI",
+      "name": "Scientific Literacy",
+      "color": "#F799C0"
+    },
+    {
+      "id": "TEC",
+      "name": "Technology Literacy",
+      "color": "#A61C3C"
     }
   ]
 }
